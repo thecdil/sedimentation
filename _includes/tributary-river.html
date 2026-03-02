@@ -1,0 +1,332 @@
+{% assign side = include.side | default: "left" %}
+{% assign river_id = include.id | default: "tributary" %}
+
+<svg class="tributary-river" 
+     width="100%" 
+     height="100%" 
+     preserveAspectRatio="none" 
+     style="position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none;">
+    
+    <defs>
+        <!-- River base gradient for curved column -->
+        <linearGradient id="tributaryBase{{ river_id }}" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:rgba(139,115,85,0.15);stop-opacity:1" />
+            <stop offset="20%" style="stop-color:rgba(160,132,92,0.5);stop-opacity:1" />
+            <stop offset="50%" style="stop-color:rgba(160,132,92,0.7);stop-opacity:1" />
+            <stop offset="80%" style="stop-color:rgba(160,132,92,0.5);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgba(139,115,85,0.15);stop-opacity:1" />
+        </linearGradient>
+        
+        <!-- Double-dense sediment particles pattern - Layer 1 (larger particles) -->
+        <pattern id="particlePattern{{ river_id }}" x="0" y="0" width="18" height="21" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="1.5" r="1.8" fill="#CD853F" opacity="0.75"/>
+            <circle cx="7" cy="3" r="1.6" fill="#D2691E" opacity="0.8"/>
+            <circle cx="13" cy="2.5" r="1.9" fill="#DEB887" opacity="0.7"/>
+            <circle cx="16" cy="5" r="1.5" fill="#BC8F8F" opacity="0.75"/>
+            <circle cx="4.5" cy="7" r="1.7" fill="#F4A460" opacity="0.73"/>
+            <circle cx="10" cy="8" r="2" fill="#CD853F" opacity="0.78"/>
+            <circle cx="15" cy="9.5" r="1.6" fill="#A0522D" opacity="0.7"/>
+            <circle cx="1.5" cy="11" r="1.8" fill="#D2691E" opacity="0.75"/>
+            <circle cx="6.5" cy="12.5" r="1.7" fill="#DEB887" opacity="0.73"/>
+            <circle cx="12" cy="14" r="1.9" fill="#BC8F8F" opacity="0.78"/>
+            <circle cx="17" cy="15" r="1.5" fill="#F4A460" opacity="0.72"/>
+            <circle cx="3.5" cy="17" r="1.8" fill="#CD853F" opacity="0.75"/>
+            <circle cx="9" cy="18" r="1.7" fill="#A0522D" opacity="0.73"/>
+            <circle cx="14" cy="19.5" r="1.6" fill="#D2691E" opacity="0.77"/>
+        </pattern>
+        
+        <!-- Double-dense sediment particles pattern - Layer 2 (medium particles) -->
+        <pattern id="particlePatternSmall{{ river_id }}" x="0" y="0" width="13" height="16" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1" r="1.1" fill="#CD853F" opacity="0.6"/>
+            <circle cx="5" cy="1.5" r="1" fill="#D2691E" opacity="0.65"/>
+            <circle cx="9" cy="2.5" r="1.2" fill="#DEB887" opacity="0.55"/>
+            <circle cx="12" cy="3" r="1" fill="#BC8F8F" opacity="0.6"/>
+            <circle cx="3" cy="5" r="1.1" fill="#F4A460" opacity="0.62"/>
+            <circle cx="6.5" cy="5.5" r="1.05" fill="#CD853F" opacity="0.65"/>
+            <circle cx="10.5" cy="6.5" r="1" fill="#A0522D" opacity="0.57"/>
+            <circle cx="1" cy="8" r="1.2" fill="#D2691E" opacity="0.62"/>
+            <circle cx="4.5" cy="9" r="1.1" fill="#DEB887" opacity="0.6"/>
+            <circle cx="8" cy="10" r="1.1" fill="#BC8F8F" opacity="0.65"/>
+            <circle cx="11.5" cy="11" r="1" fill="#F4A460" opacity="0.58"/>
+            <circle cx="2.5" cy="12.5" r="1.05" fill="#CD853F" opacity="0.63"/>
+            <circle cx="6" cy="13.5" r="1.2" fill="#A0522D" opacity="0.6"/>
+            <circle cx="9.5" cy="14.5" r="1" fill="#D2691E" opacity="0.65"/>
+            <circle cx="12.5" cy="15" r="1.1" fill="#DEB887" opacity="0.62"/>
+        </pattern>
+        
+        <!-- Double-dense tiny specs - Layer 3 -->
+        <pattern id="particlePatternTiny{{ river_id }}" x="0" y="0" width="9" height="11" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="0.8" r="0.6" fill="#CD853F" opacity="0.45"/>
+            <circle cx="3" cy="1.2" r="0.55" fill="#D2691E" opacity="0.42"/>
+            <circle cx="5.5" cy="1.5" r="0.65" fill="#DEB887" opacity="0.47"/>
+            <circle cx="7.5" cy="2" r="0.6" fill="#BC8F8F" opacity="0.45"/>
+            <circle cx="2" cy="3.5" r="0.6" fill="#F4A460" opacity="0.43"/>
+            <circle cx="4" cy="4" r="0.55" fill="#CD853F" opacity="0.47"/>
+            <circle cx="6.5" cy="4.5" r="0.65" fill="#A0522D" opacity="0.4"/>
+            <circle cx="8.5" cy="5.5" r="0.6" fill="#D2691E" opacity="0.45"/>
+            <circle cx="1.5" cy="6.5" r="0.6" fill="#DEB887" opacity="0.43"/>
+            <circle cx="3.5" cy="7" r="0.55" fill="#BC8F8F" opacity="0.47"/>
+            <circle cx="6" cy="8" r="0.65" fill="#F4A460" opacity="0.45"/>
+            <circle cx="8" cy="8.5" r="0.6" fill="#CD853F" opacity="0.43"/>
+            <circle cx="2.5" cy="9.5" r="0.6" fill="#A0522D" opacity="0.4"/>
+            <circle cx="5" cy="10" r="0.55" fill="#D2691E" opacity="0.45"/>
+            <circle cx="7" cy="10.5" r="0.65" fill="#DEB887" opacity="0.47"/>
+        </pattern>
+        
+        <!-- Double-dense micro particles - Layer 4 -->
+        <pattern id="particlePatternMicro{{ river_id }}" x="0" y="0" width="6" height="7" patternUnits="userSpaceOnUse">
+            <circle cx="0.8" cy="0.5" r="0.4" fill="#CD853F" opacity="0.35"/>
+            <circle cx="2.5" cy="1" r="0.38" fill="#D2691E" opacity="0.32"/>
+            <circle cx="4" cy="1.5" r="0.45" fill="#DEB887" opacity="0.37"/>
+            <circle cx="5.5" cy="2" r="0.4" fill="#BC8F8F" opacity="0.35"/>
+            <circle cx="1.5" cy="3" r="0.4" fill="#F4A460" opacity="0.32"/>
+            <circle cx="3" cy="3.5" r="0.38" fill="#A0522D" opacity="0.3"/>
+            <circle cx="4.5" cy="4" r="0.45" fill="#CD853F" opacity="0.37"/>
+            <circle cx="1" cy="5" r="0.4" fill="#D2691E" opacity="0.35"/>
+            <circle cx="2.5" cy="5.5" r="0.38" fill="#DEB887" opacity="0.32"/>
+            <circle cx="4" cy="6" r="0.45" fill="#BC8F8F" opacity="0.37"/>
+            <circle cx="5.5" cy="6.5" r="0.4" fill="#F4A460" opacity="0.35"/>
+        </pattern>
+        
+        <!-- Flow streaks for texture -->
+        <pattern id="flowStreaks{{ river_id }}" x="0" y="0" width="35" height="80" patternUnits="userSpaceOnUse">
+            <line x1="8" y1="0" x2="10" y2="20" stroke="rgba(139,115,85,0.2)" stroke-width="0.8" stroke-linecap="round"/>
+            <line x1="22" y1="15" x2="24" y2="40" stroke="rgba(160,132,92,0.15)" stroke-width="0.6" stroke-linecap="round"/>
+            <line x1="30" y1="30" x2="31" y2="55" stroke="rgba(139,115,85,0.12)" stroke-width="0.9" stroke-linecap="round"/>
+            <line x1="12" y1="50" x2="14" y2="75" stroke="rgba(160,132,92,0.18)" stroke-width="0.7" stroke-linecap="round"/>
+            <line x1="5" y1="25" x2="6" y2="42" stroke="rgba(139,115,85,0.1)" stroke-width="0.5" stroke-linecap="round"/>
+        </pattern>
+        
+        <!-- Turbulence filter for organic texture -->
+        <filter id="turbulence{{ river_id }}" x="0%" y="0%" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.02 0.008" numOctaves="3" seed="2" result="turbulence"/>
+            <feColorMatrix in="turbulence" type="saturate" values="0.3" result="colorized"/>
+            <feComposite in="colorized" in2="SourceGraphic" operator="in" result="textured"/>
+            <feBlend in="textured" in2="SourceGraphic" mode="multiply"/>
+        </filter>
+                
+    </defs>
+    
+    {% if side == "right" %}
+    <!-- Right side tributary - curves naturally down the right -->
+    <g id="riverGroup{{ river_id }}" class="river-group" data-side="right">
+        <!-- Large particle layer -->
+        <path id="riverPathParticles{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#particlePattern{{ river_id }})" 
+              class="tributary-particles tributary-path"
+              opacity="1"/>
+        
+        <!-- Small particle layer -->
+        <path id="riverPathParticlesSmall{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#particlePatternSmall{{ river_id }})" 
+              class="tributary-particles-small tributary-path"
+              opacity="1"/>
+        
+        <!-- Tiny particle specs -->
+        <path id="riverPathParticlesTiny{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#particlePatternTiny{{ river_id }})" 
+              class="tributary-particles-tiny tributary-path"
+              opacity="1"/>
+        
+        <!-- Micro particle specs -->
+        <path id="riverPathParticlesMicro{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#particlePatternMicro{{ river_id }})" 
+              class="tributary-particles-micro tributary-path"
+              opacity="1"/>
+        
+        <!-- Flow streaks overlay -->
+        <path id="riverPathStreaks{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#flowStreaks{{ river_id }})" 
+              opacity="0.5"
+              class="tributary-streaks tributary-path"/>
+    </g>
+    
+    {% else %}
+    <!-- Left side tributary - curves naturally down the left (default) -->
+    <g id="riverGroup{{ river_id }}" class="river-group" data-side="left">
+        <!-- Large particle layer -->
+        <path id="riverPathParticles{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#particlePattern{{ river_id }})" 
+              class="tributary-particles tributary-path"
+              opacity="1"/>
+        
+        <!-- Small particle layer -->
+        <path id="riverPathParticlesSmall{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#particlePatternSmall{{ river_id }})" 
+              class="tributary-particles-small tributary-path"
+              opacity="1"/>
+        
+        <!-- Tiny particle specs -->
+        <path id="riverPathParticlesTiny{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#particlePatternTiny{{ river_id }})" 
+              class="tributary-particles-tiny tributary-path"
+              opacity="1"/>
+        
+        <!-- Micro particle specs -->
+        <path id="riverPathParticlesMicro{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#particlePatternMicro{{ river_id }})" 
+              class="tributary-particles-micro tributary-path"
+              opacity="1"/>
+        
+        <!-- Flow streaks overlay -->
+        <path id="riverPathStreaks{{ river_id }}" 
+              d="M 0 0 L 0 100" 
+              fill="url(#flowStreaks{{ river_id }})" 
+              opacity="0.5"
+              class="tributary-streaks tributary-path"/>
+    </g>
+    {% endif %}
+</svg>
+
+<script>
+(function() {
+  const riverGroup = document.querySelector('.river-group');
+  if (!riverGroup) {
+    console.log('No river group found');
+    return;
+  }
+  
+  const side = riverGroup.getAttribute('data-side');
+  const svgElement = document.querySelector('.tributary-river');
+  
+  console.log('River initialized, side:', side);
+  
+  // Generate organic curved path
+  function generateRiverPath() {
+    // Get the full document height to ensure river covers entire page
+    const svgHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    
+    const svgWidth = window.innerWidth;
+    
+    // Update SVG viewBox to match full document
+    svgElement.setAttribute('viewBox', `0 0 ${svgWidth} ${svgHeight}`);
+    svgElement.style.height = svgHeight + 'px';
+    
+    // River width (75% of original = 6% * 0.75 = 4.5% for right, 8% * 0.75 = 6% for left)
+    const riverWidth = side === 'right' ? svgWidth * 0.045 : svgWidth * 0.06;
+    
+    // Base position
+    const baseX = side === 'right' ? svgWidth * 0.95 : svgWidth * 0.065;
+    
+    // Generate points with organic curves using seeded randomness
+    const points = [];
+    const segments = Math.ceil(svgHeight / 60);
+    
+    // Use a simple seeded random for consistency
+    let seed = 12345;
+    function seededRandom() {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    }
+    
+    for (let i = 0; i <= segments; i++) {
+      const y = (i / segments) * svgHeight;
+      
+      // Create organic curves - use sine waves combined with seeded random
+      const curveFactor = Math.sin(i * 0.3) * 0.6 + Math.sin(i * 0.15) * 0.4;
+      const randomOffset = (seededRandom() - 0.5) * 0.3;
+      const totalCurve = (curveFactor + randomOffset) * riverWidth * 1.5;
+      
+      const centerX = baseX + totalCurve;
+      
+      points.push({ x: centerX, y: y });
+    }
+    
+    // Build the path string using smooth curves
+    let pathData = '';
+    
+    // Start from top left edge
+    pathData += `M ${points[0].x - riverWidth/2} ${points[0].y} `;
+    
+    // Draw left edge with smooth curves
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i - 1];
+      const curr = points[i];
+      
+      // Quadratic bezier for smooth curves
+      const cpY = prev.y + (curr.y - prev.y) / 2;
+      const cpX = prev.x - riverWidth/2 + (curr.x - prev.x) / 2;
+      
+      pathData += `Q ${cpX} ${cpY}, ${curr.x - riverWidth/2} ${curr.y} `;
+    }
+    
+    // Draw bottom edge
+    const lastPoint = points[points.length - 1];
+    pathData += `L ${lastPoint.x + riverWidth/2} ${lastPoint.y} `;
+    
+    // Draw right edge back up with smooth curves
+    for (let i = points.length - 1; i > 0; i--) {
+      const curr = points[i];
+      const prev = points[i - 1];
+      
+      const cpY = curr.y - (curr.y - prev.y) / 2;
+      const cpX = curr.x + riverWidth/2 + (prev.x - curr.x) / 2;
+      
+      pathData += `Q ${cpX} ${cpY}, ${prev.x + riverWidth/2} ${prev.y} `;
+    }
+    
+    pathData += 'Z';
+    
+    console.log('Generated path, segments:', segments, 'width:', riverWidth);
+    return pathData;
+  }
+  
+  // Set initial path
+  setTimeout(function() {
+    const pathData = generateRiverPath();
+    document.querySelectorAll('.tributary-path').forEach(path => {
+      path.setAttribute('d', pathData);
+    });
+    console.log('Path set');
+  }, 10);
+  
+  // Check and update river height every second
+  let lastDocHeight = 0;
+  setInterval(function() {
+    const currentDocHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    
+    // If document height has changed, regenerate the river path
+    if (currentDocHeight !== lastDocHeight) {
+      console.log('Document height changed from', lastDocHeight, 'to', currentDocHeight, '- updating river');
+      lastDocHeight = currentDocHeight;
+      const newPathData = generateRiverPath();
+      document.querySelectorAll('.tributary-path').forEach(path => {
+        path.setAttribute('d', newPathData);
+      });
+    }
+  }, 1000); // Check every second
+  
+  // Regenerate path on resize
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+      const newPathData = generateRiverPath();
+      document.querySelectorAll('.tributary-path').forEach(path => {
+        path.setAttribute('d', newPathData);
+      });
+    }, 250);
+  }, { passive: true });
+})();
+</script>

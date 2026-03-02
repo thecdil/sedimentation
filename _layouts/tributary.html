@@ -1,0 +1,101 @@
+---
+layout: default
+custom-foot: js/spotlight-media-handler.html
+---
+
+{% assign tributary_side = page.tributary-side | default: "right" %}
+
+<!-- Include navigation overlay system with button -->
+<!-- For tributary pages, side-nav-banner.html adds sticky-nav-button class for fixed top-left positioning -->
+{% include side-nav-banner.html %}
+
+
+<div class="tributary-container">
+  <!-- SVG River Background -->
+  {% include tributary-river.html side=tributary_side id=page.slug %}
+
+  <!-- Content area -->
+  <div class="tributary-content-area">
+    <div class="container-fluid">
+      <div class="row">
+        {% if tributary_side == 'right' %}
+         <div class="col-lg-2">
+          <!-- River space on right -->
+        </div>
+        <div class="col-lg-9">
+          <div class="tributary-body">
+            <!-- Sedimentation title image - inline with content, scrolls naturally -->
+            <div class="tributary-title-image-container">
+              <a href="{{ '/main.html' | relative_url }}">
+                <img src="{{ '/assets/img/sedimentation-title.png' | relative_url }}"
+                     alt="SEDIMENTATION"
+                     class="tributary-title-img">
+              </a>
+            </div>
+
+            <div id="scrolly" class="container my-4">
+              <article>
+                <div class="row my-4 step">
+                  <div class="">
+                    {{content}}
+                  </div>
+                </div>
+              </article>
+          </div>
+        </div>
+        <div class="col-lg-1">
+          <!-- River space on right -->
+        </div>
+        {% else %}
+        <div class="col-lg-2">
+          <!-- River space on left -->
+        </div>
+        <div class="col-lg-9">
+          <div class="tributary-body">
+            <!-- Sedimentation title image - inline with content, scrolls naturally -->
+            <div class="tributary-title-image-container">
+              <a href="{{ '/main.html' | relative_url }}">
+                <img src="{{ '/assets/img/sedimentation-title.png' | relative_url }}"
+                     alt="SEDIMENTATION"
+                     class="tributary-title-img">
+              </a>
+            </div>
+
+            <div id="scrolly" class="container my-4">
+              <article>
+                <div class="row my-4 step">
+                  <div class="">
+                    {{content}}
+
+                    <div class="more-tributaries-section">
+                      <h2 class="mt-5 mb-4">More Tributaries to Travel</h2>
+                      <div class="row row-cols-2 row-cols-lg-4 g-3 justify-content-center">
+                        {% assign current_slug = page.slug %}
+                        {% for trib in site.tributaries %}
+                          {% unless trib.slug == current_slug %}
+                          <div class="col text-center">
+                            {% include feature/trib-button.html trib=trib.slug text="" no-continue="true" centered="true" %}
+                          </div>
+                          {% endunless %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+                
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+
+                    </div>
+</div>
+
+<!-- Section Navigation Menu -->
+{% include js/section-nav.html %}

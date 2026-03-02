@@ -1,0 +1,122 @@
+{% assign tributary_data = site.tributaries | where: "title", include.tributary | first %}
+
+<div class="tributary-junction" data-tributary="{{ include.tributary }}">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                {% if tributary_data.side == "left" %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="tributary-card bg-white bg-opacity-90 p-4 rounded shadow">
+                            <div class="tributary-icon mb-3">
+                                <i class="fas fa-stream text-primary fs-1"></i>
+                            </div>
+                            <h4>{{ tributary_data.title }}</h4>
+                            <p>{{ tributary_data.description }}</p>
+                            <a href="{{ tributary_data.url | relative_url }}" class="btn btn-outline-primary">
+                                Explore {{ tributary_data.title }} <i class="fas fa-arrow-left ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="tributary-visual">
+                            <svg width="100%" height="200" viewBox="0 0 300 200" class="tributary-svg">
+                                <!-- Main river line -->
+                                <path d="M0 100 Q150 100 300 100" stroke="#8b7355" stroke-width="8" fill="none" opacity="0.7"/>
+                                <!-- Tributary branching left -->
+                                <path d="M150 100 Q100 70 50 50" stroke="#8b7355" stroke-width="6" fill="none" opacity="0.8">
+                                    <animate attributeName="stroke-dasharray" values="0 100;20 100;0 100" dur="3s" repeatCount="indefinite"/>
+                                </path>
+                                <!-- Flowing particles -->
+                                <circle r="3" fill="#a0845c" opacity="0.8">
+                                    <animateMotion dur="4s" repeatCount="indefinite">
+                                        <mpath href="#main-flow"/>
+                                    </animateMotion>
+                                </circle>
+                                <path id="main-flow" d="M0 100 Q150 100 300 100" opacity="0"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="tributary-visual">
+                            <svg width="100%" height="200" viewBox="0 0 300 200" class="tributary-svg">
+                                <!-- Main river line -->
+                                <path d="M0 100 Q150 100 300 100" stroke="#8b7355" stroke-width="8" fill="none" opacity="0.7"/>
+                                <!-- Tributary branching right -->
+                                <path d="M150 100 Q200 70 250 50" stroke="#8b7355" stroke-width="6" fill="none" opacity="0.8">
+                                    <animate attributeName="stroke-dasharray" values="0 100;20 100;0 100" dur="3s" repeatCount="indefinite"/>
+                                </path>
+                                <!-- Flowing particles -->
+                                <circle r="3" fill="#a0845c" opacity="0.8">
+                                    <animateMotion dur="4s" repeatCount="indefinite">
+                                        <mpath href="#main-flow-right"/>
+                                    </animateMotion>
+                                </circle>
+                                <path id="main-flow-right" d="M0 100 Q150 100 300 100" opacity="0"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="tributary-card bg-white bg-opacity-90 p-4 rounded shadow">
+                            <div class="tributary-icon mb-3">
+                                <i class="fas fa-stream text-primary fs-1"></i>
+                            </div>
+                            <h4>{{ tributary_data.title }}</h4>
+                            <p>{{ tributary_data.description }}</p>
+                            <a href="{{ tributary_data.url | relative_url }}" class="btn btn-outline-primary">
+                                Explore {{ tributary_data.title }} <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.tributary-junction {
+    margin: 3rem 0;
+    position: relative;
+}
+
+.tributary-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.tributary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.tributary-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.tributary-svg {
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.tributary-icon {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .tributary-junction .row {
+        flex-direction: column-reverse;
+    }
+    
+    .tributary-visual {
+        height: 150px;
+        margin-bottom: 1rem;
+    }
+}
+</style>

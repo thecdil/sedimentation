@@ -1,0 +1,22 @@
+{% comment %}
+
+  Adds a standalone button to link to the item's associated tributary page.
+  The tributary field can contain one or more tributary names separated by semicolons.
+  If multiple tributaries are listed, a random one will be selected.
+
+{%- endcomment -%}
+{% if page.tributary %}
+<div class="text-center my-4">
+  <a href="#" class="btn btn-primary btn-lg" onclick="navigateToTributary(event)">Explore Related Tributary</a>
+</div>
+
+<script>
+function navigateToTributary(event) {
+    event.preventDefault();
+    const tributaries = "{{ page.tributary }}".split(';').map(t => t.trim()).filter(t => t);
+    const randomTributary = tributaries[Math.floor(Math.random() * tributaries.length)];
+    const baseUrl = "{{ '/tributaries' | relative_url }}";
+    window.location.href = baseUrl + "/" + randomTributary;
+}
+</script>
+{% endif %}

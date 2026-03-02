@@ -1,0 +1,318 @@
+<div style="background:transparent;">
+    <button class="navbar-toggler sediment-map-toggle {% if page.layout == 'home' %}text-white{% else %}text-dark bg-light{% endif %} border border-dark"
+        type="button" onclick="openFullPageNav()" aria-label="Open navigation">
+        <!-- Folding Map Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi icon-sprite map-icon"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
+        </svg>
+    </button>
+    
+    <!-- Full Page Navigation Overlay -->
+    <div id="fullPageNav" class="full-page-nav">
+        <button class="close-nav-btn" onclick="closeFullPageNav()" aria-label="Close navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+        </button>
+
+        <!-- Sediment particle background -->
+        <svg class="nav-sediment-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="navParticles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <circle cx="5" cy="8" r="1.2" fill="#8B7355" opacity="0.15"/>
+                    <circle cx="15" cy="5" r="0.9" fill="#A0845C" opacity="0.12"/>
+                    <circle cx="25" cy="12" r="1.4" fill="#CD853F" opacity="0.1"/>
+                    <circle cx="35" cy="18" r="1.1" fill="#D2691E" opacity="0.13"/>
+                    <circle cx="10" cy="25" r="0.8" fill="#DEB887" opacity="0.11"/>
+                    <circle cx="30" cy="30" r="1.3" fill="#BC8F8F" opacity="0.14"/>
+                    <circle cx="20" cy="35" r="1" fill="#F4A460" opacity="0.12"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#navParticles)"/>
+        </svg>
+
+        <div class="nav-content-wrapper">
+            <!-- Left side: Visual Navigation -->
+            <div class="visual-nav-section">
+                <h2 class="nav-section-heading">
+                    <span class="heading-main">Tributaries</span>
+                    <span class="heading-sub">Visual Map</span>
+                </h2>
+                
+                <div class="rivers-container">
+                    <!-- Land River -->
+                    <div class="river-column" data-tributary="land">
+                        <h3 class="river-title">Land</h3>
+                        <svg class="vertical-river" viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="landGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#8B7355;stop-opacity:0.3" />
+                                    <stop offset="50%" style="stop-color:#A0845C;stop-opacity:0.5" />
+                                    <stop offset="100%" style="stop-color:#8B7355;stop-opacity:0.3" />
+                                </linearGradient>
+                                <filter id="flowFilter">
+                                    <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="turbulence">
+                                        <animate attributeName="baseFrequency" values="0.01;0.015;0.01" dur="8s" repeatCount="indefinite"/>
+                                    </feTurbulence>
+                                    <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+                                </filter>
+                            </defs>
+                            <!-- River flow background -->
+                            <rect x="20" y="10" width="40" height="480" fill="url(#landGradient)" rx="3" opacity="0.4" filter="url(#flowFilter)"/>
+                            <!-- Segments with particle effect -->
+                            <g class="river-segments">
+                                <rect class="river-segment" data-section="formations" data-title="Formations" x="20" y="10" width="40" height="92" rx="3"/>
+                                <rect class="river-segment" data-section="canyons" data-title="Canyons" x="20" y="107" width="40" height="92" rx="3"/>
+                                <rect class="river-segment" data-section="mud" data-title="Mud" x="20" y="204" width="40" height="92" rx="3"/>
+                                <rect class="river-segment" data-section="inscriptions" data-title="Inscriptions" x="20" y="301" width="40" height="92" rx="3"/>
+                                <rect class="river-segment" data-section="collection-objects" data-title="Collection Objects" x="20" y="398" width="40" height="92" rx="3"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Water River -->
+                    <div class="river-column" data-tributary="water">
+                        <h3 class="river-title">Water</h3>
+                        <svg class="vertical-river" viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="10" width="40" height="480" fill="url(#landGradient)" rx="3" opacity="0.4" filter="url(#flowFilter)"/>
+                            <g class="river-segments">
+                                <rect class="river-segment" data-section="field-notes" data-title="Field Notes" x="20" y="10" width="40" height="67" rx="3"/>
+                                <rect class="river-segment" data-section="seeps" data-title="Seeps" x="20" y="82" width="40" height="67" rx="3"/>
+                                <rect class="river-segment" data-section="river" data-title="River" x="20" y="154" width="40" height="67" rx="3"/>
+                                <rect class="river-segment" data-section="lake" data-title="Lake" x="20" y="226" width="40" height="67" rx="3"/>
+                                <rect class="river-segment" data-section="flash-floods" data-title="Flash Floods" x="20" y="298" width="40" height="67" rx="3"/>
+                                <rect class="river-segment" data-section="collection-objects" data-title="Collection Objects" x="20" y="370" width="40" height="120" rx="3"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Biota River -->
+                    <div class="river-column" data-tributary="biota">
+                        <h3 class="river-title">Biota</h3>
+                        <svg class="vertical-river" viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="10" width="40" height="480" fill="url(#landGradient)" rx="3" opacity="0.4" filter="url(#flowFilter)"/>
+                            <g class="river-segments">
+                                <rect class="river-segment" data-section="varnish" data-title="Varnish" x="20" y="10" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="mesozoic-lifeboats" data-title="Mesozoic Lifeboats" x="20" y="57" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="cyanobacteria" data-title="Cyanobacteria" x="20" y="104" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="cryptobiotic" data-title="Cryptobiotic" x="20" y="151" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="fish" data-title="Fish" x="20" y="198" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="beavers" data-title="Beavers" x="20" y="245" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="plants" data-title="Plants" x="20" y="292" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="antelope" data-title="Antelope" x="20" y="339" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="birds" data-title="Birds" x="20" y="386" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="other-life" data-title="Other life" x="20" y="433" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="collection-objects" data-title="Collection Objects" x="20" y="480" width="40" height="10" rx="3"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Atmosphere River -->
+                    <div class="river-column" data-tributary="atmosphere">
+                        <h3 class="river-title">Atmosphere</h3>
+                        <svg class="vertical-river" viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="10" width="40" height="480" fill="url(#landGradient)" rx="3" opacity="0.4" filter="url(#flowFilter)"/>
+                            <g class="river-segments">
+                                <rect class="river-segment" data-section="wind-memories" data-title="Wind Memories" x="20" y="10" width="40" height="51" rx="3"/>
+                                <rect class="river-segment" data-section="sand-grains" data-title="Sand Grains" x="20" y="66" width="40" height="51" rx="3"/>
+                                <rect class="river-segment" data-section="twin-warriors" data-title="Twin Warriors" x="20" y="122" width="40" height="51" rx="3"/>
+                                <rect class="river-segment" data-section="crossed-tracks" data-title="Crossed Tracks" x="20" y="178" width="40" height="51" rx="3"/>
+                                <rect class="river-segment" data-section="níłchi" data-title="Níłch'i" x="20" y="234" width="40" height="51" rx="3"/>
+                                <rect class="river-segment" data-section="formations" data-title="Formations" x="20" y="290" width="40" height="51" rx="3"/>
+                                <rect class="river-segment" data-section="wonder" data-title="Wonder" x="20" y="346" width="40" height="51" rx="3"/>
+                                <rect class="river-segment" data-section="images-of-a-lost-world" data-title="Images of a Lost World" x="20" y="402" width="40" height="51" rx="3"/>
+                                <rect class="river-segment" data-section="claiming-wonder" data-title="Claiming Wonder" x="20" y="458" width="40" height="32" rx="3"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Humans River -->
+                    <div class="river-column" data-tributary="humans">
+                        <h3 class="river-title">Humans</h3>
+                        <svg class="vertical-river" viewBox="0 0 80 500" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="10" width="40" height="480" fill="url(#landGradient)" rx="3" opacity="0.4" filter="url(#flowFilter)"/>
+                            <g class="river-segments">
+                                <rect class="river-segment" data-section="inscriptions" data-title="Inscriptions" x="20" y="10" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="subsumation" data-title="Subsumation" x="20" y="57" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="absence-and-presence" data-title="Absence and Presence" x="20" y="104" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="foundations" data-title="Foundations" x="20" y="151" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="earthly-archives" data-title="Earthly Archives" x="20" y="198" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="hole-in-the-rock" data-title="Hole-in-the-Rock" x="20" y="245" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="failures" data-title="Failures" x="20" y="292" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="reclamation" data-title="Reclamation" x="20" y="339" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="rainbow-bridge" data-title="Rainbow Bridge" x="20" y="386" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="remains-of-the-future" data-title="Remains of the Future" x="20" y="433" width="40" height="42" rx="3"/>
+                                <rect class="river-segment" data-section="reemergence" data-title="Reemergence" x="20" y="480" width="40" height="10" rx="3"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Map legend -->
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-swatch"></span>
+                        <span class="legend-text">Hover to reveal section</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch active"></span>
+                        <span class="legend-text">Current section</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side: Textual Navigation -->
+            <div class="textual-nav-section">
+                <h2 class="nav-section-heading">Site Navigation</h2>
+                
+                <nav class="text-nav-list">
+                    <a class="text-nav-link{% if page.url == '/main.html' %} active{% endif %}" href="{{ '/main.html' | relative_url }}">Main</a>
+                    <a class="text-nav-link{% if page.url == '/about.html' %} active{% endif %}" href="{{ '/about.html' | relative_url }}">About</a>
+                    <a class="text-nav-link{% if page.url == '/resources.html' %} active{% endif %}" href="{{ '/resources.html' | relative_url }}">Resources</a>
+                    
+                    <div class="text-nav-group">
+                        <div class="text-nav-group-title">Collection</div>
+                        <a class="text-nav-link{% if page.url == '/browse.html' %} active{% endif %}" href="{{ '/browse.html' | relative_url }}">Browse</a>
+                        <a class="text-nav-link{% if page.url == '/subjects.html' %} active{% endif %}" href="{{ '/subjects.html' | relative_url }}">Subjects</a>
+                        <a class="text-nav-link{% if page.url == '/map.html' %} active{% endif %}" href="{{ '/map.html' | relative_url }}">Map</a>
+                        <a class="text-nav-link{% if page.url == '/locations.html' %} active{% endif %}" href="{{ '/locations.html' | relative_url }}">Locations</a>
+                        <a class="text-nav-link{% if page.url == '/data.html' %} active{% endif %}" href="{{ '/data.html' | relative_url }}">Data</a>
+                    </div>
+
+                    <div class="text-nav-group">
+                        <div class="text-nav-group-title">Tributaries</div>
+                        {% for c in site.tributaries %}
+                        <a class="text-nav-link {% if page.url contains c.url %}active{% endif %}" href="{{ c.url | relative_url }}">{{ c.title }}</a>
+                        {% endfor %}
+                    </div>
+                </nav>
+
+                <div class="nav-logos">
+                    {% if site.organization-logo-nav %}
+                    <a href="{{ site.organization-link }}" target="_blank" rel="noopener">
+                        <img class="nav-logo-img" src="{{ site.organization-logo-nav | relative_url }}" alt="{{ site.organization-name | escape }} home">
+                    </a>
+                    {% endif %}
+                    <a href="https://www.lib.uidaho.edu" target="_blank" rel="noopener">
+                        <img class="nav-logo-img" src="https://www.lib.uidaho.edu/media/digital/liblogo_transparent.png" alt="University of Idaho Library">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+    
+    // Get current page info on load
+    const currentPath = window.location.pathname;
+    const currentHash = window.location.hash.replace('#', '');
+    const currentTributary = getCurrentTributary(currentPath);
+    
+    function getCurrentTributary(path) {
+        if (path.includes('/tributaries/land')) return 'land';
+        if (path.includes('/tributaries/water')) return 'water';
+        if (path.includes('/tributaries/biota')) return 'biota';
+        if (path.includes('/tributaries/atmosphere')) return 'atmosphere';
+        if (path.includes('/tributaries/humans')) return 'humans';
+        return null;
+    }
+    
+    // Highlight current tributary and section
+    document.addEventListener('DOMContentLoaded', function() {
+        if (currentTributary) {
+            const riverColumns = document.querySelectorAll('.river-column');
+            riverColumns.forEach(column => {
+                if (column.dataset.tributary === currentTributary) {
+                    column.classList.add('current-tributary');
+                    
+                    // Highlight current section if hash matches
+                    if (currentHash) {
+                        const segments = column.querySelectorAll('.river-segment');
+                        segments.forEach(segment => {
+                            if (segment.dataset.section === currentHash) {
+                                segment.classList.add('active');
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+        // Attach hover and click handlers to all segments
+        const segments = document.querySelectorAll('.river-segment');
+        segments.forEach(segment => {
+            segment.addEventListener('mouseenter', showLabel);
+            segment.addEventListener('mouseleave', hideLabel);
+            segment.addEventListener('click', navigateToSection);
+        });
+    });
+    
+    function showLabel(e) {
+        const segment = e.currentTarget;
+        const title = segment.dataset.title;
+        const svg = segment.closest('svg');
+        
+        // Remove any existing label in this SVG
+        const existingLabel = svg.querySelector('.segment-label');
+        if (existingLabel) {
+            existingLabel.remove();
+        }
+        
+        // Create text element
+        const textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textEl.classList.add('segment-label');
+        
+        // Get segment position - works for rectangular segments
+        const x = parseFloat(segment.getAttribute('x')) + parseFloat(segment.getAttribute('width')) / 2;
+        const y = parseFloat(segment.getAttribute('y')) + parseFloat(segment.getAttribute('height')) / 2;
+        
+        textEl.setAttribute('x', x);
+        textEl.setAttribute('y', y + 3);
+        textEl.setAttribute('text-anchor', 'middle');
+        textEl.setAttribute('dominant-baseline', 'middle');
+        textEl.textContent = title;
+        
+        svg.appendChild(textEl);
+    }
+    
+    function hideLabel(e) {
+        const segment = e.currentTarget;
+        const svg = segment.closest('svg');
+        const label = svg.querySelector('.segment-label');
+        if (label) {
+            label.remove();
+        }
+    }
+    
+    function navigateToSection(e) {
+        const segment = e.currentTarget;
+        const column = segment.closest('.river-column');
+        const tributary = column.dataset.tributary;
+        const sectionId = segment.dataset.section;
+        
+        window.location.href = '{{ "/tributaries/" | relative_url }}' + tributary + '/#' + sectionId;
+    }
+})();
+
+// Full page nav open/close functions
+function openFullPageNav() {
+    document.getElementById('fullPageNav').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeFullPageNav() {
+    document.getElementById('fullPageNav').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeFullPageNav();
+    }
+});
+</script>

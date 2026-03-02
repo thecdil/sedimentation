@@ -1,0 +1,402 @@
+<div class="navigation-cards-container">
+  <div class="navigation-cards">
+
+    <!-- Card 1: Tributary (tall, medium width) -->
+    <div class="nav-card tributary-card">
+      <h3>EXPLORE A<br>TRIBUTARY</h3>
+      <p>flow through curated histories</p>
+      <select class="tributary-select" onchange="if(this.value) window.location.href=this.value">
+        <option value="">choose...</option>
+        <option value="{{ '/tributaries/atmosphere/' | relative_url }}">Atmosphere</option>
+        <option value="{{ '/tributaries/water/' | relative_url }}">Water</option>
+        <option value="{{ '/tributaries/biota/' | relative_url }}">Biota</option>
+        <option value="{{ '/tributaries/humans/' | relative_url }}">Humans</option>
+        <option value="{{ '/tributaries/land/' | relative_url }}">Land</option>
+      </select>
+    </div>
+
+    <!-- Card 2: Map (wide, tall) -->
+    <div class="nav-card map-card">
+      <h3>MAP</h3>
+      <div id="nav-mini-map"></div>
+      <a href="{{ '/map.html' | relative_url }}" class="map-link">discover by location →</a>
+    </div>
+
+    <!-- Card 3: Eddies (medium, short) -->
+    <div class="nav-card eddies-card">
+      <h3>Eddies</h3>
+      <p>a choose-your-own-adventure through interlinked story fragments</p>
+      <a href="{{ '/eddies/' | relative_url }}" class="eddy-link">begin →</a>
+    </div>
+
+    <!-- Card 4: Scroll Down (tall, narrow) -->
+    <div class="nav-card scroll-card">
+      <h3>KEEP<br>SCROLLING</h3>
+      <button class="scroll-button" onclick="window.scrollBy({top: window.innerHeight * 0.8, behavior: 'smooth'})">
+        <span class="scroll-text">the poem<br>continues<br>below</span>
+        <span class="scroll-arrow">↓</span>
+      </button>
+    </div>
+
+    <!-- Card 5: Collection (wide, medium) -->
+    <div class="nav-card collection-card">
+      <h3>COLLECTION</h3>
+      <div class="collection-thumbnails">
+        <img src="{{ '/objects/sediment' | append: site.time | date: '%S' | modulo: 100 | append: '.jpg' | relative_url }}" alt="Collection item" onerror="this.src='{{ '/objects/sediment0.jpg' | relative_url }}'">
+        <img src="{{ '/objects/sediment' | append: site.time | date: '%M' | modulo: 100 | append: '.jpg' | relative_url }}" alt="Collection item" onerror="this.src='{{ '/objects/sediment1.jpg' | relative_url }}'">
+        <img src="{{ '/objects/sediment' | append: site.time | date: '%H' | modulo: 100 | append: '.jpg' | relative_url }}" alt="Collection item" onerror="this.src='{{ '/objects/sediment11.jpg' | relative_url }}'">
+        <img src="{{ '/objects/sediment' | append: site.time | date: '%d' | modulo: 100 | append: '.jpg' | relative_url }}" alt="Collection item" onerror="this.src='{{ '/objects/sediment12.jpg' | relative_url }}'">
+      </div>
+      <a href="{{ '/browse.html' | relative_url }}" class="collection-link">browse all</a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.navigation-cards-container {
+  margin: 40px 0;
+}
+
+.navigation-cards {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: auto auto auto auto;
+  gap: 35px 25px;
+  margin-top: 30px;
+  min-height: 500px;
+}
+
+.nav-card {
+  background: transparent;
+  border: none;
+  padding: 20px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.nav-card:hover {
+  transform: scale(1.02);
+}
+
+/* Tributary Card - tall, spans 2 columns, 2 rows */
+.tributary-card {
+  grid-column: span 4;
+  grid-row: span 2;
+  border-left: 5px solid #8B4513;
+  padding: 25px 20px 25px 25px;
+  background: linear-gradient(90deg, rgba(139, 69, 19, 0.03) 0%, transparent 100%);
+}
+
+.tributary-card h3 {
+  font-family: 'Inconsolata', monospace;
+  font-size: 32px;
+  font-weight: 800;
+  color: #8B4513;
+  line-height: 1.1;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.02em;
+}
+
+.tributary-card p {
+  font-size: 14px;
+  color: #A0522D;
+  font-style: italic;
+  margin: 0 0 15px 0;
+}
+
+.tributary-select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #D2691E;
+  background: white;
+  color: #8B4513;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.tributary-select:hover,
+.tributary-select:focus {
+  border-color: #8B4513;
+  outline: none;
+  background: #FFF8F0;
+}
+
+/* Map Card - wide and tall, spans 4 columns, 4 rows */
+.map-card {
+  grid-column: span 3;
+  grid-row: span 3;
+  border-bottom: 6px solid #CD853F;
+  padding: 30px;
+  background: linear-gradient(180deg, transparent 0%, rgba(205, 133, 63, 0.04) 100%);
+}
+
+.map-card h3 {
+  font-family: 'Inconsolata', monospace;
+  font-size: 56px;
+  font-weight: 900;
+  color: #D2691E;
+  margin: 0 0 15px 0;
+  letter-spacing: 0.05em;
+}
+
+#nav-mini-map {
+  width: 100%;
+  height: 280px;
+  margin: 15px 0;
+  border: 3px solid #8B4513;
+  position: relative;
+  z-index: 1;
+}
+
+.map-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #8B4513;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.map-link:hover {
+  color: #D2691E;
+  text-decoration: underline;
+}
+
+/* Eddies Card - medium, spans 3 columns, 2 rows */
+.eddies-card {
+  grid-column: span 3;
+  grid-row: span 2;
+  border-top: 4px solid #BC8F8F;
+  padding: 25px 20px 20px 20px;
+  background: linear-gradient(180deg, rgba(188, 143, 143, 0.04) 0%, transparent 100%);
+}
+
+.eddies-card h3 {
+  font-family: Georgia, serif;
+  font-size: 44px;
+  font-weight: 400;
+  color: #654321;
+  font-style: italic;
+  margin: 0 0 15px 0;
+}
+
+.eddies-card p {
+  font-size: 15px;
+  color: #5D4037;
+  line-height: 1.6;
+  margin: 0 0 15px 0;
+}
+
+.eddy-link {
+  color: #D2691E;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease;
+}
+
+.eddy-link:hover {
+  color: #8B4513;
+  text-decoration: underline;
+}
+
+/* Scroll Card - tall and narrow, 2 columns, 4 rows */
+.scroll-card {
+  grid-column: span 2;
+  grid-row: span 4;
+  border-right: 5px solid #DEB887;
+  padding: 30px 25px 30px 20px;
+  text-align: center;
+  background: linear-gradient(270deg, rgba(222, 184, 135, 0.04) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-card h3 {
+  font-family: 'Inconsolata', monospace;
+  font-size: 32px;
+  font-weight: 900;
+  color: #A0522D;
+  line-height: 1.2;
+  margin: 0 0 40px 0;
+  letter-spacing: 0.05em;
+}
+
+.scroll-button {
+  background: transparent;
+  border: none;
+  padding: 30px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.scroll-button:hover {
+  transform: translateY(5px);
+}
+
+.scroll-text {
+  display: block;
+  font-size: 16px;
+  color: #8B4513;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.scroll-arrow {
+  display: block;
+  font-size: 64px;
+  color: #D2691E;
+  font-weight: bold;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Collection Card - wide, 3 columns, 2 rows */
+.collection-card {
+  grid-column: span 3;
+  grid-row: span 3;
+  border-left: 5px solid #F4A460;
+  padding: 25px 20px 25px 25px;
+  background: linear-gradient(90deg, rgba(244, 164, 96, 0.04) 0%, transparent 100%);
+}
+
+.collection-card h3 {
+  font-family: 'Inconsolata', monospace;
+  font-size: 46px;
+  font-weight: 700;
+  color: #CD853F;
+  margin: 0 0 20px 0;
+  letter-spacing: 0.08em;
+}
+
+.collection-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.collection-thumbnails img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border: 3px solid #8B4513;
+  transition: transform 0.2s ease;
+}
+
+.collection-thumbnails img:hover {
+  transform: scale(1.05);
+}
+
+.collection-link {
+  display: inline-block;
+  color: #8B4513;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: lowercase;
+  transition: color 0.2s ease;
+}
+
+.collection-link:hover {
+  color: #D2691E;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navigation-cards {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 30px;
+  }
+
+  .tributary-card,
+  .map-card,
+  .eddies-card,
+  .scroll-card,
+  .collection-card {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .scroll-card {
+    border-right: none;
+    border-top: 4px solid #DEB887;
+    padding-right: 0;
+    padding-top: 15px;
+  }
+
+  #nav-mini-map {
+    height: 200px;
+  }
+}
+</style>
+
+<!-- Load Leaflet for mini map -->
+<link rel="stylesheet" href="{{ '/assets/lib/leaflet/leaflet.css' | relative_url }}">
+<script src="{{ '/assets/lib/leaflet/leaflet.js' | relative_url }}"></script>
+<script src="https://unpkg.com/esri-leaflet@3.0.12/dist/esri-leaflet.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize mini map centered on Glen Canyon Dam area
+  var damCenter = [36.93, -111.48];
+  var miniMap = L.map('nav-mini-map', {
+    center: damCenter,
+    zoom: 10,
+    zoomControl: false,
+    dragging: false,
+    touchZoom: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    keyboard: false
+  });
+
+  // Add tile layer
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri'
+  }).addTo(miniMap);
+
+  // Add Lake Powell Boundary
+  L.esri.featureLayer({
+    url: 'https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/LakePowellBoundary/FeatureServer/0',
+    style: function () {
+      return { color: '#0066cc', weight: 2, fillOpacity: 0.3 };
+    }
+  }).addTo(miniMap);
+
+  // Add dam marker
+  L.marker(damCenter).addTo(miniMap)
+    .bindPopup('Glen Canyon Dam');
+});
+</script>

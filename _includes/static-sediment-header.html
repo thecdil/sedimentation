@@ -1,0 +1,110 @@
+<header class="static-sediment-header">
+    <div class="static-header-content">
+        <!-- Navigation Toggle - Left Side -->
+        <div class="static-header-nav">
+            {% include side-nav-banner.html %}
+        </div>
+
+        <!-- Site Title Image - Right Side -->
+        <div class="static-sediment-title-container">
+            <a href="{{ '/main.html' | relative_url }}" class="static-title-link">
+                <img src="{{ '/assets/img/sedimentation-title.png' | relative_url }}"
+                     alt="SEDIMENTATION"
+                     class="static-sediment-title-img">
+            </a>
+        </div>
+    </div>
+</header>
+
+<style>
+.static-sediment-header {
+    position: static !important; /* Force static positioning - scrolls with page */
+    width: 100%;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, #f8f6f0 0%, #ede8d8 100%);
+    overflow: visible;
+    /* No fixed/sticky positioning - flows with page content */
+}
+
+.static-header-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+}
+
+.static-header-nav {
+    flex-shrink: 0;
+    z-index: 20;
+}
+
+.static-sediment-title-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 0;
+}
+
+.static-title-link {
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.static-title-link:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.static-sediment-title-img {
+    height: 100px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+}
+
+/* Circular map button styling for all screen sizes */
+.sediment-map-toggle {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    background-color: #F8F6F0 !important;
+    border: 2px solid #D2691E !important;
+}
+
+.sediment-map-toggle .map-icon {
+    width: 28px !important;
+    height: 28px !important;
+    color: #8B4513 !important;
+}
+
+.sediment-map-toggle:hover {
+    background-color: #FFF !important;
+    box-shadow: 0 6px 16px rgba(139, 69, 19, 0.4) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .static-sediment-header {
+        padding: 15px 20px;
+    }
+
+   
+
+}
+
+@media (max-width: 480px) {
+    .static-sediment-header {
+        padding: 10px 15px;
+    }
+
+    
+}
+
+</style>

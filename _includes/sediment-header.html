@@ -1,0 +1,413 @@
+<header class="sediment-header">
+    <!-- Header River Canvas -->
+    <canvas id="headerRiverCanvas" class="header-river-canvas"></canvas>
+
+    <!-- Header Content -->
+    <div class="header-content">
+        <!-- Navigation Toggle -->
+        <div class="header-nav">
+            {% include side-nav-banner.html %}
+        </div>
+
+        <!-- Site Title with Sediment Styling -->
+        <div class="sediment-title-container">
+            <h1 class="sediment-title" id="headerTitle">
+                <a href="{{ '/main.html' | relative_url }}">SEDIMENTATION</a>
+            </h1>
+        </div>
+    </div>
+</header>
+
+<style>
+.sediment-header {
+    position: relative;
+    width: 100vw;
+    min-height: 160px;
+    height: 160px;
+    background: linear-gradient(180deg, #F5DEB3 0%, #DEB887 50%, #D2691E 100%);
+    overflow: hidden;
+    z-index: 100;
+    flex-shrink: 0;
+    display: block;
+    box-sizing: border-box;
+}
+
+.header-river-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    pointer-events: auto; /* Enable pointer events for clicks */
+    z-index: 5; /* Higher than background, lower than nav */
+}
+
+.header-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 40px;
+    pointer-events: none; /* Allow clicks to pass through to canvas */
+}
+
+.header-nav {
+    pointer-events: auto; /* Re-enable pointer events for navigation */
+}
+
+.header-nav {
+    flex-shrink: 0;
+}
+
+.sediment-title-container {
+    flex: 1;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.sediment-title {
+    opacity: 0;
+    pointer-events: none;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5.5rem;
+    font-weight: 700;
+}
+
+.sediment-title a {
+    color: transparent;
+    text-decoration: none;
+}
+
+.sediment-subtitle {
+    color: #5D4037;
+    font-size: 1.1rem;
+    margin: 8px 0 0 0;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.header-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Floating sediment particles */
+.header-particles::before,
+.header-particles::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticles 8s infinite ease-in-out;
+}
+
+.header-particles::before {
+    width: 4px;
+    height: 4px;
+    background: #CD853F;
+    top: 30%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.header-particles::after {
+    width: 3px;
+    height: 3px;
+    background: #D2691E;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+@keyframes floatParticles {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translateY(-10px) translateX(5px);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-5px) translateX(-3px);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translateY(-15px) translateX(8px);
+        opacity: 0.7;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sediment-header {
+        height: 120px;
+        min-height: 120px;
+    }
+
+    .header-river-canvas {
+        height: 120px;
+    }
+
+    .header-content {
+        padding: 0 15px;
+        height: 120px;
+    }
+
+    .sediment-title {
+        font-size: 2rem;
+    }
+}
+
+/* Circular map button styling for all screen sizes */
+.sediment-map-toggle {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    background-color: #F8F6F0 !important;
+    border: 2px solid #D2691E !important;
+}
+
+.sediment-map-toggle .map-icon {
+    width: 28px !important;
+    height: 28px !important;
+    color: #8B4513 !important;
+}
+
+.sediment-map-toggle:hover {
+    background-color: #FFF !important;
+    box-shadow: 0 6px 16px rgba(139, 69, 19, 0.4) !important;
+}
+
+/* Desktop: Position in header */
+@media (min-width: 769px) {
+    .header-nav {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 20;
+    }
+}
+
+/* Mobile/Tablet: Position as FAB in bottom-right */
+@media (max-width: 768px) {
+    .sediment-header {
+        height: 100px;
+        min-height: 100px;
+    }
+
+    .header-river-canvas {
+        height: 100px;
+    }
+
+    .header-content {
+        height: 100px;
+        padding: 0 10px;
+    }
+
+    .sediment-title {
+        font-size: 1.5rem;
+    }
+
+    .header-nav {
+        /* Position as floating action button in bottom-right */
+        position: fixed !important;
+        bottom: 20px;
+        right: 20px;
+        top: auto !important;
+        left: auto !important;
+        z-index: 1040; /* Below offcanvas (1045) but above most content */
+    }
+
+    .sediment-title-container {
+        /* Remove padding - no longer needed */
+        padding-left: 0;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('headerRiverCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+
+    // Desert color palette matching main page
+    const colors = {
+        particles: ['#CD853F', '#D2691E', '#F4A460', '#DEB887', '#BC8F8F', '#A0522D']
+    };
+
+    // Set up canvas responsively
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+
+        // Set height based on screen size
+        if (window.innerWidth <= 480) {
+            canvas.height = 120;
+        } else if (window.innerWidth <= 768) {
+            canvas.height = 150;
+        } else {
+            canvas.height = 200;
+        }
+
+        canvas.style.width = '100%';
+        canvas.style.height = canvas.height + 'px';
+
+        // Recreate text particles when canvas resizes
+        createTextParticles();
+    }
+
+    const particles = [];
+
+    // Create particles from title text
+    function createTextParticles() {
+        particles.length = 0; // Clear existing particles
+
+        // Calculate responsive font size and positioning
+        let fontSize, titleX, titleY;
+
+        if (canvas.width <= 480) {
+            // Mobile: smaller font, centered positioning
+            fontSize = Math.min(canvas.width / 8, canvas.height / 2);
+            ctx.textAlign = 'center';
+            titleX = canvas.width / 2;
+            titleY = canvas.height / 2 + fontSize / 4;
+        } else if (canvas.width <= 768) {
+            // Tablet: medium font, right-aligned but not as far
+            fontSize = Math.min(canvas.width / 10, canvas.height / 2);
+            ctx.textAlign = 'right';
+            titleX = canvas.width - 20;
+            titleY = fontSize + 15;
+        } else {
+            // Desktop: larger font, right-aligned with more padding
+            fontSize = Math.min(canvas.width / 12, canvas.height / 2);
+            ctx.textAlign = 'right';
+            titleX = canvas.width - 40;
+            titleY = fontSize + 20;
+        }
+
+        ctx.font = `bold ${fontSize}px Inconsolata, monospace`;
+
+        // Draw the title text to sample pixels
+        ctx.fillStyle = '#8B4513';
+        ctx.fillText('SEDIMENTATION', titleX, titleY);
+
+        // Sample pixels to create particles
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const spacing = 1;
+        for (let px = 0; px < canvas.width; px += spacing) {
+            for (let py = 0; py < canvas.height; py += spacing) {
+                const index = (py * canvas.width + px) * 4;
+                const alpha = imageData.data[index + 3];
+
+                if (alpha > 128) {
+                    particles.push({
+                        x: px,
+                        y: py,
+                        originalX: px,
+                        originalY: py,
+                        vx: 0,
+                        vy: 0,
+                        size: Math.random() * 1.2 + 0.3,
+                        color: colors.particles[Math.floor(Math.random() * colors.particles.length)],
+                        settled: true // Start settled to form the text
+                    });
+                }
+            }
+        }
+
+        // Add some flowing particles for movement
+        for (let i = 0; i < 20; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: -10,
+                originalX: Math.random() * canvas.width,
+                originalY: -10,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: Math.random() * 0.3 + 0.1,
+                size: Math.random() * 1.5 + 0.5,
+                color: colors.particles[Math.floor(Math.random() * colors.particles.length)],
+                settled: false
+            });
+        }
+    }
+
+    function animate() {
+        // Clear with subtle background
+        ctx.fillStyle = 'rgba(248, 245, 240, 0.15)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(particle => {
+            if (!particle.settled) {
+                // Animate flowing particles
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                // Add some gentle drift
+                particle.x += Math.sin(Date.now() * 0.001 + particle.y * 0.01) * 0.1;
+
+                // Reset when off screen
+                if (particle.y > canvas.height + 10 || particle.x < -10 || particle.x > canvas.width + 10) {
+                    particle.x = Math.random() * canvas.width;
+                    particle.y = -10;
+                    particle.vx = (Math.random() - 0.5) * 0.5;
+                    particle.vy = Math.random() * 0.3 + 0.1;
+                }
+            } else {
+                // Add subtle movement to text particles
+                const time = Date.now() * 0.0005;
+                particle.x = particle.originalX + Math.sin(time + particle.originalX * 0.01) * 0.3;
+                particle.y = particle.originalY + Math.cos(time + particle.originalY * 0.01) * 0.2;
+            }
+
+            // Draw particle
+            ctx.fillStyle = particle.color;
+            ctx.globalAlpha = particle.settled ? 0.9 : 0.7;
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    // Initial setup with delay to ensure DOM is ready
+    setTimeout(() => {
+        resizeCanvas();
+        animate();
+    }, 10);
+
+    // Handle window resize
+    window.addEventListener('resize', resizeCanvas);
+
+    // Add click handler to navigate home when clicking anywhere on canvas
+    canvas.addEventListener('click', function(event) {
+        // For now, make the entire canvas clickable for easier testing
+        // Navigate to home page
+        const baseUrl = '{{ site.baseurl | default: "" }}';
+        window.location.href = baseUrl + '/main.html';
+    });
+
+    // Make canvas show pointer cursor to indicate it's clickable
+    canvas.style.cursor = 'pointer';
+});
+</script>

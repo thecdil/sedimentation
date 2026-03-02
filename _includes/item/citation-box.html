@@ -1,0 +1,21 @@
+{% comment %}
+
+    Adds a basic citation box for the item with reference link to the item page.
+    For items with NAU call numbers, uses NAU library citation format.
+
+{%- endcomment -%}
+<div class="card">
+    <div class="card-header">Source</div>
+    <div class="card-body">
+        <dl>
+            <dt>Preferred Citation:</dt>
+            {% if page.callnumber %}
+            <dd>"{{ page.title }}". {{ page.callnumber }}. Colorado Plateau Archives. Special Collections and Archives, Cline Library, Northern Arizona University.{% if page.sourcelink %} <a href="{{ page.sourcelink }}" target="_blank">{{ page.sourcelink }}</a>{% endif %}</dd>
+            {% else %}
+            <dd>"{{ page.title }}", {{ site.title }}, {{ site.organization-name }}</dd>
+            {% endif %}
+            <dt>Reference Link:</dt>
+            <dd>{{ page.url | absolute_url }}</dd>
+        </dl>
+    </div>
+</div>

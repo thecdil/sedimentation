@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEDIMENTATION Title Screenshot Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #efecde;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #canvasContainer {
+            background: #efecde;
+            position: relative;
+        }
+
+        canvas {
+            display: block;
+            background: #efecde;
+        }
+
+        .instructions {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 400px;
+            font-family: system-ui, sans-serif;
+            z-index: 1000;
+        }
+
+        .instructions h2 {
+            margin-top: 0;
+            color: #8B4513;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .instructions button {
+            background: #D2691E;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .instructions button:hover {
+            background: #B8860B;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions" id="instructions">
+        <h2>Screenshot Instructions</h2>
+        <ol>
+            <li>Wait for the particle text to fully render (3-5 seconds)</li>
+            <li>Use your screenshot tool to capture ONLY the canvas area (right side with particles)</li>
+            <li>Crop tightly around the "SEDIMENTATION" text</li>
+            <li>Save as: <code>assets/images/sedimentation-title.png</code></li>
+            <li>Use PNG format to preserve transparency</li>
+        </ol>
+        <button onclick="document.getElementById('instructions').style.display='none'">Hide Instructions</button>
+    </div>
+
+    <div id="canvasContainer">
+        <canvas id="titleCanvas"></canvas>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('titleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set high-resolution canvas size for crisp screenshot
+        // Larger size = better quality when scaled down
+        canvas.width = 3000;
+        canvas.height = 500;
+
+        // Sediment particle colors from original header
+        const colors = {
+            particles: ['#CD853F', '#D2691E', '#F4A460', '#DEB887', '#BC8F8F', '#A0522D']
+        };
+
+        const particles = [];
+
+        // Create particles from title text
+        function createTextParticles() {
+            const fontSize = 280;  // Large for high resolution
+            const text = 'SEDIMENTATION';
+
+            // Draw text to sample pixels
+            ctx.font = `bold ${fontSize}px Inconsolata, monospace`;
+            ctx.textAlign = 'right';
+            ctx.fillStyle = '#8B4513';
+
+            // Position text on right side with padding
+            const titleX = canvas.width - 100;
+            const titleY = canvas.height / 2 + fontSize / 4;
+
+            ctx.fillText(text, titleX, titleY);
+
+            // Sample pixels to create particles
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Spacing = 1 for dense particle coverage
+            const spacing = 1;
+            for (let px = 0; px < canvas.width; px += spacing) {
+                for (let py = 0; py < canvas.height; py += spacing) {
+                    const index = (py * canvas.width + px) * 4;
+                    const alpha = imageData.data[index + 3];
+
+                    if (alpha > 128) {
+                        particles.push({
+                            x: px,
+                            y: py,
+                            originalX: px,
+                            originalY: py,
+                            size: Math.random() * 2.5 + 0.8,  // Larger particles for high-res
+                            color: colors.particles[Math.floor(Math.random() * colors.particles.length)]
+                        });
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            // Clear canvas (transparent background)
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw particles
+            particles.forEach(particle => {
+                // Subtle breathing/sway effect
+                const time = Date.now() * 0.0003;
+                const x = particle.originalX + Math.sin(time + particle.originalX * 0.005) * 0.8;
+                const y = particle.originalY + Math.cos(time + particle.originalY * 0.005) * 0.5;
+
+                ctx.fillStyle = particle.color;
+                ctx.globalAlpha = 0.9;
+                ctx.beginPath();
+                ctx.arc(x, y, particle.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Initialize
+        createTextParticles();
+        animate();
+
+        console.log('Particle title rendered! Ready for screenshot.');
+        console.log(`Total particles: ${particles.length}`);
+        console.log('Take a screenshot of the canvas area on the right →');
+    </script>
+</body>
+</html>

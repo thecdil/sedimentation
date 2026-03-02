@@ -1,0 +1,46 @@
+---
+# Default home page with boxes providing collection stats
+layout: page
+---
+<div class="row">
+
+  <div class="col-md-12 mb-3">
+    <h4>Coverage Pages</h4>
+    <div class="cover-links">
+      {% assign cover_pages = site.html_pages | where_exp: "page", "page.url contains 'cover'" %}
+      {% if cover_pages.size > 0 %}
+        {% for cover_page in cover_pages %}
+          <a href="{{ cover_page.url | relative_url }}" class="btn btn-outline-primary m-1">
+            {{ cover_page.title | default: cover_page.url }}
+          </a>
+        {% endfor %}
+      {% else %}
+        <p class="text-muted">No coverage pages found.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="col-md-8">
+
+    {% include index/description.html %}
+    {% include index/carousel.html title="Sample Items" %}
+    
+  </div>
+  <div class="col-md-4">  
+
+    {% include index/time.html %}
+
+    {% include index/featured-terms.html field="subject" title="Top Subjects" btn-color="primary" %}
+
+    {% include index/featured-terms.html field="location" title="Locations" btn-color="outline-secondary" %}
+    
+    {% include index/objects.html %}
+
+  </div>
+  <div class="col-md-12">
+
+    {% include index/data-download.html %}
+
+  </div>
+
+</div>

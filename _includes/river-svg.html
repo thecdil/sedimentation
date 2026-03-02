@@ -1,0 +1,164 @@
+<!-- Reusable River SVG Component -->
+<svg class="river-svg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" style="position: fixed; top: 0; left: 0; z-index: 1; pointer-events: none;">
+    <defs>
+        <linearGradient id="riverGradient{{ include.id | default: 'main' }}" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(139,115,85,{{ include.opacity | default: '0.6' }});stop-opacity:1" />
+            <stop offset="50%" style="stop-color:rgba(160,132,92,{{ include.opacity | default: '0.8' }});stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgba(139,115,85,{{ include.opacity | default: '0.6' }});stop-opacity:1" />
+        </linearGradient>
+        
+        {% if include.animated %}
+        <linearGradient id="riverGradientAnimated{{ include.id | default: 'main' }}" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(139,115,85,0.4);stop-opacity:1">
+                <animate attributeName="stop-opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+            </stop>
+            <stop offset="50%" style="stop-color:rgba(160,132,92,0.6);stop-opacity:1">
+                <animate attributeName="stop-opacity" values="0.6;1.0;0.6" dur="3s" repeatCount="indefinite"/>
+            </stop>
+            <stop offset="100%" style="stop-color:rgba(139,115,85,0.4);stop-opacity:1">
+                <animate attributeName="stop-opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+            </stop>
+        </linearGradient>
+        {% endif %}
+    </defs>
+    
+    {% assign path = include.path | default: "M 85 5 Q 80 15 75 25 Q 70 35 65 45 Q 60 55 55 65 Q 50 75 45 85 Q 40 90 35 93 Q 30 95 25 96 Q 20 97 15 98 Q 10 99 5 99.5" %}
+    {% assign stroke_width = include.width | default: "0.8" %}
+    {% assign initial_opacity = include.visible | default: false %}
+    
+    <path id="riverPath{{ include.id | default: 'main' }}" 
+          d="{{ path }}" 
+          stroke="{% if include.animated %}url(#riverGradientAnimated{{ include.id | default: 'main' }}){% else %}url(#riverGradient{{ include.id | default: 'main' }}){% endif %}" 
+          stroke-width="{{ stroke_width }}" 
+          fill="none" 
+          opacity="{% if initial_opacity %}{{ include.opacity | default: '0.8' }}{% else %}0{% endif %}"
+          class="river-path">
+        
+        {% if include.animated %}
+        <animate attributeName="stroke-dasharray" 
+                 values="0 1000;100 1000;0 1000" 
+                 dur="5s" 
+                 repeatCount="indefinite"/>
+        {% endif %}
+    </path>
+    
+    {% if include.tributaries %}
+        {% assign tributaries = include.tributaries | split: "," %}
+        {% for tributary in tributaries %}
+            {% assign trib_data = tributary | split: "|" %}
+            {% assign trib_path = trib_data[0] %}
+            {% assign trib_width = trib_data[1] | default: "0.4" %}
+            {% assign trib_opacity = trib_data[2] | default: "0.6" %}
+            
+            <path d="{{ trib_path }}" 
+                  stroke="url(#riverGradient{{ include.id | default: 'main' }})" 
+                  stroke-width="{{ trib_width }}" 
+                  fill="none" 
+                  opacity="{{ trib_opacity }}"
+                  class="tributary-path">
+                
+                {% if include.animated %}
+                <animate attributeName="stroke-dasharray" 
+                         values="0 200;20 200;0 200" 
+                         dur="4s" 
+                         repeatCount="indefinite"
+                         begin="{{ forloop.index }}s"/>
+                {% endif %}
+            </path>
+        {% endfor %}
+    {% endif %}
+</svg>
+
+<style>
+.river-svg {
+    transition: opacity 0.5s ease;
+}
+
+.river-path {
+    transition: opacity 1s ease;
+}
+
+.tributary-path {
+    transition: opacity 0.8s ease;
+}
+
+{% if include.class %}
+.{{ include.class }} .river-path {
+    opacity: {{ include.opacity | default: '0.8' }};
+}
+{% endif %}
+</style>
+
+{% if include.particles %}
+<canvas id="riverParticles{{ include.id | default: 'main' }}" 
+        class="river-particles-canvas" 
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;"></canvas>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('riverParticles{{ include.id | default: 'main' }}');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    const particles = [];
+    const maxParticles = {{ include.particle_count | default: 50 }};
+    
+    class RiverParticle {
+        constructor() {
+            this.reset();
+        }
+        
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = -10;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = Math.random() * 0.5 + 0.2;
+            this.size = Math.random() * 1.5 + 0.5;
+            this.color = `hsl(${30 + Math.random() * 20}, ${60 + Math.random() * 20}%, ${40 + Math.random() * 20}%)`;
+            this.opacity = 0.4 + Math.random() * 0.4;
+        }
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            if (this.y > canvas.height + 10) {
+                this.reset();
+            }
+        }
+        
+        draw() {
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    
+    for (let i = 0; i < maxParticles; i++) {
+        particles.push(new RiverParticle());
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+});
+</script>
+{% endif %}

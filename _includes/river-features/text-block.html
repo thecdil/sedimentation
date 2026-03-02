@@ -1,0 +1,78 @@
+<div class="river-text-block">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-block-card bg-white bg-opacity-90 p-4 rounded shadow position-relative">
+                    <div class="sediment-border"></div>
+                    {% if include.title %}
+                    <h4 class="mb-3">{{ include.title }}</h4>
+                    {% endif %}
+                    <p class="mb-0">{{ include.content }}</p>
+                    {% if include.link %}
+                    <a href="{{ include.link }}" class="btn btn-sm btn-outline-primary mt-3">Learn More</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.river-text-block {
+    margin: 2rem 0;
+    position: relative;
+}
+
+.text-block-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(139, 115, 85, 0.3);
+    overflow: hidden;
+}
+
+.text-block-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sediment-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        rgba(139, 115, 85, 0.8) 0%, 
+        rgba(160, 132, 92, 0.8) 25%, 
+        rgba(139, 115, 85, 0.8) 50%, 
+        rgba(120, 100, 70, 0.8) 75%, 
+        rgba(139, 115, 85, 0.8) 100%);
+    animation: flow 3s linear infinite;
+}
+
+@keyframes flow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 0%; }
+}
+
+.text-block-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        rgba(139, 115, 85, 0.1), 
+        rgba(160, 132, 92, 0.1), 
+        rgba(139, 115, 85, 0.1));
+    z-index: -1;
+    border-radius: inherit;
+}
+
+@media (max-width: 768px) {
+    .river-text-block .col-lg-6 {
+        padding: 0 1rem;
+    }
+}
+</style>

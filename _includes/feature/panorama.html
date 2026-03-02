@@ -1,0 +1,80 @@
+{% comment %}
+
+    Panorama image viewer using Pannellum.
+    Supports multiple panorama viewers on a single page with unique IDs.
+    Default is set for equirectangular projection types.
+    https://pannellum.org/documentation/reference/
+
+    E.G. --> {% include feature/panorama.html objectid="demo_001" %}
+
+    Options: 
+    - "objectid" = options below (required)
+        1. a single objectid from this collection, e.g. "demo_001"
+        2. a full URL to an external panorama image file
+        3. a relative link to a panorama image file stored in this repository
+    - "autoload" = whether to load panorama immediately on page load. Set to false to show Pannellum's built-in load button overlay. Options: true (default) or false (optional)
+    - "ratio" = aspect ratio of viewer container. Options: "21x9", "16x9", "4x3" (default), or "1x1" (optional)
+    - "width" = responsive width on desktop (will be 100% on mobile). Options: "25", "50", "75", or "100" (default) (optional)
+    - "caption" = custom caption text. If not provided, will use item title from metadata. Set to false for no caption (optional)
+    - "heading" = initial heading angle in degrees (Pannellum parameter) (optional)
+    - "pitch" = initial pitch angle in degrees (Pannellum parameter) (optional)
+    - "hfov" = initial horizontal field of view in degrees (Pannellum parameter) (optional)
+    - "compass" = show compass indicator. Options: true or false (Pannellum parameter) (optional)
+
+{%- endcomment -%}
+
+{%- comment -%} Generate unique ID for this panorama instance {%- endcomment -%}
+{%- assign panorama_id = "panorama-" | append: include.objectid | slugify -%}
+
+{%- comment -%} Load Pannellum CSS/JS on first use {%- endcomment -%}
+{%- unless page.panorama_loaded -%}
+<link rel="stylesheet" href="{{ '/assets/lib/pannellum/pannellum.css' | relative_url }}">
+<script src="{{ '/assets/lib/pannellum/pannellum.js' | relative_url }}"></script>
+{%- assign page.panorama_loaded = true -%}
+{%- endunless -%}
+
+{%- comment -%} Determine if objectid is external URL or collection item {%- endcomment -%}
+{%- if include.objectid contains "/" -%}
+    {%- comment -%} External URL or relative path {%- endcomment -%}
+    {%- capture panorama_url -%}{{ include.objectid | relative_url }}{%- endcapture -%}
+    {%- capture panorama_caption -%}{{ include.caption }}{%- endcapture -%}
+{%- else -%}
+    {%- comment -%} Collection item - look up metadata {%- endcomment -%}
+    {%- assign panorama_item = site.data[site.metadata] | where: "objectid", include.objectid | first -%}
+    {%- capture panorama_url -%}{{ panorama_item.object_location | relative_url }}{%- endcapture -%}
+    {%- capture panorama_caption -%}{{ include.caption | default: panorama_item.title }}{%- endcapture -%}
+{%- endif -%}
+
+{%- comment -%} Set default values for optional parameters {%- endcomment -%}
+{%- if include.autoload == false or include.autoload == "false" -%}
+    {%- assign autoload_value = false -%}
+{%- else -%}
+    {%- assign autoload_value = true -%}
+{%- endif -%}
+{%- assign ratio_value = include.ratio | default: "4x3" -%}
+
+{%- comment -%} Create panorama viewer container {%- endcomment -%}
+<div class="{% if include.width %}col-md-{{ include.width }}{% else %}col-md-12{% endif %} mx-auto">
+    <div id="{{ panorama_id }}" class="ratio ratio-{{ ratio_value }} my-4"></div>
+    {%- unless include.caption == false -%}
+        {%- if panorama_caption != "" -%}
+            <p class="text-center">{{ panorama_caption }}</p>
+        {%- endif -%}
+    {%- endunless -%}
+</div>
+
+{%- comment -%} Initialize Pannellum viewer {%- endcomment -%}
+<script>
+(function() {
+    pannellum.viewer('{{ panorama_id }}', {
+        "type": "equirectangular",
+        "panorama": "{{ panorama_url }}",
+        "autoLoad": {{ autoload_value }},
+        {%- if include.heading -%}"heading": {{ include.heading }},{%- endif -%}
+        {%- if include.pitch -%}"pitch": {{ include.pitch }},{%- endif -%}
+        {%- if include.hfov -%}"hfov": {{ include.hfov }},{%- endif -%}
+        {%- if include.compass -%}"compass": {{ include.compass }},{%- endif -%}
+        "hotSpotDebug": false
+    });
+})();
+</script>

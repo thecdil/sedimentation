@@ -1,0 +1,319 @@
+<div style="background:transparent;">
+    <button class="navbar-toggler sediment-map-toggle {% if page.layout == 'home' %}text-white{% else %}text-dark bg-light{% endif %} border border-dark"
+        type="button" onclick="openFullPageNav()" aria-label="Open navigation">
+        <!-- Folding Map Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi icon-sprite map-icon"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
+        </svg>
+    </button>
+    
+    <!-- Full Page Navigation Overlay -->
+    <div id="fullPageNav" class="full-page-nav">
+        <button class="close-nav-btn" onclick="closeFullPageNav()" aria-label="Close navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+        </button>
+
+        <!-- Sediment particle background -->
+        <svg class="nav-sediment-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="navParticles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <circle cx="5" cy="8" r="1.2" fill="#8B7355" opacity="0.15"/>
+                    <circle cx="15" cy="5" r="0.9" fill="#A0845C" opacity="0.12"/>
+                    <circle cx="25" cy="12" r="1.4" fill="#CD853F" opacity="0.1"/>
+                    <circle cx="35" cy="18" r="1.1" fill="#D2691E" opacity="0.13"/>
+                    <circle cx="10" cy="25" r="0.8" fill="#DEB887" opacity="0.11"/>
+                    <circle cx="30" cy="30" r="1.3" fill="#BC8F8F" opacity="0.14"/>
+                    <circle cx="20" cy="35" r="1" fill="#F4A460" opacity="0.12"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#navParticles)"/>
+        </svg>
+
+        <div class="nav-content-wrapper">
+            <!-- Left side: Visual Navigation -->
+            <div class="visual-nav-section">
+                <h2 class="nav-section-heading">
+                    <span class="heading-main">Tributaries</span>
+                    <span class="heading-sub">Visual Map</span>
+                </h2>
+                
+                <div class="rivers-container">
+                    <!-- Land River -->
+                    <div class="river-column" data-tributary="land">
+                        <h3 class="river-title">Land</h3>
+                        <svg class="vertical-river" viewBox="0 0 100 500" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="landGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#8B7355;stop-opacity:0.3" />
+                                    <stop offset="50%" style="stop-color:#A0845C;stop-opacity:0.5" />
+                                    <stop offset="100%" style="stop-color:#8B7355;stop-opacity:0.3" />
+                                </linearGradient>
+                                <filter id="flowFilter">
+                                    <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="turbulence">
+                                        <animate attributeName="baseFrequency" values="0.01;0.015;0.01" dur="8s" repeatCount="indefinite"/>
+                                    </feTurbulence>
+                                    <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+                                </filter>
+                            </defs>
+                            <!-- River flow background with curves -->
+                            <path d="M 30,10 Q 50,25 35,50 Q 20,75 40,100 Q 60,115 45,145 Q 25,180 50,210 Q 70,235 40,270 Q 15,305 45,340 Q 70,370 35,405 Q 10,440 50,480 L 60,490 Q 80,450 65,410 Q 55,375 80,345 Q 95,310 70,275 Q 50,240 75,215 Q 90,185 65,150 Q 45,120 70,105 Q 85,80 65,55 Q 50,30 70,10 Z" fill="url(#landGradient)" opacity="0.5" filter="url(#flowFilter)"/>
+                            <!-- Segments as curved river sections -->
+                            <g class="river-segments">
+                                <path class="river-segment" data-section="formations" data-title="Formations" d="M 30,10 Q 50,25 35,50 Q 20,75 40,100 L 70,100 Q 85,80 65,55 Q 50,30 70,10 Z"/>
+                                <path class="river-segment" data-section="canyons" data-title="Canyons" d="M 40,100 Q 60,115 45,145 Q 25,180 50,195 L 75,195 Q 90,165 65,130 Q 50,110 70,100 Z"/>
+                                <path class="river-segment" data-section="mud" data-title="Mud" d="M 50,195 Q 70,210 55,240 Q 30,275 45,300 L 70,300 Q 88,270 68,245 Q 55,220 75,195 Z"/>
+                                <path class="river-segment" data-section="inscriptions" data-title="Inscriptions" d="M 45,300 Q 25,330 50,365 Q 70,390 45,400 L 65,400 Q 85,375 70,345 Q 58,320 70,300 Z"/>
+                                <path class="river-segment" data-section="collection-objects" data-title="Collection Objects" d="M 45,400 Q 20,435 50,475 Q 65,490 50,490 L 60,490 Q 80,450 65,410 Q 55,400 65,400 Z"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Water River -->
+                    <div class="river-column" data-tributary="water">
+                        <h3 class="river-title">Water</h3>
+                        <svg class="vertical-river" viewBox="0 0 100 500" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 35,10 Q 60,30 40,65 Q 18,95 45,125 Q 72,155 35,185 Q 10,215 50,245 Q 85,270 45,305 Q 12,340 55,375 Q 88,405 50,440 Q 15,475 45,490 L 65,490 Q 90,465 60,435 Q 30,410 70,380 Q 95,345 65,310 Q 40,280 75,250 Q 95,220 70,190 Q 45,160 75,130 Q 95,100 65,70 Q 45,40 65,10 Z" fill="url(#landGradient)" opacity="0.5" filter="url(#flowFilter)"/>
+                            <g class="river-segments">
+                                <path class="river-segment" data-section="field-notes" data-title="Field Notes" d="M 35,10 Q 60,30 40,65 L 65,65 Q 85,40 65,10 Z"/>
+                                <path class="river-segment" data-section="seeps" data-title="Seeps" d="M 40,65 Q 18,95 45,120 L 75,120 Q 95,95 70,65 Z"/>
+                                <path class="river-segment" data-section="river" data-title="River" d="M 45,120 Q 72,145 35,180 L 70,180 Q 95,150 75,120 Z"/>
+                                <path class="river-segment" data-section="lake" data-title="Lake" d="M 35,180 Q 10,215 50,240 L 75,240 Q 95,210 70,180 Z"/>
+                                <path class="river-segment" data-section="flash-floods" data-title="Flash Floods" d="M 50,240 Q 85,265 45,300 L 65,300 Q 90,275 75,240 Z"/>
+                                <path class="river-segment" data-section="collection-objects" data-title="Collection Objects" d="M 45,300 Q 12,340 55,375 Q 88,405 50,440 Q 25,465 45,490 L 65,490 Q 90,465 60,435 Q 30,410 70,380 Q 95,345 65,300 Z"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Biota River -->
+                    <div class="river-column" data-tributary="biota">
+                        <h3 class="river-title">Biota</h3>
+                        <svg class="vertical-river" viewBox="0 0 100 500" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 40,10 Q 65,22 45,38 Q 22,52 50,70 Q 78,88 40,106 Q 15,124 55,142 Q 88,158 45,176 Q 18,194 60,212 Q 90,228 50,246 Q 20,264 65,282 Q 95,298 55,316 Q 25,334 70,352 Q 92,368 60,386 Q 32,404 68,422 Q 90,438 58,456 Q 30,474 55,490 L 70,490 Q 88,470 65,452 Q 42,436 75,418 Q 95,400 70,382 Q 45,366 80,348 Q 98,330 70,312 Q 42,296 78,278 Q 96,260 68,242 Q 40,226 75,208 Q 95,190 68,172 Q 42,156 78,138 Q 96,120 68,102 Q 42,86 75,68 Q 92,50 68,32 Q 48,18 70,10 Z" fill="url(#landGradient)" opacity="0.5" filter="url(#flowFilter)"/>
+                            <g class="river-segments">
+                                <path class="river-segment" data-section="varnish" data-title="Varnish" d="M 40,10 Q 65,20 45,36 L 68,30 Q 85,18 70,10 Z"/>
+                                <path class="river-segment" data-section="mesozoic-lifeboats" data-title="Mesozoic Lifeboats" d="M 45,36 Q 22,50 50,68 L 75,64 Q 92,48 68,36 Z"/>
+                                <path class="river-segment" data-section="cyanobacteria" data-title="Cyanobacteria" d="M 50,68 Q 78,84 40,102 L 68,98 Q 88,80 75,68 Z"/>
+                                <path class="river-segment" data-section="cryptobiotic" data-title="Cryptobiotic" d="M 40,102 Q 15,120 55,136 L 78,132 Q 96,116 68,102 Z"/>
+                                <path class="river-segment" data-section="fish" data-title="Fish" d="M 55,136 Q 88,152 45,170 L 68,166 Q 90,148 78,136 Z"/>
+                                <path class="river-segment" data-section="beavers" data-title="Beavers" d="M 45,170 Q 18,188 60,204 L 75,200 Q 95,182 68,170 Z"/>
+                                <path class="river-segment" data-section="plants" data-title="Plants" d="M 60,204 Q 90,220 50,238 L 68,234 Q 88,216 75,204 Z"/>
+                                <path class="river-segment" data-section="antelope" data-title="Antelope" d="M 50,238 Q 20,256 65,272 L 78,268 Q 96,250 68,238 Z"/>
+                                <path class="river-segment" data-section="birds" data-title="Birds" d="M 65,272 Q 95,288 55,306 L 70,302 Q 90,284 78,272 Z"/>
+                                <path class="river-segment" data-section="other-life" data-title="Other life" d="M 55,306 Q 25,324 70,340 L 80,336 Q 98,318 70,306 Z"/>
+                                <path class="river-segment" data-section="collection-objects" data-title="Collection Objects" d="M 70,340 Q 92,356 60,374 Q 32,392 68,410 Q 90,426 58,444 Q 30,462 55,478 Q 65,485 55,490 L 70,490 Q 88,470 65,452 Q 42,436 75,418 Q 95,400 70,382 Q 45,366 80,348 Q 92,342 80,340 Z"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Atmosphere River -->
+                    <div class="river-column" data-tributary="atmosphere">
+                        <h3 class="river-title">Atmosphere</h3>
+                        <svg class="vertical-river" viewBox="0 0 100 500" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 32,10 Q 58,25 38,52 Q 15,78 48,104 Q 78,128 42,154 Q 12,180 52,206 Q 88,230 45,256 Q 18,282 60,308 Q 92,332 52,358 Q 20,384 62,410 Q 90,434 55,460 Q 30,480 50,490 L 68,490 Q 85,475 65,455 Q 40,430 75,406 Q 95,380 62,354 Q 32,330 72,304 Q 95,278 65,252 Q 35,228 72,202 Q 95,176 65,150 Q 35,126 72,100 Q 95,74 65,48 Q 42,28 68,10 Z" fill="url(#landGradient)" opacity="0.5" filter="url(#flowFilter)"/>
+                            <g class="river-segments">
+                                <path class="river-segment" data-section="wind-memories" data-title="Wind Memories" d="M 32,10 Q 58,24 38,50 L 65,46 Q 88,26 68,10 Z"/>
+                                <path class="river-segment" data-section="sand-grains" data-title="Sand Grains" d="M 38,50 Q 15,74 48,98 L 72,94 Q 95,70 65,50 Z"/>
+                                <path class="river-segment" data-section="twin-warriors" data-title="Twin Warriors" d="M 48,98 Q 78,120 42,146 L 65,142 Q 90,118 72,98 Z"/>
+                                <path class="river-segment" data-section="crossed-tracks" data-title="Crossed Tracks" d="M 42,146 Q 12,172 52,194 L 72,190 Q 95,166 65,146 Z"/>
+                                <path class="river-segment" data-section="níłchi" data-title="Níłch'i" d="M 52,194 Q 88,218 45,242 L 65,238 Q 90,214 72,194 Z"/>
+                                <path class="river-segment" data-section="formations" data-title="Formations" d="M 45,242 Q 18,268 60,290 L 72,286 Q 95,262 65,242 Z"/>
+                                <path class="river-segment" data-section="wonder" data-title="Wonder" d="M 60,290 Q 92,312 52,338 L 62,334 Q 88,310 72,290 Z"/>
+                                <path class="river-segment" data-section="images-of-a-lost-world" data-title="Images of a Lost World" d="M 52,338 Q 20,364 62,386 L 75,382 Q 95,358 62,338 Z"/>
+                                <path class="river-segment" data-section="claiming-wonder" data-title="Claiming Wonder" d="M 62,386 Q 90,408 55,434 Q 35,455 50,470 Q 58,480 50,490 L 68,490 Q 85,475 65,455 Q 40,430 75,406 Q 88,394 75,386 Z"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Humans River -->
+                    <div class="river-column" data-tributary="humans">
+                        <h3 class="river-title">Humans</h3>
+                        <svg class="vertical-river" viewBox="0 0 100 500" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 38,10 Q 62,22 42,38 Q 20,54 52,72 Q 82,88 45,106 Q 16,124 58,142 Q 88,158 48,176 Q 20,194 62,212 Q 90,228 52,246 Q 22,264 68,282 Q 94,298 58,316 Q 28,334 72,352 Q 96,368 62,386 Q 34,404 70,422 Q 92,438 60,456 Q 32,474 58,490 L 72,490 Q 90,470 68,452 Q 44,436 76,418 Q 96,400 72,382 Q 46,366 82,348 Q 98,330 72,312 Q 44,296 80,278 Q 98,260 70,242 Q 42,226 78,208 Q 96,190 70,172 Q 42,156 78,138 Q 96,120 68,102 Q 40,86 76,68 Q 94,50 68,32 Q 46,18 72,10 Z" fill="url(#landGradient)" opacity="0.5" filter="url(#flowFilter)"/>
+                            <g class="river-segments">
+                                <path class="river-segment" data-section="inscriptions" data-title="Inscriptions" d="M 38,10 Q 62,20 42,36 L 68,30 Q 88,18 72,10 Z"/>
+                                <path class="river-segment" data-section="subsumation" data-title="Subsumation" d="M 42,36 Q 20,50 52,68 L 76,64 Q 94,48 68,36 Z"/>
+                                <path class="river-segment" data-section="absence-and-presence" data-title="Absence and Presence" d="M 52,68 Q 82,84 45,102 L 68,98 Q 90,80 76,68 Z"/>
+                                <path class="river-segment" data-section="foundations" data-title="Foundations" d="M 45,102 Q 16,120 58,136 L 78,132 Q 96,114 68,102 Z"/>
+                                <path class="river-segment" data-section="earthly-archives" data-title="Earthly Archives" d="M 58,136 Q 88,152 48,170 L 70,166 Q 92,148 78,136 Z"/>
+                                <path class="river-segment" data-section="hole-in-the-rock" data-title="Hole-in-the-Rock" d="M 48,170 Q 20,188 62,204 L 78,200 Q 96,182 70,170 Z"/>
+                                <path class="river-segment" data-section="failures" data-title="Failures" d="M 62,204 Q 90,220 52,238 L 70,234 Q 92,216 78,204 Z"/>
+                                <path class="river-segment" data-section="reclamation" data-title="Reclamation" d="M 52,238 Q 22,256 68,272 L 80,268 Q 98,250 70,238 Z"/>
+                                <path class="river-segment" data-section="rainbow-bridge" data-title="Rainbow Bridge" d="M 68,272 Q 94,288 58,306 L 72,302 Q 92,284 80,272 Z"/>
+                                <path class="river-segment" data-section="remains-of-the-future" data-title="Remains of the Future" d="M 58,306 Q 28,324 72,340 L 82,336 Q 98,318 72,306 Z"/>
+                                <path class="river-segment" data-section="reemergence" data-title="Reemergence" d="M 72,340 Q 96,356 62,374 Q 34,392 70,410 Q 92,426 60,444 Q 32,462 58,478 Q 68,486 58,490 L 72,490 Q 90,470 68,452 Q 44,436 76,418 Q 96,400 72,382 Q 46,366 82,348 Q 92,344 82,340 Z"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Map legend -->
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-swatch"></span>
+                        <span class="legend-text">Hover to reveal section</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch active"></span>
+                        <span class="legend-text">Current section</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side: Textual Navigation -->
+            <div class="textual-nav-section">
+                <h2 class="nav-section-heading">Site Navigation</h2>
+                
+                <nav class="text-nav-list">
+                    <a class="text-nav-link{% if page.url == '/main.html' %} active{% endif %}" href="{{ '/main.html' | relative_url }}">Main</a>
+                    <a class="text-nav-link{% if page.url == '/about.html' %} active{% endif %}" href="{{ '/about.html' | relative_url }}">About</a>
+                    <a class="text-nav-link{% if page.url == '/resources.html' %} active{% endif %}" href="{{ '/resources.html' | relative_url }}">Resources</a>
+                    
+                    <div class="text-nav-group">
+                        <div class="text-nav-group-title">Collection</div>
+                        <a class="text-nav-link{% if page.url == '/browse.html' %} active{% endif %}" href="{{ '/browse.html' | relative_url }}">Browse</a>
+                        <a class="text-nav-link{% if page.url == '/subjects.html' %} active{% endif %}" href="{{ '/subjects.html' | relative_url }}">Subjects</a>
+                        <a class="text-nav-link{% if page.url == '/map.html' %} active{% endif %}" href="{{ '/map.html' | relative_url }}">Map</a>
+                        <a class="text-nav-link{% if page.url == '/locations.html' %} active{% endif %}" href="{{ '/locations.html' | relative_url }}">Locations</a>
+                        <a class="text-nav-link{% if page.url == '/data.html' %} active{% endif %}" href="{{ '/data.html' | relative_url }}">Data</a>
+                    </div>
+
+                    <div class="text-nav-group">
+                        <div class="text-nav-group-title">Tributaries</div>
+                        {% for c in site.tributaries %}
+                        <a class="text-nav-link {% if page.url contains c.url %}active{% endif %}" href="{{ c.url | relative_url }}">{{ c.title }}</a>
+                        {% endfor %}
+                    </div>
+                </nav>
+
+                <div class="nav-logos">
+                    {% if site.organization-logo-nav %}
+                    <a href="{{ site.organization-link }}" target="_blank" rel="noopener">
+                        <img class="nav-logo-img" src="{{ site.organization-logo-nav | relative_url }}" alt="{{ site.organization-name | escape }} home">
+                    </a>
+                    {% endif %}
+                    <a href="https://www.lib.uidaho.edu" target="_blank" rel="noopener">
+                        <img class="nav-logo-img" src="https://www.lib.uidaho.edu/media/digital/liblogo_transparent.png" alt="University of Idaho Library">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+    
+    // Get current page info on load
+    const currentPath = window.location.pathname;
+    const currentHash = window.location.hash.replace('#', '');
+    const currentTributary = getCurrentTributary(currentPath);
+    
+    function getCurrentTributary(path) {
+        if (path.includes('/tributaries/land')) return 'land';
+        if (path.includes('/tributaries/water')) return 'water';
+        if (path.includes('/tributaries/biota')) return 'biota';
+        if (path.includes('/tributaries/atmosphere')) return 'atmosphere';
+        if (path.includes('/tributaries/humans')) return 'humans';
+        return null;
+    }
+    
+    // Highlight current tributary and section
+    document.addEventListener('DOMContentLoaded', function() {
+        if (currentTributary) {
+            const riverColumns = document.querySelectorAll('.river-column');
+            riverColumns.forEach(column => {
+                if (column.dataset.tributary === currentTributary) {
+                    column.classList.add('current-tributary');
+                    
+                    // Highlight current section if hash matches
+                    if (currentHash) {
+                        const segments = column.querySelectorAll('.river-segment');
+                        segments.forEach(segment => {
+                            if (segment.dataset.section === currentHash) {
+                                segment.classList.add('active');
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+        // Attach hover and click handlers to all segments
+        const segments = document.querySelectorAll('.river-segment');
+        segments.forEach(segment => {
+            segment.addEventListener('mouseenter', showLabel);
+            segment.addEventListener('mouseleave', hideLabel);
+            segment.addEventListener('click', navigateToSection);
+        });
+    });
+    
+    function showLabel(e) {
+        const segment = e.currentTarget;
+        const title = segment.dataset.title;
+        const svg = segment.closest('svg');
+        
+        // Remove any existing label in this SVG
+        const existingLabel = svg.querySelector('.segment-label');
+        if (existingLabel) {
+            existingLabel.remove();
+        }
+        
+        // Create text element
+        const textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textEl.classList.add('segment-label');
+        
+        // Get segment position - use bounding box for curved paths
+        const bbox = segment.getBBox();
+        const x = bbox.x + bbox.width / 2;
+        const y = bbox.y + bbox.height / 2;
+        
+        textEl.setAttribute('x', x);
+        textEl.setAttribute('y', y + 3);
+        textEl.setAttribute('text-anchor', 'middle');
+        textEl.setAttribute('dominant-baseline', 'middle');
+        textEl.textContent = title;
+        
+        svg.appendChild(textEl);
+    }
+    
+    function hideLabel(e) {
+        const segment = e.currentTarget;
+        const svg = segment.closest('svg');
+        const label = svg.querySelector('.segment-label');
+        if (label) {
+            label.remove();
+        }
+    }
+    
+    function navigateToSection(e) {
+        const segment = e.currentTarget;
+        const column = segment.closest('.river-column');
+        const tributary = column.dataset.tributary;
+        const sectionId = segment.dataset.section;
+        
+        window.location.href = '{{ "/tributaries/" | relative_url }}' + tributary + '/#' + sectionId;
+    }
+})();
+
+// Full page nav open/close functions
+function openFullPageNav() {
+    document.getElementById('fullPageNav').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeFullPageNav() {
+    document.getElementById('fullPageNav').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeFullPageNav();
+    }
+});
+</script>

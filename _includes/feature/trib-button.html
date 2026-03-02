@@ -1,0 +1,75 @@
+{% comment %}
+
+    Tributary Button with Particle Disintegration Effect
+
+    Creates an interactive choice between continuing the current essay or branching off to a tributary.
+    Both buttons use consistent styling to present a clear narrative fork in the river.
+
+    Basic example:
+    {% include feature/trib-button.html trib="water" %}
+
+    Full example with all options:
+    {% include feature/trib-button.html trib="water" image="custom-image" text="Explore Water" centered="true" speed="fast" no-continue="true" %}
+
+    Options:
+    - "trib" = tributary name (required) - matches the tributary slug in /tributaries/
+    - "image" = custom image filename (optional) - if not provided, uses trib name (e.g., "water" looks for /objects/water.png)
+    - "text" = custom button text (optional) - if not provided, uses capitalized trib name or anchor name
+    - "hidetext" = hide the text completely (optional) - set to "true" to show only icon
+    - "centered" = centers the button on the page (optional) - set to "true" to enable
+    - "speed" = animation speed (optional) - "fast" or "normal" (default: "normal")
+    - "no-continue" = hide continue button (optional) - set to "true" to hide
+    - "anchor" = anchor link on target page (optional)
+
+{%- endcomment -%}
+{% assign flow_side = page.tributary-side | default: "left" %}
+{% assign opposite_side = "right" %}
+{% if flow_side == "right" %}
+  {% assign opposite_side = "left" %}
+{% endif %}
+
+{% assign trib_name = include.trib | capitalize %}
+{% assign trib_link = '/tributaries/' | append: include.trib | append: '/' | relative_url %}
+{% assign animation_speed = include.speed | default: "normal" %}
+
+{%- comment -%} Determine button text: use text param, or capitalize anchor, or capitalize trib name {%- endcomment -%}
+{% if include.text %}
+  {% assign button_text = include.text %}
+{% elsif include.anchor %}
+  {% assign button_text = include.anchor | capitalize %}
+{% else %}
+  {% assign button_text = trib_name %}
+{% endif %}
+
+<div class="trib-choice-container {% if include.centered %}centered{% endif %}">
+  {% unless include.no-continue == "true" %}
+  <div class="trib-choice-button continue-choice">
+    <button class="choice-inner" aria-label="Continue reading">
+      <div class="choice-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#9B6B6B" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+        </svg>
+      </div>
+      <p class="choice-label">Continue</p>
+    </button>
+  </div>
+  {% endunless %}
+
+  <div class="trib-choice-button branch-choice">
+    <a href="{{ trib_link }}{% if include.anchor %}#{{ include.anchor }}{% endif %}"
+       class="choice-inner trib-button-link"
+       data-trib="{{ include.trib }}"
+       data-flow-side="{{ opposite_side }}"
+       data-speed="{{ animation_speed }}"
+       aria-label="Branch to {{ button_text }}">
+      <div class="choice-icon">
+        <img src="{% if include.image %}{{'/objects/' | append: include.image | append: '.png' | relative_url}}{% else %}{{'/objects/' | append: include.trib | append: '.png' | relative_url}}{% endif %}"
+             class="trib-button-image"
+             alt="{{ button_text }}">
+      </div>
+      {% unless include.hidetext == "true" %}
+      <p class="choice-label">{{ button_text }}</p>
+      {% endunless %}
+    </a>
+  </div>
+</div>

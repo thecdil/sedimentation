@@ -1,0 +1,218 @@
+<!-- River Feature Include - handles different types of content along the river -->
+<div class="river-feature" 
+     data-type="{{ include.feature.type }}"
+     style="top: {{ include.feature.scroll_position }}vh; {{ include.feature.side }}: 50px;">
+
+  {% case include.feature.type %}
+    
+  {% when 'text-block' %}
+    <div class="feature-content text-block">
+      <div class="content-box">
+        <h4>{{ include.feature.title }}</h4>
+        <p>{{ include.feature.content }}</p>
+        {% if include.feature.read_more %}
+          <a href="{{ include.feature.read_more }}" class="btn btn-sm btn-outline-primary">Read More</a>
+        {% endif %}
+      </div>
+    </div>
+    
+  {% when 'image' %}
+    <div class="feature-content image-feature">
+      <div class="image-container" data-bs-toggle="modal" data-bs-target="#imageModal-{{ include.feature.id }}">
+        <img src="{{ include.feature.image }}" alt="{{ include.feature.alt }}" class="img-fluid">
+        <div class="image-overlay">
+          <i class="bi bi-zoom-in"></i>
+        </div>
+      </div>
+      {% if include.feature.caption %}
+        <p class="image-caption">{{ include.feature.caption }}</p>
+      {% endif %}
+    </div>
+    
+    <!-- Modal for expanded image -->
+    <div class="modal fade" id="imageModal-{{ include.feature.id }}" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ include.feature.title | default: include.feature.alt }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <img src="{{ include.feature.image }}" alt="{{ include.feature.alt }}" class="img-fluid">
+            {% if include.feature.description %}
+              <p class="mt-3">{{ include.feature.description }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  {% when 'gallery' %}
+    <div class="feature-content gallery-feature">
+      <div class="content-box">
+        <h4>{{ include.feature.title }}</h4>
+        <div class="gallery-grid">
+          {% for image in include.feature.images %}
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal-{{ include.feature.id }}">
+              <img src="{{ image.thumb }}" alt="{{ image.alt }}" class="img-fluid">
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Gallery Modal -->
+    <div class="modal fade" id="galleryModal-{{ include.feature.id }}" tabindex="-1">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ include.feature.title }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div id="galleryCarousel-{{ include.feature.id }}" class="carousel slide">
+              <div class="carousel-inner">
+                {% for image in include.feature.images %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <img src="{{ image.full }}" class="d-block w-100" alt="{{ image.alt }}">
+                  {% if image.caption %}
+                    <div class="carousel-caption">
+                      <p>{{ image.caption }}</p>
+                    </div>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel-{{ include.feature.id }}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel-{{ include.feature.id }}" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  {% endcase %}
+</div>
+
+<style>
+.river-feature {
+  position: absolute;
+  z-index: 50;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.river-feature.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-content {
+  max-width: 350px;
+}
+
+.text-block .content-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.text-block h4 {
+  color: #2c5aa0;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.image-feature {
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+  font-size: 24px;
+}
+
+.image-container:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-caption {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  margin-top: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #333;
+}
+
+.gallery-feature .content-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .river-feature {
+    left: 10px !important;
+    right: 10px !important;
+  }
+  
+  .feature-content {
+    max-width: none;
+  }
+}
+</style>

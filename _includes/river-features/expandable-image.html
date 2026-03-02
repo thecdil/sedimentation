@@ -1,0 +1,122 @@
+<div class="river-image-feature">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="image-container position-relative">
+                    <img src="{{ include.src | relative_url }}" 
+                         alt="{{ include.alt }}" 
+                         class="img-fluid rounded shadow expandable-image"
+                         data-bs-toggle="modal" 
+                         data-bs-target="#imageModal{{ include.src | replace: '/', '-' | replace: '.', '-' }}">
+                    
+                    <div class="image-overlay">
+                        <div class="expand-icon">
+                            <i class="fas fa-expand-alt"></i>
+                        </div>
+                    </div>
+                    
+                    {% if include.caption %}
+                    <div class="image-caption bg-white bg-opacity-90 p-3 rounded-bottom">
+                        <p class="mb-0 small">{{ include.caption }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal{{ include.src | replace: '/', '-' | replace: '.', '-' }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-transparent border-0">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <img src="{{ include.src | relative_url }}" 
+                     alt="{{ include.alt }}" 
+                     class="img-fluid rounded">
+                {% if include.caption %}
+                <div class="mt-3 text-center">
+                    <p class="text-white">{{ include.caption }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.river-image-feature {
+    margin: 3rem 0;
+    position: relative;
+}
+
+.image-container {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.image-container:hover {
+    transform: translateY(-5px);
+}
+
+.expandable-image {
+    transition: all 0.3s ease;
+    border: 3px solid rgba(139, 115, 85, 0.3);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 0.375rem;
+}
+
+.image-container:hover .image-overlay {
+    opacity: 1;
+}
+
+.expand-icon {
+    color: white;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.image-caption {
+    margin-top: -1px;
+    border-top: 2px solid rgba(139, 115, 85, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+}
+
+.modal-body img {
+    max-height: 80vh;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .river-image-feature .col-lg-8 {
+        padding: 0 1rem;
+    }
+    
+    .expand-icon {
+        font-size: 1.5rem;
+    }
+}
+</style>

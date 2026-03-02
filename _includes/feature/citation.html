@@ -1,0 +1,51 @@
+{%- assign citation = site.data.citations | where: "objectid", include.objectid | first -%}
+{%- if citation -%}
+<div class="row citation-item align-items-start g-5 justify-content-center" style="margin-bottom: 8rem;">
+  <!-- Image Column -->
+  <div class="col-md-3">
+    {%- if citation.image_small -%}
+      <a href="{{ citation.link }}" target="_blank">
+        <img src="{{ site.baseurl }}{{ citation.image_small }}" alt="{{ citation.title | replace: '"', '' | replace: '"', '' }}" class="img-fluid rounded">
+      </a>
+    {%- endif -%}
+  </div>
+
+  <!-- Content Column -->
+  <div class="col-md-4 ps-4">
+    <!-- Title as Link -->
+    <h4 class="mb-2" style="color: #8B4513;">
+      <a href="{{ citation.link }}" target="_blank" style="color: #8B4513;">{{ citation.title | markdownify | replace: '<p>', '' | replace: '</p>', '' }}</a>
+    </h4>
+
+    <!-- Author -->
+    <p class="mb-2" style="color: #8B7355;">
+      <strong>
+        {%- assign authors = citation.author | split: '; ' -%}
+        {%- if authors.size > 2 -%}
+          {%- for author in authors -%}
+            {%- if forloop.last -%}
+              , and {{ author }}
+            {%- elsif forloop.first -%}
+              {{ author }}
+            {%- else -%}
+              , {{ author }}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- elsif authors.size == 2 -%}
+          {{ authors[0] }} and {{ authors[1] }}
+        {%- else -%}
+          {{ citation.author }}
+        {%- endif -%}
+      </strong>
+    </p>
+
+    <!-- Description -->
+    <p class="mb-3">{{ citation.description | markdownify | replace: '<p>', '' | replace: '</p>', '' }}</p>
+
+    <!-- Read It Here Button -->
+    <a href="{{ citation.link }}" target="_blank" class="btn btn-primary btn-sm">
+      Read it here
+    </a>
+  </div>
+</div>
+{%- endif -%}

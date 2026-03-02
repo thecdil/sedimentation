@@ -1,0 +1,46 @@
+---
+# Auto-generated JSON file containing tributary essay structure
+# This file is generated at build time from H2 sections in _tributaries/*.md files
+# Used by: 
+#   - Navigation menu (side-nav-banner.html) for dynamic river segments
+#   - Future CYOA (Choose Your Own Adventure) feature
+# 
+# Structure: Each tributary includes title, slug, url, order, and an array of sections
+# Each section includes: heading (H2 text), id (slugified anchor), html_content (rendered HTML)
+# 
+# The content is parsed from rendered HTML to extract H2 elements with their IDs
+# HTML includes like {% include feature/new-section.html %} are automatically removed
+permalink: /assets/data/tributaries.json
+---
+{%- assign tribs = site.tributaries | sort: "order" -%}
+{
+  "tributaries": [
+    {%- for trib in tribs -%}
+    {%- assign html_nodes = trib.content | split: '<h2' -%}
+    {
+      "title": {{ trib.title | jsonify }},
+      "slug": {{ trib.slug | jsonify }},
+      "url": {{ trib.url | relative_url | jsonify }},
+      "order": {{ trib.order | jsonify }},
+      "sections": [
+        {%- for node in html_nodes offset:1 -%}
+        {%- assign node_parts = node | split: '</h2>' -%}
+        {%- assign header_part = node_parts[0] -%}
+        {%- assign id_parts = header_part | split: 'id="' -%}
+        {%- if id_parts.size > 1 -%}
+          {%- assign id_raw = id_parts[1] | split: '"' | first -%}
+          {%- assign heading_raw = header_part | split: '>' | last -%}
+          {%- assign heading = heading_raw | strip_html | strip -%}
+          {%- assign section_content = node_parts[1] | strip -%}
+          {
+            "heading": {{ heading | jsonify }},
+            "id": {{ id_raw | jsonify }},
+            "html_content": {{ section_content | jsonify }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endif -%}
+        {%- endfor -%}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
