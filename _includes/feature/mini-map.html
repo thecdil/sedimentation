@@ -18,7 +18,7 @@
 {% capture map_id %}mini-map_{{ include.latitude | slugify }}{% endcapture %}
 {% assign map-item = site.data[site.metadata] | where: "objectid", include.objectid | first %}
 <style>
-#{{ map_id }} { height: {{ include.height | default: '400px' }}; z-index: 98; }
+#{{ map_id }} { height: {{ include.height | default: '400px' }}; z-index: 18; }
 </style>
 <div id="{{ map_id }}"></div>
 {% if include.map-link == true %}

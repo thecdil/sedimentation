@@ -793,7 +793,7 @@ article{
 /* Content wrapper */
 .nav-content-wrapper {
   position: relative;
-  z-index: 1;
+  z-index: 100;
   display: flex;
   width: 100%;
   min-height: 100%;
@@ -816,7 +816,7 @@ article{
   font-weight: 300;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   border-bottom: 2px solid rgba(139, 115, 85, 0.3);
   padding-bottom: 15px;
   position: relative;
@@ -1067,14 +1067,14 @@ article{
 
 /* Map legend */
 .map-legend {
-  margin-top: 30px;
-  padding: 15px 20px;
+  margin-top: 0px;
+  padding: 0px 20px;
   background: rgba(139, 115, 85, 0.1);
   border: 1px solid rgba(139, 115, 85, 0.2);
   border-radius: 8px;
   display: flex;
-  gap: 30px;
-  justify-content: center;
+  gap: 20px;
+  justify-content: left;
 }
 
 .legend-item {
@@ -1544,9 +1544,15 @@ article{
   }
 }
 
+.item-content .card{
+  background-color: transparent;
+  border: none;
+}
+
 /* Hide on smaller screens where it would interfere with content */
 @media (max-width: 768px) {
   .section-nav-menu {
     display: none;
   }
 }
+
