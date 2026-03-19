@@ -38,9 +38,9 @@ locations-stopwords: Glen Canyon # set of subjects separated by ; that will be r
 # MAP PAGE
 #
 # see _data/map-config.csv for field display options
-auto-center-map: true # have the map auto fit all features into its view
-latitude: 46.727485 # to manually center map if not using auto-center-map option
-longitude: -117.014185 # to manually center map if not using auto-center-map option
+auto-center-map: false # have the map auto fit all features into its view
+latitude: 37.08393474 # to manually center map if not using auto-center-map option
+longitude: -111.1364887 # to manually center map if not using auto-center-map option
 zoom-level: 5 # zoom level for map if not using auto-center-map option
 map-base: Esri_WorldImagery # set default base map, choose from: Esri_WorldStreetMap, Esri_NatGeoWorldMap, Esri_WorldImagery, OpenStreetMap_Mapnik
 map-search: true # not suggested with large collections

@@ -1,7 +1,43 @@
-/* 
-    Put your custom SCSS here! 
+/*
+    Put your custom SCSS here!
     This allows you to override any CollectionBuilder or Bootstrap CSS without modifying the base theme files directly.
 */
+
+/* ========================================
+   Animation Variables & Utilities
+   Based on Emil Kowalski's animation philosophy
+   ======================================== */
+
+// Strong easing curves for intentional, responsive feel
+$ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+$ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+$ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+// Timing presets
+$duration-instant: 160ms;  // Button press feedback
+$duration-fast: 200ms;     // Hover states, tooltips
+$duration-normal: 300ms;   // Modals, dropdowns
+$duration-slow: 400ms;     // Page transitions, overlays
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  // Preserve opacity/color transitions for comprehension
+  .step,
+  .choice-inner,
+  .text-nav-link,
+  .section-nav-link {
+    transition: opacity 200ms ease, color 200ms ease, background-color 200ms ease !important;
+  }
+}
 
 /* Remove heading borders */
 h1, h2, h3, h4, h5, h6 {
@@ -226,7 +262,7 @@ article{
 
 .tributary-title-image-container a {
   display: inline-block;
-  transition: all 0.3s ease;
+  transition: transform $duration-fast $ease-out-strong, filter $duration-fast ease;
 }
 
 .tributary-title-image-container a:hover {
@@ -234,28 +270,24 @@ article{
   filter: brightness(1.05);
 }
 
+.tributary-title-image-container a:active {
+  transform: translateY(0) scale(0.97);
+}
+
 .tributary-title-img {
-  height: 100px;
+  height: clamp(25px, 8vw, 83px);
   width: auto;
   max-width: 100%;
   display: block;
 }
 
 @media (max-width: 768px) {
-  .tributary-title-img {
-    height: 60px;
-  }
-
   .tributary-title-image-container {
     padding: 15px 0 20px;
   }
 }
 
-@media (max-width: 480px) {
-  .tributary-title-img {
-    height: 45px;
-  }
-}
+
 
  h1,
  h2,
@@ -395,7 +427,10 @@ article{
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform $duration-fast $ease-out-strong,
+              background-color $duration-fast ease,
+              border-color $duration-fast ease,
+              box-shadow $duration-fast $ease-out-strong;
   position: relative;
   overflow: visible;
   backdrop-filter: blur(8px);
@@ -411,8 +446,9 @@ article{
 }
 
 .choice-inner:active {
-  transform: translateY(-1px);
+  transform: scale(0.97);
   box-shadow: 0 2px 8px rgba(210, 105, 30, 0.1);
+  transition-duration: $duration-instant;
 }
 
 /* Icon container */
@@ -423,7 +459,7 @@ article{
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform $duration-fast $ease-out-strong;
 }
 
 .choice-inner:hover .choice-icon {
@@ -433,7 +469,7 @@ article{
 /* Continue button specific */
 .continue-choice .choice-icon svg {
   filter: drop-shadow(0 1px 3px rgba(155, 107, 107, 0.2));
-  transition: all 0.3s ease;
+  transition: filter $duration-fast ease, fill $duration-fast ease;
 }
 
 .continue-choice .choice-inner:hover .choice-icon svg {
@@ -447,7 +483,7 @@ article{
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 1px 3px rgba(139, 69, 19, 0.12));
-  transition: filter 0.3s ease;
+  transition: filter $duration-fast ease;
 }
 
 .branch-choice .choice-inner:hover .trib-button-image {
@@ -462,7 +498,7 @@ article{
   font-weight: 500;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: color $duration-fast ease;
   letter-spacing: 0.2px;
 }
 
@@ -522,11 +558,15 @@ article{
 
 .river-poem-icon .trib-button-image {
   max-height: 50px;
-  transition: transform 0.3s ease;
+  transition: transform $duration-fast $ease-out-strong;
 }
 
 .river-poem-icon .choice-inner:hover .choice-icon {
   transform: scale(1.1);
+}
+
+.river-poem-icon .choice-inner:active {
+  transform: scale(0.97);
 }
 
 /* Responsive adjustments */
@@ -666,32 +706,44 @@ article{
   top: 20px;
   left: 20px;
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: transform $duration-fast $ease-out-strong;
 }
 
+/* ========================================
+   Sediment Map Toggle Button
+   Consolidated responsive styling for all contexts
+   ======================================== */
 
-.sticky-nav-button .sediment-map-toggle {
-    width: 60px !important;
-    height: 60px !important;
-    border-radius: 50% !important;
-    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
-    background-color: #F8F6F0 !important;
-    border: 2px solid #D2691E !important;
+.sediment-map-toggle {
+  width: clamp(45px, 7vw, 60px) !important;
+  height: clamp(45px, 7vw, 60px) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  background-color: #F8F6F0 !important;
+  border: 1px solid #D2691E !important;
+  transition: background-color $duration-fast ease,
+              box-shadow $duration-fast ease,
+              transform $duration-fast $ease-out-strong;
 }
 
-.sticky-nav-button .sediment-map-toggle .map-icon {
-    width: 28px !important;
-    height: 28px !important;
-    color: #8B4513 !important;
+.sediment-map-toggle .map-icon {
+  width: clamp(22px, 5vw, 28px) !important;
+  height: clamp(22px, 5vw, 28px) !important;
+  color: #8B4513 !important;
+  transition: color $duration-fast ease;
 }
 
-.sticky-nav-button .sediment-map-toggle:hover {
-    background-color: #FFF !important;
-    box-shadow: 0 6px 16px rgba(139, 69, 19, 0.4) !important;
+.sediment-map-toggle:hover {
+  background-color: #FFF !important;
+  box-shadow: 0 6px 16px rgba(139, 69, 19, 0.4) !important;
+}
+
+.sediment-map-toggle:active {
+  transform: scale(0.95);
 }
 
 /* ========================================
@@ -720,7 +772,7 @@ article{
   z-index: 1050;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  transition: opacity $duration-slow $ease-out-strong, visibility $duration-slow $ease-out-strong;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -775,7 +827,10 @@ article{
   border-radius: 50%;
   cursor: pointer;
   z-index: 1100;
-  transition: all 0.3s ease;
+  transition: transform $duration-normal $ease-out-strong,
+              background-color $duration-normal ease,
+              border-color $duration-normal ease,
+              box-shadow $duration-normal $ease-out-strong;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -788,6 +843,10 @@ article{
   border-color: #CD853F;
   transform: rotate(90deg) scale(1.1);
   box-shadow: 0 6px 20px rgba(205, 133, 63, 0.5);
+}
+
+.close-nav-btn:active {
+  transform: rotate(90deg) scale(1.05);
 }
 
 /* Content wrapper */
@@ -893,7 +952,10 @@ article{
   align-items: center;
   min-width: 0;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color $duration-fast $ease-out-strong,
+              border-top $duration-fast $ease-out-strong,
+              box-shadow $duration-fast $ease-out-strong,
+              opacity $duration-fast ease;
   padding: 15px 10px;
   border-radius: 8px;
 }
@@ -952,7 +1014,7 @@ article{
   margin-bottom: 20px;
   writing-mode: horizontal-tb;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: color $duration-fast ease, text-shadow $duration-fast ease;
   user-select: none;
   cursor: pointer;
   position: relative;
@@ -978,7 +1040,9 @@ article{
 /* Segments are dynamically generated by JavaScript from JSON data */
 .river-segment {
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: filter $duration-fast $ease-out-strong,
+              transform $duration-fast $ease-out-strong,
+              opacity $duration-fast ease;
   /* Subtle animated flow for particles */
   animation: particleFlow 12s ease-in-out infinite;
   /* Set transform origin to center to ensure consistent scaling */
@@ -988,7 +1052,7 @@ article{
 
 .river-segment rect {
   stroke: none;
-  transition: all 0.5s ease;
+  transition: stroke $duration-fast ease, stroke-width $duration-fast ease;
 }
 
 @keyframes particleFlow {
@@ -1135,7 +1199,10 @@ article{
   text-decoration: none;
   padding: 12px 16px;
   border-radius: 6px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color $duration-fast $ease-out-strong,
+              color $duration-fast ease,
+              transform $duration-fast $ease-out-strong,
+              box-shadow $duration-fast $ease-out-strong;
   font-size: 16px;
   display: block;
   position: relative;
@@ -1151,7 +1218,7 @@ article{
   width: 3px;
   background: linear-gradient(180deg, #CD853F, #A0845C);
   transform: translateX(-3px);
-  transition: transform 0.3s ease;
+  transition: transform $duration-fast $ease-out-strong;
 }
 
 .text-nav-link:hover {
@@ -1163,6 +1230,11 @@ article{
 
 .text-nav-link:hover::before {
   transform: translateX(0);
+}
+
+.text-nav-link:active {
+  transform: scale(0.98);
+  transition-duration: $duration-instant;
 }
 
 .text-nav-link.active {
@@ -1307,7 +1379,7 @@ article{
   max-width: 200px;
   height: auto;
   opacity: 0.6;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity $duration-fast ease, transform $duration-fast $ease-out-strong;
   filter: brightness(1.2) contrast(0.9);
 }
 
@@ -1483,7 +1555,10 @@ article{
   line-height: 1.4;
   color: #5D4037;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: color $duration-fast ease,
+              background-color $duration-fast $ease-out-strong,
+              border-left-color $duration-fast ease,
+              transform $duration-fast $ease-out-strong;
   border-left: 3px solid transparent;
   position: relative;
 }
@@ -1493,6 +1568,11 @@ article{
   background: rgba(139, 69, 19, 0.08);
   border-left-color: rgba(210, 105, 30, 0.4);
   transform: translateX(2px);
+}
+
+.section-nav-link:active {
+  transform: scale(0.98);
+  transition-duration: $duration-instant;
 }
 
 .section-nav-link.active {

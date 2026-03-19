@@ -11,7 +11,7 @@
     overlayBg: 'rgba(248, 245, 240, 0.95)'
   };
 
-  // Configuration presets
+  // Configuration presets - optimized timings
   const PRESETS = {
     fast: {
       duration: 700,
@@ -28,6 +28,9 @@
       bodyFade: 0.7
     }
   };
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /**
    * Particle class for sediment animation
@@ -98,6 +101,7 @@
     if (!overlay) {
       overlay = document.createElement('div');
       overlay.id = 'trib-transition-overlay';
+      const transitionDuration = prefersReducedMotion ? '0.01ms' : '400ms';
       overlay.style.cssText = `
         position: fixed;
         top: 0;
@@ -108,7 +112,7 @@
         z-index: 10000;
         display: none;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity ${transitionDuration} cubic-bezier(0.23, 1, 0.32, 1);
       `;
       document.body.appendChild(overlay);
     }
@@ -144,6 +148,12 @@
    * Main disintegration effect with overlay transition
    */
   function disintegrateImage(imgElement, targetLink, flowSide, speed = 'normal') {
+    // If reduced motion is preferred, skip animation and navigate immediately
+    if (prefersReducedMotion) {
+      window.location.href = targetLink;
+      return;
+    }
+
     const config = PRESETS[speed] || PRESETS.normal;
     const overlay = getOrCreateOverlay();
     const canvas = getOrCreateCanvas(overlay);
@@ -324,6 +334,34 @@
   }
 
   /**
+   * Custom smooth scroll animation with easing
+   */
+  function smoothScrollTo(targetY, duration = 500) {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    const startTime = performance.now();
+
+    // Cubic bezier easing (ease-out strong)
+    function easeOutStrong(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function scroll(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutStrong(progress);
+
+      window.scrollTo(0, startY + distance * eased);
+
+      if (progress < 1) {
+        requestAnimationFrame(scroll);
+      }
+    }
+
+    requestAnimationFrame(scroll);
+  }
+
+  /**
    * Initialize continue button scroll functionality
    */
   function initContinueButtons() {
@@ -361,18 +399,20 @@
           }
         }
 
-        // Fallback: scroll down by viewport height
+        // Calculate target position
+        let targetPosition;
         if (!targetElement) {
-          window.scrollBy({
-            top: window.innerHeight * 0.8,
-            behavior: 'smooth'
-          });
+          // Fallback: scroll down by viewport height
+          targetPosition = window.scrollY + window.innerHeight * 0.8;
         } else {
-          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 20;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
+          targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 20;
+        }
+
+        // Use custom smooth scroll with reduced motion support
+        if (prefersReducedMotion) {
+          window.scrollTo(0, targetPosition);
+        } else {
+          smoothScrollTo(targetPosition, 500);
         }
       });
     });

@@ -39,11 +39,28 @@ font-size-calc: "7, 140"
             font-size: 16px;
             cursor: pointer;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease,
+                        background-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
         }
-        
+
         #enterButton:hover {
             background: rgba(139, 115, 85, 1);
+            transform: translateY(-2px);
+        }
+
+        #enterButton:active {
+            transform: scale(0.97);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #enterButton {
+                transition: opacity 0.5s ease, background-color 100ms ease;
+            }
+            #enterButton:hover,
+            #enterButton:active {
+                transform: none;
+            }
         }
         
         #subtitle {
@@ -88,6 +105,9 @@ font-size-calc: "7, 140"
         const ctx = canvas.getContext('2d');
         const enterButton = document.getElementById('enterButton');
         const subtitleElement = document.getElementById('subtitle');
+
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
         // Set canvas size
         function resizeCanvas() {
@@ -496,6 +516,9 @@ font-size-calc: "7, 140"
         
         // Function to add new particles during animation (simulating continuous sediment flow)
         function addContinuousParticles(elapsed) {
+            // Skip if reduced motion is preferred
+            if (prefersReducedMotion) return;
+
             // Start adding particles after 3 seconds, every 100ms for more flow
             if (elapsed > 2000 && elapsed - lastParticleAddTime > 100) { // Reduced from 200ms to 100ms
                 lastParticleAddTime = elapsed;

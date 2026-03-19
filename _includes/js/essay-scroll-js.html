@@ -12,10 +12,15 @@
     // scrollama event handlers
     function handleStepEnter(response) {
         var stepIndex = response.index;
-    
+
         // Add fade-in effect to the current step
         response.element.classList.add("fade-in");
-    
+
+        // Add smooth transition to body background changes
+        if (!document.body.style.transition) {
+            document.body.style.transition = 'background-color 400ms cubic-bezier(0.23, 1, 0.32, 1), color 400ms ease';
+        }
+
         // Check if the element has the data-background-color attribute
         const bgColor = response.element.getAttribute("data-background-color");
         if (bgColor) {

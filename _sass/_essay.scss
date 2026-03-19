@@ -1,16 +1,18 @@
-/*  
+/*
     essay - style tweaks related to essay layout and essay features
 */
 
-
+/* Import animation variables from custom */
+// Strong easing curves
+$ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+$duration-essay-fade: 500ms;  // Optimized for reading flow
 
 /* Fading effects */
-
 
 /* Initially, steps are invisible */
 .step {
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity $duration-essay-fade ease;
 }
 
 .visible-step {
@@ -23,14 +25,12 @@
 
 .step.fade-in {
     opacity: 1;
-    transition: opacity 0.75s ease-in;
+    transition: opacity $duration-essay-fade $ease-out-strong;
 }
-
-
 
 .step.fade-out {
     opacity: 0;
-    transition: opacity 0.75s ease-out;
+    transition: opacity $duration-essay-fade $ease-out-strong;
 }
 /* To make sure the first step starts visible */
 #scrolly article .step:first-child {
