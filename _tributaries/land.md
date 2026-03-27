@@ -28,17 +28,17 @@ scrollama: true
 
 <br>
 
-GLEN CANYON IS a landscape in constant motion. Here, the contours of space rarely hold still: bits of earth--sediment, rock dust, sandstone shards--are at all times sloughing away from their bedrock encasings, etched out by wind, water, animal foot, or plant root. 
+GLEN CANYON IS a landscape in constant motion. Here, the contours of space rarely hold still: bits of earth——sediment, rock dust, sandstone shards——are at all times cutting away from their bedrock encasings, etched out by wind, water, animal foot, or plant root. 
 
-Some of these loose bits are plucked up by wind, and set down in the crevices of the canyon's rilled buttes, hills, and cliffs; others pile up into high dunes. Some bits are taken up by water--carried by a trickle of rain or the Colorado River itself--to heap up on sandy shore, or to lodge into the river's bed. And so the edges of things waver and drift, and the ground swells and subsides, like a viscous, slow-moving sea. 
+Some of these bits are plucked up by wind, and set down in the crevices of the canyon's rilled buttes; others pile up into high dunes. Some are taken up by water——carried by a trickle of rain or the Colorado River itself——to heap onto sandy shore, or to lodge into the river's bed. And so the edges of things waver and drift, and the ground swells and subsides, like a viscous, slow-moving sea. 
 
-This is not *terra firma,* solid earth, fixed space--this is a terrain always in flux: fissures, cut by flowing water, worm through the soft sandstone ground. Eventually, cracks grow into chasms and splinter into branches. For as long as these canyons exist, they will meander and writhe like great sluggish snakes. 
+This is not *terra firma,* solid earth, fixed space——this is a terrain always in flux: fissures, cut by flowing water, worm through the soft sandstone ground. Eventually, cracks grow into chasms and splinter into branches. For as long as these canyons exist, they will meander and writhe like great sluggish snakes. 
 
-Of course, all landscapes shift over time: elementary-aged children can tell you that mountains rise and crumble, that rivers carve valleys and deep canyons, and the tectonic plates will eventually tear the continents apart and bring new ones together. But barring natural catastrophe--earthquakes, volcanic eruptions, landslides--these mutations have, for centuries, been imagined to take place at such a gradual, creeping pace they are nearly imperceptible, and therefore inconsequential, for human life.
+Of course, all landscapes shift over time: elementary-aged children can tell you that mountains rise and crumble, that rivers carve valleys, and that the tectonic plates will eventually tear the continents apart and push new ones together. But barring natural catastrophe——earthquakes, volcanic eruptions, landslides——these mutations have, for centuries, been imagined by Western science to take place at such a gradual, creeping pace that earthly movement becomes nearly imperceptible, and therefore inconsequential, for human life.
 
 We have come to expect, in other words, that the ground will remain firm beneath our feet. 
 
-But not all humans view nature as so inert and inanimate: author Amitav Ghosh reminds us this is a Western way of thinking, and even then, gradualist ideas only gained prevalence at the turn of the 19th century, when geologists James Hutton and Charles Lyell began propounding ideas that the earth was formed not through a series of violent calamities, but by incremental accruals, erosions, and shifts. The theory stuck, partially because Lyell slandered his detractors as primitive and susceptible to mystical thinking. Those who believed in a more capricious earth, Lyell said, were effectively ascribing natural processes "to the intervention of demons, ghosts, witches, and other immaterial and supernatural agents" (Ghosh 27). 
+But not all cultures view nature as so inert: Amitav Ghosh reminds us this is a Western way of thinking, and even then, gradualist ideas only gained prevalence at the turn of the 19th century, when geologists James Hutton and Charles Lyell began propounding ideas that the earth was formed not through a series of violent calamities, but by incremental erosions and accruals. The theory stuck——partially because Lyell slandered his detractors as primitive and susceptible to mystical thinking. Those who believed in a more capricious earth, Lyell said, were effectively ascribing natural processes "to the intervention of demons, ghosts, witches, and other immaterial and supernatural agents" (Ghosh 27). 
 
 Lyell invokes here a racialized rhetoric to support his scientific theories. European and American intellectuals have long classified non-western cultures as uncivilized and their modes of understanding the world as "primitive" in order to prop up racial hierarchies. By championing science as the only rational and civilized mode of thinking, all other epistemologies become subordinated as mythical irrational, and uncivilized. And so Lyell hitched his gradualist wagon to the currents of European ethnocentrism, and Westerners took up his argument that "nature does not make leaps" (26). As Ghosh elucidates, it is only in the last few decades that gradualist notions have loosened their hold on the Western mind, as we all are confronted with the volatilities of climate change. 
 
@@ -52,6 +52,8 @@ But nature has never been inert, even at the human scale. In Glen Canyon, one do
 {% include feature/new-section.html %}
 
 ## Grammars of Animacy
+
+{% include feature/image-gallery.html objectid="sediment183" caption=false%}
 
 FOR ROBIN WALL KIMMERER, a Potowatami author and botantist, it is not only EuroAmerican science but also the English language that has worked to subdue the animacy of the nonhuman world. In English, the words for *rock*, *river*, *hill*, and *bay* are nouns--but as Kimmerer notes, nonhuman elements are not described in all languages as *things*. Ojibwe instead uses what Kimmerer calls a *grammar of animacy*: the word for *rock* is *to be a rock*, and the word for *bay* is *to be a bay*. In Ojibwe, rocks, rivers, hills, and bays become verbs--things in process--instead of nouns. Kimmerer writes that this linguistic act of inscribing *being* into a *bay* "releases the water from bondage and lets it live." Language, she continues, can be a "mirror for seeing the animacy of the world, the life that pulses through all things" and "in Potowatomi 101, rocks are animate, as are mountains and water and fire and places" (55). 
 
@@ -70,7 +72,7 @@ What I hope to contribute here is a further examination of my own inherited West
 
 {% include feature/new-section.html %}
 
-## 
+## Muddy Maps
 
 LAST WINTER, I visited Lone Rock, a solitary butte that rises high out of Wahweap Bay, one of Lake Powell's coves. Decades ago, when the lake was at full pool, Lone Rock was encircled by deep water. But the lake has long since retreated, leaving behind vast flats of sand and a shallow puddle of lake. Even as I walked across the sand flats, I could see that beach had grown longer and the lake smaller since I had last been to Lone Rock four years before. With the lake shrunk down, Lone Rock seemed to become taller, its bleached bathtub ring wider. Over a period so short I could not have pointed to any measurable change in the composition of my own body, the contours of the land had been remade, though in this case by shifting water, not shifting earth. 
 
@@ -407,7 +409,9 @@ Perhaps you can see where this is going: I am gesturing towards a sedimentary mo
 ## Stanton's Dredge
 
 {% include feature/image-gallery.html objectid="sediment62;sediment175" caption=false%}
-ROBERT BREWSTER STANTON was working as railroad surveyor when he read of John Wesley Powell's trip down the Colorado River. Powell's tales of adventure through the river's tortuous rapids and labyrinthine canyons–unmatched in color and form–lit up Stanton’s imagination. One day, he decided, he would build a railroad across those canyon walls. He'd become the man who laid tracks over the Grand Canyon.
+
+
+ROBERT BREWSTER STANTON was working as railroad surveyor when he read of John Wesley Powell's trip down the Colorado River. Powell's tales of adventure through the river's tortuous rapids and labyrinthine canyons lit up Stanton’s imagination. One day, he decided, he would build a railroad across those canyon walls. He'd become the man who laid tracks over the Grand Canyon.
 
 Neither Stanton nor anyone else would ever go on to accomplish such a feat--the Grand Canyon is not the narrow chasm Stanton had dreamed of, but in fact stretches anywhere from four to eighteen miles from rim to rim. Nevertheless, fueled by his dreams, Stanton pursued a career in railroad engineering, and eventually, he did make it the Colorado River--not to build a railroad across it, but to lay one alongside its shores. It was a promising scheme: at the time, coal was pouring out of Colorado and was desperately needed in California, where great cities were beginning to spring up and grow. A water-level railroad, Stanton thought, could transport coal from one place to another without having to blast through the colossal mountains that riddled the west. 
 
@@ -446,6 +450,8 @@ And even with the dredge working, it recovered little gold. The river and its sh
 After two months of running, Stanton tallied the value of his gold: $66.95. By September, Stanton was summoned to New York to meet with his investors, who forced him to sell the company. They found a buyer quickly: a J.T. Raleigh in Salt Lake City who bought the entire enterprise, including the claims, dredge, building, and equipment for $200. 
 
 The dredge never ran again, and over the next decades it was slowly picked over by other hopeful miners, who pried away its timber to build cabins and fires and tore off its metal parts, perhaps to repair their own machinery. By 1938, all that remained of Stanton's dredge was a half-submerged skeleton of twisted metal, slowly coming apart in the river.
+
+{% include feature/image-gallery.html objectid="sediment175" caption=false%}
 
 Like so many other settlers drawn hopefully to the West, towards its promises of fame, wealth, and self-determination, Stanton learned the hard way--learned over and over again, in fact--that the land does not always sit idly by to be plundered and conquered. 
 

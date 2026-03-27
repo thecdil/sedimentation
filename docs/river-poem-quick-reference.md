@@ -76,7 +76,7 @@ anchor: "seeps"
 ### 1. Simple text
 ```yaml
 - id: "line1"
-  scroll_position: 300
+  scroll_position: 1000
   side: "left"
   content: "you are silt"
 ```

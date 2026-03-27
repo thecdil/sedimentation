@@ -30,7 +30,7 @@ When I look at these photos, I am struck by the memories that the land holds, an
 
 It does not take a geologist to see what has happened here: when I showed these photographs to a poet friend and asked him to describe what he saw, he said he saw the wind. If I look long enough, I start to believe that I can feel the old winds, see the dunes spill over themselves, hear the swish of sand, although I am separated from all of this not only a thousand miles but also by 200 million years. 
 
-The dunes no longer shift, but I can clearly sense their motion. I think about the stretching millenia, the torrent of events through which these thin remainders of wind have stood, and it seems that time has compressed, as if the past has risen up, as if the land is impressing a story of its ancient self--its lively motion, its patient world-making--on all who care to look.
+The dunes no longer shift, but I can clearly sense their motion. I think about the stretching millennia, the torrent of events through which these thin remainders of wind have stood, and it seems that time has compressed, as if the past has risen up, as if the land is impressing a story of its ancient self--its lively motion, its patient world-making--on all who care to look.
 
 Geologists have, however, helped me to translate a more detailed story about the sand's origins. By reading the slope of the rock's striations—which they call cross-beds—they can determine that in the era of the dunes, the prevailing winds blew in from the north-north west. And by looking closely at individual sand grains, geologists have also found that the particles are round in shape, evidence of a long and wearing journey, and are made from fine quartz and zircon, which discloses their origin: the Appalachian mountains of the east.[^2]
 
@@ -98,7 +98,7 @@ The wind, I have learned, works with many collaborators to shape Glen Canyon.
 
 ## Níłch’i 
 
-Diné worldviews understand that all of nature is suffused with níłch’i, which translates roughly into "Holy Wind". For the Diné people, níłch’i "serves as the means of communication between all elements of the living world” and gives "life, thought, speech, and the power of motion to all living things," as philosopher Viola Cordova puts it. Níłch’i, in other words, is the force that animates life, and all life is a manifestation of níłch’i. Humans, Cordova writes, are "vortices" within níłch’i, as are all of the other "'things' of the world." [^6]
+DINÉ WORLDVIEWS UNDERSTAND that all of nature is suffused with níłch’i, which translates roughly into "Holy Wind". For the Diné people, níłch’i "serves as the means of communication between all elements of the living world” and gives "life, thought, speech, and the power of motion to all living things," as philosopher Viola Cordova puts it. Níłch’i, in other words, is the force that animates life, and all life is a manifestation of níłch’i. Humans, Cordova writes, are "vortices" within níłch’i, as are all of the other "'things' of the world." [^6]
 
 Diné elders[^7] explain that the traces of níłch’i can be seen within the swirls on our fingertips and toes, and in the coils of our ears and hair:
 
@@ -201,7 +201,7 @@ I think here about the title of Katie's book, her possessive "my" when referring
 
 {% include feature/image-gallery.html objectid="sediment103" caption=false%}
 
-In 1909, BYRON Cummings, an archaeologist at the University of Utah, and William Douglass, the general land surveyor for the USGS set out on a mission to find the rumored Rainbow Bridge, a large natural arch wedged into one of Glen Canyon's side canyons, formed by the erosional forces of water and wind. Led by Paiute guides Jim Mike and a father and son both named Noscha Begay, they found it, and quickly disseminated papers declaring their "discovery," despite the fact that this discovery was only made possible by their native guides' prior knowledge and connection with Rainbow Bridge. [^17]
+IN 1909, BYRON Cummings, an archaeologist at the University of Utah, and William Douglass, the general land surveyor for the USGS set out on a mission to find the rumored Rainbow Bridge, a large natural arch wedged into one of Glen Canyon's side canyons, formed by the erosional forces of water and wind. Led by Paiute guides Jim Mike and a father and son both named Noscha Begay, they found it, and quickly disseminated papers declaring their "discovery," despite the fact that this discovery was only made possible by their native guides' prior knowledge and connection with Rainbow Bridge. [^17]
 
 One year later, President William Howard Taft removed Rainbow Bridge and the 160 acres surround it from Diné and Paiute lands and designated it a National Monument, writing in his proclamation that "[the] extraordinary natural bridge, having an arch which is in form and appearance much like a rainbow...[is] of great scientific interest as an example of eccentric stream erosion....[It] appears that the public interest would be promoted by reserving this bridge as a National Monument" [^18] 
 
@@ -217,7 +217,7 @@ Of course, neither Glen Canyon nor Rainbow Bridge were free for the taking. Rain
 ## Economies of Wonder
 {% include feature/image-gallery.html objectid="sediment156;sediment157" caption=false%}
 
-Wonder continued to facilitate settler claims over Glen Canyon and its surrounding lands. Shortly after Cummings and Douglass broadcast the news about their "discovery," tourists flocked to the region, seeking guides-for-hire who could lead them across the rugged country to see the bridge. Recognizing the economic opportunity to appease wonder-seeking travelers, S.I. and Hubert Richardson founded the Rainbow Natural Bridge Transportation Company, and more visitors flooded in. [^20] 
+WONDER CONTINUED TO facilitate settler claims over Glen Canyon and its surrounding lands. Shortly after Cummings and Douglass broadcast the news about their "discovery," tourists flocked to the region, seeking guides-for-hire who could lead them across the rugged country to see the bridge. Recognizing the economic opportunity to appease wonder-seeking travelers, S.I. and Hubert Richardson founded the Rainbow Natural Bridge Transportation Company, and more visitors flooded in. [^20] 
 
 A robust tourist economy began to collect around Glen Canyon, built on marketing the wonder of the landscape. And the tourist register at Rainbow Bridge is indeed rife with comments of wonder: "no person returned from the trip an atheist" wrote one tourist. "Nothing more perfectly attests the definite existence of a Supreme Being," wrote another. [^21] As testimonials the wondrous landscape spread, visitation grew, until, by the 1960s, tourism had replaced energy as the largest industry in the Four Corners region. Wonder had become the region's most profitable commodity. 
 
@@ -320,7 +320,7 @@ RADIUM IS NOT the only danger lurking in Lake Powell's sediment. The lake's silt
 
 Methane is 80 times more effective at trapping heat than carbon dioxide and reservoirs--such as Lake Powell--contribute 6%-8% of total human-caused methane emissions. [^32]
 
-At the same time as the global climate affects Lake Powell, Lake Powell affects the global climate. Scientists call this kind of cycle, in which change amplifies change amplifies change a positive feedback loop. Positive feedback loops draw their components together into an ever more chaotic and tightly bound spiral. I picture two hurricanes colliding, their arms locking, and turning each other like gears spun out of control until they merge into one superstorm, and I think about the echo between a microphone brought too close to a speaker, which gets faster and higher and faster and higher until the two echoes become one high screech. 
+At the same time as the global climate effects Lake Powell, Lake Powell effects the global climate. Scientists call this kind of cycle, in which change amplifies change amplifies change a positive feedback loop. Positive feedback loops draw their components together into an ever more chaotic and tightly bound spiral. I picture two hurricanes colliding, their arms locking, and turning each other like gears spun out of control until they merge into one superstorm, and I think about the echo between a microphone brought too close to a speaker, which gets faster and higher and faster and higher until the two echoes become one high screech. 
 
 Thus, the currents of change that flow through Glen Canyon become inextricably entwined with those that flow through the global climate. The motions of the external world collect and settle in Glen Canyon--the shards of distant mountains, the tailings of continental winds, the spillage of colonialism and global wars, the legacies of imperial thought--but in Glen Canyon, these distant remnants get reworked as they come into contact with the canyon's people, microbes, water, wind, and sediment, and then flung back out to gust across the basin and the planet. 
 

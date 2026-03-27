@@ -23,221 +23,236 @@
 sections:
     
   - id: "line-2"
-    scroll_position: 1500
-    scroll_position_mobile: 1000
+    scroll_position: 2000
+    scroll_position_mobile: 3000
     side: "middle"
     content: "you are silt"
-    padding_left: 
+    padding_left:
     font_size: 19
 
   - id: "line-3"
-    scroll_position: 1750
-    scroll_position_mobile: 1300
-    side: "left"
+    scroll_position: 2750
+    scroll_position_mobile: 3300
+    side: "middle"
     content: "you may be embedded in the strata"
-    padding_left: 500
     max_width: 420
     font_size: 18
+    icon: "land"
+    trib: "land"
     
   - id: "line-5"
-    scroll_position: 2000
-    scroll_position_mobile: 1600
-    side: "right"
+    scroll_position: 3000
+    scroll_position_mobile: 3600
+    side: "middle"
     content: "you may be deep underground"
-    padding_right: 500
+    icon: "twinbuttes"
+    trib: "land"
+    
 
   - id: "line-6"
-    scroll_position: 2250
-    scroll_position_mobile: 1850
-    side: "left"
+    scroll_position: 3250
+    scroll_position_mobile: 3900
+    side: "middle"
     content: "or clinging to the outer dermis of a canyon wall"
-    padding_left: 500
-    max_width: 400
+    max_width: 500
+    icon: "balancedrock"
+    trib: "land"
 
   - id: "line-7"
-    scroll_position: 2500
-    scroll_position_mobile: 2150
-    side: "right"
+    scroll_position: 4000
+    scroll_position_mobile: 4200
+    side: "middle"
     content: "you arrived 220 million years ago, borne by a river that no longer exists. you came from lakes, streams, and briny wetlands. you blew here on the wind, hard to say from where. you are fossil dust"
-    padding_right: 500
-    max_width: 480
+    max_width: 500
     font_size: 17
+    icon: "water"
+    trib: "water"
 
   - id: "line-8"
-    scroll_position: 2750
-    scroll_position_mobile: 2600
-    side: "left"
+    scroll_position: 4300
+    scroll_position_mobile: 4500
+    side: "right"
     content: "or, 190 million years ago, you flew in on wind gusts which plucked you from quartz and iron dunes. you arranged yourselves horizontally along wind lines, and when enough of you had piled up, you tumbled down yourself in avalanches, cutting vertical creases down your stacks"
-    padding_left: 300
+    padding_right: 100
     max_width: 500
     font_size: 17
     icon: "atmosphere"
     trib: "atmosphere"
 
   - id: "line-9"
-    scroll_position: 3000
-    scroll_position_mobile: 3000
-    side: "right"
+    scroll_position: 4600
+    scroll_position_mobile: 4800
+    side: "middle"
     content: "you were brought by an inland sea that flooded this side of the continent 90 millions ago. much of you are made from flecks of sharks, fish, turtles, and dinosaurs"
-    padding_right: 700
     max_width: 460
     font_size: 17
     icon: "microbes"
-    trib: "animal"
+    trib: "biota"
 
   - id: "line-10"
-    scroll_position: 3250
-    scroll_position_mobile: 3350
+    scroll_position: 4900
+    scroll_position_mobile: 5100
     side: "right"
     content: "perhaps you arrived recently, from somewhere else, delivered by bird wing, on shoe, from mountain side or through fish gut"
-    padding_right: 20
-    max_width: 340
+    padding_right: 100
+    max_width: 500
+    icon: "mormons"
+    trib: "humans"
     
   - id: "line-11"
-    scroll_position: 3500
-    scroll_position_mobile: 3650
-    side: "left"
+    scroll_position: 5200
+    scroll_position_mobile: 5400
+    side: "right"
+    padding_right: 300
     content: "you might stay here for another day, century, millennia, or billion years"
-    padding_left: 700
-    max_width: 420
+    max_width: 500
+    icon: "land"
+    trib: "land"
+
+  - id: "line-12"
+    scroll_position: 5500
+    scroll_position_mobile: 5700
+    side: "middle"
+    content: "or the river might cut you from your bed and carry you away"
+    max_width: 500
     icon: "water"
     trib: "water"
 
-  - id: "line-12"
-    scroll_position: 3750
-    scroll_position_mobile: 3950
-    side: "right"
-    content: "or the river might cut you from your bed and carry you away"
-    padding_right: 300
-    max_width: 400
-    icon: "devin"
-    trib: "animal"
-
   - id: "line-13"
-    scroll_position: 4000
-    scroll_position_mobile: 4250
-    side: "right"
+    scroll_position: 5800
+    scroll_position_mobile: 6000
+    side: "left"
     content: "the water takes you fast or slow all the way to the ocean" 
+    padding_left: 300
+    icon: "water2"
+    trib: "water"
 
   - id: "line-14"
-    scroll_position: 4000
-    scroll_position_mobile: 4250
-    side: "left"
+    scroll_position: 6100
+    scroll_position_mobile: 6300
+    side: "middle"
     content: "perhaps you wash up on a beach"
-    padding_right: 500
-    padding_left: 500
-    max_width: 200
+    max_width: 500
+    icon: "land"
+    trib: "land"
 
   - id: "line-15"
-    scroll_position: 4250
-    scroll_position_mobile: 4800
-    side: "right"
-    content:  "there is so much of you you tune the water's temperature" 
-    padding_right: 500
+    scroll_position: 6750
+    scroll_position_mobile: 6600
+    side: "middle"
+    content: "there is so much of you you tune the water's temperature" 
+    max_width: 500
+    icon: "water"
+    trib: "water"
 
   - id: "line-16"
-    scroll_position: 4500
-    scroll_position_mobile: 5050
-    side: "right"
+    scroll_position: 7350
+    scroll_position_mobile: 6900
+    side: "middle"
     content: "algae blossoms in your nooks"
-    padding_right: 700
-    padding_left: 295
+    icon: "microbes"
+    trib: "biota"
 
   - id: "line-17"
-    scroll_position: 4750
-    scroll_position_mobile: 5250
-    side: "right"
+    scroll_position: 7600
+    scroll_position_mobile: 7200
+    side: "middle"
     content: "endemic fish proliferate"
-    padding_right: 300
+    icon: "biota"
+    trib: "biota"
 
   - id: "line-18"
-    scroll_position: 5000
-    scroll_position_mobile: 5450
-    side: "right"
+    scroll_position: 7850
+    scroll_position_mobile: 7500
+    side: "middle"
     content: "you hold magnesium, potassium, and calcium" 
-    padding_right: 500
-    max_width: 420
+    max_width: 500
+    icon: "balancedrock"
+    trib: "land"
+
     
   - id: "line-19"
-    scroll_position: 5250
-    scroll_position_mobile: 5700
-    side: "left"
-    content: "when enough of you gathers you alter the river's course"
-    padding_left: 275
-
-  - id: "line-20"
-    scroll_position: 5500
-    scroll_position_mobile: 5850
-    side: "right"
-    content: "slow all the way to the ocean"
-    padding_right: 100
+    scroll_position: 8100
+    scroll_position_mobile: 7800
+    side: "middle"
+    content: "plants take root in your fertile shores"
+    icon: "vegetation"
+    trib: "biota"
+    
 
   - id: "line-21"
-    scroll_position: 5750
-    scroll_position_mobile: 6150
+    scroll_position: 8500
+    scroll_position_mobile: 8100
     side: "right"
-    content: "plants take root in your fertile shores"
-    padding_right: 80
+    content: "when enough of you gathers you alter the river's course"
+    max_width: 500
+    icon: "water2"
+    trib: "water"
+    
 
   - id: "line-22"
-    scroll_position: 6000
-    scroll_position_mobile: 6400
-    side: "left"
+    scroll_position: 8900
+    scroll_position_mobile: 8400
+    side: "middle"
     content: "some of you stream over an abandoned uranium mine"
-    padding_left: 90
-    max_width: 400
-    icon: "infrastructure"
-    trib: "infrastructure"
+    padding_right: 80
+    max_width: 500
+    icon: "mining"
+    trib: "atmosphere"
 
+  -
   - id: "line-23"
-    scroll_position: 6250
-    scroll_position_mobile: 6750
+    scroll_position: 9200
+    scroll_position_mobile: 8700
     side: "right"
     content: "you are radioactive"
-    padding_right: 85
+    padding_right: 100
     font_size: 19
+    icon: "uranium"
+    trib: "atmosphere"
 
   - id: "line-24"
-    scroll_position: 6500
-    scroll_position_mobile: 6950
-    side: "left"
+    scroll_position: 9600
+    scroll_position_mobile: 9000
+    side: "middle"
     content: "humans gather you in handfuls to make art and homes"
-    padding_left: 85
-    max_width: 420
-    icon: "humans"
+    max_width: 500
+    icon: "dwellings"
     trib: "humans"
 
   - id: "line-25"
-    scroll_position: 6750
-    scroll_position_mobile: 7250
+    scroll_position: 9850
+    scroll_position_mobile: 9300
     side: "right"
     content: "much of you heaps up behind concrete dams"
-    padding_right: 75
+    padding_right: 100
     max_width: 380
+    icon: "infrastructure"
+    trib: "humans"
 
   - id: "line-26"
-    scroll_position: 7000
-    scroll_position_mobile: 7600
-    side: "left"
+    scroll_position: 10100
+    scroll_position_mobile: 9600
+    side: "middle"
     content: "not so much of you flows to the sea now"
-    padding_left: 95
+    icon: "water"
+    trib: "water"
 
   - id: "line-27"
-    scroll_position: 7250
-    scroll_position_mobile: 7850
+    scroll_position: 10350
+    scroll_position_mobile: 9900
     side: "right"
     content: "there is not so much room left for the water anymore"
-    padding_right: 70
+    padding_right: 200
     max_width: 400
-    icon: "colonization"
-    trib: "colonization"
+    icon: "volcano"
+    trib: "atmosphere"
 
   - id: "line-28"
-    scroll_position: 7500
-    scroll_position_mobile: 8200
-    side: "left"
+    scroll_position: 11400
+    scroll_position_mobile: 11200
+    side: "middle"
     content: "still, maybe you are embedded in the rock strata maybe you are deep underground or clinging to the outer dermis of a canyon wall or maybe you arrived recently, from somewhere else, delivered by bird wing, on shoe, from mountain or through fish gut you might stay here for another day, century, millennia, or billion years or the river might cut you from your bed and carry you away"
-    padding_left: 60
-    max_width: 520
+    max_width: 1000
     font_size: 17
-    text_align: "left"
+

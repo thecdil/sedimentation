@@ -73,7 +73,7 @@ river_path: "M190,-10 Q105,0 100,0 T65,15 50,23 Q45,25 30,35 Q20,45 19,65 Q42,75
 .river-container {
   position: relative;
   width: 100%;
-  min-height: 9000px;
+  min-height: 12000px;
   background: linear-gradient(180deg, #F5DEB3 0%, #DEB887 30%, #D2691E 70%, #8B4513 100%);
   overflow-x: hidden;
 }
@@ -161,9 +161,12 @@ river_path: "M190,-10 Q105,0 100,0 T65,15 50,23 Q45,25 30,35 Q20,45 19,65 Q42,75
     to { opacity: 1; }
   }
 }
-.poem-content-box{
-background: rgb(255 255 255 / 65%);
-    padding: 14px;}
+.poem-content-box {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 14px;
+}
 
 .tributary-scroll-container {
   position: relative;
@@ -298,7 +301,7 @@ background: rgb(255 255 255 / 65%);
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .river-container {
-    min-height: 8600px; /* Increased height for mobile to accommodate spread-out poem sections */
+    min-height: 12000px; /* Keep mobile page long enough for spread-out poem sections */
   }
 
   .intro-content-box {
@@ -368,6 +371,39 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Original SVG bounds
     const originalBounds = { minX: 0, maxX: 200, minY: -10, maxY: 400 };
+    const minRiverX = canvas.width * 0.08;
+    const maxRiverX = canvas.width * 0.35;
+    const mapRiverX = (xVal, yVal) => {
+      const channelCenterX = (minRiverX + maxRiverX) / 2;
+      const channelHalfWidth = (maxRiverX - minRiverX) / 2;
+      const xNorm = (xVal / originalBounds.maxX) * 2 - 1;
+      const yNorm = (yVal - originalBounds.minY) / (originalBounds.maxY - originalBounds.minY);
+
+      // Blend original bends with two y-driven wave components for extra twists.
+      let bend = xNorm * 0.95;
+      bend += Math.sin(yNorm * Math.PI * 6) * 0.18;
+      bend += Math.sin(yNorm * Math.PI * 13 + 0.7) * 0.08;
+
+      // Hard clamp: never exceed configured channel bounds.
+      bend = Math.max(-1, Math.min(1, bend));
+
+      let dynamicCenterX = channelCenterX;
+
+      // Near the end, arc smoothly right and exit the screen.
+      if (yNorm > 0.82) {
+        const t = (yNorm - 0.82) / 0.18;
+        const clampedT = Math.max(0, Math.min(1, t));
+        const ease = clampedT * clampedT * clampedT * (clampedT * (clampedT * 6 - 15) + 10);
+        const controlCenterX = canvas.width * 0.46;
+        const exitCenterX = canvas.width * 1.08;
+        const oneMinus = 1 - ease;
+        dynamicCenterX = oneMinus * oneMinus * channelCenterX + 2 * oneMinus * ease * controlCenterX + ease * ease * exitCenterX;
+      }
+
+      const mappedX = dynamicCenterX + bend * channelHalfWidth;
+
+      return mappedX;
+    };
     
     commands.forEach(command => {
       const type = command[0];
@@ -376,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (type === 'M') {
         currentX = coords[0];
         currentY = coords[1];
-        const scaledX = (currentX / originalBounds.maxX) * canvas.width;
+        const scaledX = mapRiverX(currentX, currentY);
         const scaledY = ((currentY - originalBounds.minY) / (originalBounds.maxY - originalBounds.minY)) * canvas.height;
         points.push({x: scaledX, y: scaledY});
       } else if (type === 'Q') {
@@ -389,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const t = i / steps;
           const x = (1-t)*(1-t)*startX + 2*(1-t)*t*cpX + t*t*endX;
           const y = (1-t)*(1-t)*startY + 2*(1-t)*t*cpY + t*t*endY;
-          const scaledX = (x / originalBounds.maxX) * canvas.width;
+          const scaledX = mapRiverX(x, y);
           const scaledY = ((y - originalBounds.minY) / (originalBounds.maxY - originalBounds.minY)) * canvas.height;
           points.push({x: scaledX, y: scaledY});
         }
@@ -404,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const t = i / steps;
           const x = currentX + t * (endX - currentX);
           const y = currentY + t * (endY - currentY);
-          const scaledX = (x / originalBounds.maxX) * canvas.width;
+          const scaledX = mapRiverX(x, y);
           const scaledY = ((y - originalBounds.minY) / (originalBounds.maxY - originalBounds.minY)) * canvas.height;
           points.push({x: scaledX, y: scaledY});
         }
