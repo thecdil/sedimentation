@@ -4,7 +4,9 @@ creator,Creator,,,DCTERMS.creator,creator
 date,Date Created,,,DCTERMS.date,dateCreated
 description,Description,,,DCTERMS.description,description
 subject,Subjects,true,,DCTERMS.subject,keywords
-location,Location,,,,contentLocation
+location,Location,true,,,contentLocation
+damtime,Pre/Post Dam,true,,,
+submerged,Submersion,true,,,
 latitude,Latitude,,,,
 longitude,Longitude,,,,
 source,Source,,,,

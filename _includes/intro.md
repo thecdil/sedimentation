@@ -12,6 +12,6 @@
 
 <p><em>Sedimentation</em> is a collection of these stories, excavated from Glen Canyon’s sedimentary archive.</p>
 
-<p class="text-end">- <a href="about.html#creator-bios">Hannah Green</a>, Project Author</p>
+<p class="text-end"> </p>
 </div></div>
 

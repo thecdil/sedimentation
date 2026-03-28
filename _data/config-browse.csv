@@ -3,4 +3,6 @@ date,Date,,,Date
 creator,Creator,,,
 subject,,true
 location,,true
+damtime,,true,true
+submerged,,true,true
 identifier,,,true,Identifier
