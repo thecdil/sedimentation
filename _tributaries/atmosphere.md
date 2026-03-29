@@ -361,7 +361,7 @@ AS I TRY to map Glen Canyon's past and future stories, pull together the threads
 
 [^1]: Tape, Carl. "The Lower Jurassic Navajo Sandstone: large-scale deposition and small-scale structures." nhmu.utah.edu, 2005. [https://nhmu.utah.edu/sites/default/files/trail-resource/Navajo%20Sandstone.pdf.](https://nhmu.utah.edu/sites/default/files/trail-resource/Navajo%20Sandstone.pdf)
 
-[^2]: Ibid
+[^2]: Tape
 
 [^3]: James, Erin. “Narration.” *Narrative in the Anthropocene.* The Ohio State University Press, 2022, p. 19. [https://ohiostatepress.org/books/titles/9780814215074.html](https://ohiostatepress.org/books/titles/9780814215074.html)
 
@@ -375,7 +375,7 @@ AS I TRY to map Glen Canyon's past and future stories, pull together the threads
 
 [^8]: Cordova, p. 106
 
-[^9]: Ibid, pp. 102-103
+[^9]: Cordova, pp. 102-103
 
 [^10]: Nocita, Bruce W. "Pedestal rocks in the Pliocene Puye Formation, New Mexico." *Sedimentary Geology,* vol. 49, issues 3-4, October 1986, pp. 193-200. ScienceDirect, accessed 19 October 2025, [https://doi.org/10.1016/0037-0738(86)90038-2.](https://www.sciencedirect.com/science/article/abs/pii/0037073886900382?via%3Dihub)
 
@@ -385,11 +385,11 @@ AS I TRY to map Glen Canyon's past and future stories, pull together the threads
 
 [^13]: Ogden, Laura A. *Loss and Wonder at the World’s End.* Duke University Press, 2021, p. 5. [https://doi.org/10.1215/9781478021865.](https://read.dukeupress.edu/books/book/2956/Loss-and-Wonder-at-the-World-s-End)
 
-[^14]: Ibid, p. 7
+[^14]: Ogden, p. 7
 
 [^15]: Anderson, Ben. “Affective atmospheres.” *Emotion, Space and Society 2* (2), 2009, pp. 79,78. [https://doi.org/10.1016/j.emospa.2009.08.005](https://www.sciencedirect.com/science/article/abs/pii/S1755458609000589?via%3Dihub)
 
-[^16]: Ogden, p. 7.
+[^16]: Ogden, p. 7
 
 [^17]: Bsumek, Erika Marie. *The Foundations of Glen Canyon Dam: Infrastructures of Dispossession on the Colorado Plateau.* University of Texas Press, 2023.
 
@@ -397,9 +397,9 @@ AS I TRY to map Glen Canyon's past and future stories, pull together the threads
 
 [^19]: Farmer, Jared. *Glen Canyon Dammed: Inventing Lake Powell and the Canyon Country.* University of Arizona Press, 1999, p. 79.
 
-[^20]: Ibid
+[^20]: Farmer
 
-[^21]: Ibid, p. 79
+[^21]: Farmer, p. 79
 
 [^22]: United States, National Park Service. "Frequently Asked Questions - Rainbow Bridge National Monument." *National Park Service*, 17 Apr. 2025, [www.nps.gov/rabr/faqs.htm](www.nps.gov/rabr/faqs.htm)
 
@@ -423,9 +423,9 @@ AS I TRY to map Glen Canyon's past and future stories, pull together the threads
 
 [^32]: Zaske, Sara, et al. “Methane Emissions from Reservoirs Are Increasing.” WSU Insider, *WSU Insider*, 19 September 2022, [https://news.wsu.edu/news/2022/09/19/methane-emissions-from-reservoirs-are-increasing/](ttps://news.wsu.edu/news/2022/09/19/methane-emissions-from-reservoirs-are-increasing/)
 
-[^33]: Podmore, 25. 
+[^33]: Podmore, p. 25. 
 
-[^34]: Ibid, 141. 
+[^34]: Podmore, p. 141. 
 
-[^35]: Ogden, 13. 
+[^35]: Ogden, p. 13. 
 

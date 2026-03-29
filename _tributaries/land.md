@@ -422,8 +422,3 @@ Surely Dominy had drawn out the Glen Canyon Dam a hundred times before—he was 
 [^27]: qtd. in Podmore, p. 60
 
 [^28]: Ingebresten, Richard. "Floyd Dominy built the Glen Canyon Dam, then he sketched its end on a napkin." *The Salt Lake Tribune*, August 28, 2022. [https://www.sltrib.com/news/environment/2022/08/28/floyd-dominy-built-glen-canyon/](https://www.sltrib.com/news/environment/2022/08/28/floyd-dominy-built-glen-canyon/)
-
-
-
-
-
