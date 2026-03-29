@@ -29,7 +29,6 @@ When the Glen Canyon Dam drowned Glen Canyon, it also subsumed the lives and his
 
 {% include feature/image-gallery.html objectid="sediment22" width="50" caption=false%}
 
-
 *Sedimentation* is a multimedia exploration of Glen Canyon’s entangled human and natural histories, traced through the sedimentary archive. It also an exploration of narrative form, and is driven by the questions: 
 
 - What narrative formats are best suited for representing nonhuman histories? 
