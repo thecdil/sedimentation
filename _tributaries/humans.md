@@ -36,7 +36,7 @@ Every trail, etching, and boring is a result of a human who felt that the land w
 
 For political ecologist Laura Ogden, such processes, in which an actor -- human or not -- reworks the elements of the earth in order to profess or make possible their belonging are forms of *territorial inscription*. 
 
-"Birds claim territory through song;" she writes, "fiddler crabs dig burrows; ocean life glows with bioluminescence; beavers build lodges and dams. The suburbs are a nested architecture of inscription practices, from gated entrances to backyard privacy fences. These practices of territorial inscription leave their mark on the world, though sometimes the mark is just a shimmer" [^1]. 
+"Birds claim territory through song;" she writes, "fiddler crabs dig burrows; ocean life glows with bioluminescence; beavers build lodges and dams. The suburbs are a nested architecture of inscription practices, from gated entrances to backyard privacy fences. These practices of territorial inscription leave their mark on the world, though sometimes the mark is just a shimmer." [^1]
 
 Glen Canyon's inscriptions, then, trace out a kind of territorial map, overlapping with various and often contested claims. 
 
@@ -136,7 +136,7 @@ Much of the data that Powell provided Congress was gleaned through traditional s
 
 But Powell was an ethnologist as well as a botanist-geologist, and he knew that local Indigenous communities possessed "intimate knowledge of the landscape" that could help him understand how the region's resources might best be harnessed for human use. Powell extracted a wealth of information from the Indigenous communities he encountered, and he was often explicit about these strategies. In the Grand Canyon, for example, Powell met a band of Shi'-vwit Paiutes, and told their chief that "I wish to learn about their cañons and mountains, and about themselves, to tell other men at home; and that I want to take pictures of everything, and show them to my friends." [^5] 
 
-Powell also understood that the rock art, dwelling structures, and irrigation canals he encountered offered vital insight into how the land had been utilized in the past, and thus could be utilized in the future. His journals are full of archaeological descriptions. For example, upon finding a ruin at the foothills of the Vermillion cliffs (which rise above the lower portion of Glen Canyon), he wrote: "from extensive study of the ruins, it seems that everywhere tribal pueblos were built of considerable dimensions, usually to give shelter to several hundred people. Then the people cultivated the soil by irrigation, and had their gardens and little fields scattered at wide distances about the central pueblo, by little springs and streams and wherever they could control the water with little labor to bring it on the land." [^6] Irrigation, Powell concluded, "is necessary in this dry climate to successful farming" [^7] 
+Powell also understood that the rock art, dwelling structures, and irrigation canals he encountered offered vital insight into how the land had been utilized in the past, and thus could be utilized in the future. His journals are full of archaeological descriptions. For example, upon finding a ruin at the foothills of the Vermillion cliffs (which rise above the lower portion of Glen Canyon), he wrote: "from extensive study of the ruins, it seems that everywhere tribal pueblos were built of considerable dimensions, usually to give shelter to several hundred people. Then the people cultivated the soil by irrigation, and had their gardens and little fields scattered at wide distances about the central pueblo, by little springs and streams and wherever they could control the water with little labor to bring it on the land." [^6] Irrigation, Powell concluded, "is necessary in this dry climate to successful farming." [^7] 
 
 Powell was not the first or the last frontiersman to leverage Indigenous knowledge in order to determine a landscape's potential for colonization. In fact, the practice of extracting knowledge only to dispossess and erase its producers was so central to the region's colonial development, historian Erika Marie Bsumek filled an entire book chronicling repeated instances of this pattern. And as Bsumek notes, while settlers often pilfered information directly from Indigenous informants, they also frequently extracted insight from whatever material traces they encountered. 
 
@@ -218,7 +218,7 @@ Silko illustrates the entanglements between landscape, story, and culture by rec
 
 For the Diné, too, geographical features actively participate in cultural formation and survival. Tsé Naní' áhiígíí, a rainbow-shaped rock bridge wedged between the walls of Bridge Canyon (one of Glen Canyon's tributaries), has long oriented both spiritual and material life for Diné people. Stories about the origins of Tsé Naní' áhiígíí abound, offering knowledge about proximal springs where people might draw water, about how to ask for rain in periods of drought, how to travel across the Plateau's chasmal landscapes, and about the movements and unions of the Holy people. One account shares that the Holy people created Tsé Naní' áhiígíí as a place of refuge in "the safest place they could imagine" -- and when Kit Carson launched a violent removal campaign against the Navajo in 1864, many survived by fleeing to the shelter of Bridge Canyon. [^18]
 
-Shortly after the completion of the Glen Canyon Dam, Tsé Naní' áhiígíí was inundated with Lake water, despite objections from many Diné spokespeople, and despite the government's promise to protect the site from the rising reservoir. For the Diné, the drowning of Bridge Canyon did more than subsume  ancestral territory: as Navajo elder Lamar Badoni put it, "The Rainbow is broken. Our way of life, our way of thinking, our religion is broken." [^19]. 
+Shortly after the completion of the Glen Canyon Dam, Tsé Naní' áhiígíí was inundated with Lake water, despite objections from many Diné spokespeople, and despite the government's promise to protect the site from the rising reservoir. For the Diné, the drowning of Bridge Canyon did more than subsume  ancestral territory: as Navajo elder Lamar Badoni put it, "The Rainbow is broken. Our way of life, our way of thinking, our religion is broken." [^19] 
 
 {% include feature/trib-button.html trib="water" image="water" text="Water" %}
 
@@ -328,7 +328,6 @@ What remains of ourselves are we leaving to the future?
 [^3]: Derrida, Jacques. *Speech and Phenomena: And Other Essays on Husserl's Theory of Signs.* Northwestern University Press, 1973, p.4. 
 
 [^4]: Powell, John Wesley. "The Irrigable lands of the arid region" *The Century Magazine*, 1890
-
 
 [^5]: Powell, John Wesley. *The Canyons of the Colorado* Flood & Vincent, 1895, p. 321
 
