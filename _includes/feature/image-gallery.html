@@ -54,7 +54,7 @@
 <a class="spotlight gallery-img" data-objectid="{{ figure.objectid }}" data-download="true" title="{{ figure.title | escape }}" href="{{ figure.object_location }}">
     <div><div class="visually-hidden">Click to view</div><small class="mini text-secondary float-end d-none">{% include feature/icon.html icon="arrows-fullscreen" label="fullscreen" class="ms-1 mini mb-1"%}</small></div>
     {% if figure.image_small or figure.image_thumb %}
-    <img src="{{ figure.image_small | default: figure.image_thumb | relative_url }}" alt="{{ figure.image_alt_text | default: figure.description | default: figure.title | escape }}" class="img-fluid">
+    <img src="{{ figure.object_location | default: figure.image_small | relative_url }}" alt="{{ figure.image_alt_text | default: figure.description | default: figure.title | escape }}" class="img-fluid">
     {% else %}
     <div class="d-flex align-items-center justify-content-center border rounded p-4 bg-light" style="min-height: 200px;">
         <div class="text-center">
