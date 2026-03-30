@@ -13,6 +13,8 @@ scrollama: true
 
 # Land
 
+{% include feature/panorama.html objectid="sediment286" caption=false %}
+
 ## Terra Infirma
 
 <div class="float-start pe-4 mb-0 w-50" >
@@ -23,7 +25,6 @@ scrollama: true
 {% include feature/image-gallery.html objectid="sediment176" caption=false%}
 {% include feature/image-gallery.html objectid="sediment12" caption=false%}
 {% include feature/image-gallery.html objectid="sediment186" caption=false%}
-
 </div>
 
 <br>
@@ -179,38 +180,38 @@ Perhaps you can see where this is going: I am gesturing towards a sedimentary mo
 
 {% include feature/image-gallery.html objectid="sediment260" caption=false%}
 
-THE SECOND TIME I visited Lake Powell, I arrived in the dark. My then partner and I were on our way back from a trip to Marble Canyon, where Glen Canyon officially -- and somewhat arbitrarily -- becomes the Grand Canyon. We camped on a ledge overlooking the Colorado River for four days and watched condors drop into the canyon's shadows and then climb back out into the sun. 
+THE SECOND TIME I visited Lake Powell, I arrived in the dark. My then partner and I were on our way back from a trip to Marble Canyon, where Glen Canyon officially (and somewhat arbitrarily) becomes the Grand Canyon. We camped on a ledge overlooking the Colorado River and for four days watched condors drop into the canyon's shadows and then climb back out into the sun. 
 
-We left Marble Canyon when the sun was setting, and by the time we got up to the lake it was night. We wound our way around Wahweap Bay, and when we reached the bay's furthest edge we turned onto a small road that promised to take us a camping spot I had pinned on my phone map. But when we came to the pin there was nothing; nowhere to exit the road, no signs, no obvious place to camp, nothing. We thought the pin was off place, that we would find something down the road -- but then the pavement abruptly ended, and we were driving over loosely-packed sand. In the dim arc of the headlights, the sand came into view and slipped under our car without seeming to change at all. 
+We left Marble Canyon when the sun was setting, and by the time we got up to the lake it was night. We wound our way around the outstretched arm of Wahweap Bay, and when we reached its furthest edge, we turned onto a small road that promised to take us a camping spot I had pinned on my phone map. But when we came to the pin there was nothing; nowhere to exit the road, no signs, no obvious place to camp, nothing. We thought the pin was off place, and so we kept going -- but then the pavement abruptly ended, and we were driving over loosely-packed sand. In the dim arc of the headlights, the sand came into view and slipped under our car without seeming to change at all. 
 
-I began to feel as if we were not really moving, but were trapped on an endless belt that was spinning beneath us while we stayed exactly in place. It became difficult to keep track of where we had come from, how far we had gone, and how we might find our way back to the road. 
+I began to feel as if we were not really moving, but were trapped on an endless belt that was spinning beneath us while we remained exactly in place. It became difficult to keep track of where we had come from, how far we had gone, and how we might find our way back to the road. 
 
 I checked my phone, but our little blue dot was now bobbing across the lake. My phone isn't loading properly, I thought, and so we kept driving until the car's tires began to struggle in the soft ground, and we called it a night and went to sleep right there.
 
-In the morning, we woke up to a strange landscape. A basin of crackled sand rose up around us, which its center held a haystack rock circled with water. This rock was oddly colored; red up top but then suddenly white, as if someone had filled and drained a bathtub, leaving behind film of soapy grime. There were sparse camps off in the distance, and we could see people walking or riding motorbikes over the mottled beach. The ground seemed too unstable for motorbikes, I thought; it was riddled with cracks and turned spongy towards the water. It was then that I realized we were camping on the bottom of Lake Powell. 
+In the morning, we woke up to a strange landscape. A basin of crackled sand rose up around us, which its center held a haystack rock circled with water. The rock was oddly colored; red up top but then suddenly white, as if someone had filled and drained a bathtub, leaving behind film of soapy grime. There were sparse camps in the distance, and we could see people walking or riding motorbikes over the mottled beach. The ground seemed too unstable for motorbikes, I thought; it was riddled with cracks and turned spongy towards the water. It was then that I realized we were camping on the bottom of Lake Powell. 
 
 {% include feature/image-gallery.html objectid="sediment214" caption=false%}
 
-When I think now about where my fascination with Lake Powell and Glen Canyon began, I tend to come back to this moment, and the discordance I felt in my body as I tried to imagine what it would have been like to stand in this same spot just a few decades earlier. I would have been looking up from the dark bottom of the lake; catfish swimming at my ankles, pondweed waving thickly around me, coots diving down from the surface, boat hulls gliding darkly above. But there was also the jolt of realizing that space as I had imagined it -- as I had seen it on my map -- did not line up with space as it really existed. 
+When I think now about where my fascination with Lake Powell and Glen Canyon began, I come back to this moment, and the discordance I felt in my body as I tried to imagine what it would have been like to stand in this same spot just a few decades earlier. I would have been looking up from the dark bottom of the lake; catfish swimming at my ankles, pondweed tangling thickly around me, coots diving down from the surface, boat hulls gliding darkly above. But there was also the jolt of realizing that space as I had imagined it -- as I had seen it on my map -- did not line up with space as it really existed. 
 
-I grew up in the age of Google Earth, and I cannot remember a time before I could readily look at the contours of the entire world from a satellite view. I can zoom to a desert on the other side of the continent, and locate the road that will take me through it, the blue ribbon of a stream, the blurred green tree tops that might offer me shade. I do not have to go to these places to know these roads, streams, and trees exist, to *see* they exist. 
+I grew up in the age of Google Earth, and I cannot remember a time before I could readily look at the contours of the entire world from a satellite view. I can zoom to a desert on the other side of the continent, and locate the road that will take me through it, the blue ribbons of its streams, and the blurred green tree tops where I might find shade. I do not have to go to that desert to know these roads, streams, and trees exist; I believe they exist because their outlines have been captured in a photograph and stitched together on my map. 
 
-And so my imagination of space became almost exactly synced up with satellite maps; the pixels arranged into roads and streams and trees were, I thought, generally placed along the contours of actual roads and streams and trees. The map came to stand in as a window into real space. But now the pictures did not line up: the map had misplaced the edges of an entire lake, by more than a few pixels. 
+My imagination of space has become almost exactly synced up with satellite maps; the pixels arranged into roads and streams and trees were, I assumed, generally placed along the contours of actual roads and streams and trees. The map came to stand in as a window into real space. But now the pictures did not line up: the map had misplaced the edges of an entire lake, by more than a few pixels. 
 
-Of course, no map, no static time-slice can account for every instantaneous shift in space. The pixels are not always up to date, nor are they rendered at a fine enough scale to capture, for example, whether the road has been torn apart by potholes, whether there are fish in the stream, or whether the trees are low and scrubby or tall and canopied -- all of which matter in the experience of *being* in that place. 
+Of course, no map, no static time-slice can account for every instantaneous shift in space or each of its details. The pixels are not always up to date, nor are they rendered at a fine enough scale to capture, for example, whether the road has been torn apart by potholes, whether there are fish moving through the stream,or whether the trees are low and scrubby or tall and canopied -- all of which matter for the experience of *being* in that place. 
 
-But now, as I go back to the map of Wahweap Bay and toggle between the satellite layer and the illustrated layer, I see that the map's misconstruals were about more than data resolution. The pictures do not line up. The illustrated layer shows water even where the satellite version attests there is none. But by labelling the two maps as "layers," Google asserts that the drawn pixels are simply transposed over a live data stream of actual space. This creates a false sense transparency; it asserts the map is a window when it is in fact a vector of abstraction, an imagination. 
+But I recently went back to the map of Wahweap Bay, and toggled between its satellite layer and its illustrated layer, and I realized that the map's misconstruals were about more than data resolution. The two pictures do not line up. The illustrated layer shows water even where the satellite version attests there is none -- not anymore. But by labelling the two maps as "layers," the map asserts that its drawn pixels are simply transposed over a live data stream, a faithful replica, of actual space. The map asserts it is a window when it is in fact a vector of abstraction, an imagination.
 
 {% include feature/image-gallery.html objectid="sediment343" caption=false%}
 {% include feature/image-gallery.html objectid="sediment342" caption=false%}
 
-Maps have always been an imagined abstraction of real space. "Every map," writes Denis Wood, "shows *this* but not *that*," [^29] because to include everything in the map is representationally impossible: a map of everything would be an exact replica of the earth itself. But Wood emphasizes that maps become "naturalized" to stand in for the world "as it really [is]" when in fact the map and its sign systems are actually making "statements about the world." [^30]
+Maps have always been this way -- an imagined abstraction of real space. "Every map," writes cartographer Denis Wood, "shows *this* but not *that*." [^29]  To include *everything* in the map is representationally impossible; a map of everything would have to be an exact replica of the earth itself. But Wood emphasizes that despite their often obvious abstractions and exclusions, by building up their own sign systems, maps become "naturalized" representations of space; maps stand in for the world "as it really [is]." But Wood reminds us that "no sooner is the sign created than it is put to the service of a myth." Maps are not windows, they are interfaces used to make "statements about the world," to construct meaning, to write narratives. [^30]
 
-There is lot we might learn, I think, in paying attention to the misalignments, the gaps, the fissures between maps and experienced space -- about the statements we have come to believe, and where those statements fall apart. 
+There is lot we might learn, I think, in paying attention to the misalignments, the gaps, the fissures between constructed maps and experienced space -- about the myths we have come to believe, and where those myths fall apart. 
 
-Standing in Wahweap Bay, at the bottom of Lake Powell, I found myself in the midst one such gap. That was the discordance I felt, and it was that discordance -- which stayed with me for years after -- that sent me seeking to understand how such a disjuncture between real space and represented space had occurred. 
+Standing in Wahweap Bay, at the bottom of Lake Powell, I found myself caught in one such gap. That was the discordance I felt -- the tearing of constituted meaning from reality. And it was that discordance, which stayed with me for years after, that sent me seeking to understand how and why the real and represented had become so dislocated from one another -- that sent me looking for what pours out from the fissures. 
 
-Now, I can trace a line between the statements made by those maps and the statements made by Charles Lyell about the earth as a stable surface atop which humans lay their lives. This myth of a stable earth fixes its elements in place, which readies it to be extracted, explored, and conquered. And now I can see too, where the loose and muddy earth resists and interrupts such imaginations. 
+Now, I can trace a line between the myths generated by those maps and the myths that Charles Lyell propagated in the early days of geologic science. Both insist on space as a time-slice, on land as a stable surface atop which humans may lay their lives. This myth of a stable earth fixes its elements in place -- robs them of history, renders them objects, and thus readies them to be explored, extracted, and conquered. And now I can see too, where the loose and muddy earth resists and interrupts such myths. 
 
 {% include feature/trib-button.html trib="humans" image="mining" text="Atmosphere" %}
 
@@ -302,11 +303,11 @@ During the spring runoff of 1905, the Colorado River ate through a newly-constru
 
 By 1946, the Bureau of Reclamation had come up with a plan to subdue the Colorado River, which they laid out in their report titled "A Natural Menace Becomes a National Resource." The report opens with a kind of mythical vision of the river's past, present and future (abbreviated here):
 
-{% include feature/blockquote.html quote="*Yesterday the Colorado River was a natural menace. Unharnessed it tore through deserts, flooded fields, and ravaged villages…Man was on the defensive. He sat helplessly by to watch the Colorado waste itself or attempted in vain to halt its destruction…*
+{% include feature/blockquote.html quote="*Yesterday the Colorado River was a natural menace. Unharnessed it tore through deserts, flooded fields, and ravaged villages. Man was on the defensive. He sat helplessly by to watch the Colorado waste itself or attempted in vain to halt its destruction.*
 
 *Today this mighty river is recognized as a National resource. It is a life-giver, and power producer, a great constructive force. Although only partly harnessed by Boulder Dam and other ingenious structures, the Colorado River is doing a gigantic job. Its water is providing opportunities for many new homes and for the growing of crops that help to feed this Nation and the world. Its power is lighting homes and cities and turning the wheels of industry. Its destructive floods are being reduced. Its muddy waters are being cleared for irrigation and other uses.*
 
-*Tomorrow the Colorado River will be utilized to the very drop*" source="The Bureau of Reclamation" size="sm" class="px-3 mt-0" %}
+*Tomorrow the Colorado River will be utilized to the very drop.*" source="The Bureau of Reclamation" size="sm" class="px-3 mt-0" %}
 
 In the ensuing 392 pages, the Bureau goes on to specify their blueprint for accomplishing this vision: they would construct more than one hundred dams along the Colorado River -- one of which was to become the Glen Canyon Dam. [^22]
 

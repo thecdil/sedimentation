@@ -11,6 +11,8 @@ scrollama: true
 ---
 
 # Humans
+{% include feature/panorama.html objectid="sediment287" caption=false %}
+
 
 ## Inscriptions
 

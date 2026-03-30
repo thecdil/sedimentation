@@ -16,7 +16,8 @@
     - "ratio" = aspect ratio of viewer container. Options: "21x9", "16x9", "4x3" (default), or "1x1" (optional)
     - "width" = responsive width on desktop (will be 100% on mobile). Options: "25", "50", "75", or "100" (default) (optional)
     - "caption" = custom caption text. If not provided, will use item title from metadata. Set to false for no caption (optional)
-    - "heading" = initial heading angle in degrees (Pannellum parameter) (optional)
+    - "yaw" = initial horizontal angle in degrees (Pannellum parameter) (optional)
+    - "heading" = legacy alias for yaw (optional)
     - "pitch" = initial pitch angle in degrees (Pannellum parameter) (optional)
     - "hfov" = initial horizontal field of view in degrees (Pannellum parameter) (optional)
     - "compass" = show compass indicator. Options: true or false (Pannellum parameter) (optional)
@@ -70,7 +71,7 @@
         "type": "equirectangular",
         "panorama": "{{ panorama_url }}",
         "autoLoad": {{ autoload_value }},
-        {%- if include.heading -%}"heading": {{ include.heading }},{%- endif -%}
+        {%- if include.yaw -%}"yaw": {{ include.yaw }},{%- elsif include.heading -%}"yaw": {{ include.heading }},{%- endif -%}
         {%- if include.pitch -%}"pitch": {{ include.pitch }},{%- endif -%}
         {%- if include.hfov -%}"hfov": {{ include.hfov }},{%- endif -%}
         {%- if include.compass -%}"compass": {{ include.compass }},{%- endif -%}

@@ -12,23 +12,43 @@ scrollama: true
 
 # Biota
 
+{% include feature/panorama.html objectid="sediment278" caption=false %}
+
 Coming soon!
 ## Varnish
 
+- 
 ## Lifeboats
 
-## Cooperators
+- 
+
+## Festering 
+
+## Snakes
 
 ## Beavers
 
+- leaky dams
+
 ## Mammoth
+
+- time 
 
 ## Antelope
 
+- 
+
 ## Fish
+
+- people moving up the river
 
 ## Sheep
 
+- 
+
 ## Dinosaurs
 
+- extinction + fossils
+
 ## Plants
+

@@ -12,6 +12,8 @@ scrollama: true
 
 # Water
 
+{% include feature/panorama.html objectid="sediment280" yaw="179" pitch="4" hfov="90" caption=false %}
+
 Coming soon!
 
 ## More than River, More than Resource
