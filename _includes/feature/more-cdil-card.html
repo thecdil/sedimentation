@@ -1,0 +1,94 @@
+{%- comment -%}
+  Render one More CDIL project card from _data/more-cdil.csv by objectid.
+  Usage:
+  {% include feature/more-cdil-card.html objectid="storying" %}
+{%- endcomment -%}
+
+{%- if include.objectid -%}
+  {%- assign project = site.data["more-cdil"] | where: "objectid", include.objectid | first -%}
+{%- endif -%}
+
+{%- assign display_author = project.author | replace: ';', ' and ' -%}
+
+{%- if project -%}
+<article class="card h-100 more-cdil-card">
+  <div class="card-body d-flex flex-column">
+    <h3 class="h4 fw-bold card-title mb-3">
+      {%- if project.link -%}
+      <a href="{{ project.link }}" target="_blank" rel="noopener" class="more-cdil-title-link text-decoration-none">
+        {{ project.title }}
+      </a>
+      {%- else -%}
+      {{ project.title }}
+      {%- endif -%}
+    </h3>
+
+    {%- if project.image_small -%}
+    <div class="mb-3">
+      {%- if project.link -%}
+      <a href="{{ project.link }}" target="_blank" rel="noopener">
+        <img src="{{ project.image_small | relative_url }}" alt="{{ project.title | escape }}" class="img-fluid rounded">
+      </a>
+      {%- else -%}
+      <img src="{{ project.image_small | relative_url }}" alt="{{ project.title | escape }}" class="img-fluid rounded">
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- if project.description -%}
+    <p class="card-text mb-3">{{ project.description }}</p>
+    {%- endif -%}
+
+    {%- if project.author -%}
+    <p class="card-text mt-auto mb-0"><strong>Creator:</strong> {{ display_author }}</p>
+    {%- endif -%}
+  </div>
+</article>
+{%- endif -%}
+
+{%- unless page.more_cdil_card_css_loaded -%}
+<style>
+  .more-cdil-card {
+    width: 100%;
+    margin: 0;
+    background: #f4f1e8;
+    border: 1px solid rgba(139, 69, 19, 0.14);
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .more-cdil-card .card-title,
+  .more-cdil-title-link {
+    color: #8B4513;
+  }
+
+  .more-cdil-card .card-title {
+    min-height: 4.8rem;
+  }
+
+  .more-cdil-title-link:hover,
+  .more-cdil-title-link:focus {
+    color: #A0522D;
+  }
+
+  .more-cdil-wrap {
+    width: 92vw;
+    margin-left: calc(50% - 46vw);
+    margin-right: calc(50% - 46vw);
+  }
+
+  @media (min-width: 768px) {
+    .more-cdil-grid > .col + .col {
+      border-left: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .more-cdil-card,
+    .more-cdil-wrap {
+      width: 100%;
+    }
+  }
+</style>
+{%- assign page.more_cdil_card_css_loaded = true -%}
+{%- endunless -%}

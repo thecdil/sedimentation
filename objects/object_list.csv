@@ -16,9 +16,12 @@ dooren.jpg,/objects/dooren.jpg,/objects/small/dooren_sm.jpg,/objects/thumbs/door
 dwellings.png,/objects/dwellings.png,/objects/small/dwellings_sm.jpg,/objects/thumbs/dwellings_th.jpg
 exploration.png,/objects/exploration.png,/objects/small/exploration_sm.jpg,/objects/thumbs/exploration_th.jpg
 farmer.jpg,/objects/farmer.jpg,/objects/small/farmer_sm.jpg,/objects/thumbs/farmer_th.jpg
+firelines.jpg,/objects/firelines.jpg,/objects/small/firelines_sm.jpg,/objects/thumbs/firelines_th.jpg
+gayrodeo.jpg,/objects/gayrodeo.jpg,/objects/small/gayrodeo_sm.jpg,/objects/thumbs/gayrodeo_th.jpg
 hazard.jpg,/objects/hazard.jpg,/objects/small/hazard_sm.jpg,/objects/thumbs/hazard_th.jpg
 humans.png,/objects/humans.png,/objects/small/humans_sm.jpg,/objects/thumbs/humans_th.jpg
 infrastructure.png,/objects/infrastructure.png,/objects/small/infrastructure_sm.jpg,/objects/thumbs/infrastructure_th.jpg
+keepingwatch.jpg,/objects/keepingwatch.jpg,/objects/small/keepingwatch_sm.jpg,/objects/thumbs/keepingwatch_th.jpg
 kredell.jpg,/objects/kredell.jpg,/objects/small/kredell_sm.jpg,/objects/thumbs/kredell_th.jpg
 land.png,/objects/land.png,/objects/small/land_sm.jpg,/objects/thumbs/land_th.jpg
 lee.jpg,/objects/lee.jpg,/objects/small/lee_sm.jpg,/objects/thumbs/lee_th.jpg
@@ -74,6 +77,7 @@ sediment352.jpg,/objects/sediment352.jpg,/objects/small/sediment352_sm.jpg,/obje
 sediment353.jpg,/objects/sediment353.jpg,/objects/small/sediment353_sm.jpg,/objects/thumbs/sediment353_th.jpg
 sediment354.jpg,/objects/sediment354.jpg,/objects/small/sediment354_sm.jpg,/objects/thumbs/sediment354_th.jpg
 smith.jpg,/objects/smith.jpg,/objects/small/smith_sm.jpg,/objects/thumbs/smith_th.jpg
+storying.jpg,/objects/storying.jpg,/objects/small/storying_sm.jpg,/objects/thumbs/storying_th.jpg
 tracks.png,/objects/tracks.png,/objects/small/tracks_sm.jpg,/objects/thumbs/tracks_th.jpg
 tracks2.png,/objects/tracks2.png,/objects/small/tracks2_sm.jpg,/objects/thumbs/tracks2_th.jpg
 tsing.jpg,/objects/tsing.jpg,/objects/small/tsing_sm.jpg,/objects/thumbs/tsing_th.jpg

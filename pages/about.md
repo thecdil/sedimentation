@@ -61,4 +61,6 @@ When the Glen Canyon Dam drowned Glen Canyon, it also subsumed the lives and his
 
 **Thanks also to**: Dr. Jennifer Ladino, Dr. Erin James, Dr. Aly Kreikemeier, and Chris Lamb, all of whom have nurtured, guided, and supported this project from start to finish. 
 
-# More CDIL Projects
+<div style="width: 92vw; margin-left: calc(50% - 46vw); margin-right: calc(50% - 46vw);">
+<h1 style="text-align: left; margin-left: 0;">More CDIL Projects</h1>
+</div>
