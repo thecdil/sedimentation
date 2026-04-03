@@ -1,0 +1,123 @@
+{%- comment -%}
+  Complete bibliography accordion from tributary Works Cited footnotes.
+  Requires _plugins/complete_bibliography.rb to populate site.data.complete_bibliography.
+{%- endcomment -%}
+
+{%- assign bibliography = site.complete_bibliography | default: site.data.complete_bibliography -%}
+
+{%- if bibliography == nil or bibliography.size == 0 -%}
+  {%- assign bibliography_blob = "" -%}
+  {%- for trib in site.tributaries -%}
+    {%- assign lines = trib.content | newline_to_br | split: '<br />' -%}
+    {%- assign in_works_cited = false -%}
+
+    {%- for raw_line in lines -%}
+      {%- assign line = raw_line | strip | strip_html -%}
+
+      {%- if line == '## Works Cited' -%}
+        {%- assign in_works_cited = true -%}
+        {%- continue -%}
+      {%- endif -%}
+
+      {%- if in_works_cited and line contains '## ' -%}
+        {%- assign in_works_cited = false -%}
+      {%- endif -%}
+
+      {%- unless in_works_cited -%}
+        {%- continue -%}
+      {%- endunless -%}
+
+      {%- if line contains '[^' and line contains ']: ' -%}
+        {%- assign entry = line | split: ']: ' | last | strip -%}
+        {%- assign entry_lc = entry | downcase -%}
+
+        {%- assign is_short = false -%}
+        {%- if entry_lc contains 'qtd. in' or entry_lc contains ', p.' or entry_lc contains ', pp.' -%}
+          {%- assign is_short = true -%}
+        {%- endif -%}
+        {%- if entry_lc contains '(powell' or entry_lc == 'tape' or entry_lc == 'farmer' -%}
+          {%- assign is_short = true -%}
+        {%- endif -%}
+
+        {%- assign has_name = false -%}
+        {%- if entry contains ', ' -%}
+          {%- assign has_name = true -%}
+        {%- endif -%}
+
+        {%- assign has_title = false -%}
+        {%- if entry contains '*' or entry contains '"' or entry contains '“' or entry contains '”' -%}
+          {%- assign has_title = true -%}
+        {%- endif -%}
+
+        {%- assign has_publisher = false -%}
+        {%- if entry_lc contains 'press' or entry_lc contains 'university' or entry_lc contains 'books' or entry_lc contains 'book' or entry_lc contains 'journal' or entry_lc contains 'magazine' or entry_lc contains 'department' or entry_lc contains 'museum' or entry_lc contains 'publishing' or entry_lc contains 'publisher' or entry_lc contains 'house' -%}
+          {%- assign has_publisher = true -%}
+        {%- endif -%}
+
+        {%- if is_short == false and has_name and (has_title or has_publisher) -%}
+          {%- capture bibliography_blob -%}{{ bibliography_blob }}|||{{ entry }}{%- endcapture -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+
+  {%- assign bibliography = bibliography_blob | split: '|||' | uniq | sort -%}
+{%- endif -%}
+
+{%- unless page.complete_bibliography_css_loaded -%}
+<style>
+  #completeBibliographyAccordion .accordion-item {
+    background: #f4f1e8;
+    border: 1px solid rgba(139, 69, 19, 0.14);
+    border-radius: 0;
+  }
+
+  #completeBibliographyAccordion .complete-bibliography-toggle {
+    background: #f4f1e8;
+    color: #8B4513;
+    font-size: var(--bs-h2-font-size);
+    font-weight: 700;
+    line-height: 1.2;
+    box-shadow: none;
+  }
+
+  #completeBibliographyAccordion .complete-bibliography-toggle:not(.collapsed) {
+    color: #8B4513;
+    background: #f4f1e8;
+    box-shadow: none;
+  }
+
+  #completeBibliographyAccordion .accordion-body {
+    background: #f4f1e8;
+  }
+</style>
+{%- assign page.complete_bibliography_css_loaded = true -%}
+{%- endunless -%}
+
+<div class="accordion my-4" id="completeBibliographyAccordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="completeBibliographyHeading">
+      <button class="accordion-button collapsed complete-bibliography-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#completeBibliographyCollapse" aria-expanded="false" aria-controls="completeBibliographyCollapse">
+        Complete Bibiography
+      </button>
+    </h2>
+    <div id="completeBibliographyCollapse" class="accordion-collapse collapse" aria-labelledby="completeBibliographyHeading" data-bs-parent="#completeBibliographyAccordion">
+      <div class="accordion-body">
+        {%- assign bibliography_count = 0 -%}
+        {%- if bibliography and bibliography.size > 0 -%}
+        <ul class="mb-0 list-unstyled">
+          {%- for entry in bibliography -%}
+          {%- if entry != '' -%}
+          <li class="mb-3">{{ entry | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+          {%- assign bibliography_count = bibliography_count | plus: 1 -%}
+          {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        {%- endif -%}
+        {%- if bibliography_count == 0 -%}
+        <p class="mb-0">No bibliography entries were found.</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>

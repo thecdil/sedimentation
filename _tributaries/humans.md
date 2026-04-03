@@ -11,8 +11,6 @@ scrollama: true
 ---
 
 # Humans
-{% include feature/panorama.html objectid="sediment287" caption=false %}
-
 
 ## Inscriptions
 
@@ -208,7 +206,6 @@ But as the drought draws Lake Powell lower, Glen Canyon and its palimpsested ins
 
 {% include feature/image-gallery.html objectid="sediment321" caption=false%}
 
-LIKE A DILIGENT archivist, landscapes capture and store the residues of human life, but land is by no means a passive backdrop to these lives. As Leslie Marmon Silko illuminates in her essay "Interior and Exterior Landscapes", human identity and culture are formed not upon the surfaces of the earth, but rather from *within* the places that nourish and touch us. "The term *landscape*," she writes, "as it has entered the English language, is misleading." It "assumes the viewer is somehow outside or separate from the territory he or she surveys," although in reality, "there is no high mesa edge or mountain peak where one can stand and not immediately be part of all that surrounds." [^15] Humanity -- with all our knowledge, habits, rituals, desires -- emerges through our interrelationships with specific landscapes, which we are a part of. 
 
 Western society -- with its Cartesian dualisms, tendencies toward commodification and extraction, and global imperialism -- has somewhat successfully abstracted the processes by which nature forges, and includes, culture. But for many other societies, place and culture are still intimately, inextricably twined. 
 

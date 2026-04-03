@@ -12,6 +12,75 @@ scrollama: true
 
 # Biota
 
+## Lines of Flight
+
+{% include feature/image-gallery.html objectid="sediment251" caption=false%}
+
+BEFORE THE DAM, and below it, where Lake Powell's water finally releases from the dam's outlets and becomes a river again, a mosaic of life blooms between Glen Canyon's walls. Clumps of maidenhair ferns spill over cliffsides, columbines burst out from high ledges, and shorelines are splotched green with Western Redbuds and Evening Primrose, and also with invasive Ravenna Grass. In places where water seeps its way out from the porous sandstone, algae paints green and black stripes down the rock. Whiptail lizards scurry over sun-warmed rocks, Great Blue Herons stalk among the sedges, and under the water, non-native trout swim through pondweed. 
+
+{% include feature/image-gallery.html objectid="sediment190" caption=false%}
+
+I never saw Glen Canyon in all of the "luxuriant verdure" for which it was named. [^1] Since the Glen Canyon Dam's completion in 1963, most of the Canyon -- with its hundreds of miles of mossy alcoves, spring-fed grottos, and oak-shaded beaches -- has been subsumed by the clear blue waters of Lake Powell. 
+
+{% include feature/image-gallery.html objectid="sediment308" caption=false%}
+
+Now, above the dam, the lake and its edges are noticeably scarce with life. Especially at full pool, the water, which is antiseptically blue, often meets bare rock. Without  usual thickets of shoreline plants, or the hum and bustle animal life, the landscape appears stripped, manufactured. This elemental sparseness, this sharp, unbroken contrast between water and land is striking -- being there, the land seems to yawn wide and quiet, space feels stretched in its austerity. But the lake also reminds me of a cheap stage set, made of hollow plaster and devoid of textured life. The town of Page, which was put up in 1957 as a housing camp for dam construction workers, and whose economy is now maintained by tourism, can feel this way too; sparse and 
+
+
+Antiseptic 
+
+
+
+
+
+-what survives in capitalist ruins, what leaks out, what is not reactive to the light
+-nonaccumulation, nonmobility, draws IN animals and flesh rather than sorts it out
+-still architects and still energetic transformations (technology of a different kind)
+-lifeboats survive through patient, nonprogressive, cooperative, nonaccumulating, nonscalability, lifeboats of a different kind, ephemeral but sustained, nondarwinian, line of flight out of extinction and survival rhetoric
+-colonies of toxicity, metabolic rift is also about holding things in place, and metabolic patterns become reversed
+
+
+
+
+
+
+
+
+ bursts out from terraces, clads its sandy shores. 
+
+
+
+
+
+ Western Redbuds, Evening Primrose, clumps of Prickly Pear, along with invasive Ravenna Grass, and Tamarisk. 
+
+
+
+
+
+
+
+
+
+ maidenhair fern 
+
+I never saw Glen Canyon in all its verdance. 
+
+
+
+a mosaics of green life adorn the land. 
+
+-Dam moves life elsewhere
+-Accumulative
+-what grows and esacpes
+
+
+## Lifeboat Niches
+
+
+
+
+
 {% include feature/panorama.html objectid="sediment278" caption=false %}
 
 Animal as architect, Agamben, own world, fleshy histories, entanlement, extinction and regrowth. metabolism, Darwinian evolution, natural technologies, labor. What gets flattened out of the geologic archive? Relations
@@ -68,12 +137,19 @@ Coordination in disturubance (163)
 
 "History, then, is the record of many trajectories of world-making, human and not human. 
 
-fugitive moments of entanglement in the midst of indstituionalized alientation...latent commons...divergent ecologies...moves int he law's interstices, catalyzed by infraction, infection, inattention...Some redical thinkers hope that progress will ead us to a redepemtive and utiopian commons. In contrast, the latent commons is here and now, amidst the trouble. aAnd humans are never fully in control.  (255). 
+Fugitive moments of entanglement in the midst of indstituionalized alientation...latent commons...divergent ecologies...moves int he law's interstices, catalyzed by infraction, infection, inattention...Some redical thinkers hope that progress will ead us to a redepemtive and utiopian commons. In contrast, the latent commons is here and now, amidst the trouble. aAnd humans are never fully in control.  (255). 
+
+Ogden: apparatuses of capture 34
+
+refrain
+
+flesh
+
+contact zone, exchange of messages,, territorializing acts...lines of flights (76)
 
 ## Varnish
 
 The vertical stripes on this canyon wall are called 'desert varnish.' The varnish is composed by a thin gloss of sediment, minerals, and microbes interacting with one another over long periods of time, and are encouraged by water seeps, which might account for the striping patterns seen here. It takes more than 1,000 years for the varnish to accumulate to the width of a human hair. Much about the formation of desert varnish is still a mystery--it is not fully understood why varnish forms in some conditions and not others. These walls make good canvases for petroglyphs because of the contrast between the dark varnish with the underlying red sandstone.
-
 
 
 ## Lifeboats
@@ -125,3 +201,6 @@ Much of Navajo Sandstone has "churned by insects and trampled by reptiles" (Loop
 At first, invasive species like tumbleweed, cheatgrass, and camelthorn take root. But after a few years, native species come back. Fremont fcottonwood, coyote willow, Goodding's willow, Indian paintbrush, hackberry, Western redbuds, singleleaf ash, miadenhair fern, columbine
 
 
+## Works Cited
+
+[^1]: (Powell 83)

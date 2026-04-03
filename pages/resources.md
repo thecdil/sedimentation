@@ -18,6 +18,8 @@ Below are the works that I have found to be the most exciting, enlightening, and
 
 If you'd like to learn more about Glen Canyon's history, human-nature relations, or spatial storytelling, I hope you'll find this is a good place to start.
 
+
+
 ## On Human-Nature Relations 
 
 <div style="margin-bottom: 6rem;"></div>
@@ -72,6 +74,8 @@ If you'd like to learn more about Glen Canyon's history, human-nature relations,
 {% include feature/citation.html objectid="massey" %}
 
 <br>
+
+{% include feature/complete-bibliography.html %}
 
 
 # More CDIL Projects

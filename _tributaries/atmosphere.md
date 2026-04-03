@@ -13,9 +13,6 @@ scrollama: true
 
 # Atmosphere
 
-{% include feature/panorama.html objectid="sediment289" caption=false %}
-
-
 ## Wind Memories
 
 <div class="float-start pe-4 mb-2 w-50" >
