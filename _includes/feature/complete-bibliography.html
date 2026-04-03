@@ -16,26 +16,16 @@
 
       {%- if line == '## Works Cited' -%}
         {%- assign in_works_cited = true -%}
-        {%- continue -%}
-      {%- endif -%}
-
-      {%- if in_works_cited and line contains '## ' -%}
+      {%- elsif in_works_cited and line contains '## ' -%}
         {%- assign in_works_cited = false -%}
-      {%- endif -%}
-
-      {%- unless in_works_cited -%}
-        {%- continue -%}
-      {%- endunless -%}
-
-      {%- if line contains '[^' and line contains ']: ' -%}
+      {%- elsif in_works_cited and line contains '[^' and line contains ']: ' -%}
         {%- assign entry = line | split: ']: ' | last | strip -%}
         {%- assign entry_lc = entry | downcase -%}
 
         {%- assign is_short = false -%}
         {%- if entry_lc contains 'qtd. in' or entry_lc contains ', p.' or entry_lc contains ', pp.' -%}
           {%- assign is_short = true -%}
-        {%- endif -%}
-        {%- if entry_lc contains '(powell' or entry_lc == 'tape' or entry_lc == 'farmer' -%}
+        {%- elsif entry_lc contains '(powell' or entry_lc == 'tape' or entry_lc == 'farmer' -%}
           {%- assign is_short = true -%}
         {%- endif -%}
 

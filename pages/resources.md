@@ -77,8 +77,13 @@ If you'd like to learn more about Glen Canyon's history, human-nature relations,
 
 {% include feature/complete-bibliography.html %}
 
+<br>
+<br>
+<br>
+<br>
+<br>
 
-# More CDIL Projects
+<h2 style="text-align: left; margin-left: 0;">More CDIL Projects</h2>
 
 <div class="more-cdil-wrap">
 <div class="row row-cols-1 row-cols-md-4 g-1 mt-1 more-cdil-grid">
