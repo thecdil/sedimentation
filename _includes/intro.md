@@ -4,7 +4,7 @@
 <div class="row gx-0 intro-tight"><div class="col-md pe-0">
 
 <div class="intro-tight-image">
-{% include feature/image-gallery.html objectid="sediment212" caption=false width="75" %}
+{% include feature/image.html objectid="sediment212" caption=false width="75" %}
 </div>
 
 </div><div class="col-md ps-0 ps-md-1 pe-5 pe-md-5" style="padding-right: 3.75rem;">

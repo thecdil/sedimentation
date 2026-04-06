@@ -333,10 +333,23 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .navigation-cards-container {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .navigation-cards {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 30px;
+  }
+
+  .nav-card {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .tributary-card,
@@ -348,15 +361,21 @@
     grid-row: span 1;
   }
 
+  .tributary-select {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  #nav-mini-map {
+    height: 200px;
+    max-width: 100%;
+  }
+
   .scroll-card {
     border-right: none;
     border-top: 4px solid #DEB887;
     padding-right: 0;
     padding-top: 15px;
-  }
-
-  #nav-mini-map {
-    height: 200px;
   }
 }
 </style>
