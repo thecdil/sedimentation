@@ -2,62 +2,26 @@
 title: Eddies
 layout: page
 permalink: /eddies/
+gallery: true
+custom-foot: js/eddies-cyoa-js.html;js/spotlight-media-handler.html
 ---
 
 # Eddies
 
-Welcome to the Eddies—a choose-your-own-adventure journey through Glen Canyon's interconnected stories.
-
-Navigate through interlinked story fragments, discovering how the various agents of Glen Canyon's archive—water, land, atmosphere, biota, and humans—intertwine across time and space.
-
-<div class="eddies-intro">
-  <div class="eddy-card">
-    <h3>Begin Your Journey</h3>
-    <p>The eddies await. Choose your starting point and let the currents guide you through the sedimentary archive of Glen Canyon.</p>
-    <div class="eddy-notice">
-      <em>This feature is currently under construction. The data structure has been built, and the interactive narrative experience will be available soon.</em>
-    </div>
+<div class="eddies-container">
+  <!-- Initial intro screen -->
+  <div id="eddies-intro" class="eddies-intro">
+    <p class="eddies-description">Dive into the sedimentary layers of Glen Canyon. Each click unearths a new story, randomly drawn from the tributaries of water, land, atmosphere, biota, and humans.</p>
+    <button id="begin-journey-btn" class="begin-journey-btn">
+      <span class="btn-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+        </svg>
+      </span>
+      Begin Journey
+    </button>
   </div>
+
+  <!-- Sections load here dynamically -->
+  <div id="eddies-sections" class="eddies-sections"></div>
 </div>
-
-<style>
-.eddies-intro {
-  margin: 40px auto;
-  max-width: 800px;
-}
-
-.eddy-card {
-  background: linear-gradient(135deg, #F5DEB3 0%, #F8F6F0 100%);
-  border: 2px solid #D2691E;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
-}
-
-.eddy-card h3 {
-  color: #8B4513;
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.eddy-card p {
-  color: #5D4037;
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.eddy-notice {
-  background: rgba(139, 69, 19, 0.1);
-  border-left: 4px solid #D2691E;
-  padding: 15px 20px;
-  border-radius: 4px;
-  margin-top: 20px;
-}
-
-.eddy-notice em {
-  color: #8B4513;
-  font-size: 16px;
-}
-</style>
