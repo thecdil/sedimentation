@@ -1,0 +1,695 @@
+<script>
+/**
+ * Eddies CYOA (Choose Your Own Adventure) System
+ *
+ * Creates an endless, randomized journey through tributary sections
+ * with sediment particle coalesce animations.
+ */
+
+(function() {
+  'use strict';
+
+  // Sediment particle colors
+  const PARTICLE_COLORS = ['#CD853F', '#D2691E', '#F4A460', '#DEB887', '#BC8F8F', '#A0522D'];
+
+  // Animation configuration
+  const ANIMATION_CONFIG = {
+    duration: 1200,           // Total animation time
+    particleCount: 200,       // Number of particles
+    particleSize: { min: 1.5, max: 3.5 },
+    coalesceSpeed: 0.08,      // How fast particles form content
+    settleSpeed: 1.4          // Final settling multiplier
+  };
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // State management
+  let tributariesData = null;
+  let allSections = [];
+  let viewedSections = [];
+  let isLoading = false;
+  let loadedSections = []; // Track sections added to the page for session persistence
+
+  /**
+   * Particle class for sediment coalesce animation
+   */
+  class SedimentParticle {
+    constructor(targetX, targetY, color, size) {
+      // Start from random position
+      this.startX = Math.random() * window.innerWidth;
+      this.startY = Math.random() * window.innerHeight;
+      this.x = this.startX;
+      this.y = this.startY;
+
+      this.targetX = targetX;
+      this.targetY = targetY;
+
+      this.color = color;
+      this.size = size;
+      this.opacity = 0;
+      this.progress = 0;
+
+      // Add slight randomness to movement
+      this.delay = Math.random() * 0.3;
+      this.speedVariance = 0.8 + Math.random() * 0.4;
+    }
+
+    update(globalProgress) {
+      // Account for individual particle delay
+      let adjustedProgress = Math.max(0, (globalProgress - this.delay) / (1 - this.delay));
+      adjustedProgress = Math.min(1, adjustedProgress);
+
+      // Ease-out cubic for smooth deceleration
+      const eased = 1 - Math.pow(1 - adjustedProgress, 3);
+
+      // Move toward target
+      this.x = this.startX + (this.targetX - this.startX) * eased;
+      this.y = this.startY + (this.targetY - this.startY) * eased;
+
+      // Fade in as particles approach target
+      this.opacity = Math.min(1, adjustedProgress * 1.5);
+
+      this.progress = adjustedProgress;
+    }
+
+    draw(ctx) {
+      if (this.opacity <= 0) return;
+
+      ctx.globalAlpha = this.opacity;
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    isComplete() {
+      return this.progress >= 0.99;
+    }
+  }
+
+  /**
+   * Initialize the CYOA system
+   */
+  async function init() {
+    // Load tributaries data using Jekyll's relative_url
+    const tributariesUrl = '{{ "/assets/data/tributaries.json" | relative_url }}';
+
+    try {
+      const response = await fetch(tributariesUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      tributariesData = await response.json();
+
+      // Flatten all sections into a single array
+      allSections = [];
+      tributariesData.tributaries.forEach(trib => {
+        trib.sections.forEach(section => {
+          allSections.push({
+            tributary: trib.title,
+            tributarySlug: trib.slug,
+            tributaryUrl: trib.url,
+            heading: section.heading,
+            id: section.id,
+            html_content: section.html_content
+          });
+        });
+      });
+
+      // Load viewed sections from localStorage
+      const stored = localStorage.getItem('eddies-viewed-sections');
+      if (stored) {
+        viewedSections = JSON.parse(stored);
+        // Reset if all sections have been viewed
+        if (viewedSections.length >= allSections.length) {
+          viewedSections = [];
+          localStorage.removeItem('eddies-viewed-sections');
+        }
+      }
+
+      console.log(`Eddies CYOA initialized: ${allSections.length} sections available, ${viewedSections.length} already viewed`);
+
+    } catch (error) {
+      console.error('Failed to load tributaries data:', error);
+      showError();
+      return;
+    }
+
+    // Restore session if exists
+    restoreSession();
+
+    // Setup event listeners
+    setupEventListeners();
+
+    // Create control buttons if session is active
+    if (sessionStorage.getItem('eddies-session-active') === 'true') {
+      createControlButtons();
+    }
+  }
+
+  /**
+   * Setup initial event listeners
+   */
+  function setupEventListeners() {
+    const beginBtn = document.getElementById('begin-journey-btn');
+    if (beginBtn) {
+      beginBtn.addEventListener('click', handleBeginJourney);
+    }
+  }
+
+  /**
+   * Handle "Begin Journey" button click
+   */
+  function handleBeginJourney() {
+    const intro = document.getElementById('eddies-intro');
+    if (intro) {
+      intro.style.transition = 'opacity 400ms ease';
+      intro.style.opacity = '0';
+      setTimeout(() => {
+        intro.style.display = 'none';
+        loadRandomSection();
+        // Mark session as active and create control buttons
+        sessionStorage.setItem('eddies-session-active', 'true');
+        createControlButtons();
+      }, 400);
+    }
+  }
+
+  /**
+   * Create sticky control buttons (Reset and Print/Save)
+   */
+  function createControlButtons() {
+    // Check if buttons already exist
+    if (document.getElementById('eddies-controls')) return;
+
+    const controls = document.createElement('div');
+    controls.id = 'eddies-controls';
+    controls.className = 'eddies-controls';
+    controls.innerHTML = `
+      <button id="eddies-reset-btn" class="btn btn-sm eddies-control-btn eddies-reset-btn" aria-label="Clear and reset">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+        </svg>
+        <span>Clear & Reset</span>
+      </button>
+      <button id="eddies-print-btn" class="btn btn-sm eddies-control-btn eddies-print-btn" aria-label="Save or print as PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+          <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+        </svg>
+        <span>Save/Print</span>
+      </button>
+    `;
+
+    document.body.appendChild(controls);
+
+    // Setup button listeners
+    document.getElementById('eddies-reset-btn').addEventListener('click', handleReset);
+    document.getElementById('eddies-print-btn').addEventListener('click', handlePrint);
+  }
+
+  /**
+   * Handle reset button click
+   */
+  function handleReset() {
+    if (confirm('Are you sure you want to clear all content and reset? This will start your journey over.')) {
+      // Clear session storage
+      sessionStorage.removeItem('eddies-session-active');
+      sessionStorage.removeItem('eddies-loaded-sections');
+
+      // Clear the sections container
+      const container = document.getElementById('eddies-sections');
+      if (container) {
+        container.innerHTML = '';
+      }
+
+      // Show intro again
+      const intro = document.getElementById('eddies-intro');
+      if (intro) {
+        intro.style.display = 'block';
+        intro.style.opacity = '0';
+        setTimeout(() => {
+          intro.style.opacity = '1';
+        }, 10);
+      }
+
+      // Remove control buttons
+      const controls = document.getElementById('eddies-controls');
+      if (controls) {
+        controls.remove();
+      }
+
+      // Reset loaded sections
+      loadedSections = [];
+    }
+  }
+
+  /**
+   * Handle print/save button click
+   */
+  function handlePrint() {
+    window.print();
+  }
+
+  /**
+   * Save current session state
+   */
+  function saveSession() {
+    sessionStorage.setItem('eddies-loaded-sections', JSON.stringify(loadedSections));
+  }
+
+  /**
+   * Restore session from sessionStorage
+   */
+  function restoreSession() {
+    const sessionActive = sessionStorage.getItem('eddies-session-active');
+    const storedSections = sessionStorage.getItem('eddies-loaded-sections');
+
+    if (sessionActive === 'true' && storedSections) {
+      try {
+        loadedSections = JSON.parse(storedSections);
+
+        if (loadedSections.length > 0) {
+          // Hide intro
+          const intro = document.getElementById('eddies-intro');
+          if (intro) {
+            intro.style.display = 'none';
+          }
+
+          // Restore all sections without animation
+          loadedSections.forEach(sectionData => {
+            const section = allSections.find(s =>
+              s.tributarySlug === sectionData.tributarySlug && s.id === sectionData.id
+            );
+            if (section) {
+              loadSection(section, false); // No animation for restored sections
+            }
+          });
+
+          console.log(`Session restored: ${loadedSections.length} sections loaded`);
+        }
+      } catch (error) {
+        console.error('Failed to restore session:', error);
+        sessionStorage.removeItem('eddies-loaded-sections');
+      }
+    }
+  }
+
+  /**
+   * Get a random unviewed section
+   */
+  function getRandomSection() {
+    // Filter out viewed sections
+    const unviewed = allSections.filter(section => {
+      const sectionKey = `${section.tributarySlug}:${section.id}`;
+      return !viewedSections.includes(sectionKey);
+    });
+
+    // If all sections viewed, reset
+    if (unviewed.length === 0) {
+      viewedSections = [];
+      localStorage.removeItem('eddies-viewed-sections');
+      return allSections[Math.floor(Math.random() * allSections.length)];
+    }
+
+    // Return random unviewed section
+    return unviewed[Math.floor(Math.random() * unviewed.length)];
+  }
+
+  /**
+   * Mark a section as viewed
+   */
+  function markSectionViewed(section) {
+    const sectionKey = `${section.tributarySlug}:${section.id}`;
+    if (!viewedSections.includes(sectionKey)) {
+      viewedSections.push(sectionKey);
+      localStorage.setItem('eddies-viewed-sections', JSON.stringify(viewedSections));
+    }
+  }
+
+  /**
+   * Process HTML content to wrap images with Spotlight gallery markup
+   */
+  function processImagesForGallery(htmlContent, sectionId) {
+    // Create a temporary div to parse HTML
+    const temp = document.createElement('div');
+    temp.innerHTML = htmlContent;
+
+    // Find all images
+    const images = temp.querySelectorAll('img');
+    let imageIndex = 0;
+
+    images.forEach(img => {
+      // Skip if already wrapped with spotlight
+      if (img.closest('.spotlight')) return;
+
+      // Get image attributes
+      const src = img.getAttribute('src');
+      const alt = img.getAttribute('alt') || '';
+      const title = img.getAttribute('title') || alt;
+
+      // Create unique ID for this image
+      const imageId = `eddy-${sectionId}-img-${imageIndex}`;
+      imageIndex++;
+
+      // Create spotlight wrapper
+      const wrapper = document.createElement('a');
+      wrapper.className = 'spotlight gallery-img';
+      wrapper.setAttribute('href', src);
+      wrapper.setAttribute('title', title);
+      wrapper.setAttribute('data-download', 'true');
+      wrapper.setAttribute('data-eddy-image-id', imageId);
+
+      // Add fullscreen hint
+      const hint = document.createElement('div');
+      hint.innerHTML = '<div class="visually-hidden">Click for full screen</div>';
+      wrapper.appendChild(hint);
+
+      // Wrap the image
+      const parent = img.parentNode;
+      parent.insertBefore(wrapper, img);
+      wrapper.appendChild(img);
+    });
+
+    return temp.innerHTML;
+  }
+
+  /**
+   * Load and display a specific section
+   */
+  function loadSection(section, animate = true) {
+    if (isLoading) return;
+    isLoading = true;
+
+    // Mark as viewed
+    markSectionViewed(section);
+
+    // Add to loaded sections for session persistence
+    loadedSections.push({
+      tributarySlug: section.tributarySlug,
+      id: section.id
+    });
+    saveSession();
+
+    // Create section container
+    const container = document.getElementById('eddies-sections');
+    const sectionDiv = document.createElement('div');
+    sectionDiv.className = 'journey-section';
+    sectionDiv.dataset.tributary = section.tributarySlug;
+    sectionDiv.dataset.sectionId = section.id;
+
+    // Build section HTML with proper relative URLs
+    const objectImageUrl = '{{ "/objects/" | relative_url }}' + section.tributarySlug + '.png';
+
+    // Process images for gallery
+    const processedContent = processImagesForGallery(section.html_content, section.id);
+
+    const sectionHTML = `
+      <div class="journey-section-header">
+        <div class="tributary-badge">${section.tributary}</div>
+        <h2 id="${section.id}">${section.heading}</h2>
+      </div>
+      <div class="journey-section-content">
+        ${processedContent}
+      </div>
+      <div class="journey-section-nav">
+        <div class="trib-choice-container">
+          <div class="trib-choice-button continue-choice">
+            <button class="choice-inner cyoa-randomize" aria-label="Load random section">
+              <div class="choice-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#9B6B6B" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                </svg>
+              </div>
+              <p class="choice-label">Randomize</p>
+            </button>
+          </div>
+          <div class="trib-choice-button branch-choice">
+            <button class="choice-inner cyoa-curated" aria-label="Choose specific section">
+              <div class="choice-icon">
+                <img src="${objectImageUrl}" class="trib-button-image" alt="${section.tributary}">
+              </div>
+              <p class="choice-label">${section.tributary}</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    sectionDiv.innerHTML = sectionHTML;
+
+    // Initially hide content for animation
+    if (animate && !prefersReducedMotion) {
+      sectionDiv.style.opacity = '0';
+    }
+
+    container.appendChild(sectionDiv);
+
+    // Setup button listeners for this section
+    setupSectionButtons(sectionDiv);
+
+    // Animate section appearance
+    if (animate && !prefersReducedMotion) {
+      animateSectionAppearance(sectionDiv);
+    } else {
+      sectionDiv.style.opacity = '1';
+      isLoading = false;
+      scrollToSection(sectionDiv);
+    }
+  }
+
+  /**
+   * Load a random section
+   */
+  function loadRandomSection(animate = true) {
+    const section = getRandomSection();
+    loadSection(section, animate);
+  }
+
+  /**
+   * Load a specific section by tributary and section ID
+   */
+  function loadSpecificSection(tributarySlug, sectionId, animate = true) {
+    const section = allSections.find(s =>
+      s.tributarySlug === tributarySlug && s.id === sectionId
+    );
+
+    if (section) {
+      loadSection(section, animate);
+    } else {
+      console.error(`Section not found: ${tributarySlug}:${sectionId}`);
+    }
+  }
+
+  /**
+   * Setup button event listeners for a section
+   */
+  function setupSectionButtons(sectionDiv) {
+    // Randomize button
+    const randomizeBtn = sectionDiv.querySelector('.cyoa-randomize');
+    if (randomizeBtn) {
+      randomizeBtn.addEventListener('click', () => {
+        loadRandomSection(true);
+      });
+    }
+
+    // Curated section button - opens modal to select section
+    const curatedBtn = sectionDiv.querySelector('.cyoa-curated');
+    if (curatedBtn) {
+      curatedBtn.addEventListener('click', () => {
+        showSectionPicker(sectionDiv.dataset.tributary);
+      });
+    }
+  }
+
+  /**
+   * Show section picker modal for curated selection
+   */
+  function showSectionPicker(currentTributarySlug) {
+    // Get all sections from current tributary
+    const tributary = tributariesData.tributaries.find(t => t.slug === currentTributarySlug);
+    if (!tributary) return;
+
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.className = 'cyoa-section-picker-modal';
+    modal.innerHTML = `
+      <div class="cyoa-modal-content">
+        <div class="cyoa-modal-header">
+          <h3>Choose a section from ${tributary.title}</h3>
+          <button class="cyoa-modal-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="cyoa-modal-body">
+          ${tributary.sections.map(section => `
+            <button class="cyoa-section-option" data-section-id="${section.id}">
+              ${section.heading}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Fade in
+    setTimeout(() => modal.classList.add('active'), 10);
+
+    // Close button
+    const closeBtn = modal.querySelector('.cyoa-modal-close');
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      setTimeout(() => modal.remove(), 300);
+    });
+
+    // Click outside to close
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
+      }
+    });
+
+    // Section selection
+    modal.querySelectorAll('.cyoa-section-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sectionId = btn.dataset.sectionId;
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
+        loadSpecificSection(currentTributarySlug, sectionId, true);
+      });
+    });
+  }
+
+  /**
+   * Animate section appearance with sediment particles
+   */
+  function animateSectionAppearance(sectionDiv) {
+    const rect = sectionDiv.getBoundingClientRect();
+    const canvas = createAnimationCanvas();
+    const ctx = canvas.getContext('2d');
+
+    // Create particles targeting the section area
+    const particles = [];
+    for (let i = 0; i < ANIMATION_CONFIG.particleCount; i++) {
+      const targetX = rect.left + Math.random() * rect.width;
+      const targetY = rect.top + Math.random() * rect.height;
+      const color = PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
+      const size = ANIMATION_CONFIG.particleSize.min +
+                   Math.random() * (ANIMATION_CONFIG.particleSize.max - ANIMATION_CONFIG.particleSize.min);
+
+      particles.push(new SedimentParticle(targetX, targetY, color, size));
+    }
+
+    const startTime = Date.now();
+
+    function animate() {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / ANIMATION_CONFIG.duration, 1);
+
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw particles
+      particles.forEach(particle => {
+        particle.update(progress);
+        particle.draw(ctx);
+      });
+
+      // Fade in content as particles settle
+      const contentOpacity = Math.max(0, (progress - 0.4) / 0.6);
+      sectionDiv.style.opacity = contentOpacity.toString();
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        // Animation complete
+        canvas.remove();
+        sectionDiv.style.opacity = '1';
+        isLoading = false;
+        scrollToSection(sectionDiv);
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  /**
+   * Create canvas for particle animation
+   */
+  function createAnimationCanvas() {
+    let canvas = document.getElementById('cyoa-particle-canvas');
+
+    if (!canvas) {
+      canvas = document.createElement('canvas');
+      canvas.id = 'cyoa-particle-canvas';
+      canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+      `;
+      document.body.appendChild(canvas);
+    }
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    return canvas;
+  }
+
+  /**
+   * Smooth scroll to section
+   */
+  function scrollToSection(sectionDiv) {
+    const yOffset = -20;
+    const y = sectionDiv.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
+    });
+  }
+
+  /**
+   * Show error message
+   */
+  function showError() {
+    const container = document.getElementById('eddies-sections');
+    if (container) {
+      container.innerHTML = `
+        <div class="cyoa-error">
+          <p>Unable to load tributary data. Please refresh the page and try again.</p>
+        </div>
+      `;
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Expose API for debugging
+  window.EddiesCYOA = {
+    loadRandomSection,
+    loadSpecificSection,
+    getViewedCount: () => viewedSections.length,
+    getTotalCount: () => allSections.length,
+    resetProgress: () => {
+      viewedSections = [];
+      localStorage.removeItem('eddies-viewed-sections');
+      console.log('Progress reset');
+    }
+  };
+
+})();
+</script>

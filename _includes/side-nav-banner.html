@@ -304,6 +304,7 @@
                 
                 <nav class="text-nav-list">
                     <a class="text-nav-link{% if page.url == '/main.html' %} active{% endif %}" href="{{ '/main.html' | relative_url }}">Main</a>
+                    <a class="text-nav-link{% if page.url contains 'eddies' %} active{% endif %}" href="{{ '/eddies.html' | relative_url }}">Eddies (Choose You Own)</a>
                     <a class="text-nav-link{% if page.url == '/about.html' %} active{% endif %}" href="{{ '/about.html' | relative_url }}">About</a>
                     <a class="text-nav-link{% if page.url == '/resources.html' %} active{% endif %}" href="{{ '/resources.html' | relative_url }}">Resources</a>
                     <a class="text-nav-link{% if page.url == '/take-action.html' %} active{% endif %}" href="{{ '/take-action.html' | relative_url }}">Take Action</a>
