@@ -23,8 +23,8 @@
 sections:
     
   - id: "line-2"
-    scroll_position: 2000
-    scroll_position_mobile: 3000
+    scroll_position: 2500
+    scroll_position_mobile: 3200
     side: "middle"
     content: "you are silt"
     padding_left:
@@ -32,7 +32,7 @@ sections:
 
   - id: "line-3"
     scroll_position: 2750
-    scroll_position_mobile: 3300
+    scroll_position_mobile: 3400
     side: "middle"
     content: "you may be embedded in the strata"
     max_width: 420
@@ -111,7 +111,7 @@ sections:
 
   - id: "line-12"
     scroll_position: 5500
-    scroll_position_mobile: 5700
+    scroll_position_mobile: 5570
     side: "middle"
     content: "or the river might cut you from your bed and carry you away"
     max_width: 500
@@ -120,7 +120,7 @@ sections:
 
   - id: "line-13"
     scroll_position: 5800
-    scroll_position_mobile: 6000
+    scroll_position_mobile: 5800
     side: "left"
     content: "the water takes you fast or slow all the way to the ocean" 
     padding_left: 300
@@ -129,7 +129,7 @@ sections:
 
   - id: "line-14"
     scroll_position: 6100
-    scroll_position_mobile: 6300
+    scroll_position_mobile: 6100
     side: "middle"
     content: "perhaps you wash up on a beach"
     max_width: 500
@@ -138,7 +138,7 @@ sections:
 
   - id: "line-15"
     scroll_position: 6750
-    scroll_position_mobile: 6600
+    scroll_position_mobile: 6400
     side: "middle"
     content: "there is so much of you you tune the water's temperature" 
     max_width: 500
@@ -147,7 +147,7 @@ sections:
 
   - id: "line-16"
     scroll_position: 7350
-    scroll_position_mobile: 6900
+    scroll_position_mobile: 6600
     side: "middle"
     content: "algae blossoms in your nooks"
     icon: "microbes"
@@ -155,7 +155,7 @@ sections:
 
   - id: "line-17"
     scroll_position: 7600
-    scroll_position_mobile: 7200
+    scroll_position_mobile: 6900
     side: "middle"
     content: "endemic fish proliferate"
     icon: "biota"
@@ -163,7 +163,7 @@ sections:
 
   - id: "line-18"
     scroll_position: 7850
-    scroll_position_mobile: 7500
+    scroll_position_mobile: 7200
     side: "middle"
     content: "you hold magnesium, potassium, and calcium" 
     max_width: 500
@@ -173,7 +173,7 @@ sections:
     
   - id: "line-19"
     scroll_position: 8100
-    scroll_position_mobile: 7800
+    scroll_position_mobile: 7500
     side: "middle"
     content: "plants take root in your fertile shores"
     icon: "vegetation"
@@ -182,7 +182,7 @@ sections:
 
   - id: "line-21"
     scroll_position: 8500
-    scroll_position_mobile: 8100
+    scroll_position_mobile: 7800
     side: "right"
     content: "when enough of you gathers you alter the river's course"
     max_width: 500
@@ -192,7 +192,7 @@ sections:
 
   - id: "line-22"
     scroll_position: 8900
-    scroll_position_mobile: 8400
+    scroll_position_mobile: 8100
     side: "middle"
     content: "some of you stream over an abandoned uranium mine"
     padding_right: 80
@@ -203,7 +203,7 @@ sections:
   -
   - id: "line-23"
     scroll_position: 9200
-    scroll_position_mobile: 8700
+    scroll_position_mobile: 8300
     side: "right"
     content: "you are radioactive"
     padding_right: 100
@@ -213,7 +213,7 @@ sections:
 
   - id: "line-24"
     scroll_position: 9600
-    scroll_position_mobile: 9000
+    scroll_position_mobile: 8600
     side: "middle"
     content: "humans gather you in handfuls to make art and homes"
     max_width: 500
@@ -222,7 +222,7 @@ sections:
 
   - id: "line-25"
     scroll_position: 9850
-    scroll_position_mobile: 9300
+    scroll_position_mobile: 8900
     side: "right"
     content: "much of you heaps up behind concrete dams"
     padding_right: 100
@@ -232,7 +232,7 @@ sections:
 
   - id: "line-26"
     scroll_position: 10100
-    scroll_position_mobile: 9600
+    scroll_position_mobile: 9200
     side: "middle"
     content: "not so much of you flows to the sea now"
     icon: "water"
@@ -240,7 +240,7 @@ sections:
 
   - id: "line-27"
     scroll_position: 10350
-    scroll_position_mobile: 9900
+    scroll_position_mobile: 9500
     side: "right"
     content: "there is not so much room left for the water anymore"
     padding_right: 200
@@ -250,7 +250,7 @@ sections:
 
   - id: "line-28"
     scroll_position: 11400
-    scroll_position_mobile: 11200
+    scroll_position_mobile: 9800
     side: "middle"
     content: "still, maybe you are embedded in the rock strata maybe you are deep underground or clinging to the outer dermis of a canyon wall or maybe you arrived recently, from somewhere else, delivered by bird wing, on shoe, from mountain or through fish gut you might stay here for another day, century, millennia, or billion years or the river might cut you from your bed and carry you away"
     max_width: 1000
