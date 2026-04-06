@@ -29,7 +29,8 @@
 {% endif %}
 
 {% assign trib_name = include.trib | capitalize %}
-{% assign trib_link = '/tributaries/' | append: include.trib | append: '/' | relative_url %}
+{% assign trib_link = '/tributaries/' | append: include.trib %}
+{% assign trib_link = trib_link | relative_url %}
 {% assign animation_speed = include.speed | default: "normal" %}
 
 {%- comment -%} Determine button text: use text param, or capitalize anchor, or capitalize trib name {%- endcomment -%}

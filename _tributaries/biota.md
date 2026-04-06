@@ -141,7 +141,7 @@ a mosaics of green life adorn the land.
 -what grows and esacpes
 
 
-## Lifeboat Niches
+## Lifeboats
 
 HUMANS ARE NOT the first species who have figured out how to trap water. 
 
@@ -231,7 +231,7 @@ nonprogress
 
 The stagnant waters of Lake Powell have created optimal conditions for cyanobacteria colonies to breed, staining the lake pea-green and posing serious health risks to animals and humans. Bacteria can become airborne as the water is disturbed. When ingested, cyanobacteria can cause respiratory paralysis, blistering, numbness, burning, incoherent speech, kidney failure, liver failure, vomiting, and death. Sediment provides a habitat for these bacteria to lie dormant over winter and seed future blooms. 
 
-## Cryptobiotic
+## Cryptobiotics
 
 living soils. The crusts hold soils in place during windstorms and hold moisture by up to 14% (Podmore 140). Dust landing on snowfields can decrease runoff by as much as 5%. (Podmore 140). Could help the toxic dust from blowing. (Podmore 141). 
 

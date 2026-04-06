@@ -132,13 +132,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // Handle initial page load with hash
   if (window.location.hash) {
     const initialSection = window.location.hash.substring(1);
+    isClickScrolling = true;
     setTimeout(() => {
       const targetElement = document.getElementById(initialSection);
       if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetElement.scrollIntoView({ behavior: 'auto', block: 'start' });
         updateActiveSection(initialSection);
       }
-    }, 100);
+      setTimeout(() => { isClickScrolling = false; }, 800);
+    }, 1200);
   } else if (h2Elements.length > 0) {
     // Set first section as active initially
     updateActiveSection(h2Elements[0].id);
