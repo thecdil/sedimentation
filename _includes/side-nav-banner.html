@@ -444,7 +444,18 @@
         const tributary = column.dataset.tributary;
         const sectionId = segment.dataset.section;
         
-        window.location.href = '{{ "/tributaries/" | relative_url }}' + tributary + '/#' + sectionId;
+        if (currentPath.includes('/tributaries/' + tributary)) {
+            closeFullPageNav();
+            const target = document.getElementById(sectionId);
+            if (target) {
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.pushState(null, null, '#' + sectionId);
+                }, 100);
+            }
+        } else {
+            window.location.href = '{{ "/tributaries/" | relative_url }}' + tributary + '/#' + sectionId;
+        }
     }
 })();
 
@@ -594,10 +605,15 @@
                         // Close nav when clicking section link on current page
                         a.addEventListener('click', function(e) {
                             if (currentPath.includes(trib.slug)) {
-                                // On the same page, close the nav
-                                setTimeout(() => {
-                                    closeFullPageNav();
-                                }, 100);
+                                e.preventDefault();
+                                closeFullPageNav();
+                                const target = document.getElementById(section.id);
+                                if (target) {
+                                    setTimeout(() => {
+                                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        history.pushState(null, null, '#' + section.id);
+                                    }, 100);
+                                }
                             }
                             // Otherwise let it navigate normally
                         });
@@ -683,7 +699,19 @@
                 const section = segment.getAttribute('data-section');
                 const column = segment.closest('.river-column');
                 const tributary = column.getAttribute('data-tributary');
-                window.location.href = '{{ "/tributaries/" | relative_url }}' + tributary + '/#' + section;
+                
+                if (window.location.pathname.includes('/tributaries/' + tributary)) {
+                    closeFullPageNav();
+                    const target = document.getElementById(section);
+                    if (target) {
+                        setTimeout(() => {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            history.pushState(null, null, '#' + section);
+                        }, 100);
+                    }
+                } else {
+                    window.location.href = '{{ "/tributaries/" | relative_url }}' + tributary + '/#' + section;
+                }
             });
         });
         

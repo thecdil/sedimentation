@@ -1507,6 +1507,12 @@ article{
   /* Custom scrollbar */
   scrollbar-width: thin;
   scrollbar-color: rgba(139, 69, 19, 0.3) transparent;
+  transition: opacity 200ms ease;
+}
+
+.section-nav-menu.footer-visible {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .section-nav-menu::-webkit-scrollbar {

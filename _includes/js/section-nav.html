@@ -1,5 +1,8 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Guard: prevent observer from overriding active state during click-scroll
+  let isClickScrolling = false;
+
   // Extract all H2 headings from the tributary body
   const h2Elements = document.querySelectorAll('.tributary-body h2');
 
@@ -45,6 +48,17 @@ document.addEventListener('DOMContentLoaded', function() {
   // Insert the menu into the page
   document.body.appendChild(navMenu);
 
+  // Hide section nav when footer is visible
+  const footerEl = document.querySelector('footer');
+  if (footerEl) {
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        navMenu.classList.toggle('footer-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0 });
+    footerObserver.observe(footerEl);
+  }
+
   // Smooth scroll handler
   document.querySelectorAll('.section-nav-link').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -62,8 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
           block: 'start'
         });
 
-        // Update active state
+        // Update active state immediately and block observer during scroll
         updateActiveSection(targetId);
+        isClickScrolling = true;
+        setTimeout(() => { isClickScrolling = false; }, 800);
       }
     });
   });
@@ -98,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && !isClickScrolling) {
         updateActiveSection(entry.target.id);
         // Update URL hash without jumping
         if (history.replaceState) {
