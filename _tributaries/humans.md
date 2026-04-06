@@ -48,7 +48,7 @@ Yet even in those places most ravaged by territorial erasures and remappings, th
 
 <br><br>
 
-{% include feature/trib-button.html trib="biota" image="vegetation" text="Biota" %}
+{% include feature/trib-button.html trib="biota/#biofilms" image="microbes" text="Microbial Varnish" %}
 
 {% include feature/new-section.html %}
 
@@ -65,7 +65,7 @@ Together, the dam and the lake visually and symbolically insist upon complete co
 
 But neither the earth nor history are quite so stratigraphic. Instead, particulates of the past are constantly eroding and resurfacing into the present and the future. In Glen Canyon, reemergence and recirculation are not metaphors. Glen Canyon's inscriptions cut through time, bringing people of different temporalities into contact and interaction with one another.
 
-{% include feature/trib-button.html trib="land" image="balancedrock" text="Land" %}
+{% include feature/trib-button.html trib="land/#sedimentation" image="humans" text="Erosions" %}
 
 
 {% include feature/new-section.html %}
@@ -105,7 +105,7 @@ But just as the past informs and transforms the unfoldings of the present, so ca
 
 The remains we encounter -- or ourselves leave behind -- allow us to connect with humans across otherwise unreachable spans of time, drawing us into conversation and relation with one another. When we alter these remains, we rupture the possibility for the people of the future to commune with the people of the past. It matters, then, how we touch such traces. 
 
-{% include feature/trib-button.html trib="land" image="land" text="Land" %}
+{% include feature/trib-button.html trib="atmosphere/#radium-dust" image="uranium" text="Traces of the Future" %}
 
 {% include feature/new-section.html %}
 
@@ -194,8 +194,7 @@ It is difficult to enact a more attuned, inclusive, and just future, however, wh
 
 But as the drought draws Lake Powell lower, Glen Canyon and its palimpsested inscriptions are resurfacing. This time, we must pay closer attention, and not rush to fill the gaps with our own stories. 
 
-{% include feature/trib-button.html trib="water" image="water2" text="Water" %}
-
+{% include feature/trib-button.html trib="water/#ebbs" image="water2" text="Ebbs" %}
 
 
 {% include feature/new-section.html %}
@@ -219,7 +218,7 @@ For the Diné, too, geographical features actively participate in cultural forma
 
 Shortly after the completion of the Glen Canyon Dam, Tsé Naní' áhiígíí was inundated with Lake water, despite objections from many Diné spokespeople, and despite the government's promise to protect the site from the rising reservoir. For the Diné, the drowning of Bridge Canyon did more than subsume  ancestral territory: as Navajo elder Lamar Badoni put it, "The Rainbow is broken. Our way of life, our way of thinking, our religion is broken." [^19] 
 
-{% include feature/trib-button.html trib="water" image="water" text="Water" %}
+{% include feature/trib-button.html trib="atmosphere/#reemergence" image="vegetation" text="Reemergence" %}
 
 {% include feature/new-section.html %}
 
@@ -256,7 +255,7 @@ In my own efforts to grasp what an archive is, or what it might be, I take a cue
 
 As I draw together the web of differing archival definitions, I have come to wonder: if an archive is a place that collects preserved material, what then, precludes generational memory (which resides in bodies of so many people, who collect and preserve bits of knowledge through time) or the land itself (a place that preserves, in material form, records of so many pasts) from being read as an archive? And by extending the definition of the archive, might power be released from the archons and distributed more evenly, to everyone and everything who keeps a record of the past? The web of stories will surely explode out, the truths that seem to anchor life as we know it will become unfixed and elusive, and the web will become tangled with disputes and contradictions, but somewhere within this mess will lie, if not a singular truth, a path that more carefully accounts for them all. 
 
-{% include feature/trib-button.html trib="land" image="land" text="Land" %}
+{% include feature/trib-button.html trib="biota/#snake" image="water1" text="Snake" %}
 
 
 {% include feature/new-section.html %}
@@ -278,7 +277,7 @@ But -- at the same time that Lake Powell’s algal blooms, sediment glaciers, li
 {% include feature/image-gallery.html objectid="sediment221" caption=false%}
 
 
-{% include feature/trib-button.html trib="biota" image="microbes" text="Biota" %}
+{% include feature/trib-button.html trib="biota/#feral-ecologies" image="microbes" text="Feral Ecologies" %}
 
 
 {% include feature/new-section.html %}
@@ -315,7 +314,9 @@ What remains of ourselves are we leaving to the future?
 {% include feature/image-gallery.html objectid="sediment277" caption=false%}
 
 
-{% include feature/trib-button.html trib="Humans" image="Dwellings" text="Humans" %}
+{% include feature/trib-button.html trib="humans" image="dwellings" text="Recirculate" %}
+
+
 
 
 ## Works Cited

@@ -215,7 +215,7 @@ flesh
 
 contact zone, exchange of messages,, territorializing acts...lines of flights (76)
 
-## Varnish
+## Biofilms
 
 The vertical stripes on this canyon wall are called 'desert varnish.' The varnish is composed by a thin gloss of sediment, minerals, and microbes interacting with one another over long periods of time, and are encouraged by water seeps, which might account for the striping patterns seen here. It takes more than 1,000 years for the varnish to accumulate to the width of a human hair. Much about the formation of desert varnish is still a mystery--it is not fully understood why varnish forms in some conditions and not others. These walls make good canvases for petroglyphs because of the contrast between the dark varnish with the underlying red sandstone.
 
@@ -227,7 +227,7 @@ Potholes are formed by water erosion, and mark places in the sandstone where the
 nonprogress 
 
 
-## Festering 
+## Feral Ecologies 
 
 The stagnant waters of Lake Powell have created optimal conditions for cyanobacteria colonies to breed, staining the lake pea-green and posing serious health risks to animals and humans. Bacteria can become airborne as the water is disturbed. When ingested, cyanobacteria can cause respiratory paralysis, blistering, numbness, burning, incoherent speech, kidney failure, liver failure, vomiting, and death. Sediment provides a habitat for these bacteria to lie dormant over winter and seed future blooms. 
 
@@ -236,7 +236,7 @@ The stagnant waters of Lake Powell have created optimal conditions for cyanobact
 living soils. The crusts hold soils in place during windstorms and hold moisture by up to 14% (Podmore 140). Dust landing on snowfields can decrease runoff by as much as 5%. (Podmore 140). Could help the toxic dust from blowing. (Podmore 141). 
 
 
-## Snakes
+## Snake
 
 Navajo story of snake - rain and entanglement
 
