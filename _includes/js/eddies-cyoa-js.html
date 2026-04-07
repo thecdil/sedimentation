@@ -214,6 +214,36 @@
     // Setup button listeners
     document.getElementById('eddies-reset-btn').addEventListener('click', handleReset);
     document.getElementById('eddies-print-btn').addEventListener('click', handlePrint);
+
+    // Setup scroll listener to collapse buttons after 1000px
+    setupScrollCollapse();
+  }
+
+  /**
+   * Setup scroll listener to collapse control buttons
+   */
+  function setupScrollCollapse() {
+    let hasCollapsed = false;
+
+    function handleScroll() {
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      if (scrollY > 1000 && !hasCollapsed) {
+        const controls = document.getElementById('eddies-controls');
+        if (controls) {
+          controls.classList.add('collapsed');
+          hasCollapsed = true;
+        }
+      } else if (scrollY <= 1000 && hasCollapsed) {
+        const controls = document.getElementById('eddies-controls');
+        if (controls) {
+          controls.classList.remove('collapsed');
+          hasCollapsed = false;
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
   }
 
   /**
