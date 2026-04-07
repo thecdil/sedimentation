@@ -11,7 +11,7 @@
 
 <h1>Beginning</h1>
 
-<p>You may know Glen Canyon by the dam of the same name; the dam that created the reservoir Lake Powell in 1963. Since then, Glen Canyon has lay submerged beneath hundreds of feet of water. Glen Canyon has been called "the place no one knew" and labelled a site of irreversible loss and degradation.</p>
+<p>You may know Glen Canyon by the dam of the same name; the dam that created the reservoir Lake Powell in 1963. Since then, Glen Canyon has lay beneath hundreds of feet of water, as have its hundreds of side canyons, 3,000 Indigenous cultural sites, and the habitat of 79 plant species, 189 bird species, and 34 mammal species. Glen Canyon has been called "the place no one knew" and labelled a site of irreversible loss and degradation. </p>
 
 <p>Yet embedded in Glen Canyon's sandstone walls and muddy shorelines remains a vibrant archive of stories. Some of these stories are very old, some are only beginning, and others are resurfacing, sometimes in surprising, dangerous, or delightful new forms. </p>
 
