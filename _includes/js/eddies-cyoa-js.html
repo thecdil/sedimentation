@@ -506,20 +506,31 @@
     sectionDiv.dataset.tributary = section.tributarySlug;
     sectionDiv.dataset.sectionId = section.id;
 
-    // Build section HTML with proper relative URLs
-    const objectImageUrl = '{{ "/objects/" | relative_url }}' + section.tributarySlug + '.png';
-
     // Process content: wrap images for gallery, remove nav elements, extract target link
     const processed = processContentForCYOA(section.html_content, section.id);
     const processedContent = processed.html;
     const targetLink = processed.targetLink;
 
-    // Store the target link in the section div's dataset for button handler
-    if (targetLink) {
+    // Determine what the curated button should show
+    let curatedButtonImage, curatedButtonLabel, curatedButtonTributary;
+
+    if (targetLink && targetLink.tributarySlug) {
+      // Show the TARGET tributary's icon and name
+      curatedButtonTributary = targetLink.tributarySlug;
+      const targetTrib = tributariesData.tributaries.find(t => t.slug === targetLink.tributarySlug);
+      curatedButtonLabel = targetTrib ? targetTrib.title : targetLink.tributarySlug;
+      curatedButtonImage = '{{ "/objects/" | relative_url }}' + targetLink.tributarySlug + '.png';
+
+      // Store the target link in the section div's dataset for button handler
       sectionDiv.dataset.targetTributary = targetLink.tributarySlug;
       if (targetLink.anchorId) {
         sectionDiv.dataset.targetAnchor = targetLink.anchorId;
       }
+    } else {
+      // Fallback: show current section's tributary
+      curatedButtonTributary = section.tributarySlug;
+      curatedButtonLabel = section.tributary;
+      curatedButtonImage = '{{ "/objects/" | relative_url }}' + section.tributarySlug + '.png';
     }
 
     const sectionHTML = `
@@ -546,9 +557,9 @@
           <div class="trib-choice-button branch-choice">
             <button class="choice-inner cyoa-curated" aria-label="Choose specific section">
               <div class="choice-icon">
-                <img src="${objectImageUrl}" class="trib-button-image" alt="${section.tributary}">
+                <img src="${curatedButtonImage}" class="trib-button-image" alt="${curatedButtonLabel}">
               </div>
-              <p class="choice-label">${section.tributary}</p>
+              <p class="choice-label">${curatedButtonLabel}</p>
             </button>
           </div>
         </div>

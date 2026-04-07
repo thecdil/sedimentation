@@ -2068,15 +2068,17 @@ article{
               border-color $duration-fast ease,
               transform $duration-fast $ease-out-strong,
               box-shadow $duration-fast $ease-out-strong,
-              padding $duration-normal $ease-out-strong;
+              padding 600ms cubic-bezier(0.4, 0.0, 0.2, 1),
+              gap 600ms cubic-bezier(0.4, 0.0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
   line-height: 1.5;
 }
 
 .eddies-control-btn span {
-  transition: opacity $duration-normal $ease-out-strong,
-              width $duration-normal $ease-out-strong;
+  transition: opacity 500ms cubic-bezier(0.4, 0.0, 0.2, 1),
+              width 600ms cubic-bezier(0.4, 0.0, 0.2, 1),
+              margin 600ms cubic-bezier(0.4, 0.0, 0.2, 1);
   opacity: 1;
 }
 
