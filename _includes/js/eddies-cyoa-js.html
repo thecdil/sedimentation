@@ -103,10 +103,15 @@
       }
       tributariesData = await response.json();
 
-      // Flatten all sections into a single array
+      // Flatten all sections into a single array, filtering out unwanted sections
       allSections = [];
       tributariesData.tributaries.forEach(trib => {
         trib.sections.forEach(section => {
+          // Skip sections that shouldn't be included
+          if (!shouldIncludeSection(section)) {
+            return;
+          }
+
           allSections.push({
             tributary: trib.title,
             tributarySlug: trib.slug,
@@ -331,20 +336,69 @@
   }
 
   /**
-   * Process HTML content to wrap images with Spotlight gallery markup
+   * Extract the target link from trib-button in HTML content
+   * Returns { tributarySlug, anchorId } or null if no button found
    */
-  function processImagesForGallery(htmlContent, sectionId) {
+  function extractTribButtonTarget(htmlContent) {
+    const temp = document.createElement('div');
+    temp.innerHTML = htmlContent;
+
+    // Look for trib-button link within the content
+    // The button might be in a .choice-inner or have data-trib attribute
+    const tribLink = temp.querySelector('a[href*="/tributaries/"]');
+
+    if (tribLink) {
+      const href = tribLink.getAttribute('href');
+      // Parse href like "/tributaries/atmosphere/#wind-memories"
+      const match = href.match(/\/tributaries\/([^\/]+)\/?(#(.+))?/);
+
+      if (match) {
+        return {
+          tributarySlug: match[1],
+          anchorId: match[3] || null
+        };
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Process HTML content to wrap images with Spotlight gallery markup,
+   * remove original tributary navigation elements, and extract target link
+   */
+  function processContentForCYOA(htmlContent, sectionId) {
     // Create a temporary div to parse HTML
     const temp = document.createElement('div');
     temp.innerHTML = htmlContent;
 
-    // Find all images
+    // Extract the target link before removing navigation
+    const targetLink = extractTribButtonTarget(htmlContent);
+
+    // Remove all existing navigation elements from original tributary pages
+    // These include: trib-choice-container, new-section divs, continue/branch buttons
+    const navElements = temp.querySelectorAll('.trib-choice-container, .new-section');
+    navElements.forEach(el => el.remove());
+
+    // Also remove any standalone trib-button includes
+    const tribButtons = temp.querySelectorAll('.trib-choice-button, .choice-inner');
+    tribButtons.forEach(el => {
+      // Only remove if they're not already inside a trib-choice-container (which we already removed)
+      if (!el.closest('.trib-choice-container')) {
+        el.remove();
+      }
+    });
+
+    // Find all images and wrap them with Spotlight markup
     const images = temp.querySelectorAll('img');
     let imageIndex = 0;
 
     images.forEach(img => {
       // Skip if already wrapped with spotlight
       if (img.closest('.spotlight')) return;
+
+      // Skip if this is a button image (trib-button-image)
+      if (img.classList.contains('trib-button-image')) return;
 
       // Get image attributes
       const src = img.getAttribute('src');
@@ -374,7 +428,28 @@
       wrapper.appendChild(img);
     });
 
-    return temp.innerHTML;
+    return {
+      html: temp.innerHTML,
+      targetLink: targetLink
+    };
+  }
+
+  /**
+   * Filter out sections that shouldn't be shown in CYOA
+   * (Works Cited, sections without navigation buttons)
+   */
+  function shouldIncludeSection(section) {
+    // Exclude "Works Cited" sections
+    if (section.heading && section.heading.match(/works cited|references/i)) {
+      return false;
+    }
+
+    // Exclude sections with no substantive content (very short)
+    if (section.html_content && section.html_content.trim().length < 100) {
+      return false;
+    }
+
+    return true;
   }
 
   /**
@@ -404,8 +479,18 @@
     // Build section HTML with proper relative URLs
     const objectImageUrl = '{{ "/objects/" | relative_url }}' + section.tributarySlug + '.png';
 
-    // Process images for gallery
-    const processedContent = processImagesForGallery(section.html_content, section.id);
+    // Process content: wrap images for gallery, remove nav elements, extract target link
+    const processed = processContentForCYOA(section.html_content, section.id);
+    const processedContent = processed.html;
+    const targetLink = processed.targetLink;
+
+    // Store the target link in the section div's dataset for button handler
+    if (targetLink) {
+      sectionDiv.dataset.targetTributary = targetLink.tributarySlug;
+      if (targetLink.anchorId) {
+        sectionDiv.dataset.targetAnchor = targetLink.anchorId;
+      }
+    }
 
     const sectionHTML = `
       <div class="journey-section-header">
@@ -497,11 +582,27 @@
       });
     }
 
-    // Curated section button - opens modal to select section
+    // Curated section button - check if there's a specific target or show modal
     const curatedBtn = sectionDiv.querySelector('.cyoa-curated');
     if (curatedBtn) {
       curatedBtn.addEventListener('click', () => {
-        showSectionPicker(sectionDiv.dataset.tributary);
+        const targetTributary = sectionDiv.dataset.targetTributary;
+        const targetAnchor = sectionDiv.dataset.targetAnchor;
+
+        if (targetTributary && targetAnchor) {
+          // Load the specific anchored section directly
+          loadSpecificSection(targetTributary, targetAnchor, true);
+        } else if (targetTributary) {
+          // Load a random section from that tributary
+          const tributarySections = allSections.filter(s => s.tributarySlug === targetTributary);
+          if (tributarySections.length > 0) {
+            const randomSection = tributarySections[Math.floor(Math.random() * tributarySections.length)];
+            loadSection(randomSection, true);
+          }
+        } else {
+          // Fallback: show modal to select section from current tributary
+          showSectionPicker(sectionDiv.dataset.tributary);
+        }
       });
     }
   }
