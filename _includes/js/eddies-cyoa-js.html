@@ -515,11 +515,21 @@
     let curatedButtonImage, curatedButtonLabel, curatedButtonTributary;
 
     if (targetLink && targetLink.tributarySlug) {
-      // Show the TARGET tributary's icon and name
+      // Show the TARGET section's heading and tributary icon
       curatedButtonTributary = targetLink.tributarySlug;
-      const targetTrib = tributariesData.tributaries.find(t => t.slug === targetLink.tributarySlug);
-      curatedButtonLabel = targetTrib ? targetTrib.title : targetLink.tributarySlug;
       curatedButtonImage = '{{ "/objects/" | relative_url }}' + targetLink.tributarySlug + '.png';
+
+      // Find the target section to get its heading
+      if (targetLink.anchorId) {
+        const targetSection = allSections.find(s =>
+          s.tributarySlug === targetLink.tributarySlug && s.id === targetLink.anchorId
+        );
+        curatedButtonLabel = targetSection ? targetSection.heading : targetLink.tributarySlug;
+      } else {
+        // No specific anchor, just show the tributary title
+        const targetTrib = tributariesData.tributaries.find(t => t.slug === targetLink.tributarySlug);
+        curatedButtonLabel = targetTrib ? targetTrib.title : targetLink.tributarySlug;
+      }
 
       // Store the target link in the section div's dataset for button handler
       sectionDiv.dataset.targetTributary = targetLink.tributarySlug;
