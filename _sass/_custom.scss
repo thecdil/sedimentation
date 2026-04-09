@@ -39,6 +39,106 @@ $duration-slow: 400ms;     // Page transitions, overlays
   }
 }
 
+/* ========================================
+   Typography System
+   Zilla Slab (display) · Spectral (body) · Atkinson Hyperlegible (UI/labels)
+   ======================================== */
+
+:root {
+  --font-display: 'Zilla Slab', Georgia, serif;
+  --font-body: 'Spectral', Georgia, serif;
+  --font-ui: 'Atkinson Hyperlegible', system-ui, sans-serif;
+
+  // Modular scale (ratio ~1.25) — fluid clamp for display headings, fixed rem for prose/UI
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1.125rem;
+  --text-lg:   1.375rem;
+  --text-xl:   clamp(1.375rem, 2vw + 0.25rem, 1.75rem);
+  --text-2xl:  clamp(1.75rem, 2.8vw + 0.25rem, 2.25rem);
+  --text-3xl:  clamp(2rem, 4vw + 0.25rem, 3rem);
+
+  --leading-display: 1.15;
+  --leading-prose:   1.72;
+  --leading-ui:      1.45;
+}
+
+// Body — Spectral is set via theme.yml > base-font-family; reinforce here for clarity
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-prose);
+  font-optical-sizing: auto;
+}
+
+// Display headings — Zilla Slab: editorial slab serif, structural contrast with Spectral's modulated strokes
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--leading-display);
+  letter-spacing: 0.01em;
+}
+
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); }
+
+// Sub-headings — Spectral, weighted, no display treatment
+h4, h5, h6 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: var(--leading-ui);
+}
+
+h4 { font-size: var(--text-lg); }
+h5 { font-size: var(--text-base); }
+h6 { font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+
+// Lead paragraphs — lighter weight Spectral
+.lead {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+// Blockquotes — italic Spectral
+blockquote, .blockquote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+// UI elements — Atkinson Hyperlegible for navigation, labels, metadata, forms
+// Designed specifically for accessibility and legibility at small sizes
+.navbar-brand, .nav-link, .navbar-nav,
+.breadcrumb-item, .badge,
+label, caption, figcaption, .figure-caption,
+.btn, .footnotes,
+.date-input-group label,
+#sideNavAccordion, .nav-accordion-button,
+.table {
+  font-family: var(--font-ui);
+}
+
+figcaption, .figure-caption, caption {
+  font-size: var(--text-sm);
+  line-height: var(--leading-ui);
+  letter-spacing: 0.02em;
+}
+
+.footnotes {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.table {
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
 /* Remove heading borders */
 h1, h2, h3, h4, h5, h6 {
   border-bottom: none !important;
@@ -52,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 article{
-  max-width: 710px;
+  max-width: 67ch;
 }
 
 .tributary-container {
@@ -240,8 +340,6 @@ article{
 
  .lead {
   color: #5D4037;
-  font-size: 1.2rem;
-  line-height: 1.6;
 }
 
 .tributary-body {
@@ -309,9 +407,11 @@ article{
 }
 
 .tributary-body p {
-    line-height: 1.5;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-prose);
     color: #5d4037;
-    margin: 0 auto 1.2rem;
+    margin: 0 auto 1.4rem;
 }
 .tributary-body figure {
     margin: 50px 0px;
@@ -874,12 +974,14 @@ article{
   overflow: visible;
 }
 
-/* Visual navigation section - left side */
+/* Visual navigation section - right side */
 .visual-nav-section {
   flex: 1;
   display: flex;
   flex-direction: column;
   min-width: 0;
+  border-radius: 8px;
+  padding: 20px;
 }
 
 .nav-section-heading {
@@ -903,6 +1005,23 @@ article{
   height: 2px;
   background: linear-gradient(90deg, #CD853F, transparent);
   animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Textual section heading — demoted to a section label, not a display title */
+.textual-nav-section .nav-section-heading {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(245, 222, 179, 0.5);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(139, 115, 85, 0.2);
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+}
+
+.textual-nav-section .nav-section-heading::before {
+  display: none;
 }
 
 @keyframes shimmer {
@@ -1181,20 +1300,20 @@ article{
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 }
 
-/* Textual navigation section - right side */
+/* Textual navigation section - left side */
 .textual-nav-section {
   flex: 0 0 350px;
   display: flex;
   flex-direction: column;
-  padding-left: 40px;
-  border-left: 2px solid rgba(139, 115, 85, 0.2);
+  padding-right: 40px;
+  border-right: 2px solid rgba(139, 115, 85, 0.2);
   position: relative;
 }
 
 .textual-nav-section::before {
   content: '';
   position: absolute;
-  left: -2px;
+  right: -2px;
   top: 0;
   width: 2px;
   height: 100px;

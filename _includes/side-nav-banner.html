@@ -33,7 +33,61 @@
         </svg>
 
         <div class="nav-content-wrapper">
-            <!-- Left side: Visual Navigation -->
+           
+
+            <!-- Left side: Textual Navigation -->
+            <div class="textual-nav-section">
+                <h2 class="nav-section-heading">Navigation</h2>
+                
+                <nav class="text-nav-list">
+                    <a class="text-nav-link{% if page.url == '/main.html' %} active{% endif %}" href="{{ '/main.html' | relative_url }}">Main Channel</a>
+                    <a class="text-nav-link{% if page.url contains 'eddies' %} active{% endif %}" href="{{ '/eddies/' | relative_url }}">Eddies</a>
+                    <a class="text-nav-link{% if page.url == '/about.html' %} active{% endif %}" href="{{ '/about.html' | relative_url }}">About</a>
+                    <a class="text-nav-link{% if page.url == '/resources.html' %} active{% endif %}" href="{{ '/resources.html' | relative_url }}">More Resources</a>
+                    <a class="text-nav-link{% if page.url == '/take-action.html' %} active{% endif %}" href="{{ '/take-action.html' | relative_url }}">Take Action</a>
+
+                    <div class="collection-dropdown">
+                        <a class="text-nav-link collection-toggle" href="{{ '/browse.html' | relative_url }}">
+                            Collection
+                            <svg class="chevron-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="collection-submenu">
+                            <a class="text-nav-link{% if page.url == '/browse.html' %} active{% endif %}" href="{{ '/browse.html' | relative_url }}">Browse</a>
+                            <a class="text-nav-link{% if page.url == '/subjects.html' %} active{% endif %}" href="{{ '/subjects.html' | relative_url }}">Subjects</a>
+                            <a class="text-nav-link{% if page.url == '/map.html' %} active{% endif %}" href="{{ '/map.html' | relative_url }}">Map</a>
+                            <a class="text-nav-link{% if page.url == '/locations.html' %} active{% endif %}" href="{{ '/locations.html' | relative_url }}">Locations</a>
+                            <a class="text-nav-link{% if page.url == '/data.html' %} active{% endif %}" href="{{ '/data.html' | relative_url }}">Data</a>
+                        </div>
+                    </div>
+
+                    <div class="text-nav-group">
+                        <div class="text-nav-group-title">Tributaries</div>
+                        {% for c in site.tributaries %}
+                        <div class="tributary-dropdown{% if page.url contains c.url %} current-tributary{% endif %}" data-tributary="{{ c.slug }}">
+                            <a class="text-nav-link tributary-link {% if page.url contains c.url %}active{% endif %}" href="{{ c.url | relative_url }}">{{ c.title }}</a>
+                            <div class="tributary-sections" style="display: none;">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </nav>
+
+                <div class="nav-logos">
+                    {% if site.organization-logo-nav %}
+                    <a href="{{ site.organization-link }}" target="_blank" rel="noopener">
+                        <img class="nav-logo-img" src="{{ site.organization-logo-nav | relative_url }}" alt="{{ site.organization-name | escape }} home">
+                    </a>
+                    {% endif %}
+                    <a href="https://www.lib.uidaho.edu" target="_blank" rel="noopener">
+                        <img class="nav-logo-img" src="https://www.lib.uidaho.edu/media/digital/liblogo_transparent.png" alt="University of Idaho Library">
+                    </a>
+                </div>
+            </div>
+
+             <!-- Right side: Visual Navigation -->
             <div class="visual-nav-section">
                 <h2 class="nav-section-heading">
                     <span class="heading-main">Tributaries</span>
@@ -296,58 +350,6 @@
                 </div>
 
                 
-            </div>
-
-            <!-- Right side: Textual Navigation -->
-            <div class="textual-nav-section">
-                <h2 class="nav-section-heading">Site Navigation</h2>
-                
-                <nav class="text-nav-list">
-                    <a class="text-nav-link{% if page.url == '/main.html' %} active{% endif %}" href="{{ '/main.html' | relative_url }}">Main Channel</a>
-                    <a class="text-nav-link{% if page.url contains 'eddies' %} active{% endif %}" href="{{ '/eddies/' | relative_url }}">Eddies</a>
-                    <a class="text-nav-link{% if page.url == '/about.html' %} active{% endif %}" href="{{ '/about.html' | relative_url }}">About</a>
-                    <a class="text-nav-link{% if page.url == '/resources.html' %} active{% endif %}" href="{{ '/resources.html' | relative_url }}">More Resources</a>
-                    <a class="text-nav-link{% if page.url == '/take-action.html' %} active{% endif %}" href="{{ '/take-action.html' | relative_url }}">Take Action</a>
-
-                    <div class="collection-dropdown">
-                        <a class="text-nav-link collection-toggle" href="{{ '/browse.html' | relative_url }}">
-                            Collection
-                            <svg class="chevron-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                        <div class="collection-submenu">
-                            <a class="text-nav-link{% if page.url == '/browse.html' %} active{% endif %}" href="{{ '/browse.html' | relative_url }}">Browse</a>
-                            <a class="text-nav-link{% if page.url == '/subjects.html' %} active{% endif %}" href="{{ '/subjects.html' | relative_url }}">Subjects</a>
-                            <a class="text-nav-link{% if page.url == '/map.html' %} active{% endif %}" href="{{ '/map.html' | relative_url }}">Map</a>
-                            <a class="text-nav-link{% if page.url == '/locations.html' %} active{% endif %}" href="{{ '/locations.html' | relative_url }}">Locations</a>
-                            <a class="text-nav-link{% if page.url == '/data.html' %} active{% endif %}" href="{{ '/data.html' | relative_url }}">Data</a>
-                        </div>
-                    </div>
-
-                    <div class="text-nav-group">
-                        <div class="text-nav-group-title">Tributaries</div>
-                        {% for c in site.tributaries %}
-                        <div class="tributary-dropdown{% if page.url contains c.url %} current-tributary{% endif %}" data-tributary="{{ c.slug }}">
-                            <a class="text-nav-link tributary-link {% if page.url contains c.url %}active{% endif %}" href="{{ c.url | relative_url }}">{{ c.title }}</a>
-                            <div class="tributary-sections" style="display: none;">
-                                <!-- Populated by JavaScript -->
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </nav>
-
-                <div class="nav-logos">
-                    {% if site.organization-logo-nav %}
-                    <a href="{{ site.organization-link }}" target="_blank" rel="noopener">
-                        <img class="nav-logo-img" src="{{ site.organization-logo-nav | relative_url }}" alt="{{ site.organization-name | escape }} home">
-                    </a>
-                    {% endif %}
-                    <a href="https://www.lib.uidaho.edu" target="_blank" rel="noopener">
-                        <img class="nav-logo-img" src="https://www.lib.uidaho.edu/media/digital/liblogo_transparent.png" alt="University of Idaho Library">
-                    </a>
-                </div>
             </div>
         </div>
     </div>
