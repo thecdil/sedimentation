@@ -295,6 +295,19 @@ article{
   color: #8B4513;
 }
 
+/* Match gallery captions to heading color and remove link underlines */
+.figure-caption,
+.figure-caption a {
+  color: #8B4513 !important;
+  text-decoration: none !important;
+}
+
+.figure-caption a:hover,
+.figure-caption a:focus {
+  color: #8B4513 !important;
+  text-decoration: none !important;
+}
+
 .tributary-body p {
     line-height: 1.5;
     color: #5d4037;

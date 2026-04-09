@@ -14,41 +14,54 @@ scrollama: true
 
 ## Lines of Flight
 
-{% include feature/image-gallery.html objectid="sediment251" caption=false%}
+{% include feature/image-gallery.html objectid="sediment255" caption=false%}
 
-BEFORE THE DAM, and below it, where Lake Powell's water releases from the dam's outlets and becomes a river again, life blooms thick between Glen Canyon's walls. Clumps of maidenhair ferns spill over cliffsides, columbines burst out from high ledges, and the river's shorelines are splotched many shades of green -- with Western Redbud trees, Prickly Pears, and invasive Ravenna Grass. Microbes paint dark and shining biofilms down rock faces, whiptail lizards scurry over sun-warmed boulders, and Great Blue Herons stalk among the sedges. Underwater, non-native trout wend through pondweed, which bends gently along the river's bed.
+BEFORE THE DAM, and below it, where Lake Powell's water releases from the dam's outlets and becomes a river again, life blooms thick between Glen Canyon's walls. Clumps of maidenhair ferns spill over cliffsides, columbines burst out from high ledges, and the river's shorelines are splotched green -- with Western Redbud trees, Prickly Pears, and invasive Ravenna Grass. Microbes paint dark and shining biofilms down rock faces, whiptail lizards scurry over sun-warmed boulders, and Great Blue Herons stalk among the sedges. Underwater, non-native trout wend through pondweed, which bends gently along the river's bed.
+
+I never saw Glen Canyon in all of its "luxuriant verdure," nor the thousands of alcoved glens that inspired its English name. [^1] Since the dam's completion in 1963, most of the Canyon and the life it sheltered -- among its mossy grottoes and oak-shaded beaches -- have been subsumed by the clear blue waters of Lake Powell.
 
 {% include feature/image-gallery.html objectid="sediment190" caption=false%}
 
-I never saw Glen Canyon in all of its "luxuriant verdure," nor the thousands of alcoved glens that inspired its English name. [^1] Since the dam's completion in 1963, most of the Canyon and the life it sheltered -- among its mossy grottoes and oak-shaded beaches -- have been subsumed by the clear blue waters of Lake Powell. 
+Lake Powell drowned 186 miles of Glen Canyon's main stem, as well as the nearly 100 side canyons which extend out from the central canyon. Only fifteen miles of Glen Canyon remain undammed -- though certainly not unaffected. The dam wrought cascading and often lethal impacts to the river's downstream ecosystems, too, some of which are playing out 1,500 miles away. 
 
-Lake Powell drowned 186 miles of Glen Canyon's main stem, as well as the nearly 100 side canyons which extend out from the central canyon like millipede legs. Only fifteen miles of Glen Canyon remain undammed -- though certainly not unaffected. The dam wrought cascading and often lethal impacts to the river's downstream ecosystems, too, some of which are playing out 1,500 miles away. 
+The Colorado River used to empty itself out across a vast alluvial plain which stretched from the Salton Sink to Gulf of California, creating 3,000 square miles of tidal marshland that homed cormorants, beavers, and coyote, and countless others. But since 2014, the river has not reached its estuary, but has dribbled out just south of the U.S. Mexico border. The once lush estuary, braided with lagoons and verdant with all kinds of life has been transformed into a dusty mud-flat. An "untold wealth of wildlife" has disappeared.[^2] 
 
-The Colorado River used to empty itself out across a vast alluvial plain which stretched from the Salton Sink to Gulf of California, creating 3,000 square miles of tidal marshland that homed cormorants, beavers, and coyote, and countless others. But since 2014, the river has not reached its estuary, but has dribbled out just south of the U.S. Mexico border. The once lush estuary, braided with lagoons and verdant with all kinds of life has been transformed into a dusty mud-flat. An "untold wealth of wildlife" has disappeared. https://therevelator.org/wildlife-colorado-river/
+{% include feature/image-gallery.html objectid="sediment355" caption="Colorado River Delta in 2014"%}
 
-Ecosystems closer to the dam, too, have been radically altered. The river's seasonal flood pulse, which delivered necessary moisture and nutrients to the Canyon's higher terraces, are now held back by the lake. Life up high now relies on precipitation and local nutrient cycling for survival. But the dam also traps the river's once-heavy sediment loads, and as a result, riverside beaches are going unreplenished and washing away.
+Ecosystems closer to the dam, too, have been radically altered. The river's seasonal flood pulse, which delivered necessary moisture and nutrients to the Canyon's higher terraces, are held back by the lake. Life up high now relies on precipitation and local nutrient cycling for survival. But the dam also traps the river's once-heavy sediment loads, and as a result, riverside beaches are going unreplenished and washing away.
 
 In short, the Glen Canyon Dam helped to decimate, squeeze, and alter the conditions of life for innumerable living beings. The loss here is unthinkable; in Glen and Grand Canyons alone, 23 animal species have been extirpated, including the pikeminnow, the zebra-tailed lizard, and the southwestern river otter, which is now deemed extinct -- gone forever. It is difficult to conceive just how many lives have been made difficult, lonely, short, painful, or impossible since the dam. 
 
-The Glen Canyon Dam was not built for the purpose of destroying life. The dam and its reservoir were sold to the American public as a *life-making* project. By harnessing the river, stockpiling its waters, and redistrubting its flows, the Bureau of Reclamation promised that the dam would transform the Colorado from a "natural menace" to a "life-giver, and power producer, a great constructive force." Its waters would provide "opportunities for many new homes and for the growing of crops that help to feed this Nation and the world. (25) The transformation of the river into a machine allowed life -- for humans, and more specifically, for settlers -- to scale up. Indeed, forty million people now inhabit the lower basin, almost all of whom depend on the electricity produced, managed, and distributed by dams and their reservoirs. 
+The Glen Canyon Dam was not built for the purpose of destroying life. The dam and its reservoir were sold to the American public as a *life-making* project. By harnessing the river, stockpiling its waters, and redistrubting its flows, the Bureau of Reclamation promised that the dam would transform the Colorado from a "natural menace" to a "life-giver, and power producer, a great constructive force." Its waters, the Bureau said, would provide "opportunities for many new homes and for the growing of crops that help to feed this Nation and the world. [^4] The transformation of the river into a machine allowed life -- for humans, and more specifically, for settlers -- to scale up. Indeed, forty million people now inhabit the lower basin, almost all of whom depend on the electricity produced, managed, and distributed by dams and their reservoirs.
 
-There is a striking imbalance at play here between the life that the dam has enabled and the life it has extinguished. On the one hand, the dam has mobilized the resources necessary for some life to progress, and thus might be understood as a technological prosthetic for human evolution to continue advancing along Darwinian trajectories of growth and expansion. On the other hand, this advancement is dependent on the accumulation, extraction, and exportation of resources that once granted local inhabitants the means of reproduction and survival.  
+{% include feature/image-gallery.html objectid="sediment299" caption="Excerpt from the Bureau of Reclamation's 1965 promotional brochure, <em> Jewel of the Colorado</em>. Caption reads: <em>Glen Canyon Dam Rising, Man in Nature in Peaceful Harmony.</em> " %}
 
-In this sense, the Glen Canyon Dam and Lake Powell are just another familiar site of capitalist exploitation. Like the factory or the mine, the material conditions for existence are separated, put into new ownership, and reallocated. 
+There is a striking imbalance at play here between the life that the dam has enabled and the life it has extinguished. On the one hand, the dam has harnessed the resources necessary for some life to progress at a rapid pace. In this light, the dam might be understood as a kind of technological prosthetic that has allowed human evolution to continue advancing along Darwinian trajectories of growth and expansion. On the other hand, this advancement is dependent on the accumulation, extraction, and mobilization of resources that once granted local inhabitants the means to reproduce, survive, and thrive.  
+
+In this sense, the Glen Canyon Dam and Lake Powell are just another familiar site of capitalist exploitation. Like the factory or the mine, the material conditions that enable existence are separated from their sites of origin, transferred into new ownership, and reallocated towards sites of capital wealth, which are often located elsewhere. In the process, Glen Canyon's ability to materially support local life became depleted and subsumed; Glen Canyon became another capitalist ruin [^5]. 
+
+{% include feature/image-gallery.html objectid="sediment308" caption=false%}
+
+When I look at images of Lake Powell at full pool, the contradictory promises of technocapitalist progress appear written in the landscape. The expanse of deep blue water signifies a moment of peak resource-richness the basin; water and electric power has been successfully stockpiled, assuring settler life and industrial growth for years to come. But the water -- and the life it promises elsewhere -- contrasts vividly against a backdrop of bare rock, which appears visibly stripped of life. There are none of plant thickets that typically crowd along water edges, no hum or sign of animal existence. Glen Canyon, at full pool, is transformed from living ecosystem into a sterilized, life-giving machine. 
+
+Philosphers Gilles Deleuze and Félix Guattari might label Lake Powell as an *apparatus of capture* or a *megamachine*-- that is, a site in which the free flows of water, land, and life, have been captured, divided, and converted into productive power for the State. But Deleuze and Guattari also remind us that even the most rigid structures of capture are riddled *lines of flight*, or opportunities for escape. Mechanisms of containment and control, they suggest, are always susceptible to leakage and resistance. 
+
+When I visited Lake Powell in the last days of 2025, I met a landscape that was neither rich with stockpiled water, nor stripped of life. The machine had exhausted its resources -- Lake Powell had lost most of its water, and the dam teetered on the edge of obsolescence -- and life was once again blooming on its verges. Glen Canyon is teeming with existences that have escaped and survived capture, but also with the ghosts of existences lost and mutilated and transformed.
+
+I set out in this project to read the tracks and traces embedded in Glen Canyon's landscapes, a practice that often sweeps me into the realm of ghosts and loss. Oftentimes, I am looking for evidence of what was once there, but is no longer; the hoof prints of animals extirpated and displaced, signs of spring floods that haven't occurred in years, the scars of failed mining operations. This approach, I thought, would help me resurface stories subsumed by the dam, perhaps memorialize what has been lost. 
+
+But as I have found, Glen Canyon is not a site of uniform and linear degradation, and I am no longer interested in building an archive of loss and destruction -- not only because this would be a misrepresentation, but because it would to "cement in place" (4) the claims of inescapable control and capture upon which technocapitalist systems relies. An archive of the dam's victims would also be an archive of the dam's success. Instead, as J.K. Gibson-Graham urge, I am interested in writing about "the other worlds" that live alongside capitalist ruins and cataloguing the "diverse economies that are already here." (13) 
+
+I am interested in following the lines of flight, in memorializing and holding open paths of escape from the Glen Canyon Dam and Lake Powell's capture. I am paying attention to the life that is, to borrow a phrase from my friend Jack, "non-reactive to the light" of capitalism, accumulation, and progress -- or perhaps reactive to different kinds of light. In doing so, I hope to build an archive of possibility for a different, less destructive future.  
+
+{% include feature/image-gallery.html objectid="sediment221" caption=false%}
 
 
-Indeed, the lake and its edges are noticeably stripped of life. At full pool, the water met bare rock without the usual intervention of shoreline plants, or the hum and bustle of animal life. 
+## Lifeboats
 
+HUMANS ARE NOT the first species who have figured out how to trap water. 
 
-
-
-
-Especially when the lake was at full pool, the water, which is antiseptically blue, met bare rock. Without the usual clusters of shoreline plants, or the hum and bustle animal life, the landscape appears stripped, manufactured. This elemental sparseness, this sharp, unbroken contrast between water and land is striking -- it reminds me of a cheap stage set, made of hollow plaster and devoid of textured life. 
-
-
-
-
-This re-allocation of resources and life in Glen Canyon and along the Colorado River corridor, then, can be
+multispecies biofilm/mats/ seal potholes and 
 
 
 
@@ -61,91 +74,10 @@ This re-allocation of resources and life in Glen Canyon and along the Colorado R
 -colonies of toxicity, metabolic rift is also about holding things in place, and metabolic patterns become reversed
 
 
-
-
-
-
-
-
-As I stood before Lake Powell's shoreline last winter and looked out over the glossy, stagnant, water -- and as I look now at images of the delta on my computer, at the frayed river and brown crackled ground -- I try to imagine the life lost and the life that could have been, but only this conjures up the ghosts. Ghosts are good reminders of the consequences and injustices of history, [Tsing], [FINISH]
-
-https://www.usbr.gov/uc/progact/amp/twg/2011-06-28-twg-meeting/Attach_09a.pdf
-
-On the last day of my winter trip to Lake Powell, I went to the dam's downstream overlook, which is perched on a rock jutment behind the town Walmart. I was hoping to get a final picture of the dam from one more angle before I went home. But as I peered over the railing, down into the canyon, I was surprised to see such thickets of life, which exploded out and cloaked the rock walls from the very foot of the dam. 
-
-For all the dam's destruction, dedgradation, there was still a lot alive,  
-by the contrast in the landscape on either side of the dam.]
-
-{% include feature/image-gallery.html objectid="sediment308" caption=false%}
-
-
-
-"Why does the Lower Basin need more water now?" Bureau Commissioner  Because the
-population explosion in the Lower Basin States during the past 15 years
-has been phenomenal. The population has doubled and doubled
-again-and this growth rate is expected to continue. 
-
-
-In other words, the Glen Canyon Dam is a site where life has been exhausted to make life possible elsewhere. This is done through both catastrophic accumulation and mobilization. It turns the land into a machine, 
-
-In their 1946 proposal, the Bureau of Reclamation claimed that  
-
- *Today this mighty river is recognized as a National resource. It is a life-giver, and power producer, a great constructive force. Although only partly harnessed by Boulder Dam and other ingenious structures, the Colorado River is doing a gigantic job. Its water is providing opportunities for many new homes and for the growing of crops that help to feed this Nation and the world. Its power is lighting homes and cities and turning the wheels of industry. Its destructive floods are being reduced. Its muddy waters are being cleared for irrigation and other uses.*
-
-
-The scant
-
-The dam and reservoir a lifemaking project; it accumulates the stockpiles of life, makes more life possible, but elsewhere. Its technology promises to sort out the raw material of life in the west--water--and transform the matter of stuff into more life, to scale life up. It is a capitalist machine, a factory, the promise of technocapitlist progress in which man harnesses nature efficiently and thus accelerate Darwinian supremacy. Mobility
-
-But as with any machine, there are leaks. Lines of flight out of this system. 
-
 Rather than focus on the collateral, though there has been lots, I want to think about what survives, what leaks out, and what alternate forms of subsistence they practice in the capitalist ruins. This does not mean I will turn away from ugliness, from extinction, from tragedy. Rather, it means that instead of focusing on what has been lost, I want to think about what comes next, for both biota and us.
 
 What has gotten caught up, what has survived, what blooms, and what leaks out of the machine. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- maidenhair fern 
-
-I never saw Glen Canyon in all its verdance. 
-
-
-
-a mosaics of green life adorn the land. 
-
--Dam moves life elsewhere
--Accumulative
--what grows and esacpes
-
-
-## Lifeboats
-
-HUMANS ARE NOT the first species who have figured out how to trap water. 
-
-multispecies biofilm/mats/ seal potholes and 
 
 
 
@@ -273,13 +205,13 @@ At first, invasive species like tumbleweed, cheatgrass, and camelthorn take root
 
 [^1]: (Powell 83)
 
-[^2]:
+[^2]: https://therevelator.org/wildlife-colorado-river/
 
 [^3]:
 
-[^4]:
+[^4]: Jewel, 25
 
-[^5]:
+[^5]: Tsing
 
 [^6]:
 

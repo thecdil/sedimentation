@@ -15,7 +15,8 @@ Glen Canyon (called Tséyi, or deep in the rock in Navajo) sits just upstream fr
 <br>
 
 <div style="max-width: 650px; margin: 0 auto;">
-{% include feature/mini-map.html map-zoom="7" basemap="Esri_WorldImagery" latitude="37.08051318" longitude="-111.3133762" %}
+{% include feature/mini-map.html map-zoom="8" basemap="Esri_WorldStreetMap" latitude="37.30000000" longitude="-111.0133762" %}
+
 </div>
 
 <br>
@@ -59,5 +60,10 @@ When the Glen Canyon Dam drowned Glen Canyon, it also subsumed the lives and his
 
 **Devin Becker** is the Associate Dean for Research and Instruction at the University of Idaho Library, where he also co-directs the Center for Digital Inquiry and Learning (CDIL) and oversees the development of the digital exhibit frameworks CollectionBuilder, Oral History as Data, and Digital Dramaturgy. 
 
+<br>
+<br>
+
 **Thanks also to**: Dr. Jennifer Ladino, Dr. Erin James, Dr. Aly Kreikemeier, and Chris Lamb, all of whom have nurtured, guided, and supported this project from start to finish. 
 
+<br>
+<br>
