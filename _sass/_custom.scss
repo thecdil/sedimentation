@@ -61,6 +61,18 @@ $duration-slow: 400ms;     // Page transitions, overlays
   --leading-display: 1.15;
   --leading-prose:   1.72;
   --leading-ui:      1.45;
+
+  // Spacing scale (4pt base) — use these instead of arbitrary px/rem values
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+  --space-10:  128px;
 }
 
 // Body — Spectral is set via theme.yml > base-font-family; reinforce here for clarity
@@ -343,7 +355,7 @@ article{
 }
 
 .tributary-body {
-  padding: 0 40px 40px;
+  padding: var(--space-7) 40px var(--space-8);
   /* Add background gradient to prevent river interference on mobile */
   background: linear-gradient(135deg, rgba(248, 246, 240, 0.95) 0%, rgba(237, 232, 216, 0.95) 100%);
   position: relative;
@@ -411,7 +423,7 @@ article{
     font-size: var(--text-base);
     line-height: var(--leading-prose);
     color: #5d4037;
-    margin: 0 auto 1.4rem;
+    margin-bottom: 1.4rem;
 }
 .tributary-body figure {
     margin: 50px 0px;

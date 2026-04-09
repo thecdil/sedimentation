@@ -147,28 +147,71 @@
 
 /* About */
 .about-nav {
-    line-height: 1.5em; 
+    line-height: 1.5em;
     z-index: 10;
 }
-/* creating a narrow text column */ 
+
+.about-contents {
+    padding: var(--space-8) 0 var(--space-9);
+}
+
+/* Narrow reading column — uses ch units to track the actual font */
 .about-contents > {
-    h2 {
-        font-weight: bold;
-        padding-top: 100px;
-        border-top: 1px dotted black;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-        max-width: 650px;
-        margin: 1.5rem auto 1rem;
-    }
-    
-    p, .about-narrowed-content, .narrow-content, hr, .footnotes, ol, ul, blockquote {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 650px;
+    h1 {
+        max-width: 65ch;
+        margin: 0 auto var(--space-5);
     }
 
+    h2 {
+        max-width: 65ch;
+        margin: 0 auto var(--space-5);
+        padding-top: var(--space-8);
+        border-top: 1px solid rgba(139, 69, 19, 0.15);
+    }
+
+    h3, h4, h5, h6 {
+        max-width: 65ch;
+        margin: var(--space-6) auto var(--space-4);
+    }
+
+    p, .about-narrowed-content, .narrow-content, hr, .footnotes, ol, blockquote {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 65ch;
+    }
+
+    // Question list — each item separated, more presence than a plain bullet list
+    ul {
+        max-width: 65ch;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    ul li {
+        padding: var(--space-4) 0;
+        border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+        line-height: var(--leading-prose);
+    }
+
+    ul li:first-child {
+        border-top: 1px solid rgba(139, 69, 19, 0.1);
+    }
+}
+
+// Map embed container
+.about-map {
+    max-width: 65ch;
+    margin: var(--space-7) auto;
+}
+
+// Creator bio blocks — each bio gets its own contained space
+.bio-block {
+    max-width: 65ch;
+    margin: var(--space-7) auto 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(139, 69, 19, 0.12);
 }
 
 /* narrow text block for page-narrow layout */
