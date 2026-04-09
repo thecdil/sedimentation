@@ -1659,6 +1659,11 @@ article{
   pointer-events: none;
 }
 
+.nav-open .section-nav-menu {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .section-nav-menu::-webkit-scrollbar {
   width: 4px;
 }

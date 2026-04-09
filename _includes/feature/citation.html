@@ -1,6 +1,6 @@
 {%- assign citation = site.data.citations | where: "objectid", include.objectid | first -%}
 {%- if citation -%}
-<div class="row citation-item align-items-start g-5 justify-content-center" style="margin-bottom: 8rem;">
+<div class="row citation-item align-items-start g-4">
   <!-- Image Column -->
   <div class="col-md-3">
     {%- if citation.image_small -%}
@@ -11,14 +11,14 @@
   </div>
 
   <!-- Content Column -->
-  <div class="col-md-4 ps-4">
+  <div class="col-md-9">
     <!-- Title as Link -->
-    <h4 class="mb-2" style="color: #8B4513;">
-      <a href="{{ citation.link }}" target="_blank" style="color: #8B4513;">{{ citation.title | markdownify | replace: '<p>', '' | replace: '</p>', '' }}</a>
+    <h4 class="mb-2 citation-title">
+      <a href="{{ citation.link }}" target="_blank" class="citation-title-link">{{ citation.title | markdownify | replace: '<p>', '' | replace: '</p>', '' }}</a>
     </h4>
 
     <!-- Author -->
-    <p class="mb-2" style="color: #8B7355;">
+    <p class="mb-2 citation-author">
       <strong>
         {%- assign authors = citation.author | split: '; ' -%}
         {%- if authors.size > 2 -%}
@@ -43,7 +43,7 @@
     <p class="mb-3">{{ citation.description | markdownify | replace: '<p>', '' | replace: '</p>', '' }}</p>
 
     <!-- Read It Here Button -->
-    <a href="{{ citation.link }}" target="_blank" class="btn btn-primary btn-sm">
+    <a href="{{ citation.link }}" target="_blank" class="btn btn-outline-primary btn-sm">
       Read it here
     </a>
   </div>

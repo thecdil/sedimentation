@@ -8,7 +8,9 @@ credits: false
 # Look in _includes/feature for options to easily add features to the page
 ---
 
-# About Glen Canyon
+# Abouts
+
+## About Glen Canyon
 
 Glen Canyon (called Tséyi, or deep in the rock in Navajo) sits just upstream from the Grand Canyon and straddles modern-day Arizona and Utah. Like the Grand Canyon, Glen Canyon formed around 6 million years ago as the silt-rich Colorado River downcut through 700 feet of the Colorado Plateau. Seven federally recognized Indigenous tribes have ancestral ties to Glen Canyon, including the Diné (Navajo), Hopi, Ute Mountain Ute, San Juan Southern Paiute, Paiute Indian Tribe of Utah, Kaibab Paiute, and Zuni. Glen Canyon is also home to 79 native plant species, 189 native bird species, 34 native mammal species, and 8 native fish species.
 
@@ -21,7 +23,7 @@ Since 1963, Glen Canyon has been drowned beneath Lake Powell, a man-made reservo
 When the Glen Canyon Dam drowned Glen Canyon, it also subsumed the lives and histories inscribed in the canyon's landscape. But these histories are not lost. As sediment and its unceasing erosions reminds us, the past is always resurfacing to shape the present.
 
 
-# About *Sedimentation*
+## About *Sedimentation*
 
 {% include feature/image-gallery.html objectid="sediment22" width="50" caption=false%}
 
@@ -36,11 +38,11 @@ When the Glen Canyon Dam drowned Glen Canyon, it also subsumed the lives and his
 *Sedimentation* is an attempt to respond to these queries. It draws on the affordances of digital storytelling to integrate visual material, hyperlinkages, user interactivity and writing.
 
 
-# Creator Bios
+## Creator Bios
 
 *Sedimentation* was created by Hannah Green and Devin Becker with support from the University of Idaho's [Center for Digital Inquiry and Learning](https://cdil.lib.uidaho.edu/).
 
-<div class="bio-block">
+<div class="bio-block" markdown="1">
 
 {% include feature/image.html objectid="/objects/Me.png" caption=false width="25"%}
 
@@ -50,7 +52,7 @@ When the Glen Canyon Dam drowned Glen Canyon, it also subsumed the lives and his
 
 </div>
 
-<div class="bio-block">
+<div class="bio-block" markdown="1">
 
 {% include feature/image.html objectid="/objects/devin.png" caption=false width="25" %}
 

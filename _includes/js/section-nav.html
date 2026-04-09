@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Guard: prevent observer from overriding active state during click-scroll
   let isClickScrolling = false;
 
-  // Extract all H2 headings from the tributary body
-  const h2Elements = document.querySelectorAll('.tributary-body h2');
+  // Extract all H2 headings from the tributary body or about-contents
+  const h2Elements = document.querySelectorAll('.tributary-body h2, .about-contents h2');
 
   if (h2Elements.length === 0) return; // No sections to navigate
 
   // Get the page title from the H1 or page title
-  const pageTitle = document.querySelector('.tributary-body h1')?.textContent.trim() ||
+  const pageTitle = document.querySelector('.tributary-body h1, .about-contents h1')?.textContent.trim() ||
                     document.querySelector('h1')?.textContent.trim() ||
                     document.title.split('|')[0].trim();
 
@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
     li.appendChild(a);
     navList.appendChild(li);
   });
+
+  // Mark nav type so about/resources pages can apply tighter breakpoint
+  if (document.querySelector('.about-contents')) {
+    navMenu.classList.add('about-page-nav');
+  }
 
   // Insert the menu into the page
   document.body.appendChild(navMenu);
