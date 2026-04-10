@@ -41,13 +41,13 @@ $duration-slow: 400ms;     // Page transitions, overlays
 
 /* ========================================
    Typography System
-   Zilla Slab (display) · Spectral (body) · Atkinson Hyperlegible (UI/labels)
+   Spectral (body + display) · Inconsolata (UI/labels)
    ======================================== */
 
 :root {
-  --font-display: 'Zilla Slab', Georgia, serif;
+  --font-display: 'Spectral', Georgia, serif;
   --font-body: 'Spectral', Georgia, serif;
-  --font-ui: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-ui: 'Inconsolata', monospace;
 
   // Modular scale (ratio ~1.25) — fluid clamp for display headings, fixed rem for prose/UI
   --text-xs:   0.75rem;
@@ -83,12 +83,12 @@ body {
   font-optical-sizing: auto;
 }
 
-// Display headings — Zilla Slab: editorial slab serif, structural contrast with Spectral's modulated strokes
+// Display headings — single-family Spectral: hierarchy through weight inversion (lighter = more open/literary at large sizes)
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   line-height: var(--leading-display);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 
 h1 { font-size: var(--text-3xl); }
@@ -123,8 +123,8 @@ blockquote, .blockquote {
   line-height: 1.55;
 }
 
-// UI elements — Atkinson Hyperlegible for navigation, labels, metadata, forms
-// Designed specifically for accessibility and legibility at small sizes
+// UI elements — Inconsolata for navigation, labels, metadata, forms
+// Monospace carries the archival/documentary register; consistent with canvas headers and site identity
 .navbar-brand, .nav-link, .navbar-nav,
 .breadcrumb-item, .badge,
 label, caption, figcaption, .figure-caption,
@@ -357,7 +357,6 @@ article{
 .tributary-body {
   padding: var(--space-7) 40px var(--space-8);
   /* Add background gradient to prevent river interference on mobile */
-  background: linear-gradient(135deg, rgba(248, 246, 240, 0.95) 0%, rgba(237, 232, 216, 0.95) 100%);
   position: relative;
   z-index: 15; /* Above river (z-index: 1) */
 }
@@ -621,7 +620,7 @@ article{
   color: #5D4037;
   font-size: 15px;
   font-weight: 500;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-ui);
   text-align: center;
   transition: color $duration-fast ease;
   letter-spacing: 0.2px;
@@ -1110,14 +1109,8 @@ article{
   font-weight: 700;
 }
 
-/* Highlight when on current tributary page */
-.river-column.current-tributary {
-  background: rgba(205, 133, 63, 0.25);
-  border-top: 3px solid #CD853F;
-  box-shadow: 0 2px 8px rgba(205, 133, 63, 0.2);
-}
-
-/* Locked state - labels persist */
+/* Highlight when on current tributary page, or when locked by user */
+.river-column.current-tributary,
 .river-column.locked {
   background: rgba(205, 133, 63, 0.25);
   border-top: 3px solid #CD853F;
@@ -1262,7 +1255,7 @@ article{
     0 1px 4px rgba(0, 0, 0, 0.9),
     0 0 10px rgba(139, 115, 85, 0.5);
   pointer-events: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-ui);
   opacity: 0;
   animation: labelFadeIn 0.3s ease forwards;
 }
@@ -1309,7 +1302,7 @@ article{
 }
 
 .legend-text {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-ui);
 }
 
 /* Textual navigation section - left side */
@@ -1339,7 +1332,7 @@ article{
 }
 
 .text-nav-link {
-  color: #D2B48C;
+  color: #DEB887;
   text-decoration: none;
   padding: 12px 16px;
   border-radius: 6px;
@@ -1682,7 +1675,7 @@ article{
 }
 
 .section-nav-title {
-  font-family: 'Inconsolata', monospace;
+  font-family: var(--font-display);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
