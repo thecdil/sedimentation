@@ -22,8 +22,6 @@ If you'd like to learn more about Glen Canyon's history, human-nature relations,
 
 ## On Human-Nature Relations 
 
-<div style="margin-bottom: 6rem;"></div>
-
 {% include feature/citation.html objectid="tsing" %}
 
 {% include feature/citation.html objectid="demuth" %}
@@ -31,9 +29,6 @@ If you'd like to learn more about Glen Canyon's history, human-nature relations,
 {% include feature/citation.html objectid="hazard" %}
 
 ## On Glen Canyon
-
-<div style="margin-bottom: 6rem;"></div>
-
 
 {% include feature/citation.html objectid="bsumek" %}
 
@@ -57,15 +52,11 @@ If you'd like to learn more about Glen Canyon's history, human-nature relations,
 
 ## On Sediment
 
-<div style="margin-bottom: 6rem;"></div>
-
 {% include feature/citation.html objectid="dawson" %}
 
 {% include feature/citation.html objectid="parrinello" %}
 
 ## On Spatial and Lively Narratives
-
-<div style="margin-bottom: 6rem;"></div>
 
 {% include feature/citation.html objectid="kredell" %}
 
@@ -73,20 +64,12 @@ If you'd like to learn more about Glen Canyon's history, human-nature relations,
 
 {% include feature/citation.html objectid="massey" %}
 
-<br>
-
 {% include feature/complete-bibliography.html %}
 
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<h2 style="text-align: left; margin-left: 0;">More CDIL Projects</h2>
+## More CDIL Projects
 
 <div class="more-cdil-wrap">
-<div class="row row-cols-1 row-cols-md-4 g-1 mt-1 more-cdil-grid">
+<div class="row row-cols-2 g-3 mt-1 more-cdil-grid">
 	<div class="col">{% include feature/more-cdil-card.html objectid="storying" %}</div>
 	<div class="col">{% include feature/more-cdil-card.html objectid="keepingwatch" %}</div>
 	<div class="col">{% include feature/more-cdil-card.html objectid="firelines" %}</div>

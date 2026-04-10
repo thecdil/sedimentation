@@ -5,14 +5,13 @@
     <div class="nav-card tributary-card">
       <h3>EXPLORE A<br>TRIBUTARY</h3>
       <p>flow through curated histories</p>
-      <select class="tributary-select" onchange="if(this.value) window.location.href=this.value">
-        <option value="">choose...</option>
-        <option value="{{ '/tributaries/atmosphere/' | relative_url }}">Atmosphere</option>
-        <option value="{{ '/tributaries/water/' | relative_url }}">Water</option>
-        <option value="{{ '/tributaries/biota/' | relative_url }}">Biota</option>
-        <option value="{{ '/tributaries/humans/' | relative_url }}">Humans</option>
-        <option value="{{ '/tributaries/land/' | relative_url }}">Land</option>
-      </select>
+      <ul class="tributary-links">
+        <li><a href="{{ '/tributaries/atmosphere/' | relative_url }}" class="tributary-link">Atmosphere</a></li>
+        <li><a href="{{ '/tributaries/water/' | relative_url }}" class="tributary-link">Water</a></li>
+        <li><a href="{{ '/tributaries/biota/' | relative_url }}" class="tributary-link">Biota</a></li>
+        <li><a href="{{ '/tributaries/humans/' | relative_url }}" class="tributary-link">Humans</a></li>
+        <li><a href="{{ '/tributaries/land/' | relative_url }}" class="tributary-link">Land</a></li>
+      </ul>
     </div>
 
     <!-- Card 2: Map (wide, tall) -->
@@ -42,10 +41,10 @@
     <div class="nav-card collection-card">
       <h3>COLLECTION</h3>
       <div class="collection-thumbnails">
-        <img src="https://cdil.lib.uidaho.edu/sedimentation/objects/{{ site.time | date: '%S' | modulo: 100 | append: '.jpg' }}" alt="Collection item" onerror="this.src='{{ 'https://cdil.lib.uidaho.edu/sedimentation/objects/sediment186.jpg' | relative_url }}'">
-        <img src="https://cdil.lib.uidaho.edu/sedimentation/objects/{{ site.time | date: '%S' | modulo: 100 | append: '.jpg' }}" alt="Collection item" onerror="this.src='{{ 'https://cdil.lib.uidaho.edu/sedimentation/objects/sediment174.jpg' | relative_url }}'">
-        <img src="https://cdil.lib.uidaho.edu/sedimentation/objects/{{ site.time | date: '%S' | modulo: 100 | append: '.jpg' }}" alt="Collection item" onerror="this.src='{{ 'https://cdil.lib.uidaho.edu/sedimentation/objects/sediment55.jpg' | relative_url }}'">
-        <img src="https://cdil.lib.uidaho.edu/sedimentation/objects/{{ site.time | date: '%S' | modulo: 100 | append: '.jpg' }}" alt="Collection item" onerror="this.src='{{ 'https://cdil.lib.uidaho.edu/sedimentation/objects/sediment84.jpg' | relative_url }}'">
+        <a href="{{ '/browse.html' | relative_url }}" class="collection-thumb-link"><img src="" alt="" class="collection-thumb-img"></a>
+        <a href="{{ '/browse.html' | relative_url }}" class="collection-thumb-link"><img src="" alt="" class="collection-thumb-img"></a>
+        <a href="{{ '/browse.html' | relative_url }}" class="collection-thumb-link"><img src="" alt="" class="collection-thumb-img"></a>
+        <a href="{{ '/browse.html' | relative_url }}" class="collection-thumb-link"><img src="" alt="" class="collection-thumb-img"></a>
       </div>
       <a href="{{ '/browse.html' | relative_url }}" class="collection-link">browse all</a>
     </div>
@@ -71,29 +70,24 @@
   background: transparent;
   border: none;
   padding: 20px;
-  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   position: relative;
-}
-
-.nav-card:hover {
-  transform: scale(1.02);
 }
 
 /* Tributary Card - tall, spans 2 columns, 2 rows */
 .tributary-card {
   grid-column: span 4;
   grid-row: span 2;
-  border-left: 5px solid #8B4513;
-  padding: 25px 20px 25px 25px;
-  background: linear-gradient(90deg, rgba(139, 69, 19, 0.03) 0%, transparent 100%);
+  border: 1px solid rgba(139, 69, 19, 0.25);
+  padding: 25px;
+  background: rgba(139, 69, 19, 0.02);
 }
 
 .tributary-card h3 {
-  font-family: 'Inconsolata', monospace;
+  font-family: var(--font-display, 'Zilla Slab', Georgia, serif);
   font-size: 32px;
-  font-weight: 800;
+  font-weight: 600;
   color: #8B4513;
   line-height: 1.1;
   margin: 0 0 8px 0;
@@ -107,41 +101,52 @@
   margin: 0 0 15px 0;
 }
 
-.tributary-select {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #D2691E;
-  background: white;
-  color: #8B4513;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease;
+.tributary-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.tributary-select:hover,
-.tributary-select:focus {
-  border-color: #8B4513;
-  outline: none;
-  background: #FFF8F0;
+.tributary-links li {
+  border-bottom: 1px solid rgba(139, 69, 19, 0.12);
+}
+
+.tributary-links li:first-child {
+  border-top: 1px solid rgba(139, 69, 19, 0.12);
+}
+
+.tributary-link {
+  display: block;
+  padding: 9px 8px;
+  color: #5c3410;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tributary-link:hover {
+  background: rgba(139, 69, 19, 0.07);
+  color: #8B4513;
+  text-decoration: none;
 }
 
 /* Map Card - wide and tall, spans 4 columns, 4 rows */
 .map-card {
   grid-column: span 3;
   grid-row: span 3;
-  border-bottom: 6px solid #CD853F;
+  border: 1px solid rgba(205, 133, 63, 0.35);
   padding: 30px;
-  background: linear-gradient(180deg, transparent 0%, rgba(205, 133, 63, 0.04) 100%);
+  background: rgba(205, 133, 63, 0.03);
 }
 
 .map-card h3 {
-  font-family: 'Inconsolata', monospace;
+  font-family: var(--font-display, 'Zilla Slab', Georgia, serif);
   font-size: 56px;
-  font-weight: 900;
+  font-weight: 600;
   color: #D2691E;
   margin: 0 0 15px 0;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
 #nav-mini-map {
@@ -172,13 +177,12 @@
 .eddies-card {
   grid-column: span 3;
   grid-row: span 2;
-  border-top: 4px solid #BC8F8F;
   padding: 25px 20px 20px 20px;
-  background: linear-gradient(180deg, rgba(188, 143, 143, 0.04) 0%, transparent 100%);
+  background: rgba(188, 143, 143, 0.07);
 }
 
 .eddies-card h3 {
-  font-family: Georgia, serif;
+  font-family: var(--font-display, 'Zilla Slab', Georgia, serif);
   font-size: 44px;
   font-weight: 400;
   color: #654321;
@@ -212,10 +216,9 @@
 .scroll-card {
   grid-column: span 2;
   grid-row: span 4;
-  border-right: 5px solid #DEB887;
-  padding: 30px 25px 30px 20px;
+  padding: 30px 20px;
   text-align: center;
-  background: linear-gradient(270deg, rgba(222, 184, 135, 0.04) 0%, transparent 100%);
+  background: rgba(222, 184, 135, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -223,13 +226,13 @@
 }
 
 .scroll-card h3 {
-  font-family: 'Inconsolata', monospace;
-  font-size: 32px;
-  font-weight: 900;
+  font-family: var(--font-display, 'Zilla Slab', Georgia, serif);
+  font-size: 28px;
+  font-weight: 600;
   color: #A0522D;
   line-height: 1.2;
   margin: 0 0 40px 0;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
 .scroll-button {
@@ -237,17 +240,12 @@
   border: none;
   padding: 30px 15px;
   cursor: pointer;
-  transition: all 0.3s ease;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-}
-
-.scroll-button:hover {
-  transform: translateY(5px);
 }
 
 .scroll-text {
@@ -283,18 +281,18 @@
 .collection-card {
   grid-column: span 3;
   grid-row: span 3;
-  border-left: 5px solid #F4A460;
-  padding: 25px 20px 25px 25px;
-  background: linear-gradient(90deg, rgba(244, 164, 96, 0.04) 0%, transparent 100%);
+  border: 1px solid rgba(244, 164, 96, 0.4);
+  padding: 25px;
+  background: rgba(244, 164, 96, 0.04);
 }
 
 .collection-card h3 {
-  font-family: 'Inconsolata', monospace;
+  font-family: var(--font-display, 'Zilla Slab', Georgia, serif);
   font-size: 46px;
-  font-weight: 700;
-  color: #CD853F;
+  font-weight: 600;
+  color: #8B4513;
   margin: 0 0 20px 0;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
 }
 
 .collection-thumbnails {
@@ -304,15 +302,25 @@
   margin: 20px 0;
 }
 
-.collection-thumbnails img {
+.collection-thumb-link {
+  display: block;
+  overflow: hidden;
+}
+
+.collection-thumb-img {
   width: 100%;
   height: 100px;
   object-fit: cover;
   border: 3px solid #8B4513;
   transition: transform 0.2s ease;
+  display: block;
 }
 
-.collection-thumbnails img:hover {
+.collection-thumb-img[src=""] {
+  visibility: hidden;
+}
+
+.collection-thumb-link:hover .collection-thumb-img {
   transform: scale(1.05);
 }
 
@@ -372,10 +380,7 @@
   }
 
   .scroll-card {
-    border-right: none;
-    border-top: 4px solid #DEB887;
-    padding-right: 0;
-    padding-top: 15px;
+    padding: 20px;
   }
 }
 </style>
@@ -417,5 +422,40 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add dam marker
   L.marker(damCenter).addTo(miniMap)
     .bindPopup('Glen Canyon Dam');
+});
+</script>
+
+<script>
+// Randomize collection thumbnails from metadata.json and link each to its item page
+document.addEventListener('DOMContentLoaded', function() {
+  var thumbLinks = document.querySelectorAll('.collection-thumb-link');
+  if (!thumbLinks.length) return;
+
+  fetch('{{ "/assets/data/metadata.json" | relative_url }}')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      // Filter to items that have a thumbnail image
+      var items = data.objects.filter(function(o) { return o.image_thumb; });
+      if (items.length < 1) return;
+
+      // Fisher-Yates shuffle, then take first 4
+      for (var i = items.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+      }
+      var selected = items.slice(0, thumbLinks.length);
+
+      thumbLinks.forEach(function(link, i) {
+        var item = selected[i];
+        if (!item) return;
+        link.href = item.reference_url;
+        var img = link.querySelector('img');
+        if (img) {
+          img.src = item.image_thumb;
+          img.alt = item.title || 'Collection item';
+        }
+      });
+    })
+    .catch(function() {}); // silent fail — browse all link still works
 });
 </script>

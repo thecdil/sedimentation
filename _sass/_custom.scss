@@ -39,6 +39,118 @@ $duration-slow: 400ms;     // Page transitions, overlays
   }
 }
 
+/* ========================================
+   Typography System
+   Spectral (body + display) · Inconsolata (UI/labels)
+   ======================================== */
+
+:root {
+  --font-display: 'Spectral', Georgia, serif;
+  --font-body: 'Spectral', Georgia, serif;
+  --font-ui: 'Inconsolata', monospace;
+
+  // Modular scale (ratio ~1.25) — fluid clamp for display headings, fixed rem for prose/UI
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1.125rem;
+  --text-lg:   1.375rem;
+  --text-xl:   clamp(1.375rem, 2vw + 0.25rem, 1.75rem);
+  --text-2xl:  clamp(1.75rem, 2.8vw + 0.25rem, 2.25rem);
+  --text-3xl:  clamp(2rem, 4vw + 0.25rem, 3rem);
+
+  --leading-display: 1.15;
+  --leading-prose:   1.72;
+  --leading-ui:      1.45;
+
+  // Spacing scale (4pt base) — use these instead of arbitrary px/rem values
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+  --space-10:  128px;
+}
+
+// Body — Spectral is set via theme.yml > base-font-family; reinforce here for clarity
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-prose);
+  font-optical-sizing: auto;
+}
+
+// Display headings — single-family Spectral: hierarchy through weight inversion (lighter = more open/literary at large sizes)
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: var(--leading-display);
+  letter-spacing: 0.02em;
+}
+
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); }
+
+// Sub-headings — Spectral, weighted, no display treatment
+h4, h5, h6 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: var(--leading-ui);
+}
+
+h4 { font-size: var(--text-lg); }
+h5 { font-size: var(--text-base); }
+h6 { font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+
+// Lead paragraphs — lighter weight Spectral
+.lead {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+// Blockquotes — italic Spectral
+blockquote, .blockquote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+// UI elements — Inconsolata for navigation, labels, metadata, forms
+// Monospace carries the archival/documentary register; consistent with canvas headers and site identity
+.navbar-brand, .nav-link, .navbar-nav,
+.breadcrumb-item, .badge,
+label, caption, figcaption, .figure-caption,
+.btn, .footnotes,
+.date-input-group label,
+#sideNavAccordion, .nav-accordion-button,
+.table {
+  font-family: var(--font-ui);
+}
+
+figcaption, .figure-caption, caption {
+  font-size: var(--text-sm);
+  line-height: var(--leading-ui);
+  letter-spacing: 0.02em;
+}
+
+.footnotes {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.table {
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
 /* Remove heading borders */
 h1, h2, h3, h4, h5, h6 {
   border-bottom: none !important;
@@ -48,11 +160,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Keep nav button visible when nav is open - removed hiding rule that caused button to disappear */
 
 #maincontent{
-  background: linear-gradient(135deg, #f8f6f0 0%, #ede8d8 100%);
+  background: #f8f6f0;
 }
 
 article{
-  max-width: 710px;
+  max-width: 67ch;
 }
 
 .tributary-container {
@@ -240,14 +352,11 @@ article{
 
  .lead {
   color: #5D4037;
-  font-size: 1.2rem;
-  line-height: 1.6;
 }
 
 .tributary-body {
-  padding: 0 40px 40px;
+  padding: var(--space-7) 40px var(--space-8);
   /* Add background gradient to prevent river interference on mobile */
-  background: linear-gradient(135deg, rgba(248, 246, 240, 0.95) 0%, rgba(237, 232, 216, 0.95) 100%);
   position: relative;
   z-index: 15; /* Above river (z-index: 1) */
 }
@@ -309,9 +418,11 @@ article{
 }
 
 .tributary-body p {
-    line-height: 1.5;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-prose);
     color: #5d4037;
-    margin: 0 auto 1.2rem;
+    margin-bottom: 1.4rem;
 }
 .tributary-body figure {
     margin: 50px 0px;
@@ -509,7 +620,7 @@ article{
   color: #5D4037;
   font-size: 15px;
   font-weight: 500;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-ui);
   text-align: center;
   transition: color $duration-fast ease;
   letter-spacing: 0.2px;
@@ -874,12 +985,14 @@ article{
   overflow: visible;
 }
 
-/* Visual navigation section - left side */
+/* Visual navigation section - right side */
 .visual-nav-section {
   flex: 1;
   display: flex;
   flex-direction: column;
   min-width: 0;
+  border-radius: 8px;
+  padding: 20px;
 }
 
 .nav-section-heading {
@@ -903,6 +1016,23 @@ article{
   height: 2px;
   background: linear-gradient(90deg, #CD853F, transparent);
   animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Textual section heading — demoted to a section label, not a display title */
+.textual-nav-section .nav-section-heading {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(245, 222, 179, 0.5);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(139, 115, 85, 0.2);
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+}
+
+.textual-nav-section .nav-section-heading::before {
+  display: none;
 }
 
 @keyframes shimmer {
@@ -979,14 +1109,8 @@ article{
   font-weight: 700;
 }
 
-/* Highlight when on current tributary page */
-.river-column.current-tributary {
-  background: rgba(205, 133, 63, 0.25);
-  border-top: 3px solid #CD853F;
-  box-shadow: 0 2px 8px rgba(205, 133, 63, 0.2);
-}
-
-/* Locked state - labels persist */
+/* Highlight when on current tributary page, or when locked by user */
+.river-column.current-tributary,
 .river-column.locked {
   background: rgba(205, 133, 63, 0.25);
   border-top: 3px solid #CD853F;
@@ -1131,7 +1255,7 @@ article{
     0 1px 4px rgba(0, 0, 0, 0.9),
     0 0 10px rgba(139, 115, 85, 0.5);
   pointer-events: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-ui);
   opacity: 0;
   animation: labelFadeIn 0.3s ease forwards;
 }
@@ -1178,23 +1302,23 @@ article{
 }
 
 .legend-text {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-ui);
 }
 
-/* Textual navigation section - right side */
+/* Textual navigation section - left side */
 .textual-nav-section {
   flex: 0 0 350px;
   display: flex;
   flex-direction: column;
-  padding-left: 40px;
-  border-left: 2px solid rgba(139, 115, 85, 0.2);
+  padding-right: 40px;
+  border-right: 2px solid rgba(139, 115, 85, 0.2);
   position: relative;
 }
 
 .textual-nav-section::before {
   content: '';
   position: absolute;
-  left: -2px;
+  right: -2px;
   top: 0;
   width: 2px;
   height: 100px;
@@ -1208,7 +1332,7 @@ article{
 }
 
 .text-nav-link {
-  color: #D2B48C;
+  color: #DEB887;
   text-decoration: none;
   padding: 12px 16px;
   border-radius: 6px;
@@ -1528,6 +1652,11 @@ article{
   pointer-events: none;
 }
 
+.nav-open .section-nav-menu {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .section-nav-menu::-webkit-scrollbar {
   width: 4px;
 }
@@ -1546,7 +1675,7 @@ article{
 }
 
 .section-nav-title {
-  font-family: 'Inconsolata', monospace;
+  font-family: var(--font-display);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;

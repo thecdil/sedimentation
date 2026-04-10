@@ -1,0 +1,57 @@
+# Copilot Instructions — Sedimentation: An Archive of Glen Canyon
+
+This is a Jekyll/CollectionBuilder-CSV digital humanities site. See `CLAUDE.md` for full project architecture and development commands.
+
+## Design Context
+
+### Users
+
+Two primary visitor types:
+- **Scholars** (environmental humanists, digital humanists): Desktop-primary, serious explorers. They're here to engage with Hannah's long-form essays and to evaluate the digital presentation as scholarship. They read slowly, follow footnotes, sit with images.
+- **Curious general public**: Dam history enthusiasts, Colorado River followers. More likely on phones. Browse-and-discover mode — looking for images, facts, stories about Glen Canyon.
+
+The shared job: interest-driven exploration of interconnected essays and archival material. Not a task to complete — an environment to inhabit. Like a museum, not an app.
+
+### Brand Personality
+
+**Archival. Connected. Entropic — but containedly so.**
+
+- *Archival*: Material, layered, preserved. Design choices should feel considered and time-resistant — not trendy. Think university press monograph, USGS geological survey, museum catalog. Not digital-native, not corporate.
+- *Connected*: The five tributary essays and ~400 collection items feel like one body of work. Visual language should underscore the whole-system feel — the river-and-tributary metaphor already does this; honor it consistently.
+- *Entropic (contained)*: The canyon is submerged. Things dissolve, sediment settles, memory erodes. The design should carry a quiet sense of impermanence — not melancholy, not nostalgic kitsch, but the way geological time feels: steady, layered, inevitable. Warm earth tones and slight textural imperfection over slick perfection.
+
+### Aesthetic Direction
+
+**Reference**: Edward Tufte — generous whitespace, breathing room, information hierarchy that lets the reader's eye move freely. The reader should never feel crowded. Every element earns its space.
+
+**Anti-references**: Corporate SaaS, social media aesthetics, anything that feels like it was templated. No cards with drop shadows as the primary organizational unit. No hero-metric layouts. No animated gradient backgrounds.
+
+**Theme**: Light — this is a daytime reading environment, a scholarly archive. The existing sandy cream palette (`#f8f6f0` → `#ede8d8`) is right in spirit and should be refined and extended.
+
+**Visual palette (OKLCH refinement of existing direction)**:
+- Dominant surface: warm bleached sandstone — `oklch(96% 0.008 75)` (sandy cream)
+- Secondary surface: river silt — `oklch(91% 0.012 75)` (warm tan)
+- Text: very dark warm brown — `oklch(18% 0.015 50)` (not pure black)
+- Accent/links: canyon terracotta — `oklch(52% 0.12 50)` (the existing `#a94804` is close; refine to perceptual uniformity)
+- Borders/dividers: weathered stone — `oklch(82% 0.01 75)`
+
+**Typography**:
+- Display/headings: **Zilla Slab** — editorial slab serif. The uniform-thickness serifs create a clear structural contrast with Spectral's modulated strokes, so hierarchy reads immediately. Feels documentary and printed — closer to a serious environmental report than a digital product.
+- Body/essays: **Spectral** — designed specifically for long-form screen reading. Scholarly, quiet authority, excellent at small sizes on phones.
+- Metadata/labels: **Atkinson Hyperlegible** — designed for accessibility (low vision users), pairs well as a utilitarian companion to the literary pair above.
+
+### Design Principles
+
+1. **Let it breathe.** Tufte-style generous whitespace. Wide margins (especially on desktop) that could accommodate annotations. Never crowd the reading experience. Body text max-width ~65–70ch.
+
+2. **Time-resistant over trendy.** Every design choice should look like it was made for decades, not seasons. Avoid anything that reads as "web design, circa 2024."
+
+3. **Entropy with control.** Slight imperfection signals the archival: not perfectly geometric, not pixel-crisp everywhere. The SVG river animations, the layered warm backgrounds, the geological color palette — these carry entropy. Don't fight them with hyper-clean UI conventions.
+
+4. **Connected by a thread.** The five tributaries and the collection feel like one archive. Navigation, typography, color, and the river visual language should all reinforce this. A visitor should never feel lost between sections — they should feel the current carrying them.
+
+5. **Reward slow reading.** Progressive disclosure, not information overload. Show the beginning, let the reader pull for more. Empty states teach; navigation is orientation, not destination.
+
+### Accessibility
+
+Full WCAG 2.1 compliance. All color combinations meet AA minimum (4.5:1 for body text, 3:1 for large text). Atkinson Hyperlegible as the UI/label font directly supports low-vision users. Reduced motion preferences respected throughout (already implemented in `_custom.scss`). Semantic HTML structure prioritized over decorative markup.

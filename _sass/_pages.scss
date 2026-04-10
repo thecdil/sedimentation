@@ -147,28 +147,64 @@
 
 /* About */
 .about-nav {
-    line-height: 1.5em; 
+    line-height: 1.5em;
     z-index: 10;
 }
-/* creating a narrow text column */ 
-.about-contents > {
-    h2 {
-        font-weight: bold;
-        padding-top: 100px;
-        border-top: 1px dotted black;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-        max-width: 650px;
-        margin: 1.5rem auto 1rem;
-    }
-    
-    p, .about-narrowed-content, .narrow-content, hr, .footnotes, ol, ul, blockquote {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 650px;
-    }
 
+.about-contents {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-9);
+}
+
+.about-contents{
+max-width: 110ch;}
+
+// Section headings — generous space above, subtle terracotta rule as separator
+.about-contents h2 {
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-5);
+    padding-top: var(--space-8);
+    border-top: 1px solid rgba(139, 69, 19, 0.15);
+}
+
+.about-contents h1 {
+    margin-bottom: var(--space-5);
+}
+
+.about-contents h3,
+.about-contents h4 {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-4);
+}
+
+// Question list — set apart as a series of considered questions, not a plain checklist
+.about-contents ul {
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: var(--space-6);
+}
+
+.about-contents ul li {
+    padding: var(--space-4);
+    border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+    line-height: var(--leading-prose);
+    
+}
+
+.about-contents ul li:first-child {
+    border-top: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+// Map embed — vertical breathing room
+.about-map {
+    margin: var(--space-7) 0;
+}
+
+// Creator bio blocks — clear separation between people
+.bio-block {
+    margin-top: var(--space-7);
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(139, 69, 19, 0.12);
 }
 
 /* narrow text block for page-narrow layout */
@@ -176,4 +212,71 @@
     max-width: 750px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* ---- Responsive: about & resources pages ---- */
+
+// About/resources section nav needs more horizontal space than tributary pages —
+// hide until lg (992px) where col-lg-8 offset-lg-2 creates enough left margin
+@media (max-width: 991px) {
+    .about-page-nav {
+        display: none !important;
+    }
+}
+
+// Reduce heavy vertical spacing on mobile
+@media (max-width: 767px) {
+    .about-contents {
+        padding-top: var(--space-6);
+        padding-bottom: var(--space-7);
+    }
+
+    .about-contents h2 {
+        padding-top: var(--space-6);
+        margin-bottom: var(--space-4);
+    }
+
+    .about-contents h3,
+    .about-contents h4 {
+        margin-top: var(--space-5);
+    }
+}
+
+/* citation component */
+.citation-item {
+    margin-bottom: var(--space-9);
+}
+
+.citation-title {
+    color: #8b4513;
+}
+
+.citation-title-link {
+    color: #8b4513;
+    text-decoration: none;
+}
+.citation-title-link:hover {
+    color: #6d340f;
+    text-decoration: underline;
+}
+
+.citation-author {
+    color: #5c3d1e; /* darkened from #8b7355 for WCAG AA contrast */
+}
+
+// Mobile: constrain book cover width and enlarge touch target on button
+@media (max-width: 767px) {
+    .citation-item {
+        margin-bottom: var(--space-7);
+    }
+
+    .citation-item .col-md-3 {
+        max-width: 140px;
+    }
+
+    .citation-item .btn-outline-primary {
+        padding: 0.5rem 1.25rem;
+        font-size: 1rem;
+        min-height: 44px;
+    }
 }

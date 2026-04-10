@@ -7,18 +7,19 @@
             <h2 class="h4"><a href="{{ '/' | relative_url }}" style="color: #F5DEB3;">{{ site.title }}</a></h2>
             <p style="color: #F5DEB3;"><small>{{ site.description }}</small></p>
             <nav>
-                <ul id="footer-nav" class="nav nav-pills ">
-                    {%- assign navItems = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nil' -%}
-                    {% for nav in navItems %}
+                <ul id="footer-nav" class="nav nav-pills">
                     <li class="nav-item">
-                    {% if nav.stub %}
-                        <a class="nav-link{% if page.url == nav.stub %} active{% endif %}" style="color: #F5DEB3;" href="{{ nav.stub | relative_url }}">{{ nav.display_name }}</a>
-                    {%- else -%}
-                    {% assign childStub = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nav.display_name' | first %}
-                        <a class="nav-link{% if page.url == childStub.stub %} active{% endif %}" style="color: #F5DEB3;" href="{{ childStub.stub | relative_url }}">{{ nav.display_name }}</a>
-                    {% endif %}
+                        <a class="nav-link{% if page.url == '/main.html' %} active{% endif %}" style="color: #F5DEB3;" href="{{ '/main.html' | relative_url }}">Main</a>
                     </li>
-                    {%- endfor -%}
+                    <li class="nav-item">
+                        <a class="nav-link{% if page.url contains 'eddies' %} active{% endif %}" style="color: #F5DEB3;" href="{{ '/eddies/' | relative_url }}">Eddies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link{% if page.url == '/about.html' %} active{% endif %}" style="color: #F5DEB3;" href="{{ '/about.html' | relative_url }}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link{% if page.url == '/resources.html' %} active{% endif %}" style="color: #F5DEB3;" href="{{ '/resources.html' | relative_url }}">More Resources</a>
+                    </li>
                 </ul>
             </nav>
 
