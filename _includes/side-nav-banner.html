@@ -356,112 +356,6 @@
 </div>
 
 <script>
-(function() {
-    'use strict';
-    
-    // Get current page info on load
-    const currentPath = window.location.pathname;
-    const currentHash = window.location.hash.replace('#', '');
-    const currentTributary = getCurrentTributary(currentPath);
-    
-    function getCurrentTributary(path) {
-        if (path.includes('/tributaries/land')) return 'land';
-        if (path.includes('/tributaries/water')) return 'water';
-        if (path.includes('/tributaries/biota')) return 'biota';
-        if (path.includes('/tributaries/atmosphere')) return 'atmosphere';
-        if (path.includes('/tributaries/humans')) return 'humans';
-        return null;
-    }
-    
-    // Highlight current tributary and section
-    document.addEventListener('DOMContentLoaded', function() {
-        if (currentTributary) {
-            const riverColumns = document.querySelectorAll('.river-column');
-            riverColumns.forEach(column => {
-                if (column.dataset.tributary === currentTributary) {
-                    column.classList.add('current-tributary');
-                    
-                    // Highlight current section if hash matches
-                    if (currentHash) {
-                        const segments = column.querySelectorAll('.river-segment');
-                        segments.forEach(segment => {
-                            if (segment.dataset.section === currentHash) {
-                                segment.classList.add('active');
-                            }
-                        });
-                    }
-                }
-            });
-        }
-        
-        // Attach hover and click handlers to all segments
-        const segments = document.querySelectorAll('.river-segment');
-        segments.forEach(segment => {
-            segment.addEventListener('mouseenter', showLabel);
-            segment.addEventListener('mouseleave', hideLabel);
-            segment.addEventListener('click', navigateToSection);
-        });
-    });
-    
-    function showLabel(e) {
-        const segment = e.currentTarget;
-        const title = segment.dataset.title;
-        const svg = segment.closest('svg');
-        
-        // Remove any existing label in this SVG
-        const existingLabel = svg.querySelector('.segment-label');
-        if (existingLabel) {
-            existingLabel.remove();
-        }
-        
-        // Create text element
-        const textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        textEl.classList.add('segment-label');
-        
-        // Get segment position - use first rect in group for positioning
-        const rect = segment.querySelector('rect');
-        const x = parseFloat(rect.getAttribute('x')) + parseFloat(rect.getAttribute('width')) / 2;
-        const y = parseFloat(rect.getAttribute('y')) + parseFloat(rect.getAttribute('height')) / 2;
-        
-        textEl.setAttribute('x', x);
-        textEl.setAttribute('y', y + 3);
-        textEl.setAttribute('text-anchor', 'middle');
-        textEl.setAttribute('dominant-baseline', 'middle');
-        textEl.textContent = title;
-        
-        svg.appendChild(textEl);
-    }
-    
-    function hideLabel(e) {
-        const segment = e.currentTarget;
-        const svg = segment.closest('svg');
-        const label = svg.querySelector('.segment-label');
-        if (label) {
-            label.remove();
-        }
-    }
-    
-    function navigateToSection(e) {
-        const segment = e.currentTarget;
-        const column = segment.closest('.river-column');
-        const tributary = column.dataset.tributary;
-        const sectionId = segment.dataset.section;
-        
-        if (currentPath.includes('/tributaries/' + tributary)) {
-            closeFullPageNav();
-            const target = document.getElementById(sectionId);
-            if (target) {
-                setTimeout(() => {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    history.pushState(null, null, '#' + sectionId);
-                }, 100);
-            }
-        } else {
-            window.location.href = '{{ "/tributaries/" | relative_url }}' + tributary + '/#' + sectionId;
-        }
-    }
-})();
-
 // Tributaries navigation data loader
 // This module loads tributary section data from JSON and dynamically generates river segments
 // Features:
@@ -581,8 +475,8 @@
                 segmentsGroup.appendChild(g);
             });
 
-            // Mark current tributary
-            if (currentPath.includes(trib.slug)) {
+            // Mark current tributary — use full path prefix to avoid false matches
+            if (currentPath.includes('/tributaries/' + trib.slug)) {
                 riverColumn.classList.add('current-tributary');
             }
 
