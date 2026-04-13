@@ -1,24 +1,24 @@
-<footer class="pt-4 mt-auto container-fluid" style="background-color: #2d2520; color: #F5DEB3;">
+<footer class="site-footer pt-4 mt-auto container-fluid">
 
     <div class="row border-bottom border-white pb-4 mb-2">
 
         <div class="col-md-7 px-4 mt-3">
 
-            <h2 class="h4"><a href="{{ '/' | relative_url }}" style="color: #F5DEB3;">{{ site.title }}</a></h2>
-            <p style="color: #F5DEB3;"><small>{{ site.description }}</small></p>
+            <h2 class="h4"><a href="{{ '/' | relative_url }}" class="footer-link">{{ site.title }}</a></h2>
+            <p class="footer-text"><small>{{ site.description }}</small></p>
             <nav>
                 <ul id="footer-nav" class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link{% if page.url == '/main.html' %} active{% endif %}" style="color: #F5DEB3;" href="{{ '/main.html' | relative_url }}">Main</a>
+                        <a class="nav-link footer-nav-link{% if page.url == '/main.html' %} active{% endif %}" href="{{ '/main.html' | relative_url }}">Main</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{% if page.url contains 'eddies' %} active{% endif %}" style="color: #F5DEB3;" href="{{ '/eddies/' | relative_url }}">Eddies</a>
+                        <a class="nav-link footer-nav-link{% if page.url contains 'eddies' %} active{% endif %}" href="{{ '/eddies/' | relative_url }}">Eddies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{% if page.url == '/about.html' %} active{% endif %}" style="color: #F5DEB3;" href="{{ '/about.html' | relative_url }}">About</a>
+                        <a class="nav-link footer-nav-link{% if page.url == '/about.html' %} active{% endif %}" href="{{ '/about.html' | relative_url }}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{% if page.url == '/resources.html' %} active{% endif %}" style="color: #F5DEB3;" href="{{ '/resources.html' | relative_url }}">More Resources</a>
+                        <a class="nav-link footer-nav-link{% if page.url == '/resources.html' %} active{% endif %}" href="{{ '/resources.html' | relative_url }}">More Resources</a>
                     </li>
                 </ul>
             </nav>
@@ -27,13 +27,13 @@
 
         <div class="col-md-5 mt-3 text-center">
 
-           {% if site.organization-logo-nav %} <p class="text-md-end">
+           {% if site.organization-logo-nav %}<p class="text-md-end">
                 <a href="{{ site.organization-link }}">
                     <img id="footer-logo" class="img-fluid" src="{{ site.organization-logo-nav | relative_url }}" alt="{{ site.organization-name | escape }} home">
                 </a>
             </p>
             {% endif %}
-            <p class="text-md-end" id="footer-credits" style="color: #F5DEB3;">
+            <p class="text-md-end footer-text" id="footer-credits">
                 <small><em>built with</em>
                     <a href="https://collectionbuilder.github.io/" title="CollectionBuilder">
                         <img src="{{ '/assets/img/collectionbuilder-logo.png' | relative_url }}" class="img-fluid" alt="CollectionBuilder" >
@@ -46,7 +46,7 @@
     </div>
 
     <div class="col-md-12 text-center pt-3 pb-1">
-        <p style="color: #F5DEB3;">Last updated {{ site.time | date: '%Y' }}</p>
+        <p class="footer-text">Last updated {{ site.time | date: '%Y' }}</p>
     </div>
 
 </footer>

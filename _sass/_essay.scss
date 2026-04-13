@@ -81,7 +81,7 @@ aside, .aside {
     clear: both; /* Clear any previous floats */
     margin: 5% auto; /* Center with auto horizontal margins */
     width: 80%;
-    max_width: 100%;
+    max-width: 100%;
     font-size: 15px;
     font-style: italic;
     }
@@ -129,7 +129,7 @@ p{
 
 
 video::cue {
-    font-family: "Libre Bodoni ", serif;
+    font-family: 'Spectral', Georgia, serif;
     font-size: 1.04em;
     line-height: 1.2;
     padding: 0 0.5em;
@@ -145,7 +145,7 @@ video::cue {
 }
 
 .btn-link {
-    color: green;
+    color: #8b4513;
 }
 
 .mini {

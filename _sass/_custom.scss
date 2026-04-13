@@ -163,6 +163,35 @@ h1, h2, h3, h4, h5, h6 {
   background: #f8f6f0;
 }
 
+/* ========================================
+   Footer
+   ======================================== */
+
+.site-footer {
+  background-color: #2d2520;
+  color: #f5deb3;
+}
+
+.footer-text {
+  color: #f5deb3;
+}
+
+.footer-link {
+  color: #f5deb3;
+
+  &:hover {
+    color: #e8c98a;
+  }
+}
+
+.footer-nav-link {
+  color: #f5deb3;
+
+  &:hover {
+    color: #e8c98a;
+  }
+}
+
 article{
   max-width: 67ch;
 }
