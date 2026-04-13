@@ -242,6 +242,21 @@
         }
     }
 
+    // Format NAU/repository attribution string for an item
+    function formatAttribution(item) {
+        if (!item) return '';
+        const callnumber = item.callnumber || '';
+        const repository = item.repository || '';
+        if (callnumber && repository) {
+            return '[' + callnumber + '. ' + repository + ']';
+        } else if (repository) {
+            return '[' + repository + ']';
+        } else if (callnumber) {
+            return '[' + callnumber + ']';
+        }
+        return '';
+    }
+
     // Build gallery array from all spotlight items on page
     let galleryItems = [];
     let galleryItemsMap = {};
@@ -265,10 +280,12 @@
             if (!item) return null;
 
             const mediaConfig = createMediaViewer(item);
+            const attribution = formatAttribution(item);
             return Object.assign({}, mediaConfig, {
                 download: true,
                 button: 'View Item Page',
                 buttonHref: item.reference_url,
+                description: attribution || undefined,
                 objectid: objectid,
                 reference_url: item.reference_url
             });
@@ -315,7 +332,6 @@
                 index: startIndex + 1, // Spotlight uses 1-based indexing
                 onshow: function(index) {
                     console.log('Spotlight opened at index:', index);
-                    // Update current URL based on index
                     currentItemUrl = galleryItems[index - 1].reference_url;
 
                     // Add custom "View Item Page" icon button in header
@@ -325,14 +341,7 @@
                 },
                 onchange: function(index) {
                     console.log('Changed to index:', index);
-                    // Update current URL when user navigates
                     currentItemUrl = galleryItems[index - 1].reference_url;
-
-                    // Update the button href
-                    const footerButton = document.querySelector('.spl-button');
-                    if (footerButton && footerButton.firstElementChild) {
-                        footerButton.firstElementChild.href = currentItemUrl;
-                    }
                 },
                 onclose: function() {
                     currentItemUrl = null;
@@ -380,3 +389,4 @@
     }
 })();
 </script>
+
