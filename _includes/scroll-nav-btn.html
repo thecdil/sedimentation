@@ -1,0 +1,40 @@
+{% comment %}
+    Scroll-triggered floating nav button.
+    Include this on long pages where the static header scrolls out of view.
+    Fades in once the user scrolls past the header, providing persistent nav access.
+    Requires side-nav-banner.html (and its openFullPageNav function) to already be on the page.
+{% endcomment %}
+
+<button
+    id="scroll-nav-btn"
+    class="navbar-toggler sediment-map-toggle border border-dark scroll-nav-float"
+    type="button"
+    onclick="openFullPageNav()"
+    aria-label="Toggle navigation">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi icon-sprite map-icon" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
+    </svg>
+</button>
+
+<script>
+(function () {
+    var btn = document.getElementById('scroll-nav-btn');
+    if (!btn) return;
+
+    // Show after the user has scrolled past the static header
+    var threshold = document.querySelector('.static-sediment-header');
+
+    function update() {
+        var scrollY = window.scrollY || window.pageYOffset;
+        var headerH = threshold ? threshold.offsetHeight : 80;
+        if (scrollY > headerH) {
+            btn.classList.add('scroll-nav-float--visible');
+        } else {
+            btn.classList.remove('scroll-nav-float--visible');
+        }
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update(); // run once on load
+})();
+</script>

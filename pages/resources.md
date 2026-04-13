@@ -2,6 +2,7 @@
 title: More Resources
 layout: about
 permalink: /resources.html
+sticky-nav: true
 metadata: citations
 # include CollectionBuilder info at bottom
 credits: false

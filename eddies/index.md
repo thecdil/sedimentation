@@ -3,6 +3,7 @@ title: Eddies
 layout: page
 permalink: /eddies/
 gallery: true
+sticky-nav: true
 custom-foot: js/eddies-cyoa-js.html;js/spotlight-media-handler.html
 ---
 

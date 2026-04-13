@@ -106,9 +106,39 @@ font-size-calc: "7, 140"
         const enterButton = document.getElementById('enterButton');
         const subtitleElement = document.getElementById('subtitle');
 
-        // Check for reduced motion preference
+        /*
+         * SPLASH PAGE — PARTICLE RIVER ANIMATION
+         * ----------------------------------------
+         * This page renders an animated particle system on a full-screen canvas.
+         * The animation runs in three overlapping phases:
+         *
+         *   1. TEXT DECOMPOSITION: The title "SEDIMENTATION" and credit lines are
+         *      rendered off-screen to a temporary canvas, then their pixel data is
+         *      sampled to place particles at the letter positions. Those particles
+         *      then flow toward the river paths and accumulate at the bottom-left
+         *      "dam" corner.
+         *
+         *   2. CONTINUOUS FLOW: While text particles are flowing, new particles are
+         *      continuously spawned along the main river (biased toward the top-right
+         *      source point) to simulate ongoing sediment transport.
+         *
+         *   3. SETTLING: When particles reach the bottom-left dam area, they snap
+         *      to a 1px grid (sedimentGrid) to prevent overlap and build up a
+         *      natural sediment deposit.
+         *
+         * The "Breach" button appears after 7 seconds and navigates to main.html.
+         * The subtitle "An Archive of Glen Canyon" types in via a typewriter effect.
+         * Clicking anywhere on the canvas restarts the animation from the beginning.
+         *
+         * River paths are invisible — they serve only as flow guides. All coordinates
+         * are expressed as percentages of canvas.width/height so the system scales
+         * to any viewport on resize.
+         */
+
+        // Check for reduced motion preference — if true, continuous particle spawning
+        // is disabled and only the initial text particles are rendered (no looping flow).
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
+
         // Set canvas size
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -117,6 +147,20 @@ font-size-calc: "7, 140"
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
         
+        /*
+         * RIVER NETWORK
+         * -------------
+         * An array of path objects, each with an array of control points and a width.
+         * All x/y values are expressed as fractions of canvas.width / canvas.height so
+         * the network scales automatically when the canvas is resized.
+         *
+         * The first entry (index 0) is the main river — it flows from the top-right
+         * corner down to the bottom-left "dam" corner. Remaining entries are
+         * tributaries that feed into it from the left, center, and right.
+         *
+         * These paths are NOT drawn to the canvas; they act as invisible attractor
+         * lanes that particles are pulled toward and flow along.
+         */
         // Define river network with main river flowing from top right to bottom left
         const riverNetwork = [
             // Main river - flows from top right, curves through center, ends at bottom left (Glen Canyon Dam)
@@ -234,6 +278,20 @@ font-size-calc: "7, 140"
             }
         ];
         
+        /*
+         * RIVER ATTRACTION MATH — Parametric Line Segment Projection
+         * -----------------------------------------------------------
+         * getDistanceToRiver() finds the shortest distance from a particle (x, y)
+         * to the nearest segment in a river path. It uses the parametric projection
+         * formula: given segment p1→p2, the closest point on the segment is found
+         * by projecting (x,y) onto the direction vector and clamping param to [0,1].
+         *
+         * This is used in two ways:
+         *   - isInRiver(): checks if a particle is within river.width/2 of any path.
+         *     If so, the particle follows the river's flow direction (getRiverFlow).
+         *   - Attraction: if a particle drifts out of a river, a weak force pulls
+         *     it back toward the closest point on the nearest river segment.
+         */
         // Function to get distance from point to river path
         function getDistanceToRiver(x, y, river) {
             let minDistance = Infinity;
@@ -323,8 +381,23 @@ font-size-calc: "7, 140"
             return colors.particles[Math.floor(Math.random() * colors.particles.length)];
         }
         
+        /*
+         * SETTLING GRID — Sediment Accumulation System
+         * ---------------------------------------------
+         * sedimentGrid is a sparse object map (key: "gridX,gridY" → true) that tracks
+         * which 1px cells are already occupied by a settled particle.
+         *
+         * When a particle enters the dam area (x < 10% of canvas, y > 5% of canvas),
+         * findSettlingPosition() scans downward from the particle's current y position
+         * to find the lowest available cell that has support below it (or is at the
+         * canvas bottom edge). This produces a natural pile-up effect.
+         *
+         * If no direct position is available, the algorithm checks one cell to the
+         * left and right to allow sediment to spread laterally, mimicking real
+         * deposition behavior.
+         */
         // Sediment accumulation grid for natural buildup
-        const gridSize = 1; // Size of each grid cell
+        const gridSize = 1; // Size of each grid cell (1px for fine-grained buildup)
         const sedimentGrid = {};
         
         // Function to get grid key
@@ -426,6 +499,27 @@ font-size-calc: "7, 140"
             }
         }
         
+        /*
+         * TEXT PARTICLE EXTRACTION
+         * ------------------------
+         * createTextParticles() renders the title and credit lines onto the canvas
+         * using the loaded Inconsolata font, then reads back the pixel data with
+         * getImageData(). Any pixel with alpha > 128 (i.e., part of a letter) becomes
+         * a particle placed at that pixel's (x, y) coordinates.
+         *
+         * Font sizes are calculated from canvas.width using the Liquid template variable
+         * {{ page.font-size-calc }} (set to "7, 140" in frontmatter), which produces a
+         * responsive size via Math.min(canvas.width / 7, 140).
+         *
+         * Each particle stores:
+         *   - originalX/Y: the letter pixel position (for click-to-restart reset)
+         *   - startTime: a random delay (0–5000ms) so particles don't all move at once
+         *   - type: 'title', 'subtitle1', or 'subtitle2' (for size variation)
+         *   - color: a random desert-palette color
+         *
+         * After reading pixels, the canvas is cleared — the text itself is never shown
+         * directly; only the particles give it form.
+         */
         // Create particles from text
         function createTextParticles() {
             // Calculate font sizes based on current canvas dimensions
@@ -514,6 +608,21 @@ font-size-calc: "7, 140"
         let allSettled = false;
         let lastParticleAddTime = 0;
         
+        /*
+         * CONTINUOUS FLOW PARTICLES
+         * -------------------------
+         * While the text particles are flowing, addContinuousParticles() injects new
+         * sediment particles every 100ms (starting at 2 seconds into the animation).
+         * This simulates ongoing river transport independent of the text decomposition.
+         *
+         * Two spawn zones:
+         *   1. Along the main river (riverNetwork[0]), biased toward the top 40% of
+         *      the path — 155 particles per tick, scattered within river.width.
+         *   2. Clustered at the very source point (mainRiver.points[0], top-right
+         *      corner) — 50 particles per tick for a concentrated source effect.
+         *
+         * Disabled entirely if prefers-reduced-motion is set.
+         */
         // Function to add new particles during animation (simulating continuous sediment flow)
         function addContinuousParticles(elapsed) {
             // Skip if reduced motion is preferred
@@ -585,6 +694,27 @@ font-size-calc: "7, 140"
             }
         }
         
+        /*
+         * ANIMATION LOOP
+         * --------------
+         * animate() is the main requestAnimationFrame loop. Each frame it:
+         *   1. Injects new continuous particles (addContinuousParticles)
+         *   2. Clears the canvas and redraws faint stroke outlines of the text
+         *      (so the letter shapes remain ghostly visible as particles leave)
+         *   3. Updates each unsettled particle:
+         *       a. If inside a river: accelerate along the river flow direction
+         *          with slight turbulence
+         *       b. If outside a river: apply a weak attraction force toward the
+         *          closest point on the nearest river segment
+         *       c. Apply 0.95 drag each frame to limit terminal velocity
+         *       d. If the particle enters the dam zone (x < 10%, y > 5%):
+         *          call findSettlingPosition() and freeze the particle in place
+         *   4. Triggers the typewriter subtitle (after 1s) and shows the Breach
+         *      button (after 7s)
+         *   5. Continues looping indefinitely (both branches of the stop condition
+         *      call requestAnimationFrame, so the animation never fully stops —
+         *      settled particles remain visible on screen)
+         */
         function animate() {
             const elapsed = Date.now() - animationStart;
             const progress = Math.min(elapsed / animationDuration, 1);

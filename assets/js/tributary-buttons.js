@@ -1,6 +1,52 @@
 /**
- * Tributary Button Particle Animation System
- * Handles particle disintegration effect and seamless page transitions
+ * TRIBUTARY BUTTONS — Particle Disintegration & Page Transition System
+ * ======================================================================
+ * Loaded globally on every page via foot.html. Handles two features:
+ *
+ * 1. IMAGE DISINTEGRATION (disintegrateImage):
+ *    When a .trib-button-link is clicked, the button image "disintegrates"
+ *    into sediment particles that fly off-screen in the river flow direction,
+ *    then the overlay fades to opaque and the page navigates to the target URL.
+ *
+ *    PIXEL EXTRACTION FLOW:
+ *    - The button image is drawn to an off-screen canvas at its rendered size
+ *    - getImageData() samples every particleDensity pixels; any pixel with
+ *      alpha > 20 becomes a TribParticle at that viewport position
+ *    - CORS FALLBACK: if getImageData() throws (cross-origin image), or if fewer
+ *      than 50 particles are produced, falls back to randomly placed particles
+ *      scattered across the image's bounding rect using the desert color palette
+ *
+ *    OVERLAY TRANSITION:
+ *    - A fixed full-viewport div (#trib-transition-overlay) is created once and
+ *      reused. It contains a canvas for particle rendering.
+ *    - As particles animate, the overlay background fades from transparent to
+ *      rgba(248,245,240,0.95) (the site's off-white), creating a seamless wipe.
+ *    - Navigation fires after duration ms (700 or 1400) or when all particles die.
+ *
+ * 2. CONTINUE BUTTON SCROLL (initContinueButtons):
+ *    .continue-choice .choice-inner buttons (the "Continue" option in tributary
+ *    essays) smooth-scroll to the next meaningful sibling element below the
+ *    button row, using a custom cubic ease-out animation (smoothScrollTo).
+ *
+ * TRIBPARTICLE MODEL:
+ *   Each particle has:
+ *   - vx: ±(6–10) * speedMultiplier, biased left or right by targetSide
+ *   - vy: (-1.5 to 2.5) * speedMultiplier (slight downward bias)
+ *   - turbulence: sine-wave horizontal wobble (sin(y * 0.02) * turbulence)
+ *   - 0.97 drag applied each frame; fades out (life -= fadeSpeed) once off-screen
+ *
+ * SPEED PRESETS:
+ *   'fast'   — 700ms, denser sampling (3.5px), faster particles
+ *   'normal' — 1400ms, sparser sampling (2.5px), default speed
+ *   Set via data-speed attribute on .trib-button-link elements.
+ *
+ * PUBLIC API (window.TributaryButtons):
+ *   .disintegrateImage(imgEl, url, side, speed) — trigger effect manually
+ *   .reinitialize()  — re-scan DOM for new .trib-button-link and continue buttons
+ *                      (called after CYOA loads new sections dynamically)
+ *
+ * Respects prefers-reduced-motion: if set, navigation fires immediately without
+ * any animation on both disintegration and scroll behaviors.
  */
 
 (function() {

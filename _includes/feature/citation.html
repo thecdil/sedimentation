@@ -2,7 +2,7 @@
 {%- if citation -%}
 <div class="row citation-item align-items-start g-4">
   <!-- Image Column -->
-  <div class="col-md-3">
+  <div class="col-md-5">
     {%- if citation.image_small -%}
       <a href="{{ citation.link }}" target="_blank">
         <img src="{{ site.baseurl }}{{ citation.image_small }}" alt="{{ citation.title | replace: '"', '' | replace: '"', '' }}" class="img-fluid rounded">
@@ -11,7 +11,7 @@
   </div>
 
   <!-- Content Column -->
-  <div class="col-md-9">
+  <div class="col-md-7">
     <!-- Title as Link -->
     <h4 class="mb-2 citation-title">
       <a href="{{ citation.link }}" target="_blank" class="citation-title-link">{{ citation.title | markdownify | replace: '<p>', '' | replace: '</p>', '' }}</a>

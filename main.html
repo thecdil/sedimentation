@@ -31,40 +31,6 @@ river_path: "M190,-10 Q105,0 100,0 T65,15 50,23 Q45,25 30,35 Q20,45 19,65 Q42,75
   <!-- Canvas River -->
   <canvas id="riverCanvas" class="river-canvas"></canvas>
 
-  <!-- Tributary Points
-  <div class="tributary-scroll-container">
-    {% assign sorted_tributaries = site.tributaries | sort: "scroll_position" %}
-    {% for tributary in sorted_tributaries %}
-      <div class="tributary-step" 
-           id="{{ tributary.title | downcase }}"
-           data-step="{{ forloop.index0 }}"
-           data-position="{{ tributary.position }}" 
-           data-side="{{ tributary.side }}"
-           style="top: {{ tributary.scroll_position }}px; height: 400px;">
-        
-        {% if tributary.side == 'left' %}
-          <div class="tributary-content tributary-left">
-            <div class="tributary-branch-left"></div>
-            <div class="content-box">
-              <h3>{{ tributary.title }}</h3>
-              <p>{{ tributary.description }}</p>
-              <a href="{{ tributary.url | relative_url }}" class="btn btn-outline-primary btn-sm">Explore →</a>
-            </div>
-          </div>
-        {% else %}
-          <div class="tributary-content tributary-right">
-            <div class="content-box">
-              <h3>{{ tributary.title }}</h3>
-              <p>{{ tributary.description }}</p>
-              <a href="{{ tributary.url | relative_url }}" class="btn btn-outline-primary btn-sm">Explore →</a>
-            </div>
-            <div class="tributary-branch-right"></div>
-          </div>
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>  -->
-
   <!-- Poem Narrative -->
   {% include river-poem.html %}
 </div>
@@ -346,12 +312,41 @@ background: rgb(255 255 255 / 65%);
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  /*
+   * MAIN PAGE — SCROLL RIVER VISUALIZATION
+   * ----------------------------------------
+   * This page renders an animated river on a full-page canvas (#riverCanvas)
+   * that sits underneath the intro content box and river poem sections.
+   *
+   * The river path is defined in the page frontmatter as an SVG path string
+   * (river_path) and converted to canvas pixel coordinates at runtime. The
+   * river "reveals" progressively as the user scrolls OR as time passes
+   * (whichever is further along), creating the feeling of water flowing
+   * down the page as you read.
+   *
+   * TWO PARTICLE SYSTEMS:
+   *   1. riverBedParticles — Static settled particles pre-placed along the
+   *      full river path at initialization. They form the river's visible
+   *      body and are revealed gradually as revealProgress increases.
+   *   2. particles (flowing) — Dynamic particles spawned at newly drawn path
+   *      points and near the river during scrolling. They drift, get attracted
+   *      toward the river, settle when they get close, and decay if they
+   *      wander too far away.
+   *
+   * ALL POSITIONS stored in percentage space (0.0–1.0 of canvas dimensions)
+   * so the river scales correctly across viewport widths on resize.
+   *
+   * KNOWN LIMITATION: canvas.height is fixed at 7300px regardless of viewport
+   * height. This matches the .river-container min-height (12000px / ~1.6).
+   * The river path coordinate space (maxY: 400) is mapped to this fixed height.
+   */
+
   const canvas = document.getElementById('riverCanvas');
   const ctx = canvas.getContext('2d');
 
-  // Check for reduced motion preference
+  // Check for reduced motion preference — disables spawnParticles() if set.
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  
+
   // Desert color palette
   const colors = {
     path: '#8B4513',
@@ -359,17 +354,36 @@ document.addEventListener('DOMContentLoaded', function() {
     glow: '#F4A460'
   };
   
-  // Set up canvas responsively
+  // Set up canvas — width is dynamic, height is fixed at 7300px to match the
+  // river path coordinate space (SVG maxY: 400 → canvas height: 7300px).
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = 7300;
   }
-  
+
   resizeCanvas();
-  
-  // Parse the SVG path to canvas coordinates
+
+  /*
+   * SVG PATH → CANVAS POINTS CONVERSION
+   * -------------------------------------
+   * The river path is stored in the page frontmatter as a compact SVG path
+   * string using M (moveto), Q (quadratic bezier), and T (smooth curve) commands.
+   * The coordinate space spans roughly x: 0–200, y: -10–900.
+   *
+   * parsePathToPoints() converts this into an array of {x, y} pixel coordinates
+   * by:
+   *   - Scaling x values via mapRiverX(), which maps 0–200 to 0–canvas.width
+   *     and applies a smooth cubic ease that arcs the river off-screen right
+   *     in the bottom 18% of its length (the "exit" arc past the dam).
+   *   - Scaling y values linearly from the SVG coordinate range to canvas.height.
+   *   - Subdividing Q curves into 25 steps and T curves into 15 steps so the
+   *     resulting point array is dense enough for smooth particle attraction.
+   *
+   * parsePathToPoints() is called on initial load AND on every window resize
+   * so the point coordinates always reflect the current canvas.width.
+   */
   const pathString = "{{ page.river_path }}";
-  
+
   function parsePathToPoints(pathStr) {
     const points = [];
     const commands = pathStr.match(/[MLHVCSQTAZ][^MLHVCSQTAZ]*/gi);
@@ -444,6 +458,25 @@ document.addEventListener('DOMContentLoaded', function() {
   
   let pathPoints = parsePathToPoints(pathString);
   
+  /*
+   * PARTICLE CLASS — Percentage-Based Coordinates
+   * -----------------------------------------------
+   * All position and velocity values are stored as fractions of canvas dimensions
+   * (0.0–1.0) rather than absolute pixels. This means the particle positions
+   * remain valid after a window resize — only the draw() method converts back
+   * to pixels for rendering. Velocity values are correspondingly tiny (e.g.,
+   * vy ≈ 0.0005–0.0013 per frame = roughly 3–9px/frame on a 7300px canvas).
+   *
+   * isRiverBed particles (pre-seeded along the path):
+   *   - Start settled = true, decay = 0, life = 1 (never removed)
+   *   - Apply a subtle sine-wave sway each frame for a living-water effect
+   *
+   * Flowing particles (spawned during animation):
+   *   - Drift downward with slight random horizontal velocity
+   *   - Are attracted toward the nearest river point if within 0.07 (7%) distance
+   *   - Settle permanently when they reach within 0.036 (3.6%) of the river
+   *   - Decay (life -= decay) while outside attraction range; removed when life <= 0
+   */
   // Particle class with settling behavior (using percentages)
   class Particle {
     constructor(x, y, isRiverBed = false) {
@@ -591,6 +624,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
+  /*
+   * ANIMATION LOOP
+   * --------------
+   * animate() runs on every requestAnimationFrame. Each frame:
+   *   1. Fills the canvas with a very low-opacity background (0.08 alpha) to
+   *      create a motion-blur trail effect on moving particles.
+   *   2. Computes revealProgress = max(scrollProgress, timeProgress).
+   *      scrollProgress tracks how far the user has scrolled; timeProgress
+   *      advances linearly over 25 seconds. Using the max means the river
+   *      continues revealing even if the user doesn't scroll.
+   *   3. Advances currentPointIndex one step per frame (revealing the next
+   *      path point) and spawns a few settling particles at that point.
+   *   4. Updates and draws all riverBed particles up to the revealed index.
+   *   5. Updates and draws all flowing particles; removes dead ones (life ≤ 0
+   *      and not settled).
+   *   6. Occasionally spawns extra particles along already-drawn sections
+   *      (~25% chance per frame if any points are drawn).
+   */
   function animate() {
     // Clear canvas with slight trail
     ctx.fillStyle = 'rgba(248, 245, 240, 0.08)';
@@ -696,23 +747,5 @@ document.addEventListener('DOMContentLoaded', function() {
     lastScrollY = currentScrollY;
   });
   
-  // Initialize Scrollama for tributary activation
-  if (typeof scrollama !== 'undefined') {
-    const scroller = scrollama();
-    scroller
-      .setup({
-        step: '.tributary-step',
-        offset: 0.6,
-        debug: false
-      })
-      .onStepEnter((response) => {
-        const content = response.element.querySelector('.tributary-content');
-        if (content) {
-          content.classList.add('is-active');
-        }
-      });
-    
-    window.addEventListener('resize', scroller.resize);
-  }
 });
 </script>

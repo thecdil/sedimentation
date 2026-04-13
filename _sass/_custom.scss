@@ -163,6 +163,35 @@ h1, h2, h3, h4, h5, h6 {
   background: #f8f6f0;
 }
 
+/* ========================================
+   Footer
+   ======================================== */
+
+.site-footer {
+  background-color: #2d2520;
+  color: #f5deb3;
+}
+
+.footer-text {
+  color: #f5deb3;
+}
+
+.footer-link {
+  color: #f5deb3;
+
+  &:hover {
+    color: #e8c98a;
+  }
+}
+
+.footer-nav-link {
+  color: #f5deb3;
+
+  &:hover {
+    color: #e8c98a;
+  }
+}
+
 article{
   max-width: 67ch;
 }
@@ -195,27 +224,6 @@ article{
   /* Subtle wave animation on the base */
   animation: gentleWave 12s ease-in-out infinite;
 }
-
-/* 
-.tributary-particles {
-  /* Flowing particles animation 
-  animation: flowDown 2s linear infinite;
-}
-
-.tributary-streaks {
-  /* Faster streak flow 
-  animation: flowDown 2s linear infinite;
-}
-
-@keyframes flowDown {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(5px); 
-    /* Matches pattern height
-  }
-}*/
 
 @keyframes gentleWave {
   0%, 100% {
@@ -255,11 +263,6 @@ article{
 .tributary-path {
   /* Ensure smooth path rendering */
   vector-effect: non-scaling-stroke;
-}
-
-/* Remove the old canvas styles since we're not using it anymore */
-.tributary-canvas {
-  display: none;
 }
 
 /* Responsive adjustments for tributary river */
@@ -762,51 +765,67 @@ article{
     background-size: 21px;
 }
 
-/* Spotlight footer title and button layout */
+/* Spotlight footer: grid layout — title+description stack left, button anchored right */
+#spotlight .spl-footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: start;
+    column-gap: 20px;
+}
+
 #spotlight .spl-footer .spl-title {
-    display: inline-block;
-    margin: 6px 0px;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 6px 0 4px;
     font-size: 25px;
 }
 
-/* Container for buttons - stack vertically on the right */
+#spotlight .spl-footer .spl-description {
+    grid-column: 1;
+    grid-row: 2;
+    display: block;
+    font-size: 12px;
+    opacity: 0.7;
+    margin: 0 0 16px;
+    line-height: 1.4;
+}
+
+/* Button sits in the right column, spanning both title and description rows */
 #spotlight .spl-footer .spl-button {
-    display: flex;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    display: inline-flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 8px;
-    float: right;
-    margin-top: 0;
+    margin-top: 6px;
     margin-bottom: 12px;
+    width: auto;
 }
 
-/* Spotlight source button styling */
-#spotlight .spl-footer .spl-source-button {
-    display: inline-block;
-    text-decoration: none;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    color: #fff !important;
-    opacity: 1 !important;
-}
-
-#spotlight .spl-footer .spl-source-button:hover {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    border-color: #fff !important;
-    color: #fff !important;
-    opacity: 1 !important;
-}
-
-/* Responsive: stack on mobile */
+/* Responsive: revert to block flow on mobile */
 @media (max-width: 768px) {
+    #spotlight .spl-footer {
+        display: block;
+    }
+
     #spotlight .spl-footer .spl-title {
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: 6px;
+    }
+
+    #spotlight .spl-footer .spl-description {
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     #spotlight .spl-footer .spl-button {
         align-items: flex-start;
         text-align: left;
-        float: none;
+        width: auto;
+        margin-top: 0;
     }
 }
 
@@ -831,6 +850,31 @@ article{
   left: 20px;
   z-index: 1000;
   transition: transform $duration-fast $ease-out-strong;
+}
+
+/* Scroll-triggered floating nav button (about, resources, eddies) */
+.scroll-nav-float {
+  position: fixed;
+  top: 20px;
+  left: 40px;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.85);
+  transition: opacity $duration-normal $ease-out-strong,
+              transform $duration-normal $ease-out-strong;
+
+  &.scroll-nav-float--visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-nav-float {
+    transition: opacity 200ms ease;
+  }
 }
 
 /* ========================================

@@ -1,9 +1,45 @@
 <script>
 /**
- * Eddies CYOA (Choose Your Own Adventure) System
+ * EDDIES — CHOOSE YOUR OWN ADVENTURE SYSTEM
+ * ==========================================
+ * Creates an endless, randomized journey through sections drawn from the
+ * tributary essays, presented one section at a time with sediment particle
+ * coalesce animations between each reveal.
  *
- * Creates an endless, randomized journey through tributary sections
- * with sediment particle coalesce animations.
+ * DATA FLOW:
+ *   /assets/data/tributaries.json → tributariesData (all tributaries/sections)
+ *   → allSections (flat array, filtered via shouldIncludeSection)
+ *   → Each displayed section drawn from allSections and appended to #eddies-sections
+ *
+ * STATE MANAGEMENT — two separate stores:
+ *   localStorage ('eddies-viewed-sections'):  Cross-session set of viewed section keys
+ *     (tributary:sectionId). Resets automatically when all sections have been seen.
+ *   sessionStorage ('eddies-loaded-sections', 'eddies-session-active'):  The ordered
+ *     list of sections loaded in the current tab session, enabling page-refresh restore
+ *     without re-animating. Cleared on user-triggered reset.
+ *
+ * NAVIGATION — two choices appear at the bottom of each section:
+ *   1. RANDOMIZE button: calls getRandomSection() to pick a random unviewed section
+ *      from allSections (any tributary). Falls back to full reset when all are viewed.
+ *   2. CURATED button: follows the original trib-button link embedded in the source
+ *      content (extractTribButtonTarget). If the content linked to another tributary
+ *      section, this button loads that specific section. If no link found, opens a
+ *      section-picker modal for the current tributary.
+ *
+ * PARTICLE COALESCE ANIMATION (animateSectionAppearance):
+ *   When a new section loads, 200 SedimentParticle instances start at random viewport
+ *   positions and fly toward the bounding box of the new section element over 1200ms.
+ *   The section content fades in as the particles arrive (opacity starts at 40% of
+ *   animation progress). A full-viewport fixed canvas (#cyoa-particle-canvas) is
+ *   created for the animation and removed when complete.
+ *   Disabled when prefers-reduced-motion is set.
+ *
+ * CONTENT PROCESSING (processContentForCYOA):
+ *   The raw HTML content from tributaries.json is sanitized before display:
+ *   - Existing tributary navigation elements (.trib-choice-container, .new-section)
+ *     are removed (CYOA supplies its own navigation)
+ *   - Images are wrapped in Spotlight-compatible <a class="spotlight"> anchors
+ *     so the gallery viewer works within the CYOA context
  */
 
 (function() {
