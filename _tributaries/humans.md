@@ -120,7 +120,7 @@ Their leader was John Wesley Powell, a one-armed Civil war Veteran, geologist, e
 
 The maps and reports that Powell produced on this expedition (and another one like it two years later) would greatly shape the course of Western development. Powell identified that survival in the West was more contingent on access to water (which was scarce) than land (which was plenty); a direct inversion of the conditions that governed settlement in the East. Eastern settlers were land hungry, but had taken water for granted, and until Powell's expeditions, expansionists had not considered that in order to move westward, they would either have to reconfigure their lifestyles -- or reconfigure the land. 
 
-{% include feature/image-gallery.html objectid="sediment191" caption=false%}
+{% include feature/image-gallery.html objectid="sediment191" caption="Powell’s map of the “Arid Region of the United States"%}
 
 Powell cautioned Congress in 1890 that life would have to mold itself around the West's sparse waterways, and he proposed that state lines be drawn not according to "the logic of the grid," but instead along watershed boundaries. Each state, Powell suggested, would oversee and implement public irrigation infrastructure, and water would be cooperatively managed by basin residents. 
 
@@ -132,7 +132,7 @@ Before these projects could begin, or even be imagined, the American West had to
 
 Much of the data that Powell provided Congress was gleaned through traditional survey methods. He measured distances by triangulating his position in relation to the stars; he carefully tracked the river's gradient with thrice-daily barometer readings; and his botanical observations -- "luxuriant grasses" or "thorny cactus here and there"--helped him estimate regional rainfall patterns. [^4]
 
-{% include feature/image-gallery.html objectid="sediment316" caption=false%}
+{% include feature/image-gallery.html objectid="sediment316" caption="Line drawing of a Puebloan dwelling from John Wesley Powell's 1875 book" %}
 
 But Powell was an ethnologist as well as a botanist-geologist, and he knew that local Indigenous communities possessed "intimate knowledge of the landscape" that could help him understand how the region's resources might best be harnessed for human use. Powell extracted a wealth of information from the Indigenous communities he encountered, and he was often explicit about these strategies. In the Grand Canyon, for example, Powell met a band of Shi'-vwit Paiutes, and told their chief that "I wish to learn about their cañons and mountains, and about themselves, to tell other men at home; and that I want to take pictures of everything, and show them to my friends." [^5] 
 
@@ -154,7 +154,7 @@ Indeed, the re-settlement of the Colorado River Basin was predicated on first cl
 
 As Powell noted, Mormons often used stones taken from Native dwellings to build their own homes, and as they laid irrigation ditches over those already there, Mormon settlers simultaneously averred their own claims over the land while eradicating any physical indication that the land had previously belonged to someone else. [^10]
 
-{% include feature/image-gallery.html objectid="sediment317" caption=false%}
+{% include feature/image-gallery.html objectid="sediment317" caption="Line drawing of a Puebloan dwelling from John Wesley Powell's 1875 book"%}
 
 In order to justify these encroachments, colonizers frequently invoked stadial theories of evolution, which imagined that newer, more advanced civilizations will naturally succeed and subsume those older and less advanced, like the accrual of new strata on top of old. However, the reality that settler infrastructures were established not *on top* of prior cultures, but *using* their materials undercuts this kind of stratigraphic logic; Mormon settlements were made possible because they were built *with* the stuff of the past, not on top of it. [^11]
 
@@ -162,7 +162,7 @@ Practices of cultural superpositions not only assuage the settler consciousness 
 
 However, when Powell came across these "ruins", many of which were no longer in use, he concluded that the region's contemporary Indigenous populations must be less "'civilized' than their ancestors," and decided that "Indigenous cultures belonged to the past, not the present." [^12] Powell read, in other words, the absence of Indigenous presence within Glen Canyon to indicate cultural obsolescence, a narrative which legitimized Euroamerican encroachment. But of course, physical residues alone rarely tell a complete story, and attempting to fill in the gaps -- as Powell did -- risks filling them with mistruths and misunderstandings. 
 
-{% include feature/image-gallery.html objectid="sediment292" caption=false%}
+{% include feature/image-gallery.html objectid="sediment292" caption="Powell talking to a Pauite man during one of his surveys"%}
 
 At the time of Powell's expedition, there were dozens of Indigenous groups living on Glen Canyon's shoulders, many of whom were descended from those people who had built the gardens and dwellings that Powell encountered. Their ancestors, the Ancestral Puebloans, had not disappeared; they had purposefully migrated out of the Canyon in order to survive an episode of drought -- a common phenomena in the Southwest's variable climate.
 
@@ -174,7 +174,7 @@ Time, as Pasqual indicates, does not necessarily proceed along stratigraphic lin
 
 However, these rhythms and pulses tend to exceed the span of a single lifetime -- let alone the span of Powell's two expeditions -- and Indigenous knowledge about climatic fluctuations and how to adapt to them is often accumulated over thousands of generations. Powell, an easterner descended from Europeans, had no such generational insight, and he therefore had little context for understanding why the ruins he encountered might be vacant. In his attempts to fill these gaps, Powell inserted a false -- and racialized -- narrative about civilizational decline, and he blinded himself to the sea of other stories that the ruins, the landscape, and its people contained. 
 
-{% include feature/image-gallery.html objectid="sediment326" caption=false%}
+{% include feature/image-gallery.html objectid="sediment326" caption="Colorado River historic flows, reconstructed from tree ring data"%}
 
 Scientists have since figured out that tree rings store a yearly catalog of their environment's climatic history, and as the trees attest, both of Powell's expeditions took place during an unusually wet period. Reconstructive modeling indicates that in the year of Powell's first expedition, the Colorado River saw water flows around 20 million acre-feet, about 30% more than the long-term average. Thus, at the time of Powell's expedition, there was enough water in the basin to indicate that sedentary, agriculture-based settlement was possible, as long as this water was carefully managed and partitioned. [^14]
 
@@ -293,13 +293,13 @@ Almost exactly fifty years before, in November of 1975, the Bureau of Reclamatio
 
 The reservoir reached full pool seven months later -- and immediately collapsed. 80 billion gallons of water moving at 2 million cubic feet per second surged out from the reservoir, chewing open the dam walls to rip across the plain in a flood 15 feet high and four miles across. Two towns were wiped clean from their banks. Eleven people and 16,000 livestock drowned. 
 
-{% include feature/image-gallery.html objectid="sediment327" caption=false%}
+{% include feature/image-gallery.html objectid="sediment327" caption="Teton Dam collapse"%}
 
 The morning I went to the dam, or what remained of it, a record-breaking windstorm was pummelling the Pacific Northwest. I fought to keep my car straight against eighty-mile-per-hour gusts, wondering if I should turn back, but then I was there: a small brown sign on the side of the highway pointed down a broken, almost invisible road. I eased down it slowly, swerving between potholes and rough heaves. In some spots, dirt had crawled out onto the pavement, covering it entirely. Abruptly, the road stopped, cut off by orange construction taping, and dropped promptly into the canyon. 
 
 I sat in my car for a moment, which was rocking in the heavy wind. Perhaps it was the apocalyptic weather -- the grey yellow skies and the tumbleweeds shooting across the plains -- or the signs posted all around announcing that I was being surveilled, or the thick rusted pipe at the edge of the parking lot that looked as if it had been hurled up by the flood, or perhaps it was knowing that I was in a place that, fifty years before, had experienced such a cataclysmic disaster, but I began to feel a deep dread. When I pushed my door open, it was flung violently back by the wind, and I had to fight to close it again. Then I started down a rutted dirt trail towards the dam. 
 
-{% include feature/image-gallery.html objectid="sediment201" caption=false%}
+{% include feature/image-gallery.html objectid="sediment201" caption="Ruins of the Teton Dam"%}
 
 The wind howled low. It began to rain, and I nearly turned back, but the wind was pushing me forward. Eventually, over a small crest, the dam came into view. What remained was a stark and ugly cone with its face cut cleanly off, rising up from the canyon floor. On either side of the canyon stood concrete abutments, though whatever they had abutted had long ago been torn away. They were scrawled with graffiti and circled by a chainlink fence that had been repeatedly bent back by people who wanted to get in, for whatever reason. I turned down the valley, and saw the path of the flood -- a vast scar, walls bared and scoured and crumbling in.
 
@@ -311,7 +311,7 @@ What remains of ourselves are we leaving to the future?
 
 
 {% include feature/image-gallery.html objectid="sediment202;sediment203" caption=false%}
-{% include feature/image-gallery.html objectid="sediment277" caption=false%}
+{% include feature/image-gallery.html objectid="sediment277" caption="false"%}
 
 
 {% include feature/trib-button.html trib="humans" image="dwellings" text="Recirculate" %}
