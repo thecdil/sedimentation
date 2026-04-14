@@ -35,6 +35,6 @@
 {% include head/analytics.html %}
 {%- endif -%}
 {% if site.noindex == true or page.noindex == true or layout.noindex == true %}<meta name="robots" content="noindex" />{% endif %}
-{% if page.scrollama %}    <script src="{{ '/assets/lib/scrollama.js' | relative_url }}"></script>{% endif %}
+{% if page.preload-image %}<link rel="preload" as="image" href="{{ page.preload-image | relative_url }}" fetchpriority="high">{%- endif -%}
 
 <!-- Last build date: {{ site.time | date: "%Y-%m-%d" }} -->

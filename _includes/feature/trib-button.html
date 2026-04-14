@@ -66,7 +66,8 @@
       <div class="choice-icon">
         <img src="{% if include.image %}{{'/objects/' | append: include.image | append: '.png' | relative_url}}{% else %}{{'/objects/' | append: include.trib | append: '.png' | relative_url}}{% endif %}"
              class="trib-button-image"
-             alt="{{ button_text }}">
+             alt="{{ button_text }}"
+             loading="lazy">
       </div>
       {% unless include.hidetext == "true" %}
       <p class="choice-label">{{ button_text }}</p>

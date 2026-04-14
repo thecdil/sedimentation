@@ -201,7 +201,7 @@ body
         ├── side-nav-banner.html (nav overlay)
         ├── tributary-river.html (SVG river background, positioned left or right based on page.tributary-side)
         └── .tributary-container
-              ├── .tributary-title-image-container (sedimentation-title.png)
+              ├── .tributary-title-image-container (sedimentation-title_sm.png)
               ├── #scrolly
               │     └── article
               │           └── .step (each section is a .step div)
@@ -305,7 +305,7 @@ Uses `layout: default`. The `default.html` layout conditionally includes `static
 ### Variant C: All Other Pages
 
 Use `layout: default` → includes `static-sediment-header.html`. This include renders:
-- The `sedimentation-title.png` logo (links to `/main.html`)
+- The `sedimentation-title_sm.png` logo (links to `/main.html`)
 - The `side-nav-banner.html` nav toggle
 
 **Detection logic in `_layouts/default.html`:**

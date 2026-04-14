@@ -17,7 +17,12 @@
     <!-- Card 2: Map (wide, tall) -->
     <div class="nav-card map-card">
       <h3>MAP</h3>
-      <div id="nav-mini-map"></div>
+      <a href="{{ '/map.html' | relative_url }}" class="map-img-link">
+        <img src="{{ '/assets/img/map-screenshot_sm.jpg' | relative_url }}"
+             alt="Map of Glen Canyon Dam area"
+             class="nav-map-img"
+             loading="lazy">
+      </a>
       <a href="{{ '/map.html' | relative_url }}" class="map-link">discover by location →</a>
     </div>
 
@@ -41,10 +46,10 @@
     <div class="nav-card collection-card">
       <h3>COLLECTION</h3>
       <div class="collection-thumbnails">
-        <a href="{{ '/browse.html' | relative_url }}" class="collection-thumb-link"><img src="" alt="" class="collection-thumb-img"></a>
-        <a href="{{ '/browse.html' | relative_url }}" class="collection-thumb-link"><img src="" alt="" class="collection-thumb-img"></a>
-        <a href="{{ '/browse.html' | relative_url }}" class="collection-thumb-link"><img src="" alt="" class="collection-thumb-img"></a>
-        <a href="{{ '/browse.html' | relative_url }}" class="collection-thumb-link"><img src="" alt="" class="collection-thumb-img"></a>
+        <a href="{{ '/items/sediment186.html' | relative_url }}" class="collection-thumb-link"><img src="https://cdil.lib.uidaho.edu/sedimentation/objects/thumbs/sediment186_th.jpg" alt="Textured surfaces in Glen Canyon" class="collection-thumb-img" loading="lazy"></a>
+        <a href="{{ '/items/sediment174.html' | relative_url }}" class="collection-thumb-link"><img src="https://cdil.lib.uidaho.edu/sedimentation/objects/thumbs/sediment174_th.jpg" alt="Abandoned gold-mining equipment from Stanton's operation" class="collection-thumb-img" loading="lazy"></a>
+        <a href="{{ '/items/sediment55.html' | relative_url }}" class="collection-thumb-link"><img src="https://cdil.lib.uidaho.edu/sedimentation/objects/thumbs/sediment55_th.jpg" alt="Date inscription in rock: 1933" class="collection-thumb-img" loading="lazy"></a>
+        <a href="{{ '/items/sediment84.html' | relative_url }}" class="collection-thumb-link"><img src="https://cdil.lib.uidaho.edu/sedimentation/objects/thumbs/sediment84_th.jpg" alt="Crossbedding and tafoni in sandstone" class="collection-thumb-img" loading="lazy"></a>
       </div>
       <a href="{{ '/browse.html' | relative_url }}" class="collection-link">browse all</a>
     </div>
@@ -115,7 +120,7 @@
   border-top: 1px solid rgba(139, 69, 19, 0.12);
 }
 
-.tributary-link {
+.tributary-card .tributary-link {
   display: block;
   padding: 9px 8px;
   color: #5c3410;
@@ -125,7 +130,7 @@
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.tributary-link:hover {
+.tributary-card .tributary-link:hover {
   background: rgba(139, 69, 19, 0.07);
   color: #8B4513;
   text-decoration: none;
@@ -149,13 +154,23 @@
   letter-spacing: 0.02em;
 }
 
-#nav-mini-map {
+.map-img-link {
+  display: block;
+  margin: 15px 0;
+}
+
+.nav-map-img {
   width: 100%;
   height: 280px;
-  margin: 15px 0;
+  object-fit: cover;
   border: 3px solid #8B4513;
-  position: relative;
-  z-index: 1;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .nav-map-img {
+    height: 200px;
+  }
 }
 
 .map-link {
@@ -315,9 +330,6 @@
   display: block;
 }
 
-.collection-thumb-img[src=""] {
-  visibility: hidden;
-}
 
 .collection-thumb-link:hover .collection-thumb-img {
   transform: scale(1.05);
@@ -373,88 +385,9 @@
     max-width: 100%;
   }
 
-  #nav-mini-map {
-    height: 200px;
-    max-width: 100%;
-  }
-
   .scroll-card {
     padding: 20px;
   }
 }
 </style>
 
-<!-- Load Leaflet for mini map -->
-<link rel="stylesheet" href="{{ '/assets/lib/leaflet/leaflet.css' | relative_url }}">
-<script src="{{ '/assets/lib/leaflet/leaflet.js' | relative_url }}"></script>
-<script src="https://unpkg.com/esri-leaflet@3.0.12/dist/esri-leaflet.js"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize mini map centered on Glen Canyon Dam area
-  var damCenter = [36.93, -111.48];
-  var miniMap = L.map('nav-mini-map', {
-    center: damCenter,
-    zoom: 10,
-    zoomControl: false,
-    dragging: false,
-    touchZoom: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false,
-    keyboard: false
-  });
-
-  // Add tile layer
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri'
-  }).addTo(miniMap);
-
-  // Add Lake Powell Boundary
-  L.esri.featureLayer({
-    url: 'https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/LakePowellBoundary/FeatureServer/0',
-    style: function () {
-      return { color: '#0066cc', weight: 2, fillOpacity: 0.3 };
-    }
-  }).addTo(miniMap);
-
-  // Add dam marker
-  L.marker(damCenter).addTo(miniMap)
-    .bindPopup('Glen Canyon Dam');
-});
-</script>
-
-<script>
-// Randomize collection thumbnails from metadata.json and link each to its item page
-document.addEventListener('DOMContentLoaded', function() {
-  var thumbLinks = document.querySelectorAll('.collection-thumb-link');
-  if (!thumbLinks.length) return;
-
-  fetch('{{ "/assets/data/metadata.json" | relative_url }}')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      // Filter to items that have a thumbnail image
-      var items = data.objects.filter(function(o) { return o.image_thumb; });
-      if (items.length < 1) return;
-
-      // Fisher-Yates shuffle, then take first 4
-      for (var i = items.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
-      }
-      var selected = items.slice(0, thumbLinks.length);
-
-      thumbLinks.forEach(function(link, i) {
-        var item = selected[i];
-        if (!item) return;
-        link.href = item.reference_url;
-        var img = link.querySelector('img');
-        if (img) {
-          img.src = item.image_thumb;
-          img.alt = item.title || 'Collection item';
-        }
-      });
-    })
-    .catch(function() {}); // silent fail — browse all link still works
-});
-</script>
