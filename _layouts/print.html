@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--
+  PRINT LAYOUT — Standalone (no default.html inheritance)
+  =========================================================
+  Used for:
+    - Individual tributary essay print pages (/print/[slug]/)
+    - Full book PDF (/print/book/)
+
+  Paged.js is loaded from CDN and intercepts window.print(),
+  laying out content into paginated @page boxes with running
+  headers (named strings), page counters, and proper margins.
+
+  Fonts: Spectral (body/display) + Inconsolata (UI/labels)
+  loaded from Google Fonts — these must be present for correct
+  PDF output; Paged.js captures the full rendered page.
+
+  Format override: ?format=a4 or ?format=69 injects a <style>
+  tag overriding @page { size } before Paged.js initializes.
+
+  Book mode: page.book == true — loops all site.tributaries
+  in order. ?essays=land,atmosphere,... hides unselected chapters.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% if page.book %}
+      Sedimentation: An Archive of Glen Canyon — Print Edition
+    {% elsif page.tributary %}
+      {% for trib in site.tributaries %}{% if trib.slug == page.tributary %}{{ trib.title }} — Sedimentation{% endif %}{% endfor %}
+    {% else %}
+      {{ page.title | default: "Print" }} — Sedimentation
+    {% endif %}
+  </title>
+
+  <!-- Google Fonts: Spectral + Inconsolata -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600&family=Spectral:ital,wght@0,200;0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Print-only CSS (standalone — NOT cb.css which loads globally and would break the live site) -->
+  <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}">
+
+  <!-- Format override: reads ?format= URL param and injects @page size rule -->
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var format = params.get('format') || localStorage.getItem('print-format') || 'letter';
+      var sizes = { letter: '8.5in 11in', a4: '210mm 297mm', '69': '6in 9in' };
+      if (sizes[format]) {
+        document.head.insertAdjacentHTML('beforeend',
+          '<style>@page { size: ' + sizes[format] + '; }</style>');
+      }
+      // Store for format selector buttons
+      window._printFormat = format;
+    })();
+  </script>
+</head>
+<body class="has-print-bar print-body">
+
+  <!-- ============================================================
+       SCREEN-ONLY CONTROL BAR
+       Hidden by CSS @media print
+       ============================================================ -->
+  <div class="print-control-bar">
+    <span class="print-control-title">
+      {% if page.book %}
+        Sedimentation — Full Book
+      {% elsif page.tributary %}
+        {% for trib in site.tributaries %}{% if trib.slug == page.tributary %}{{ trib.title }}{% endif %}{% endfor %}
+      {% else %}
+        {{ page.title }}
+      {% endif %}
+    </span>
+
+    <a href="{{ '/print/' | relative_url }}" class="print-back-link">← Print Hub</a>
+
+    <div class="format-selector" role="group" aria-label="Page format">
+      <button class="format-btn" data-format="letter">Letter</button>
+      <button class="format-btn" data-format="a4">A4</button>
+      <button class="format-btn" data-format="69">6×9″</button>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+  </div>
+
+  <!-- ============================================================
+       PRINT CONTENT
+       ============================================================ -->
+
+  {% if page.book %}
+    <!-- ==================== BOOK MODE ==================== -->
+
+    <!-- Cover page -->
+    <div class="print-cover-page">
+      <div class="print-cover-ornament">
+        <svg width="120" height="24" viewBox="0 0 120 24" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20"  cy="12" r="7"   fill="#CD853F" opacity="0.55"/>
+          <circle cx="45"  cy="12" r="5"   fill="#D2691E" opacity="0.45"/>
+          <circle cx="65"  cy="12" r="6.5" fill="#F4A460" opacity="0.50"/>
+          <circle cx="85"  cy="12" r="4.5" fill="#DEB887" opacity="0.45"/>
+          <circle cx="105" cy="12" r="6"   fill="#A0522D" opacity="0.50"/>
+        </svg>
+      </div>
+
+      <h1 class="print-cover-title">Sedimentation</h1>
+      <p class="print-cover-subtitle">An Archive of Glen Canyon</p>
+
+      <div class="print-cover-meta">
+        Hannah Green<br>
+        Center for Digital Inquiry and Learning<br>
+        University of Idaho
+      </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="print-toc">
+      <h2>Contents</h2>
+      <ol>
+        {% assign sorted_tribs = site.tributaries | sort: "order" %}
+        {% for trib in sorted_tribs %}
+        <li>
+          <a href="#chapter-{{ trib.slug }}">{{ trib.title }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+
+    <!-- Chapters -->
+    {% for trib in sorted_tribs %}
+    <div class="print-chapter" id="chapter-{{ trib.slug }}" data-tributary="{{ trib.slug }}">
+
+      <!-- Chapter title page -->
+      <div class="print-title-page">
+        <div class="print-ornament">
+          <svg width="80" height="16" viewBox="0 0 80 16" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14"  cy="8" r="5"   fill="#CD853F" opacity="0.6"/>
+            <circle cx="40"  cy="8" r="4"   fill="#D2691E" opacity="0.5"/>
+            <circle cx="66"  cy="8" r="5"   fill="#DEB887" opacity="0.55"/>
+          </svg>
+        </div>
+        <h1 class="print-essay-title">{{ trib.title }}</h1>
+        <p class="print-essay-subtitle">from <em>Sedimentation: An Archive of Glen Canyon</em></p>
+        <p class="print-essay-meta">Hannah Green · CDIL · University of Idaho</p>
+      </div>
+
+      <!-- Chapter content -->
+      <div class="print-essay-body">
+        {{ trib.content }}
+      </div>
+
+    </div>
+    {% endfor %}
+
+  {% elsif page.tributary %}
+    <!-- ==================== SINGLE ESSAY MODE ==================== -->
+    {% assign found_trib = nil %}
+    {% for trib in site.tributaries %}
+      {% if trib.slug == page.tributary %}
+        {% assign found_trib = trib %}
+      {% endif %}
+    {% endfor %}
+
+    {% if found_trib %}
+
+      <!-- Essay title page -->
+      <div class="print-title-page">
+        <div class="print-ornament">
+          <svg width="80" height="16" viewBox="0 0 80 16" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14"  cy="8" r="5"   fill="#CD853F" opacity="0.6"/>
+            <circle cx="40"  cy="8" r="4"   fill="#D2691E" opacity="0.5"/>
+            <circle cx="66"  cy="8" r="5"   fill="#DEB887" opacity="0.55"/>
+          </svg>
+        </div>
+        <h1 class="print-essay-title">{{ found_trib.title }}</h1>
+        <p class="print-essay-subtitle">from <em>Sedimentation: An Archive of Glen Canyon</em></p>
+        <p class="print-essay-meta">Hannah Green · CDIL · University of Idaho</p>
+      </div>
+
+      <!-- Essay body -->
+      <div class="print-essay-body">
+        {{ found_trib.content }}
+      </div>
+
+    {% else %}
+      <p style="padding: 2rem; font-family: monospace;">
+        Tributary "{{ page.tributary }}" not found. Check the <code>tributary:</code> frontmatter.
+      </p>
+    {% endif %}
+
+  {% else %}
+    <!-- Fallback: render page content directly -->
+    <div class="print-essay-body">
+      {{ content }}
+    </div>
+  {% endif %}
+
+
+  <!-- ============================================================
+       PRE-PAGED.JS PREP SCRIPT
+       Runs before Paged.js to:
+       1. Insert section-end ornaments before .trib-choice-container
+       2. Relabel .footnotes heading to "Notes"
+       3. Handle book chapter filtering (?essays= param)
+       ============================================================ -->
+  <script>
+    // 1. Insert section-end ornaments before each choice container
+    document.querySelectorAll('.trib-choice-container').forEach(function(el) {
+      var ornament = document.createElement('div');
+      ornament.className = 'section-end-ornament';
+      ornament.innerHTML = '<svg width="60" height="12" viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">' +
+        '<circle cx="10" cy="6" r="3.5" fill="#CD853F" opacity="0.6"/>' +
+        '<circle cx="30" cy="6" r="2.5" fill="#D2691E" opacity="0.5"/>' +
+        '<circle cx="50" cy="6" r="3.5" fill="#DEB887" opacity="0.55"/>' +
+        '</svg>';
+      el.parentNode.insertBefore(ornament, el);
+    });
+
+    // 2. Rename footnotes heading to "Notes"
+    var footnotesHeading = document.querySelector('section.footnotes h2');
+    if (footnotesHeading) {
+      footnotesHeading.textContent = 'Notes';
+    }
+
+    // 3. Book mode: filter chapters by ?essays= param
+    var params = new URLSearchParams(window.location.search);
+    var requested = params.get('essays');
+    if (requested) {
+      var allowedSlugs = requested.split(',').map(function(s) { return s.trim(); });
+      document.querySelectorAll('.print-chapter').forEach(function(ch) {
+        var slug = ch.dataset.tributary;
+        if (slug && allowedSlugs.indexOf(slug) === -1) {
+          ch.style.display = 'none';
+        }
+      });
+    }
+
+    // 4. Format selector button state
+    var currentFormat = window._printFormat || 'letter';
+    document.querySelectorAll('.format-btn').forEach(function(btn) {
+      if (btn.dataset.format === currentFormat) {
+        btn.classList.add('active');
+      }
+      btn.addEventListener('click', function() {
+        var fmt = this.dataset.format;
+        localStorage.setItem('print-format', fmt);
+        // Reload with new format param
+        var url = new URL(window.location.href);
+        url.searchParams.set('format', fmt);
+        window.location.href = url.toString();
+      });
+    });
+  </script>
+
+  <!-- Paged.js CDN — must load AFTER content is in DOM -->
+  <script src="https://unpkg.com/pagedjs/dist/paged.legacy.polyfill.js"></script>
+
+</body>
+</html>

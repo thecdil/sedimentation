@@ -1,0 +1,8 @@
+---
+# Standalone print CSS — compiled by Jekyll into assets/css/print.css
+# Linked ONLY from _layouts/print.html and _layouts/print-eddies.html
+# Never included in cb.scss (which loads globally).
+---
+@charset "utf-8";
+
+@use "print-paged";

@@ -1719,6 +1719,10 @@ article{
 }
 
 .section-nav-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
   font-family: var(--font-display);
   font-size: 11px;
   font-weight: 700;
@@ -1728,6 +1732,29 @@ article{
   padding: 0 15px 12px;
   margin-bottom: 8px;
   border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.section-nav-title-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.section-nav-print {
+  flex-shrink: 0;
+  color: #8B4513;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity $duration-fast ease;
+
+  &:hover {
+    opacity: 1;
+    color: #8B4513;
+  }
 }
 
 .section-nav-list {
@@ -2468,3 +2495,226 @@ article{
   }
 }
 
+
+/* ========================================
+   Print Hub Page (/print/)
+   Screen-only UI for composing print/PDF output.
+   Loaded via cb.css through the print-hub layout → default chain.
+   ======================================== */
+
+.print-hub {
+  max-width: 860px;
+  margin: 3rem auto;
+  padding: 0 1.5rem 4rem;
+  font-family: var(--font-body);
+
+  .print-hub-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+
+    h1 {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8B4513;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #555;
+      max-width: 55ch;
+      margin: 0;
+    }
+  }
+
+  .print-hub-section {
+    margin-bottom: 2.5rem;
+
+    > h2 {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .format-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0;
+
+    .format-label {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      color: #777;
+      margin-right: 0.4rem;
+    }
+
+    .format-btn {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border: 1px solid rgba(139, 69, 19, 0.35);
+      background: transparent;
+      color: #5a3a1a;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: all 120ms ease;
+
+      &:hover { background: rgba(139, 69, 19, 0.06); }
+
+      &.active {
+        background: #5a3a1a;
+        color: #f8f5f0;
+        border-color: #5a3a1a;
+      }
+    }
+  }
+
+  .tributary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(139, 69, 19, 0.15);
+    border: 1px solid rgba(139, 69, 19, 0.15);
+    margin-bottom: 2rem;
+  }
+
+  .tributary-card {
+    background: #faf8f4;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: #2a1a0a;
+      margin: 0;
+    }
+
+    .card-link {
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #8B4513;
+      text-decoration: none;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      &:hover { color: #4a2008; }
+      svg { opacity: 0.7; flex-shrink: 0; }
+    }
+  }
+
+  .eddies-card {
+    background: #faf8f4;
+    border: 1px solid rgba(139, 69, 19, 0.15);
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .eddies-card-content {
+      .card-title {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 300;
+        color: #2a1a0a;
+        margin: 0 0 0.2rem;
+      }
+
+      .eddies-status {
+        font-family: var(--font-ui);
+        font-size: 0.68rem;
+        color: #888;
+        letter-spacing: 0.03em;
+      }
+    }
+
+    .card-link {
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #8B4513;
+      text-decoration: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      &:hover { color: #4a2008; }
+      svg { opacity: 0.7; flex-shrink: 0; }
+
+      &.disabled {
+        opacity: 0.35;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .book-builder {
+    background: #faf8f4;
+    border: 1px solid rgba(139, 69, 19, 0.15);
+    padding: 1.25rem 1.5rem;
+
+    .book-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-ui);
+        font-size: 0.8rem;
+        color: #4a3a2a;
+
+        input[type="checkbox"] {
+          width: 13px;
+          height: 13px;
+          cursor: pointer;
+          accent-color: #8B4513;
+        }
+      }
+    }
+
+    .book-generate-btn {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      padding: 0.45rem 1.1rem;
+      background: #5a3a1a;
+      color: #f8f5f0;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      transition: background 120ms ease;
+
+      &:hover { background: #2a1a0a; }
+    }
+  }
+}

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+  PRINT-EDDIES LAYOUT — Standalone (no default.html inheritance)
+  ==============================================================
+  Renders the user's current Eddies CYOA session as a printable document.
+
+  DATA FLOW:
+    1. Before navigating here, eddies-cyoa-js.html copies loadedSections
+       (array of {tributarySlug, id}) to localStorage['eddies-print-session'].
+    2. This page fetches /assets/data/tributaries.json (built by Jekyll).
+    3. For each section key in the stored session, it finds the matching
+       section's html_content in the JSON and renders it.
+    4. After all sections are rendered, window.PagedPolyfill.preview() is
+       called so Paged.js paginates the content.
+
+  Empty state: if no session data exists, shows a message with a link back.
+
+  Format override works identically to print.html — ?format= URL param.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Eddies Journey — Sedimentation</title>
+
+  <!-- Google Fonts: Spectral + Inconsolata -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600&family=Spectral:ital,wght@0,200;0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Print-only CSS (standalone — NOT cb.css which loads globally and would break the live site) -->
+  <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}">
+
+  <!-- Format override -->
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var format = params.get('format') || localStorage.getItem('print-format') || 'letter';
+      var sizes = { letter: '8.5in 11in', a4: '210mm 297mm', '69': '6in 9in' };
+      if (sizes[format]) {
+        document.head.insertAdjacentHTML('beforeend',
+          '<style>@page { size: ' + sizes[format] + '; }</style>');
+      }
+      window._printFormat = format;
+    })();
+  </script>
+</head>
+<body class="has-print-bar print-body">
+
+  <!-- Screen-only control bar -->
+  <div class="print-control-bar">
+    <span class="print-control-title">My Eddies Journey</span>
+
+    <a href="{{ '/print/' | relative_url }}" class="print-back-link">← Print Hub</a>
+
+    <div class="format-selector" role="group" aria-label="Page format">
+      <button class="format-btn" data-format="letter">Letter</button>
+      <button class="format-btn" data-format="a4">A4</button>
+      <button class="format-btn" data-format="69">6×9″</button>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+  </div>
+
+  <!-- Content rendered by JS below -->
+  <div id="print-eddies-content"></div>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // ——— Format selector buttons ———
+    var currentFormat = window._printFormat || 'letter';
+    document.querySelectorAll('.format-btn').forEach(function(btn) {
+      if (btn.dataset.format === currentFormat) btn.classList.add('active');
+      btn.addEventListener('click', function() {
+        var fmt = this.dataset.format;
+        localStorage.setItem('print-format', fmt);
+        var url = new URL(window.location.href);
+        url.searchParams.set('format', fmt);
+        window.location.href = url.toString();
+      });
+    });
+
+    var container = document.getElementById('print-eddies-content');
+    var baseUrl = '{{ "/" | relative_url }}';
+
+    // ——— Read session from localStorage ———
+    var rawSession = localStorage.getItem('eddies-print-session');
+
+    if (!rawSession) {
+      renderEmptyState();
+      return;
+    }
+
+    var session;
+    try {
+      session = JSON.parse(rawSession);
+    } catch(e) {
+      renderEmptyState();
+      return;
+    }
+
+    if (!session.sections || session.sections.length === 0) {
+      renderEmptyState();
+      return;
+    }
+
+    // ——— Fetch tributaries data ———
+    fetch(baseUrl + 'assets/data/tributaries.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        renderSession(session, data);
+      })
+      .catch(function(err) {
+        console.error('Failed to load tributaries.json:', err);
+        container.innerHTML = '<p style="padding:2rem;font-family:monospace;">Error loading section data. Please try again.</p>';
+      });
+
+    // ——— Render the session ———
+    function renderSession(session, tributariesData) {
+      var sections = session.sections;
+      var generatedAt = session.generatedAt ? new Date(session.generatedAt) : new Date();
+      var dateStr = generatedAt.toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+
+      // Build a lookup map: tributarySlug → {id → section}
+      // tributaries.json structure: array of tributary objects with .slug and .sections[]
+      var sectionMap = {};
+      if (Array.isArray(tributariesData)) {
+        tributariesData.forEach(function(trib) {
+          if (!sectionMap[trib.slug]) sectionMap[trib.slug] = {};
+          if (trib.sections && Array.isArray(trib.sections)) {
+            trib.sections.forEach(function(sec) {
+              sectionMap[trib.slug][sec.id] = sec;
+            });
+          }
+        });
+      } else if (typeof tributariesData === 'object') {
+        // Alternate structure: keyed by slug
+        Object.keys(tributariesData).forEach(function(slug) {
+          sectionMap[slug] = {};
+          var trib = tributariesData[slug];
+          if (trib.sections && Array.isArray(trib.sections)) {
+            trib.sections.forEach(function(sec) {
+              sectionMap[slug][sec.id] = sec;
+            });
+          }
+        });
+      }
+
+      // Resolve sections from the session
+      var resolvedSections = [];
+      sections.forEach(function(s) {
+        var sec = sectionMap[s.tributarySlug] && sectionMap[s.tributarySlug][s.id];
+        if (sec) {
+          resolvedSections.push({
+            tributarySlug: s.tributarySlug,
+            id: s.id,
+            title: sec.title || sec.heading || '',
+            content: sec.html_content || sec.content || '',
+            tributaryTitle: sec.tributaryTitle || s.tributarySlug
+          });
+        }
+      });
+
+      // Build section list for title page
+      var sectionListItems = resolvedSections.map(function(s) {
+        return '<li>' + (s.tributaryTitle || s.tributarySlug) +
+               (s.title ? ': ' + s.title : '') + '</li>';
+      }).join('');
+
+      // ——— Title page ———
+      var html = '<div class="print-eddies-title-page">';
+      html += '<div class="print-ornament">';
+      html += '<svg width="80" height="16" viewBox="0 0 80 16" xmlns="http://www.w3.org/2000/svg">';
+      html += '<circle cx="14" cy="8" r="5" fill="#CD853F" opacity="0.6"/>';
+      html += '<circle cx="40" cy="8" r="4" fill="#D2691E" opacity="0.5"/>';
+      html += '<circle cx="66" cy="8" r="5" fill="#DEB887" opacity="0.55"/>';
+      html += '</svg></div>';
+      html += '<h1 class="print-essay-title">My Journey Through Sedimentation</h1>';
+      html += '<p class="eddies-print-subtitle">from Eddies — a personal archive of Glen Canyon</p>';
+      html += '<p class="eddies-print-date">' + dateStr + '</p>';
+      html += '<ul class="eddies-section-list">' + sectionListItems + '</ul>';
+      html += '</div>';
+
+      // ——— Sections ———
+      resolvedSections.forEach(function(sec, i) {
+        html += '<div class="print-eddies-section print-essay-body">';
+
+        if (i > 0) {
+          html += '<hr class="eddies-section-divider">';
+        }
+
+        if (sec.tributaryTitle || sec.tributarySlug) {
+          html += '<p class="eddies-section-source">' +
+            (sec.tributaryTitle || sec.tributarySlug) + '</p>';
+        }
+
+        if (sec.title) {
+          html += '<h2>' + sec.title + '</h2>';
+        }
+
+        html += sec.content;
+        html += '</div>';
+      });
+
+      container.innerHTML = html;
+
+      // ——— Trigger Paged.js after content is in DOM ———
+      // Paged.js script loads after this block; wait for it
+      function tryPreview() {
+        if (window.PagedPolyfill && typeof window.PagedPolyfill.preview === 'function') {
+          window.PagedPolyfill.preview();
+        } else {
+          setTimeout(tryPreview, 100);
+        }
+      }
+      // Give images a moment to load before Paged.js measures
+      setTimeout(tryPreview, 300);
+    }
+
+    // ——— Empty state ———
+    function renderEmptyState() {
+      container.innerHTML =
+        '<div class="print-empty-state">' +
+        '<div style="margin-bottom:2rem;opacity:0.5;">' +
+        '<svg width="60" height="12" viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">' +
+        '<circle cx="10" cy="6" r="3.5" fill="#CD853F" opacity="0.6"/>' +
+        '<circle cx="30" cy="6" r="2.5" fill="#D2691E" opacity="0.5"/>' +
+        '<circle cx="50" cy="6" r="3.5" fill="#DEB887" opacity="0.55"/>' +
+        '</svg></div>' +
+        '<h2>No journey to print</h2>' +
+        '<p>Visit <a href="' + baseUrl + 'eddies/">Eddies</a> to begin your journey,' +
+        ' then use the print button to save it here.</p>' +
+        '</div>';
+    }
+
+  })();
+  </script>
+
+  <!-- Paged.js CDN — loads after inline script runs -->
+  <script src="https://unpkg.com/pagedjs/dist/paged.legacy.polyfill.js"></script>
+
+</body>
+</html>

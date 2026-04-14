@@ -319,10 +319,20 @@
   }
 
   /**
-   * Handle print/save button click
+   * Handle print/save button click.
+   * Serializes the current session to localStorage so the print page
+   * (a separate tab) can read it — sessionStorage doesn't cross tabs.
    */
   function handlePrint() {
-    window.print();
+    const sessionData = {
+      sections: loadedSections,
+      generatedAt: new Date().toISOString()
+    };
+    localStorage.setItem('eddies-print-session', JSON.stringify(sessionData));
+
+    const fmt = localStorage.getItem('print-format') || 'letter';
+    const printUrl = '{{ "/print/eddies/" | relative_url }}' + '?format=' + fmt;
+    window.open(printUrl, '_blank', 'noopener');
   }
 
   /**
