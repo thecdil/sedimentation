@@ -56,18 +56,34 @@
 
 {%- unless page.complete_bibliography_css_loaded -%}
 <style>
+  #completeBibliographyAccordion {
+    width: 100%;
+  }
+
   #completeBibliographyAccordion .accordion-item {
     background: #f4f1e8;
     border: 1px solid rgba(139, 69, 19, 0.14);
     border-radius: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Prevent about-page h2 section spacing rules from inflating this header */
+  #completeBibliographyAccordion .accordion-header {
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top: 0 !important;
   }
 
   #completeBibliographyAccordion .complete-bibliography-toggle {
     background: #f4f1e8;
     color: #8B4513;
-    font-size: var(--bs-h2-font-size);
-    font-weight: 700;
-    line-height: 1.2;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 300;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    padding: 1rem 1.25rem;
     box-shadow: none;
   }
 
@@ -79,6 +95,40 @@
 
   #completeBibliographyAccordion .accordion-body {
     background: #f4f1e8;
+    color: #5d4037;
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    padding: 1.5rem 1.25rem;
+  }
+
+  #completeBibliographyAccordion .accordion-body ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  #completeBibliographyAccordion .accordion-body li {
+    margin: 0;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.14);
+  }
+
+  #completeBibliographyAccordion .accordion-body li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  #completeBibliographyAccordion .accordion-body a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  #completeBibliographyAccordion .accordion-body p {
+    margin: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 </style>
 {%- assign page.complete_bibliography_css_loaded = true -%}
@@ -98,7 +148,7 @@
         <ul class="mb-0 list-unstyled">
           {%- for entry in bibliography -%}
           {%- if entry != '' -%}
-          <li class="mb-3">{{ entry | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+          <li>{{ entry | markdownify | remove: '<p>' | remove: '</p>' }}</li>
           {%- assign bibliography_count = bibliography_count | plus: 1 -%}
           {%- endif -%}
           {%- endfor -%}
