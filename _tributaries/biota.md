@@ -101,13 +101,36 @@ Most of Glen Canyon's beaver ponds were drowned by Lake Powell. But as the lake 
 
 ## Lifeboats
 
+{% include feature/image-gallery.html objectid="sediment26" caption=false%}
+
+AFTER A RAINSTORM, thousands of glittering pools appear across the Colorado Plateau -- and life explodes out from the desert ground, where thousands of creatures were lying in suspended wait, into the shallow water for a frenetic few days of hatching, eating, growing, breeding, and laying eggs -- all of which must be done before the pool dries up in the hot desert sun. 
+
+When the water disappears, snails and mites burrow into the cool muck and encase themselves in clay. What moisture they seal into their clay cocoons will last them for the months or years until the pool fills again. Other organisms, like bacteria, algae, tardigrades, rotifers, nematodes, and the eggs of fairy shrimp and tadpole shrimp enter into cryptobiosis: a state of dormancy in which their bodies become almost completely dehydrated -- sometimes for up to ten years. 
+
+
+
+
+
+ replace the water in their bodies with sugar molecules, shut down their metabolisms, 
+
+
+
+
+cisterns
+basins
+depressions
+dishes
 
 
 
 
 
 
-multispecies biofilm/mats/ seal potholes and 
+
+
+
+
+multispecies biofilm/mats/ seal potholes  
 
 
 
