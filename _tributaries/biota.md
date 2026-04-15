@@ -32,7 +32,7 @@ The river's seasonal flood pulse, which for millennia delivered necessary moistu
 
 In short, the Glen Canyon Dam helped to decimate, squeeze, and alter the conditions of life for innumerable living beings. The loss here is unthinkable; in Glen and Grand Canyons alone, 23 animal species have been extirpated, including the pikeminnow, the zebra-tailed lizard, and the southwestern river otter, which is now deemed extinct -- gone forever. It is difficult to conceive just how many lives have been made difficult, lonely, short, painful, or impossible since the dam. 
 
-The Glen Canyon Dam, however, was not built for the purpose of destroying life. The dam and its reservoir were sold to the American public as a *life-making* project. By harnessing the river, stockpiling its waters, and redistributing its flows, the Bureau of Reclamation promised that the dam would transform the Colorado from a "natural menace" into a "life-giver, and power producer, a great constructive force." Its waters would provide "opportunities for many new homes and for the growing of crops that help to feed this Nation and the world. [^4] By turning the river into a machine, life -- for humans, and more specifically, for settlers -- could scale up, the Bureau said. Indeed, forty million people now inhabit the lower basin, almost all of whom depend on the electricity produced, managed, and distributed by Colorado River dams and their reservoirs.
+The Glen Canyon Dam, however, was not built for the purpose of destroying life. The dam and its reservoir were sold to the American public as a *life-making* project. By harnessing the river, stockpiling its waters, and redistributing its flows, the Bureau of Reclamation promised that the dam would transform the Colorado from a "natural menace" into a "life-giver, and power producer, a great constructive force." Its waters, the Bureau said, would provide "opportunities for many new homes and for the growing of crops that help to feed this Nation and the world. [^4] By turning the river into a machine, life -- for humans, and more specifically, for settlers -- could scale up. Indeed, forty million people now inhabit the lower basin, almost all of whom depend on the electricity produced, managed, and distributed by Colorado River dams and their reservoirs.
 
 {% include feature/image-gallery.html objectid="sediment299" caption="Excerpt from the Bureau of Reclamation's 1965 promotional brochure, <em> Jewel of the Colorado</em>. Caption reads: <em>Glen Canyon Dam Rising, Man in Nature in Peaceful Harmony.</em> " %}
 
@@ -103,11 +103,24 @@ Most of Glen Canyon's beaver ponds were drowned by Lake Powell. But as the lake 
 
 {% include feature/image-gallery.html objectid="sediment26" caption=false%}
 
-AFTER A RAINSTORM, thousands of glittering pools appear across the Colorado Plateau -- and life explodes out from the desert ground, where thousands of creatures were lying in suspended wait, into the shallow water for a frenetic few days of hatching, eating, growing, breeding, and laying eggs -- all of which must be done before the pool dries up in the hot desert sun. 
+AFTER A RAINSTORM, thousands of glittering pools appear across the Colorado Plateau -- and life explodes out from the earth, where thousands of creatures were lying in suspended wait. For a frenetic few weeks, snails, mites, shrimp, nematodes, and tadpoles hatch, eat, grow, breed, and lay eggs -- all of which must be done before the pools dry up in the hot desert sun. 
 
-When the water disappears, snails and mites burrow into the cool muck and encase themselves in clay. What moisture they seal into their clay cocoons will last them for the months or years until the pool fills again. Other organisms, like bacteria, algae, tardigrades, rotifers, nematodes, and the eggs of fairy shrimp and tadpole shrimp enter into cryptobiosis: a state of dormancy in which their bodies become almost completely dehydrated -- sometimes for up to ten years. 
+When the water disappears, snails and mites burrow into the muck and encase themselves in cocoons made of clay. What moisture they lock into these casings will last them for months or, if they're lucky, even years until the pool fills up with water again. 
 
-test test change
+Other organisms, like bacteria, algae, tardigrades, rotifers, nematodes, and the eggs of fairy and tadpole shrimp enter into cryptobiosis: a state of dormancy in which their bodies become almost completely dehydrated and their metabolisms stop altogether. Fairy shrimp eggs have survived in cryptobiosis for up to fifty years, and in 1998, a handful of fairy shrimp eggs survived nine days in outer space.  
+
+These ephemeral pools –- called desert potholes –- are formed in part by accident and in part by intentional design. Wind and water scoop out shallow depressions in sandstone which collect thin puddles during rainstorms. As microbes proliferate in the small puddles, they metabolize the sandstone and carve the basins deeper. These microbial communities -- composed of intermingled algae, bacteria, and fungi -- also coat pothole bottoms with a semi-impermeable biofilm that prevents water from seeping into the porous rock. 
+
+Like humans and beavers, microbes build water-collecting structures in order to survive. But where humans construct reservoirs intended to last as long as possible, for microbes, ephemerality is a critical feature of their persistence. Desert potholes hold water just long enough for organisms to hatch, grow, and reproduce, but no so long that predators and pollutants find their way in. Maximum accumulation and growth, in other words, does not guarantee life. Resilience ... 
+
+In fact, pothole organisms are some of the earth's longest-surviving species. Fairy shrimp have existed for an estimated 300 million years, and are often referred to as "living fossils" because they have hardly evolved in the last 100 million years. That fairy shrimp have endured so long, and done so without evolving, is particularly remarkable given the radical changes that the earth has undergone in that same time period -- 300 million years ago, the earth's landmasses were heaped into the supercontinent Pangea. 
+
+
+
+are often called "living fossils"  
+
+ Cryptobiosis means hidden life -- because cryptobiotic organisms spend much of their existence in a state that is not recognizable as *living*. Western science understands that living organisms metabolize, grow, and evolve. 
+
 
 
 
@@ -141,11 +154,6 @@ multispecies biofilm/mats/ seal potholes
 -still architects and still energetic transformations (technology of a different kind)
 -lifeboats survive through patient, nonprogressive, cooperative, nonaccumulating, nonscalability, lifeboats of a different kind, ephemeral but sustained, nondarwinian, line of flight out of extinction and survival rhetoric
 -colonies of toxicity, metabolic rift is also about holding things in place, and metabolic patterns become reversed
-
-
-Rather than focus on the collateral, though there has been lots, I want to think about what survives, what leaks out, and what alternate forms of subsistence they practice in the capitalist ruins. This does not mean I will turn away from ugliness, from extinction, from tragedy. Rather, it means that instead of focusing on what has been lost, I want to think about what comes next, for both biota and us.
-
-What has gotten caught up, what has survived, what blooms, and what leaks out of the machine. 
 
 
 
