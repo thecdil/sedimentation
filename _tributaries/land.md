@@ -277,13 +277,13 @@ Even with the dredge working, the operation recovered little gold. The river and
 
 After two months of running, Stanton tallied the value of his stock: $66.95. By September, Stanton was summoned to New York to meet with his investors, who forced him to sell the company. They found a buyer quickly: a J.T. Raleigh in Salt Lake City who bought the entire enterprise, including the claims, dredge, building, and equipment for $200. 
 
-The dredge never ran again. Its buyer, J.T. Raleigh attempted to at least retrieve its gasoline engines, but as soon as the engines were placed on the river bank, the river undercut the bank and plunged the engines into the water. Over the next decades, the dredge was slowly picked over by other hopeful miners, who pried away its timber to build cabins and fires and tore off its metal parts, perhaps to repair their own machinery. By 1938, all that remained of Stanton's dredge was a half-submerged skeleton of twisted metal, slowly coming apart in the river.
+The dredge never ran again. Over the next decades, the dredge was slowly picked over by other hopeful miners, who pried away its timber to build cabins and fires and tore off its metal parts, perhaps to repair their own machinery. By 1938, all that remained of Stanton's dredge was a half-submerged skeleton of twisted metal, slowly coming apart in the river.
 
 {% include feature/image-gallery.html objectid="sediment175" caption=false%}
 
 Like so many other settlers drawn hopefully to the West, towards its promises of fame, wealth, and self-determination, Stanton learned the hard way -- learned over and over again, in fact -- that the land does not always sit idly by to be plundered and conquered, no matter how much it is explored, mapped, and blasted. For all his efforts, Stanton could not lay railroads nor his dredge cleanly on the surface of a still earth, but instead ended up bogged down in its muddy flows. 
 
-{% include feature/trib-button.html trib="biota/#feral-ecologies" image="biota" text="Feral Ecologies" %}
+{% include feature/trib-button.html trib="humans/#proliferations" image="biota" text="Feral Ecologies" %}
 
 
 {% include feature/new-section.html %}

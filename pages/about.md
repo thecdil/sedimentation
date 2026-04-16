@@ -5,6 +5,7 @@ permalink: /about.html
 sticky-nav: true
 # include CollectionBuilder info at bottom
 credits: false
+scrollama: true
 # Edit the markdown on in this file to describe your collection
 # Look in _includes/feature for options to easily add features to the page
 ---
