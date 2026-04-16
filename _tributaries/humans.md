@@ -10,7 +10,7 @@ gallery: true
 scrollama: true
 ---
 
-# Humans
+# HUMANS
 
 ## Inscriptions
 
@@ -190,7 +190,7 @@ It would be naive, of course, to argue that prudent legislation comes all the wa
 
 Americans today, however, are living with the legacies of those decisions, and have inherited the dual responsibility of modifying cultural practices and infrastructures in order to adapt to a changing climate while also remediating harms already inflicted by these practices. These responsibilities, I believe, are mutually inclusive: both will involve reckoning honestly with the mistakes, misreadings, inattentions of the past, and enacting modes of living that devote closer attention and care towards the people, species, and landscapes we share the planet with. 
 
-It is difficult to enact a more attuned, inclusive, and just future, however, when the record of the past–and the traces of the people, biota, and landforms that composed it–is hidden from view.  It is hard to believe, for example, that the Colorado Plateau is a land of precious water while standing at the edge of a deep and sprawling lake, even if that lake is slowly shrinking. And it is difficult, too, to sense the web of life, loss, failure, success, and resilience that composes the present when the markings of these lives lay beneath hundreds of feet of water. 
+It is difficult to enact a more attuned, inclusive, and just future, however, when the record of the past -- and the traces of the people, biota, and landforms that composed it -- is hidden from view.  It is hard to believe, for example, that the Colorado Plateau is a land of precious water while standing at the edge of a deep and sprawling lake, even if that lake is slowly shrinking. And it is difficult, too, to sense the web of life, loss, failure, success, and resilience that composes the present when the markings of these lives lay beneath hundreds of feet of water. 
 
 But as the drought draws Lake Powell lower, Glen Canyon and its palimpsested inscriptions are resurfacing. This time, we must pay closer attention, and not rush to fill the gaps with our own stories. 
 
