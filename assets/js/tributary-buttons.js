@@ -420,28 +420,13 @@
         const buttonRow = this.closest('.trib-choice-container');
         if (!buttonRow) return;
 
-        // Look for next meaningful content section
-        let targetElement = buttonRow.nextElementSibling;
-
-        // Skip whitespace and empty text nodes
-        while (targetElement && (targetElement.nodeType !== 1 || !targetElement.offsetHeight)) {
-          targetElement = targetElement.nextElementSibling;
-        }
-
-        // If no direct sibling, search within parent container
-        if (!targetElement) {
-          const parent = buttonRow.parentElement;
-          if (parent) {
-            const allSections = parent.querySelectorAll('section, .row, .container, div[id], div[class*="content"]');
-            const currentIndex = Array.from(parent.children).indexOf(buttonRow);
-
-            for (let section of allSections) {
-              const sectionIndex = Array.from(parent.children).indexOf(section);
-              if (sectionIndex > currentIndex && section.offsetHeight > 0) {
-                targetElement = section;
-                break;
-              }
-            }
+        // Find the next H2 section heading after this button in document order
+        const allH2s = document.querySelectorAll('.tributary-body h2');
+        let targetElement = null;
+        for (const h2 of allH2s) {
+          if (buttonRow.compareDocumentPosition(h2) & Node.DOCUMENT_POSITION_FOLLOWING) {
+            targetElement = h2;
+            break;
           }
         }
 
