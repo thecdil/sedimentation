@@ -1,0 +1,142 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Extract all H2 headings from the tributary body or about-contents
+  const h2Elements = document.querySelectorAll('.tributary-body h2, .about-contents h2');
+
+  if (h2Elements.length === 0) return; // No sections to navigate
+
+  // Get the page title from the H1 or page title
+  const pageTitle = document.querySelector('.tributary-body h1, .about-contents h1')?.textContent.trim() ||
+                    document.querySelector('h1')?.textContent.trim() ||
+                    document.title.split('|')[0].trim();
+
+  // Build print link if on a tributary page (/tributaries/[slug]/)
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
+  const tribIndex = pathParts.indexOf('tributaries');
+  const tribSlug = tribIndex >= 0 ? pathParts[tribIndex + 1] : null;
+  const printBase = '{{ "/print/" | relative_url }}';
+  const printHref = tribSlug ? (printBase + tribSlug + '/') : null;
+  const printLinkHtml = printHref
+    ? `<a href="${printHref}" class="section-nav-print" title="Print or save as PDF" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+          <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+        </svg>
+      </a>`
+    : '';
+
+  // Create the section navigation menu
+  const navMenu = document.createElement('div');
+  navMenu.className = 'section-nav-menu';
+  navMenu.innerHTML = `<div class="section-nav-title"><span class="section-nav-title-text">${pageTitle}</span>${printLinkHtml}</div><ul class="section-nav-list"></ul>`;
+
+  const navList = navMenu.querySelector('.section-nav-list');
+
+  // Generate anchor IDs and menu items for each H2
+  h2Elements.forEach((h2, index) => {
+    const text = h2.textContent.trim();
+    // Create a slug from the heading text
+    const slug = text.toLowerCase()
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .replace(/\s+/g, '-')     // Replace spaces with hyphens
+      .replace(/-+/g, '-')      // Replace multiple hyphens with single
+      .replace(/^-|-$/g, '');   // Remove leading/trailing hyphens
+
+    // Add ID to the H2 element
+    h2.id = slug || `section-${index}`;
+
+    // Create menu item
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = `#${h2.id}`;
+    a.textContent = text;
+    a.className = 'section-nav-link';
+    a.dataset.section = h2.id;
+
+    li.appendChild(a);
+    navList.appendChild(li);
+  });
+
+  // Mark nav type so about/resources pages can apply tighter breakpoint
+  if (document.querySelector('.about-contents')) {
+    navMenu.classList.add('about-page-nav');
+  }
+
+  // Insert the menu into the page
+  document.body.appendChild(navMenu);
+
+  // Hide section nav when footer is visible
+  const footerEl = document.querySelector('footer');
+  if (footerEl) {
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        navMenu.classList.toggle('footer-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0 });
+    footerObserver.observe(footerEl);
+  }
+
+  // Click handler: update active state and let the browser follow the anchor
+  // link naturally. CSS scroll-behavior: smooth handles the animation.
+  document.querySelectorAll('.section-nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+      const targetId = this.getAttribute('href').substring(1);
+      updateActiveSection(targetId);
+    });
+  });
+
+  // Function to update active section in both menus
+  function updateActiveSection(sectionId) {
+    // Update fixed left menu
+    document.querySelectorAll('.section-nav-link').forEach(link => {
+      if (link.dataset.section === sectionId) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    // Update full-page nav dropdown sections
+    document.querySelectorAll('.section-link').forEach(link => {
+      if (link.dataset.section === sectionId) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // Intersection Observer to track which section is in view
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px', // Trigger when section is in upper portion of viewport
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        updateActiveSection(entry.target.id);
+        // Update URL hash without jumping
+        if (history.replaceState) {
+          history.replaceState(null, null, `#${entry.target.id}`);
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all H2 sections
+  h2Elements.forEach(h2 => {
+    observer.observe(h2);
+  });
+
+  // Handle initial page load with hash
+  if (window.location.hash) {
+    const initialSection = window.location.hash.substring(1);
+    updateActiveSection(initialSection);
+  } else if (h2Elements.length > 0) {
+    // Set first section as active initially
+    updateActiveSection(h2Elements[0].id);
+  }
+});
+</script>

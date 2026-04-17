@@ -15,5 +15,6 @@
     </main>
     {% include footer.html %}
     {% include foot.html %}
+    {% if page.layout == 'browse' or page.url contains 'eddies' %}{% include scroll-to-top.html %}{% endif %}
   </body>
 </html>
