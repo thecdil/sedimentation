@@ -607,6 +607,8 @@ font-size-calc: "7, 140"
         const animationDuration = 45000;
         let allSettled = false;
         let lastParticleAddTime = 0;
+        let animationFrameId = null;
+        const MAX_PARTICLES = 50000;
         
         /*
          * CONTINUOUS FLOW PARTICLES
@@ -633,7 +635,10 @@ font-size-calc: "7, 140"
                 lastParticleAddTime = elapsed;
                 
                 // Add more particles along the main river, especially from top right
-                const numberOfNewParticles = 155; // Increased from 15 to 25
+                const numberOfNewParticles = 155;
+                
+                // Don't exceed particle cap
+                if (particles.length >= MAX_PARTICLES) return;
                 
                 for (let i = 0; i < numberOfNewParticles; i++) {
                     const mainRiver = riverNetwork[0]; // Main river is first in array
@@ -863,9 +868,9 @@ font-size-calc: "7, 140"
             
             // Continue animation
             if (progress < 1) {
-                requestAnimationFrame(animate);
+                animationFrameId = requestAnimationFrame(animate);
             } else if (!allSettled) {
-                requestAnimationFrame(animate);
+                animationFrameId = requestAnimationFrame(animate);
             }
         }
         
@@ -891,36 +896,6 @@ font-size-calc: "7, 140"
         
         // Initialize after font loads
         initializeApp();
-        
-        // Restart animation on click
-        canvas.addEventListener('click', () => {
-            particles.length = 0; // Clear existing particles
-            // Clear sediment grid
-            for (let key in sedimentGrid) {
-                delete sedimentGrid[key];
-            }
-            // Reset typewriter effect
-            typewriterActive = false;
-            typewriterIndex = 0;
-            subtitleElement.style.opacity = '0';
-            subtitleElement.textContent = '';
-            subtitleElement.style.removeProperty('--cursor-display');
-            
-            createTextParticles(); // Recreate particles
-            particles.forEach(particle => {
-                particle.x = particle.originalX;
-                particle.y = particle.originalY;
-                particle.vx = 0;
-                particle.vy = 0;
-                particle.settled = false;
-                particle.startTime = Math.random() * 2000;
-            });
-            animationStart = Date.now();
-            lastParticleAddTime = 0; // Reset continuous particle timer
-            allSettled = false;
-            enterButton.style.opacity = '0';
-            animate();
-        });
         
         // Enter button functionality
         enterButton.addEventListener('click', () => {
