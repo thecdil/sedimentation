@@ -1,9 +1,3 @@
----
-title: Panorama Feature Test
-layout: page
-permalink: /panorama-test.html
----
-
 ## Multiple Panorama Viewers Test Page
 
 This page demonstrates the panorama feature include with multiple instances and different options.

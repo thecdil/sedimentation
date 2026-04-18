@@ -25,8 +25,8 @@ tributary-buttons: true
     {% include navigation-cards.html %}
 
     <div class="intro-buttons">
-      <a href="{{ '/about.html' | relative_url }}" class="btn btn-primary btn-sm me-2">About</a>
-      <a href="{{ '/resources.html' | relative_url }}" class="btn btn-outline-primary btn-sm">Resources</a>
+      <a href="{{ '/about.html' | relative_url }}" class="btn btn-outline-primary btn-sm">About this project</a>
+      <a href="{{ '/tributaries/atmosphere/' | relative_url }}" class="btn btn-primary btn-sm">Begin reading <span aria-hidden="true">&rarr;</span></a>
     </div>
   </div>
 
@@ -108,14 +108,16 @@ tributary-buttons: true
 }
 
 .intro-buttons {
-  margin-top: 16px;
+  margin-top: 20px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  align-items: center;
 }
 
 .intro-buttons .btn {
-  font-size: 13px;
-  padding: 8px 16px;
+  font-size: 14px;
+  padding: 9px 20px;
+  letter-spacing: 0.02em;
 }
 
 @keyframes fadeInUp {
@@ -223,11 +225,8 @@ background: rgb(255 255 255 / 65%);
 }
 
 .btn-outline-primary {
-  border-color: #D2691E;
-  color: #D2691E;
-}
-
-.btn-outline-primary {
+  border-color: #9e4a0a;
+  color: #5D4037;
   transition: background-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
               border-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
               color 200ms ease,
@@ -235,8 +234,8 @@ background: rgb(255 255 255 / 65%);
 }
 
 .btn-outline-primary:hover {
-  background-color: #D2691E;
-  border-color: #D2691E;
+  background-color: #9e4a0a;
+  border-color: #9e4a0a;
   color: white;
 }
 
@@ -245,8 +244,8 @@ background: rgb(255 255 255 / 65%);
 }
 
 .btn-primary {
-  background-color: #D2691E;
-  border-color: #D2691E;
+  background-color: #9e4a0a;
+  border-color: #9e4a0a;
   color: white;
   transition: background-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
               border-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
@@ -254,8 +253,9 @@ background: rgb(255 255 255 / 65%);
 }
 
 .btn-primary:hover {
-  background-color: #B8860B;
-  border-color: #B8860B;
+  background-color: #7a3907;
+  border-color: #7a3907;
+  color: white;
 }
 
 .btn-primary:active {
