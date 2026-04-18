@@ -528,8 +528,13 @@
       return false;
     }
 
-    // Exclude sections with no substantive content (very short)
-    if (section.html_content && section.html_content.trim().length < 100) {
+    // Exclude placeholder "Coming Soon!" sections
+    if (section.html_content && section.html_content.indexOf('Coming Soon!') !== -1) {
+      return false;
+    }
+
+    // Exclude sections with insufficient content (less than ~2 paragraphs)
+    if (!section.html_content || section.html_content.trim().length < 250) {
       return false;
     }
 
