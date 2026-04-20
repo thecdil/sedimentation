@@ -24,8 +24,6 @@ scrollama: true
 
 </div>
 
-<br>
-
 SCRAWLED ACROSS GLEN Canyon's rock faces are the tracks and tracings of human life. Some of these markings are inadvertent, the scars left behind as people moved through and settled in the Canyon. Chinked steps, gouged footholds, and dynamite-blasted trails reveal where Paiute hunters, Diné sheepherders, Spanish Conquistadors, Mormon pioneers, and uranium miners sought access to -- or passageway through -- the canyon's enclaves. Dugout caves, adobe dwellings, stone granaries, irrigation canals, and the borings of loom holes locate where Pueblo weavers, Hopi Farmers, and gold prospectors made their homes. 
 
 Other markings are intentional, as if those humans who engraved petroglyph tapestries and carved out their names wanted to ensure their existence was remembered by the people of the future. 
@@ -45,8 +43,6 @@ This map is not flat, and its territories do not sit cleanly beside one another 
 For instance: microbes fester in sediment beds that, before the dam, were thickly threaded with willow roots. Mormon emigrants deconstruct Puebloan cliff dwellings as they pillage stones for their own homes. A creekside beach once packed with antelope tracks is obliterated -- wiped entirely off the map -- when its sand is harvested to fill the concrete walls of the Glen Canyon Dam. 
 
 Yet even in those places most ravaged by territorial erasures and remappings, the traces of past inscriptions can linger, though they are often faint and fragmented (willow branches fossilize in lake beds; pot sherds are interred beneath the soil of a garden; antelope are memorialized by the name of a canyon). Faint as they might be, these traces scrawl out a ghostly map, embossed with layered claims. 
-
-<br><br>
 
 {% include feature/trib-button.html trib="biota/#biofilms" image="microbes" text="Microbial Varnish" %}
 
@@ -82,8 +78,6 @@ SOMEONE GATHERS UP rust-colored rocks and heaps them into a shallow stone bowl. 
 {% include feature/image-gallery.html objectid="sediment163" caption=false%}
 
 </div>
-
-<br>
 
 Long after the people move on, their handprints remain, registering their existence and this moment of contact with Glen Canyon, this blending of stone and water, spit, or animal. As other people from different times and places pass by the wall, some place their own hands over the prints, as Tad Nichols does here. For a moment, the people of the past and the present draw together, sharing the same gesture in the same place. 
 
@@ -266,7 +260,6 @@ As I draw together the web of differing archival definitions, I have come to won
 {% include feature/image-gallery.html objectid="sediment218;sediment256" caption=false%}
 {% include feature/image-gallery.html objectid="sediment210;sediment217" caption=false%}
 </div>
-<br>
 
 ALONG LAKE POWELL’S hems, where water meets cliff, bands of green scum cling to the rock. This is algae, bred in stagnant water, but not yet dried up by sun and air. Above these algal bands, the cliffs are chalked white with minerals, deposited by Lake Powell. At the bottom, closer to the water, the chalk is thick and solid, but it becomes patchier towards the top as it is flaked away by rain and wind. At the lake’s far edges, where the land begins to slope more gently to the water, thick beds of sand have heaped up into desiccated, crackled mud flats growing thick with tumbleweeds. Most of the lake's shallow coves are choked with sucking muck, some of which is laced with pollutants spilled from upstream farms or uranium tailing ponds.  
 
