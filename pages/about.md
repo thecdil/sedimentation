@@ -12,7 +12,7 @@ scrollama: true
 
 # About
 
-
+*Sedimentation* is a multimedia exploration of Glen Canyon's entangled human and natural histories, traced through the sedimentary archive. 
 
 ## About Glen Canyon
 
@@ -32,7 +32,7 @@ As Colorado River Basin residents face an increasingly precarious future, many h
 
 As a writer concerned about environmental justice, I am compelled to write about Glen Canyon because its ongoing mismanagement has critically impacted billions of human and nonhuman lives, and threatens to impact many more. I believe that understanding the mistakes and triumphs of the past can help inform better futures, and provide some direction during times of uncertainty. But I am also interested in learning from the Canyon's unfolding present, which does not forebode a future of uniform collapse and decline. Despite the extreme degradation incited by the dam, Glen Canyon's ecosystems have quickly regrown as Lake Powell retreats, which gestures towards a future that might be laden with both loss and with opportunities for remediation. 
 
-## About *Sedimentation*
+## About the Project
 
 {% include feature/image.html objectid="sediment22" caption=false %}
 
