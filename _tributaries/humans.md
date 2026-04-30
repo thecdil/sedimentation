@@ -44,7 +44,7 @@ For instance: microbes fester in sediment beds that, before the dam, were thickl
 
 Yet even in those places most ravaged by territorial erasures and remappings, the traces of past inscriptions can linger, though they are often faint and fragmented (willow branches fossilize in lake beds; pot sherds are interred beneath the soil of a garden; antelope are memorialized by the name of a canyon). Faint as they might be, these traces scrawl out a ghostly map, embossed with layered claims. 
 
-{% include feature/trib-button.html trib="biota/#biofilms" image="microbes" text="Microbial Varnish" %}
+{% include feature/trib-button.html trib="land/#muddied-maps" image="Land" text="Muddied Maps" %}
 
 {% include feature/new-section.html %}
 
@@ -65,7 +65,7 @@ The Bureau of Reclamation, and the dams it built, work to transform a landscape 
 
 But neither the earth nor history are quite so stratigraphic. Instead, particulates of the past are constantly eroding and resurfacing into the present and the future. In Glen Canyon, reemergence and recirculation are not metaphors. Glen Canyon's inscriptions cut through time, bringing people of different temporalities into contact and interaction with one another.
 
-{% include feature/trib-button.html trib="land/#sedimentation" image="humans" text="Erosions" %}
+{% include feature/trib-button.html trib="land/#sedimentation" image="humans" text="Sedimentation" %}
 
 
 {% include feature/new-section.html %}
@@ -103,7 +103,7 @@ But just as the past informs and transforms the unfoldings of the present, so ca
 
 The remains we encounter -- or ourselves leave behind -- allow us to connect with humans across otherwise unreachable spans of time, drawing us into conversation and relation with one another. When we alter these remains, we rupture the possibility for the people of the future to commune with the people of the past. It matters, then, how we touch such traces. 
 
-{% include feature/trib-button.html trib="atmosphere/#radium-dust" image="uranium" text="Traces of the Future" %}
+{% include feature/trib-button.html trib="atmosphere/#radium-dust" image="uranium" text="Radium Dust" %}
 
 {% include feature/new-section.html %}
 
@@ -253,7 +253,7 @@ In my own efforts to grasp what an archive is, or what it might be, I take a cue
 
 As I draw together the web of differing archival definitions, I have come to wonder: if an archive is a place that collects preserved material, what then, precludes generational memory (which resides in bodies of so many people, who collect and preserve bits of knowledge through time) or the land itself (a place that preserves, in material form, records of so many pasts) from being read as an archive? And by extending the definition of the archive, might power be released from the archons and distributed more evenly, to everyone and everything who keeps a record of the past? The web of stories will surely explode out, the truths that seem to anchor life as we know it will become unfixed and elusive, and the web will become tangled with disputes and contradictions, but somewhere within this mess will lie, if not a singular truth, a path that more carefully accounts for them all. 
 
-{% include feature/trib-button.html trib="biota/#snake" image="water1" text="Snake" %}
+{% include feature/trib-button.html trib="biota/#serpent-rain" image="water1" text="Serpent Rain" %}
 
 
 {% include feature/new-section.html %}
@@ -274,7 +274,7 @@ But -- at the same time that Lake Powell’s algal blooms, sediment glaciers, li
 {% include feature/image-gallery.html objectid="sediment221" caption=false%}
 
 
-{% include feature/trib-button.html trib="biota/#feral-ecologies" image="microbes" text="Feral Ecologies" %}
+{% include feature/trib-button.html trib="biota/#when-fish-fly" image="biota" text="When Fish Fly" %}
 
 
 {% include feature/new-section.html %}
