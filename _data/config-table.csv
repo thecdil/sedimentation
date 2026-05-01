@@ -1,5 +1,7 @@
 field,display_name
 title,Title
 date,Date
-description,Description
 subject,Subjects
+location,Location
+damspace,Location in Relation to Dam
+damtime,Pre/Post Dam
