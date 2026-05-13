@@ -192,7 +192,7 @@ It is difficult to enact a more attuned, inclusive, and just future, however, wh
 
 But as the drought draws Lake Powell lower, Glen Canyon and its palimpsested inscriptions are resurfacing. This time, we must pay closer attention, and not rush to fill the gaps with our own stories. 
 
-{% include feature/trib-button.html trib="water/#ebbs" image="water2" text="Ebbs" %}
+{% include feature/trib-button.html trib="water" image="water2" text="Ebbs" %}
 
 
 {% include feature/new-section.html %}

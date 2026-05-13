@@ -285,7 +285,7 @@ AS WITH THE rest of the globe, a new climate has arrived in Glen Canyon. Tempera
 
 As the lake runs dry, a transformed landscape -- and climate -- is emerging. Where there was once canyon, river, or lake, there are now deep beds of silt which have been accumulating behind the dam for the last 60 years. And buried in those silt beds are the spoilages of Glen Canyon's industrial past, waiting to resurface and spew across the basin. 
 
-{% include feature/trib-button.html trib="water/#ebbs" image="water2" text="Ebbs" %}
+{% include feature/trib-button.html trib="water" image="water2" text="Ebbs" %}
 
 {% include feature/new-section.html %}
 
