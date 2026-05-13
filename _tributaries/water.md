@@ -26,42 +26,32 @@ In the Pinals, we were haunted constantly by the burnt stench of ash and char --
 
 {% include feature/image-gallery.html objectid="sediment359" caption="Charred trees in the Pinal Mountains"%}
 
-{% include feature/new-section.html %}
-
 During the heat of the summer, we were sent to do trail maintenance along the North Rim of the Grand Canyon. We camped by the canyon's lip, tucking our tents into a dark ponderosa grove near the mule barns. The trees held back the desert sun from above, but our camp was constantly backlit by the canyon. Its sea of terraced rocks refracted and amplified the sunlight and sent it streaming sideways through the trees. Sometimes at sunset, we sat the edge of the canyon, and though we could not see the river, its presence was written on the face of every terrace, butte, and temple, in the abysses that stretched between them, and in the light that bent into our camp.
 
 Each morning at the North Rim, my crew and I gathered up our packs and our tools, and descended together into the canyon's maw. We walked for over an hour most days, 2,000 feet down a switchbacked trail to a narrow suspension bridge slung over Roaring Springs Canyon. We never saw any water in Roaring Spring, nor did we ever once see the Colorado River; it was tucked still further down in the chasm, which despite the 2,000 foot cliffs that now loomed high above us, the lower terraces seemed no closer than they had at the rim. I had never felt myself so small, so afloat in the massive channels of twisting, snaking, space that were contained between the canyon's walls. Despite the dry desert air, despite our distance from the river, I felt myself constantly aswim in its presence. 
 
 {% include feature/image-gallery.html objectid="sediment360" caption=false%}
 
-{% include feature/new-section.html %}
+I began this project by pouring over archival photographs of Glen Canyon, looking for any image that glinted with a presence or a story, anything that might divulge some fragment of the canyon's history, of its people, animals, plants, winds, water, its geology. In most of the images, however, water was hardly present, or present only in a trickle. When the river did appear, it was as a flat sheen, or a grey riffle. These opaque, inscrutable, sometimes mundane surfaces revealed little about the great work the river had done, over millions of years, to carve out the basin's canyons, to nourish its life. These histories were made evident not by the water itself, but by the tracks and traces it left in its wake; in the smooth tunnels it chewed open in the earth, in the crackled mud, the rippled sand, the very existence of trees, grasses, life. 
 
 {% include feature/image-gallery.html objectid="sediment131;sediment118" caption=false%}
 {% include feature/image-gallery.html objectid="sediment75;sediment77" caption=false%}
-
-I began this project by pouring over archival photographs of Glen Canyon, looking for any image that glinted with a presence or a story, anything that might divulge some fragment of the canyon's history, of its people, animals, plants, winds, water, its geology. In most of the images, however, water was hardly present, or present only in a trickle. When the river did appear, it was as a flat sheen, or a grey riffle. These opaque, inscrutable, sometimes mundane surfaces revealed little about the great work the river had done, over millions of years, to carve out the basin's canyons, to nourish its life. These histories were made evident not by the water itself, but by the tracks and traces it left in its wake; in the smooth tunnels it chewed open in the earth, in the crackled mud, the rippled sand, the very existence of trees, grasses, life. 
 
 In Glen Canyon, water is writ in all places as a kind of presence of absence.  It is almost as if the entire landscape has organized itself around the places where water is, or where it has been, or where it might come again. Looking through the photographs, I felt myself once again aswim in watery space, in the world that water had left behind, and would soon fill again with the creation of the Glen Canyon Dam.
 
 {% include feature/image-gallery.html objectid="sediment99" caption=false%}
 
-{% include feature/new-section.html %}
-
 Four years after I left the corps, I returned to the Colorado River Basin, to conduct field work for this project at Lake Powell. I arrived to my hotel late into the night, having been slowed by a historic wind storm that was sweeping across the west that day. I had booked a lake view room, although I had been warned by the booking platform that "view rooms may have limited views due to declining water levels." 
 
 When I threw open my curtains in the morning, I was pleased to see the lake spread below me, turned softly pink by the sunrise. But between us lay nearly a quarter mile of crusty sand flats, clumped with russian thistle, and laden with rusted boat chains. Across the lake, I could see high water marks written in pale bathtub rings on the cliffsides. Here again was that familiar feeling, caught hovering between where the water really was, and where it had drained away. 
 
-{% include feature/image-gallery.html objectid="sediment228" caption=false%}
-
-
 This feeling remained throughout my visit to Lake Powell. Everywhere and everything in Page seemed suspended in the space that lay between water's presence and its absence. There were closed marinas, shuttered businesses, parking lots full of beached houseboats perched on stilted blocks, boat ramps and roads that abruptly ended, far above the lake's edge. All of these scenes marked off the physical disjunctures between watery hopes and watery realities, and many of the people I spoke with during my trip seemed similarly caught between these worlds. 
 
-{% include feature/image-gallery.html objectid="sediment257" caption=false%}
+{% include feature/image-gallery.html objectid="sediment257" caption="Beached houseboat at Wahweap Marina"%}
 
 One evening, the hotel bartender showed me a binder of old photographs he found tucked into a cup cabinet from when the lake was last at full pool. There was one photograph of the hotel’s north wing, where I was staying, and the lake was practically lapping at its walls – I could have jumped from the balcony of my room into its waters. In another photograph, there was the hotel swimming pool, with a boat called *The Canyon King* docked immediately beside it. I recognized the boat – *The Canyon King* was now parked in a shopping plaza lot just outside of town, and had since been converted into a New York Teriyaki Restaurant. The bartender hadn't been here then -- he had been a child in Alabama during the last full pool -- but he spoke about that other world, full of water, with the kind of nostalgia that seems intent on pulling the past across the voids of time so that it might spill over the present. Then he would swing around, and suddenly we were in the future, talking about the rains and snowmelt that would surely, some day come again and fill the lake full.
 
 {% include feature/image-gallery.html objectid="sediment254" caption=false%}
-
 
 Page was indeed strewn not only with relics of past water, but with the totems of future water. There were signs in my hotel bathroom that listed water-saving tips (*turn off the shower while you soap, take shorter showers, don't leave the lights on*) and reminders to recycle written all over the hotel dumpsters (*Recycling just 1 ton of cardboard will save 7,000 gallons of water*). Boat tour booking platforms allowed me to reserve a trip up a dried-out canyon a year from now. Guarding the hotel entrance was a wooden snowman painted with the call to *Let it Snow!*, a wish that people up and down the river corridor held dearly that year. If it snows, if we recycle enough, if we take shorter showers, these items declared, we might still imagine a future in which the reservoirs are full, in which the boats are anchored out in the lake instead of parked in a shopping plaza, and in which everyone can drink and turn on the lights.  
 
