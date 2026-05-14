@@ -125,7 +125,7 @@ BUT WHAT OF the canyon walls, which do not suddenly warp and twist, but garner s
 
 To descend into the Colorado River's canyons is to descend into a place where time and space seem to have petrified. If you were to travel to the innermost gorge of the Grand Canyon, where its walls plunge more than a mile below their rims, you would find -- could even reach out and touch -- the very basement layers of the earth's rocks. Here, the river has exposed polished black slabs of Vishnu Schist which have held in place for nearly two billion years. This is half the age of the earth itself, and more than a tenth the age of the universe. 
 
-{% include feature/image-gallery.html objectid="sediment335" caption=false%}
+{% include feature/image-gallery.html objectid="sediment335" caption="Vishnu Schist in the Grand Canyon"%}
 
 Some parts of the earth are riotous with motion, but sometimes the earth is also very, very still. 
 
@@ -233,7 +233,7 @@ From the very start, though, things fell apart -- including Stanton’s boats. H
 
 The expedition proceeded smoothly through the placid waters of Labyrinth and Stillwater canyons. But things unravelled the moment the group entered Cataract Canyon. Just above the canyon’s first rapid, for reasons that were inexplicable to everyone, Brown ordered the men to move their camp from the flat, long beaches of Spanish Bottom to the other side of the river because Brown wanted to sleep in the rocks. The crew protested; the current was extremely strong and the rapid just below them viscous, but Brown overruled. As soon as the men rowed out into the river, two of the boats were sucked into the churn and lost, along with the majority of their provisions. 
 
-{% include feature/image-gallery.html objectid="sediment352" caption=false%}
+{% include feature/image-gallery.html objectid="sediment352" caption="Photograph of Marble Canyon from the Stanton Survey, 1889"%}
 
 All the men -- except Brown -- were put on tight rations; just a cake of bread "without baking powder or salt, one can of condensed coffee, and a handful of beans" per day. [^18] Fearing mutiny, Stanton eventually intervened and put Brown on a rationed diet too. But for some of the crew, it was too little too late. By the time the expedition reached Lee’s Ferry, the last place to exit the river before entering the Grand Canyon, four men quit the outfit and left. 
 

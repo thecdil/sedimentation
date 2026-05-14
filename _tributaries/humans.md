@@ -44,14 +44,14 @@ For instance: microbes fester in sediment beds that, before the dam, were thickl
 
 Yet even in those places most ravaged by territorial erasures and remappings, the traces of past inscriptions can linger, though they are often faint and fragmented (willow branches fossilize in lake beds; pot sherds are interred beneath the soil of a garden; antelope are memorialized by the name of a canyon). Faint as they might be, these traces scrawl out a ghostly map, embossed with layered claims. 
 
-{% include feature/trib-button.html trib="land/#muddied-maps" image="Land" text="Muddied Maps" %}
+{% include feature/trib-button.html trib="land/#muddied-maps" image=lLand" text="Muddied Maps" %}
 
 {% include feature/new-section.html %}
 
 
 ## Subsumation
 
-{% include feature/image-gallery.html objectid="sediment123" caption=false %}
+{% include feature/image-gallery.html objectid="sediment123" caption="Glen Canyon Dam construction site" %}
 
 WHEN THE GLEN Canyon Dam was completed in 1963, the United States declared -- in the dam's 700-foot tall concrete walls and in the reservoir it sent spreading out over the land -- that the Canyon and its flooded tributaries were theirs. As Lake Powell bloated higher and swelled further than the river had ever reached, its waters engulfed thousands of Indigenous petroglyphs, dwellings, and trails. It bleached away, too, the microbial films that once draped the Canyon's walls, and it drowned hordes of lizards, scorpions, and snakes and the makings and markings of their lives. The lake razed swaths of coyote willow, columbines, and cottonwoods which bloomed along the river's edge, and it hid the once volatile Colorado River beneath its glossy surface. Lake Powell covered, too, the remains of Glen Canyon's early settlement efforts: it swallowed the physical residues of mining operations, the etchings made by the canyon's white explorers, and the homesteads of its first settlers. 
 
@@ -110,7 +110,7 @@ The remains we encounter -- or ourselves leave behind -- allow us to connect wit
 
 ## Palimpsests
 
-{% include feature/image-gallery.html objectid="sediment164" caption=false%}
+{% include feature/image-gallery.html objectid="sediment164" caption="John Wesley Powell's second expedition, preparing to launch from Green River Station"%}
 
 ONE DAY AFTER the completion of the Transcontinental Railroad, ten men disembarked from a Union Pacific Train at Green River Station, Wyoming. They had with them four wooden boats, packed with compasses, thermometers, guns, ammunition, coffee, flour, bacon, and beans -- all paid for by the U.S. Army. Thirteen days later, on May 24th, 1869, the men and their boats pushed off from the banks of the Green River and headed downstream, towards the Colorado. They would paddle nearly one thousand miles over the course of the next three months, lose one of their boats and a third of their food, and three of the men would die. 
 
@@ -210,7 +210,7 @@ As Silko shares, this is case for traditional Puebloan societes: Puebloan storie
 
 Silko illustrates the entanglements between landscape, story, and culture by recounting a family narrative: she tells of her sheepherding relatives who were killed when they strayed into the shadow of a high dark mesa, and thus could not see the Apache raiders lying in wait for them. Silko's story at once brings alive the mesa, showing its critical role in determining the life and death of her relatives, and it also embeds the memory of her relatives within the mesa: “for as long as the mesa stands,” she says, “people within the family and clan will be reminded of the story.” And, her narrative affixes instructions about how to best navigate the mesa to the mesa itself. "Thus," she emphasizes, "the continuity and accuracy" of Pueblo knowledge is "reinforced by the landscape." [^17]
 
-{% include feature/image-gallery.html objectid="sediment318" caption=false%}
+{% include feature/image-gallery.html objectid="sediment318" caption="Tsé Naní' áhiígíí, Rainbow Bridge"%}
 
 For the Diné, too, geographical features actively participate in cultural formation and survival. Tsé Naní' áhiígíí, a rainbow-shaped rock bridge wedged between the walls of Bridge Canyon (one of Glen Canyon's tributaries), has long oriented both spiritual and material life for Diné people. Stories about the origins of Tsé Naní' áhiígíí abound, offering knowledge about proximal springs where people might draw water, about how to ask for rain in periods of drought, how to travel across the Plateau's chasmal landscapes, and about the movements and unions of the Holy people. One account shares that the Holy people created Tsé Naní' áhiígíí as a place of refuge in "the safest place they could imagine" -- and when Kit Carson launched a violent removal campaign against the Navajo in 1864, many survived by fleeing to the shelter of Bridge Canyon. [^18]
 

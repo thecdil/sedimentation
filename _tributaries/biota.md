@@ -44,7 +44,7 @@ There is a striking imbalance at play here between the life that the dam has ena
 In this sense, the Glen Canyon Dam and Lake Powell are just another familiar site of industrial exploitation and ruination. Like the factory or the mine, the material conditions that enable existence have been separated from their sites of origin and reallocated towards sites of wealth. In the process, Glen Canyon's ability to materially support local life has been depleted and subsumed. 
 
 
-{% include feature/image-gallery.html objectid="sediment308" caption=false%}
+{% include feature/image-gallery.html objectid="sediment308" caption="Lake Powell, from the Bureau of Reclamation's 1965 promotional brochure, <em> Jewel of the Colorado</em>"%}
 
 When I look at images of Lake Powell at full pool, the contradictory promises of technocapitalist progress appear written in the landscape. The expanse of deep blue water signifies a moment of peak resource-richness in the basin; water and electric power has been successfully stockpiled, assuring settler life and industrial growth for years to come. But the water -- and the life it enables elsewhere -- contrasts vividly against a backdrop of bare rock, which is markedly stripped of life. There are none of the plant thickets that tend to crowd along water edges, no hum or sign of animal existence. At full pool, Glen Canyon is transformed from living ecosystem into a sterilized machine as its resources are harnessed and diverted for life somewhere else. 
 
@@ -72,7 +72,7 @@ HUMANS ARE NOT the first or only species to build water-storage infrastructure, 
 
 In Glen Canyon's beaver ponds, Red-Spotted and Woodhouse Toads find the shallow and slow-moving water they need to breed and lay their eggs, as do mayflies and caddisflies. Flycatchers and dippers, pikeminnows and razorback suckers all gather at beaver ponds to feast on hatching bugs. Before the dam, before they went extinct, Southwestern river otters visited beaver ponds to hunt pikeminnows, toads, fly nymphs, and even beaver kits. [^10]
 
-{% include feature/image-gallery.html objectid="sediment6" caption=false%}
+{% include feature/image-gallery.html objectid="sediment6" caption="Tad Nichols examining a beaver dam in Glen Canyon"%}
 
 Infrastructure and accumulation, beavers show us, are not inherently selfish or destructive. But beaver dams and man-made dams differ widely in both their forms and functions. Beaver dams are leaky and full of cracks; fish, larvae, and microorganisms move constantly between their latticed sticks,  and water seeps through porous mud. Life -- water, nutrients, soil, biota -- continues to flow and move through beaver dams, even as beavers accumulate what they need to survive and raise their young. Beaver dams work to collect resources like water and consumable energy, but they do so without enacting totalizing containment and control over their environments. 
 
@@ -80,7 +80,7 @@ Beaver dams and ponds are also built at a vastly different scale than human-made
 
 Reservoirs, on the other hand, inundate landscapes completely, often beneath many hundreds of feet of deep and stagnant water. Reservoirs draw sharp boundaries between water and land; they *reserve* space exclusively for water storage and hold terrestrial worlds apart and outside. Reservoirs, by design, are not patchy, shallow, or leaky; they are homogeneously watery, and they are designed to seal their water in tight.
 
-{% include feature/image-gallery.html objectid="sediment300" caption=false%}
+{% include feature/image-gallery.html objectid="sediment300" caption="From the Bureau of Reclamation's 1965 promotional brochure, <em> Jewel of the Colorado</em>"%}
 
 The difference in scale between human dams and beaver dams is of course tied to the number of beavers and people each infrastructure is intended to support. Beaver dams typically sustain just one beaver family, whereas human dams can sustain millions of people. But infrastructural scale -- and the scale of its attendant benefits or damages -- is also determined by the degree to which each species depends on local resources for survival. It makes no sense for a beaver to construct a pond so large one season that it drowns local trees the following year. The beaver will need next year's trees to maintain their dams and lodges as well as to eat. Beaver longevity hinges directly on the beaver’s ability to balance accumulation with restraint. 
 
@@ -160,7 +160,7 @@ But the lake's retreat has also ceded back habitat to the Plateau's microbial li
 
 Desert crust organisms cooperatively transform landscapes and climates, making livable worlds for other beings. As crusts hold the loose earth and moisture in place, plants take root, and animals follow. Yet the impact of these tiny creatures stretches far beyond their local beds -- each filagreed connection they build keeps a bit of dust in place, out of the atmosphere, away from the snowfields of the Rockies. The infinitesimal actions of microscopic organisms cascade into climatic-level impacts. If left alone -- undrowned -- desert crusts will help transform the dried-up mud beds of Lake Powell into a vibrant ecosystem, blooming with life both old and new. 
 
-{% include feature/image-gallery.html objectid="sediment358" caption=false%}
+{% include feature/image-gallery.html objectid="sediment358" caption="Biocrusts and a fish hook cactus"%}
 
 {% include feature/trib-button.html trib="atmosphere/#erosions" image="Atmosphere" text="Erosions" %}
 
@@ -187,7 +187,7 @@ But as the river's invasive trout continue to thrive and multiply in the Colorad
 
 Instead, we might think about the kinds of "alterlives" that Michelle Murphy reminds us are still possible amidst the messes of capitalism, colonialism, and extractive industrialism. Alterlives, Murphy says, "names life already altered, which is also life open to alteration" via "alter-concepts of care and responsibility." Alterlives might "proceed by calling forth alter-modes of collaboration and study that simultaneously aim at world-building and dismantlement."[^27]
 
-{% include feature/image-gallery.html objectid="sediment275" caption=false%}
+{% include feature/image-gallery.html objectid="sediment275" caption="Microbial blooms in a mucky cove at Lake Powell"%}
 
 Today, the Colorado Plateau is no longer an isolated sky-island: it is replete with mutated landscapes and bright with new assortments of life. This terrain is often dangerous and difficult, but it can also be serendipitous with new opportunities for collaboration and survival. 
 
