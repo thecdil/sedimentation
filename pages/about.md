@@ -26,11 +26,13 @@ Since 1963, Glen Canyon has been drowned beneath Lake Powell, a man-made reservo
 
 In 2026, Lake Powell reached a record low: the reservoir has lost 77% of its water since 1983, and is quickly hurtling towards dead pool, which is the level at which the Glen Canyon Dam can no longer pass water downstream or generate electricity. The Bureau of Reclamation, who manages the dam, announced in March of 2026 that unless other measures are taken, dead pool is likely to occur before the end of the year. However, because the dam's outlet pipes sit 237 feet above Glen Canyon's floor, even at dead pool, Lake Powell would still hold water -- almost 1.7 million acre feet of it, which is as much water at the entire state of Utah gets from the river each year. All of that water might soon be trapped behind the dam, evaporating under the hot desert sun, while people and wildlife downstream are left dry -- and much of Glen Canyon is left drowned. 
 
-As Colorado River Basin residents face an increasingly precarious future, many have called for Glen Canyon to be decommissioned. Water would once again flow freely downstream, previously inundated land could be given back to local tribes, and Glen Canyon's ecosystems could restore themselves. 
+As Colorado River Basin residents face an increasingly precarious future, many have called for the Glen Canyon Dam to be decommissioned. Then, water would once again flow freely downstream, previously inundated land could be given back to local tribes, and Glen Canyon's ecosystems could begin to restore themselves. 
 
 {% include feature/image.html objectid="sediment221" caption=false %}
 
-As a writer concerned about environmental justice, I am compelled to write about Glen Canyon because its ongoing mismanagement has critically impacted billions of human and nonhuman lives, and threatens to impact many more. I believe that understanding the mistakes and triumphs of the past can help inform better futures, and provide some direction during times of uncertainty. But I am also interested in learning from the Canyon's unfolding present, which does not forebode a future of uniform collapse and decline. Despite the extreme degradation incited by the dam, Glen Canyon's ecosystems have quickly regrown as Lake Powell retreats, which gestures towards a future that might be laden with both loss and with opportunities for remediation. 
+As a writer concerned about environmental justice, I am compelled to write about Glen Canyon because its ongoing mismanagement has critically impacted billions of human and nonhuman lives, and threatens to impact many more. I believe that understanding the mistakes and triumphs of the past can help inform better futures, and provide some direction during times of uncertainty. 
+
+But I am also interested in learning from the Canyon's unfolding present, which does not forebode a future of uniform collapse and decline. Despite the extreme degradation incited by the dam, Glen Canyon's ecosystems have quickly regrown as Lake Powell retreats, which gestures towards a future that might be laden with both loss and with opportunities for remediation. 
 
 ## About the Project
 
@@ -89,6 +91,8 @@ The vast majority of archival images for this project come from the [Colorado Pl
 {% include feature/image.html objectid="sediment0" caption=false %}
 
 *Sedimentation* is particularly inspired by the photography of Tad Nichols (1911-2000), a river runner and filmmaker who made over thirty journeys through Glen Canyon by boat. Tad took over 4,000 photographs of Glen Canyon, leaving us with a meticulous and loving record of the Canyon before it was subsumed by Lake Powell. 
+
+Other photographs were taken by Hannah Green, by U.S. Government agencies, or are archived at the [Huntington Library in San Marino, California](https://www.huntington.org/collections), and the [University of Utah Library](https://lib.utah.edu/collections/special-collections/). 
 
 ## Want to Take Action?
 
