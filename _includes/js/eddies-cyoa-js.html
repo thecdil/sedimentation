@@ -448,10 +448,33 @@
   }
 
   /**
-   * Process HTML content to wrap images with Spotlight gallery markup,
-   * remove original tributary navigation elements, and extract target link
+   * Ensure Pannellum CSS and JS are loaded before initializing panorama viewers.
+   * Safe to call multiple times — resolves immediately if already loaded.
    */
-  function processContentForCYOA(htmlContent, sectionId) {
+  function ensurePannellumLoaded() {
+    return new Promise(function(resolve) {
+      if (window.pannellum) { resolve(); return; }
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '{{ "/assets/lib/pannellum/pannellum.css" | relative_url }}';
+      document.head.appendChild(link);
+
+      const s = document.createElement('script');
+      s.src = '{{ "/assets/lib/pannellum/pannellum.js" | relative_url }}';
+      s.onload = resolve;
+      s.onerror = resolve;
+      document.head.appendChild(s);
+    });
+  }
+
+  /**
+   * Process HTML content to wrap images with Spotlight gallery markup,
+   * remove original tributary navigation elements, rewrite footnote links
+   * to open on the source tributary page, and extract Pannellum init scripts
+   * so they can be re-executed after DOM insertion.
+   */
+  function processContentForCYOA(htmlContent, sectionId, tributaryUrl) {
     // Create a temporary div to parse HTML
     const temp = document.createElement('div');
     temp.innerHTML = htmlContent;
@@ -470,6 +493,31 @@
       // Only remove if they're not already inside a trib-choice-container (which we already removed)
       if (!el.closest('.trib-choice-container')) {
         el.remove();
+      }
+    });
+
+    // Rewrite footnote links to point to the source tributary page.
+    // Kramdown emits href="#fn:1" / href="#fnref:1" which don't exist on /eddies/.
+    if (tributaryUrl) {
+      temp.querySelectorAll('a[href^="#fn:"], a[href^="#fnref:"]').forEach(a => {
+        a.setAttribute('href', tributaryUrl + a.getAttribute('href'));
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+      });
+    }
+
+    // Remove Pannellum library tags — they are inert via innerHTML and will be
+    // loaded on demand by ensurePannellumLoaded() when needed.
+    temp.querySelectorAll('link[href*="pannellum"], script[src*="pannellum"]').forEach(el => el.remove());
+
+    // Extract inline Pannellum viewer init scripts. Scripts injected via innerHTML
+    // are parsed as DOM nodes but never executed; we collect them here and execute
+    // them explicitly after the section is in the live DOM.
+    const panoramaScripts = [];
+    temp.querySelectorAll('script:not([src])').forEach(script => {
+      if (script.textContent.includes('pannellum.viewer(')) {
+        panoramaScripts.push(script.textContent);
+        script.remove();
       }
     });
 
@@ -493,9 +541,12 @@
       const imageId = `eddy-${sectionId}-img-${imageIndex}`;
       imageIndex++;
 
-      // Create spotlight wrapper
+      // Create spotlight wrapper. Each section gets a unique gallery class derived from
+      // the compound sectionId (tributarySlug + section heading id). This scopes Spotlight's
+      // native event-delegation gallery to the current section only — no cross-section leakage
+      // and no stale state between sessions or after reset.
       const wrapper = document.createElement('a');
-      wrapper.className = 'spotlight gallery-img';
+      wrapper.className = 'spotlight gallery-eddy-' + sectionId;
       wrapper.setAttribute('href', src);
       wrapper.setAttribute('title', title);
       wrapper.setAttribute('data-download', 'true');
@@ -514,7 +565,8 @@
 
     return {
       html: temp.innerHTML,
-      targetLink: targetLink
+      targetLink: targetLink,
+      panoramaScripts: panoramaScripts
     };
   }
 
@@ -565,8 +617,12 @@
     sectionDiv.dataset.tributary = section.tributarySlug;
     sectionDiv.dataset.sectionId = section.id;
 
-    // Process content: wrap images for gallery, remove nav elements, extract target link
-    const processed = processContentForCYOA(section.html_content, section.id);
+    // Process content: wrap images for gallery, remove nav elements, rewrite footnotes,
+    // and extract Pannellum init scripts for deferred execution.
+    // Use a compound key so each section gets a globally unique gallery class — prevents
+    // two sections with the same heading ID (from different tributaries) from sharing a group.
+    const sectionKey = section.tributarySlug + '-' + section.id;
+    const processed = processContentForCYOA(section.html_content, sectionKey, section.tributaryUrl);
     const processedContent = processed.html;
     const targetLink = processed.targetLink;
 
@@ -607,7 +663,7 @@
         <div class="tributary-badge">${section.tributary}</div>
         <h2 id="${section.id}">${section.heading}</h2>
       </div>
-      <div class="journey-section-content">
+      <div class="journey-section-content spotlight-group">
         ${processedContent}
       </div>
       <div class="journey-section-nav">
@@ -636,6 +692,19 @@
     `;
 
     sectionDiv.innerHTML = sectionHTML;
+
+    // Re-execute any Pannellum panorama init scripts that were extracted from the content.
+    // These must run after the container divs are in the live DOM, and require the
+    // Pannellum library to be loaded first.
+    if (processed.panoramaScripts && processed.panoramaScripts.length > 0) {
+      ensurePannellumLoaded().then(function() {
+        processed.panoramaScripts.forEach(function(scriptText) {
+          const s = document.createElement('script');
+          s.textContent = scriptText;
+          document.body.appendChild(s);
+        });
+      });
+    }
 
     // Initially hide content for animation
     if (animate && !prefersReducedMotion) {

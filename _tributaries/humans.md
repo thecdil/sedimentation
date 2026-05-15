@@ -44,7 +44,7 @@ For instance: microbes fester in sediment beds that, before the dam, were thickl
 
 Yet even in those places most ravaged by territorial erasures and remappings, the traces of past inscriptions can linger, though they are often faint and fragmented (willow branches fossilize in lake beds; pot sherds are interred beneath the soil of a garden; antelope are memorialized by the name of a canyon). Faint as they might be, these traces scrawl out a ghostly map, embossed with layered claims. 
 
-{% include feature/trib-button.html trib="land/#muddied-maps" image=lLand" text="Muddied Maps" %}
+{% include feature/trib-button.html trib="land/#muddied-maps" image="land" text="Muddied Maps" %}
 
 {% include feature/new-section.html %}
 
