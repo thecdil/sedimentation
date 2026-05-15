@@ -315,13 +315,13 @@
         event.stopImmediatePropagation();
 
         loadMetadata(function(metadata) {
-            // Build gallery if not already built
-            if (galleryItems.length === 0) {
-                buildGallery();
-            }
+            // Always rebuild so dynamically added sections (eddies) are included.
+            // The previous one-shot guard caused new objectids to be missing from
+            // galleryItemsMap, defaulting to index 0 → always opening at item 1.
+            buildGallery();
 
             // Find the index of the clicked item
-            const startIndex = galleryItemsMap[objectid] || 0;
+            const startIndex = galleryItemsMap[objectid] !== undefined ? galleryItemsMap[objectid] : 0;
             console.log('Opening gallery at index:', startIndex + 1);
 
             // Set initial current URL
