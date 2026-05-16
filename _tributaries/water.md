@@ -45,7 +45,7 @@ Four years after I left the Conservation Corps, I returned to the Colorado River
 
 When I threw open my curtains in the morning, I was pleased to see the lake spread below me, turned softly pink by the sunrise. But between us lay nearly a quarter mile of crusty sand flats, clumped with russian thistle, and laden with rusted boat chains. Across the lake, I could see pale bathtub rings painted across the cliffsides, which marked full pool levels from over twenty years ago. Here again was that familiar feeling, suspended between where the water really was, and where it had drained away. 
 
-{% include feature/image-gallery.html objectid="sediment228" caption=false%}
+{% include feature/image-gallery.html objectid="sediment228" caption="The road from Lake Powell Resort to Lake Powell abruptly stops hundreds of feet from the water's edge"%}
 
 This feeling remained throughout my visit to Lake Powell. Everywhere and everything in Page seemed to be held adrift in the space that lay between water's presence and its absence. There were closed marinas, shuttered businesses, parking lots full of beached houseboats perched on stilted blocks. All of these scenes marked off the physical disjunctures between watery hopes and watery realities, and many of the people I spoke with during my trip seemed similarly caught between these worlds. 
 
@@ -55,7 +55,7 @@ One evening, the hotel bartender showed me a binder of old photographs from when
 
 The bartender hadn't been here then -- he had been a child in Alabama during the last full pool -- but he spoke about that other world, full of water, with the kind of nostalgia that seems intent on dragging the past across the voids of time so that the past might fold, even for a moment, over the present. Then he would swing around, and suddenly we were in the future, talking about the rains and snowmelt that would surely, some day come again and refill the lake.
 
-{% include feature/image-gallery.html objectid="sediment254" caption=false%}
+{% include feature/image-gallery.html objectid="sediment254" caption="The Canyon King boat, now a New York Teriyaki Restaurant parked outside a shopping plaza"%}
 
 Page was strewn not only with relics of past water, but with the totems of future water. There were signs in my hotel bathroom that urged water-saving practices, which I doubted most guests heeded (*turn off the shower while you soap*). There were reminders to recycle written across the hotel dumpsters (*Recycling just 1 ton of cardboard will save 7,000 gallons of water*). Boat tour booking platforms allowed me to reserve a trip up a currently dried-out canyon a year from now, ostensibly betting on a wet winter. Guarding the hotel entrance was a wooden snowman painted with the same hope -- to *Let it Snow!*. If it snows, if we recycle enough, if we take shorter showers, these items declared, we might still imagine a future in which the reservoirs are full, in which the boats are anchored out in the lake instead of parked in a shopping plaza, and in which everyone can drink and turn on the lights.  
 
@@ -67,7 +67,7 @@ What *is* new for the Colorado River Basin is the creation of physical and socie
 
 In 1922, delegates from each of the basin states -- Wyoming, Colorado, Utah, Arizona, Nevada, New Mexico and California -- convened at the Bishop's Lodge in Santa Fe, New Mexico (which is technically located in the Rio Grande River Basin) to divvy up the Colorado River's water between them. They estimated, based on just 27 years of data, that the river carried an average of 16.4 million acre feet (MAF) of water per year. This number turned out to be an egregious overestimation -- a fatal error that has often been chalked up to an ironic trick of timing, as the compact was signed during a wet cycle. As Eric Kuhn and John Fleck point out, however, the delegates *were* in fact forewarned that their math was bad; hydrologist Eugene LaRue had written the commission, as well as then-Secretary of Commerce Herbert Hoover to alert them that their number was 10% too high. The river, according to LaRue, showed an average of 15 MAF per year, and that decisionmakers should be even more conservative than that in order to account for long-term fluctuations. [^1]  
 
-{% include feature/image-gallery.html objectid="sediment361" caption=false%}
+{% include feature/image-gallery.html objectid="sediment361" caption="Reconstructed flows of the Colorado River from the year 750 to 2000"%}
 
 Indeed, attempting to guess the Colorado River's yearly flows based based on an average projection is like throwing a dart a moving target. Water availability in the basin oscillates wildly according to regional climatic patterns; in 1941, for example, a gauge at Lee's Ferry registered a yearly flow of 18.2 MAF. The year before, that same gauge clocked just 9.4 MAF, meaning the river's flow almost doubled in the span of just one year. [^2]
 
@@ -79,13 +79,13 @@ The chasm between actual water and allocated water, then, was not a bug but a fe
 
 Of course, there eventually comes the problem of *delivering* wet water (as it is called) to water holders who would eventually would in their claims, if all went according to plan. But this was not, until recently, so much a problem as another advantage to Western development. To close the gap between paper water and wet water, particularly during low water years, the commission proposed a series of dams to be erected along the Colorado River. During high flow years, the dams would catch excess water and store it as a savings bank for low water years. On the surface, this seems a rational enough plan -- water storage is an age-old survival tactic employed not only by humans but again, by succulents as well as various animals (like the camel). Nine years after the compact was signed, construction began on the Hoover Dam, and in 1963, the Glen Canyon Dam was completed under the same pretenses. 
 
-{% include feature/image-gallery.html objectid="sediment106" caption=false%}
+{% include feature/image-gallery.html objectid="sediment106" caption="Glen Canyon Dam construction site"%}
 
 Both projects were boons to Western development schemes, and both were proposed as necessary if the compact was to meet the water obligations that the commission themselves created. In addition to storing water, the dams would generate hydroelectricity, provide flood control, inject government money into local economies, and as geographer Andrew Curley argues, serve as "colonial beachheads" that worked to further "lasso" Indigenous populations into "colonial socio-political arrangements." (399) [^3] Thus, it was compact's gap between actual water and paper water itself that created the evident need for hydro-development infrastructure, even if this gap was an arbitrary invention of the state itself. 
 
 The invention of paper water also enabled the state to skirt its legal obligations to deliver water to Indigenous nations, for it allows the state to acknowledge Indigenous water rights *on paper* while withholding the infrastructure to deliver wet water to Indigenous lands. While the 1908 Winters Doctrine asserts that many Southwestern tribes possess senior water rights, and while additional treaties and land swap agreements have continually promised water infrastructure to the basin's tribes, many tribal communities still have no way to actually access water from the Colorado River, as the government has continually delayed building the water distribution infrastructure they pledged in exchange for Indigenous lands. For the Navajo Nation, whose tribal lands directly abut Lake Powell but do not include even a drop of it, this absence of infrastructure transforms a thin border into a chasm -- Navajo Nation is literally bordered by water, and on paper has senior rights to the river, but without the pipes, has little recourse for transforming paper water into wet water. The space between legal water and material water is bridged by technoinfrastructure, which can equally become a tool for channelling sociopolitical power or withholding it.
 
-{% include feature/image-gallery.html objectid="sediment108" caption=false%}
+{% include feature/image-gallery.html objectid="sediment108" caption="Glen Canyon Dam construction site"%}
 
 One can thus follow the lines of power in the basin by tracing its water infrastructure -- and nowhere are these channels of power made more evident than in the Central Arizona Project; a 336-mile long diversion canal which pumps water from Lake Mead 3,000 feet *uphill* to serve the cities of Phoenix and Tuscon. This project began first by allocating paper water to places where the Colorado River had never touched, and then by building the infrastructure to materialize these paper flows. But this system relies on vast amounts of electricity in order to move water uphill -- electricity that, until 2019, was produced by a coal-fired power plant on the Navajo Reservation, which used coal from the Kayenta Mine, also on the Navajo Reservation, which used water pumped from the Navajo Aquifer to transport coal in a slurried stream. The Navajo Generating Station (NGS) imparted massive amounts of pollutants into the air, increasing the risk of respiratory disease for local residents, [^4] but it also employed nearly 1,000 people, 90% of whom were Navajo. Its closure, incited by a transition to natural gas had devastating effects on the local economy. 
 
@@ -105,7 +105,7 @@ We might still find ourselves aswim in the chasms between water's pulses -- perc
 
 {% include feature/new-section.html %}
 
- ## Works Cited
+## Works Cited
 
  [^1]: Kuhn, Eric, and John Fleck. *Science Be Dammed: How Ignoring Inconvenient Science Drained the Colorado River.* University of Arizona Press, 2021.
 
