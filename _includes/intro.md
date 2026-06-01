@@ -19,7 +19,7 @@
 
 <p><em>Sedimentation</em> is a collection of these stories, excavated from Glen Canyon's earthly archives.</p>
 
-<p style="font-style: italic; color: #8b7355; margin-top: 1.5rem;">Written and Created by <a href="/sedimentation/about.html#who-we-are" style="color: #8B4513; text-decoration: none;">Hannah Green</a> and <a href="/sedimentation/about.html#who-we-are" style="color: #8B4513; text-decoration: none;">Devin Becker</a></p>
+<p style="font-style: italic; color: #8b7355; margin-top: 1.5rem;">Written and created by <a href="/sedimentation/about.html#who-we-are" style="color: #8B4513; text-decoration: none;">Hannah Green</a> and <a href="/sedimentation/about.html#who-we-are" style="color: #8B4513; text-decoration: none;">Devin Becker</a></p>
 
 </div></div>
 </div>
