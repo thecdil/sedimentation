@@ -48,6 +48,11 @@ But I am also interested in learning from the Canyon's unfolding present, which 
 
 *Sedimentation* is an attempt to respond to these queries. It draws on the affordances of digital storytelling to integrate visual material, hyperlinkages, user interactivity and writing.
 
+### Narrative Structure
+
+The narrative is organized into five "tributaries" — Land, Water, Biota, Atmosphere, and Humans — each exploring different aspects of Glen Canyon's history. Within each tributary, sections branch off and connect to sections in other tributaries, creating a web of interconnected stories that mirror the complex relationships within the canyon's ecosystem.
+
+{% include tributary-network-diagram.html %}
 
 ## Who We Are
 

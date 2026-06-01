@@ -1,0 +1,459 @@
+<!--
+  Tributary Network Diagram
+  ========================
+
+  Interactive network visualization showing all connections between tributary sections.
+  Displays 5 tributaries as circular clusters with sections as nodes and connections as edges.
+
+  Usage: Add this include tag to any page
+-->
+
+<div class="tributary-network-diagram">
+  <div class="network-header">
+    <h3>Tributary Connections Map</h3>
+    <p class="network-description">
+      This diagram shows how sections connect across different tributaries.
+      Hover over a section to see where it leads, or click a tributary name to highlight all its connections.
+    </p>
+  </div>
+
+  <div class="network-controls">
+    <button class="network-control-btn active" data-mode="all">Show All</button>
+    <button class="network-control-btn" data-mode="land">Land</button>
+    <button class="network-control-btn" data-mode="water">Water</button>
+    <button class="network-control-btn" data-mode="biota">Biota</button>
+    <button class="network-control-btn" data-mode="atmosphere">Atmosphere</button>
+    <button class="network-control-btn" data-mode="humans">Humans</button>
+  </div>
+
+  <div class="network-canvas-container">
+    <div class="network-loading">Loading network diagram...</div>
+    <svg id="tributaryNetworkSVG" class="network-svg" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid meet" style="display:none;">
+    </svg>
+  </div>
+
+  <div class="network-legend">
+    <div class="legend-row">
+      <span class="legend-color land"></span>
+      <span>Land</span>
+    </div>
+    <div class="legend-row">
+      <span class="legend-color water"></span>
+      <span>Water</span>
+    </div>
+    <div class="legend-row">
+      <span class="legend-color biota"></span>
+      <span>Biota</span>
+    </div>
+    <div class="legend-row">
+      <span class="legend-color atmosphere"></span>
+      <span>Atmosphere</span>
+    </div>
+    <div class="legend-row">
+      <span class="legend-color humans"></span>
+      <span>Humans</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/*
+ * Tributary Network Diagram - Interactive Visualization
+ * ====================================================
+ * Loads connections data and renders an interactive network diagram
+ * showing how tributary sections link to each other.
+ */
+
+(function() {
+  const TRIBUTARY_COLORS = {
+    'land': '#CD853F',
+    'water': '#4A90A4',
+    'biota': '#6B8E23',
+    'atmosphere': '#87CEEB',
+    'humans': '#BC8F8F'
+  };
+
+  const TRIBUTARY_POSITIONS = {
+    'land': { x: 200, y: 200 },
+    'water': { x: 800, y: 200 },
+    'biota': { x: 500, y: 120 },
+    'atmosphere': { x: 650, y: 550 },
+    'humans': { x: 350, y: 550 }
+  };
+
+  let connectionsData = null;
+  let tributariesData = null;
+  let currentMode = 'all';
+
+  // Load both data sources
+  Promise.all([
+    fetch('{{ "/assets/data/connections.json" | relative_url }}').then(r => r.json()),
+    fetch('{{ "/assets/data/tributaries.json" | relative_url }}').then(r => r.json())
+  ])
+  .then(([connections, tributaries]) => {
+    connectionsData = connections;
+    tributariesData = tributaries;
+    renderNetwork();
+  })
+  .catch(error => {
+    console.error('Failed to load network data:', error);
+    document.querySelector('.network-canvas-container').innerHTML =
+      '<p class="error-message">Unable to load network diagram data.</p>';
+  });
+
+  function renderNetwork() {
+    if (!connectionsData || !tributariesData) return;
+
+    const svg = document.getElementById('tributaryNetworkSVG');
+
+    // Initialize SVG with defs and groups
+    svg.innerHTML = `
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6" fill="rgba(205, 133, 63, 0.6)" />
+        </marker>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <g class="network-connections"></g>
+      <g class="network-nodes"></g>
+      <g class="network-labels"></g>
+    `;
+
+    const connectionsGroup = svg.querySelector('.network-connections');
+    const nodesGroup = svg.querySelector('.network-nodes');
+    const labelsGroup = svg.querySelector('.network-labels');
+
+    // Create nodes for each section in each tributary
+    const nodeMap = new Map();
+
+    tributariesData.tributaries.forEach(trib => {
+      const tribColor = TRIBUTARY_COLORS[trib.slug];
+      const tribCenter = TRIBUTARY_POSITIONS[trib.slug];
+      const radius = 120;
+      const sections = trib.sections.filter(s => !/^works cited$/i.test(s.heading.trim()));
+      const angleStep = (2 * Math.PI) / sections.length;
+
+      sections.forEach((section, index) => {
+        const angle = index * angleStep - Math.PI / 2; // Start from top
+        const x = tribCenter.x + radius * Math.cos(angle);
+        const y = tribCenter.y + radius * Math.sin(angle);
+
+        nodeMap.set(`${trib.slug}/${section.id}`, {
+          x, y,
+          tributary: trib.slug,
+          section: section.id,
+          title: section.heading,
+          color: tribColor
+        });
+
+        // Create node circle
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', '8');
+        circle.setAttribute('fill', tribColor);
+        circle.setAttribute('stroke', '#fff');
+        circle.setAttribute('stroke-width', '2');
+        circle.setAttribute('class', `network-node ${trib.slug}-node`);
+        circle.setAttribute('data-tributary', trib.slug);
+        circle.setAttribute('data-section', section.id);
+        circle.setAttribute('data-key', `${trib.slug}/${section.id}`);
+
+        // Add tooltip
+        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        title.textContent = `${trib.title}: ${section.heading}`;
+        circle.appendChild(title);
+
+        nodesGroup.appendChild(circle);
+      });
+
+      // Add tributary label at center
+      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('x', tribCenter.x);
+      label.setAttribute('y', tribCenter.y);
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('dominant-baseline', 'middle');
+      label.setAttribute('class', 'tributary-label');
+      label.setAttribute('fill', tribColor);
+      label.setAttribute('font-size', '18');
+      label.setAttribute('font-weight', '700');
+      label.textContent = trib.title.toUpperCase();
+      labelsGroup.appendChild(label);
+    });
+
+    // Draw connections
+    connectionsData.connections.forEach(conn => {
+      const sourceKey = `${conn.source_trib}/${conn.source_section}`;
+      const targetKey = `${conn.target_trib}/${conn.target_section}`;
+
+      const source = nodeMap.get(sourceKey);
+      const target = nodeMap.get(targetKey);
+
+      if (source && target) {
+        const path = createCurvedPath(source, target);
+        path.setAttribute('class', `network-edge ${conn.source_trib}-edge`);
+        path.setAttribute('data-source', sourceKey);
+        path.setAttribute('data-target', targetKey);
+        path.setAttribute('stroke', source.color);
+        path.setAttribute('stroke-width', '1.5');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('opacity', '0.3');
+        path.setAttribute('marker-end', 'url(#arrowhead)');
+
+        connectionsGroup.appendChild(path);
+      }
+    });
+
+    // Show SVG and hide loading message
+    svg.style.display = 'block';
+    const loadingMsg = document.querySelector('.network-loading');
+    if (loadingMsg) loadingMsg.style.display = 'none';
+
+    attachNetworkListeners();
+  }
+
+  function createCurvedPath(source, target) {
+    // Calculate control points for smooth curve
+    const dx = target.x - source.x;
+    const dy = target.y - source.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    // Control point offset (creates arc)
+    const offset = dist * 0.2;
+    const midX = (source.x + target.x) / 2;
+    const midY = (source.y + target.y) / 2;
+
+    // Perpendicular offset
+    const perpX = -dy / dist * offset;
+    const perpY = dx / dist * offset;
+
+    const cx = midX + perpX;
+    const cy = midY + perpY;
+
+    const pathData = `M ${source.x},${source.y} Q ${cx},${cy} ${target.x},${target.y}`;
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', pathData);
+
+    return path;
+  }
+
+  function attachNetworkListeners() {
+    // Node hover
+    document.querySelectorAll('.network-node').forEach(node => {
+      node.addEventListener('mouseenter', function() {
+        const key = this.getAttribute('data-key');
+        highlightNode(key, true);
+      });
+
+      node.addEventListener('mouseleave', function() {
+        const key = this.getAttribute('data-key');
+        highlightNode(key, false);
+      });
+
+      node.addEventListener('click', function() {
+        const tributary = this.getAttribute('data-tributary');
+        const section = this.getAttribute('data-section');
+        window.location.href = `{{ "/tributaries/" | relative_url }}${tributary}/#${section}`;
+      });
+    });
+
+    // Filter buttons
+    document.querySelectorAll('.network-control-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.network-control-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        const mode = this.getAttribute('data-mode');
+        currentMode = mode;
+        filterNetwork(mode);
+      });
+    });
+  }
+
+  function highlightNode(nodeKey, highlight) {
+    // Highlight the node itself
+    const node = document.querySelector(`.network-node[data-key="${nodeKey}"]`);
+    if (node) {
+      if (highlight) {
+        node.setAttribute('r', '12');
+        node.setAttribute('filter', 'url(#glow)');
+      } else {
+        node.setAttribute('r', '8');
+        node.removeAttribute('filter');
+      }
+    }
+
+    // Highlight connected edges
+    document.querySelectorAll('.network-edge').forEach(edge => {
+      const source = edge.getAttribute('data-source');
+      const target = edge.getAttribute('data-target');
+
+      if (source === nodeKey) {
+        edge.setAttribute('opacity', highlight ? '0.9' : '0.3');
+        edge.setAttribute('stroke-width', highlight ? '3' : '1.5');
+
+        // Highlight target node
+        const targetNode = document.querySelector(`.network-node[data-key="${target}"]`);
+        if (targetNode && highlight) {
+          targetNode.setAttribute('r', '10');
+          targetNode.setAttribute('stroke-width', '3');
+        } else if (targetNode) {
+          targetNode.setAttribute('r', '8');
+          targetNode.setAttribute('stroke-width', '2');
+        }
+      }
+    });
+  }
+
+  function filterNetwork(mode) {
+    if (mode === 'all') {
+      document.querySelectorAll('.network-node, .network-edge').forEach(el => {
+        el.style.opacity = '';
+      });
+    } else {
+      document.querySelectorAll('.network-node').forEach(node => {
+        const trib = node.getAttribute('data-tributary');
+        node.style.opacity = (trib === mode) ? '1' : '0.15';
+      });
+
+      document.querySelectorAll('.network-edge').forEach(edge => {
+        edge.style.opacity = (edge.classList.contains(`${mode}-edge`)) ? '0.6' : '0.05';
+      });
+    }
+  }
+})();
+</script>
+
+<style>
+.tributary-network-diagram {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(139, 115, 85, 0.05);
+  border-radius: 12px;
+}
+
+.network-header h3 {
+  font-size: var(--text-xl);
+  margin-bottom: 0.5rem;
+  color: #8B7355;
+}
+
+.network-description {
+  font-size: var(--text-sm);
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.network-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.network-control-btn {
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 2px solid #CD853F;
+  border-radius: 6px;
+  color: #CD853F;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.network-control-btn:hover {
+  background: rgba(205, 133, 63, 0.1);
+}
+
+.network-control-btn.active {
+  background: #CD853F;
+  color: white;
+}
+
+.network-canvas-container {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.network-svg {
+  width: 100%;
+  height: auto;
+  min-height: 500px;
+}
+
+.network-node {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.network-node:hover {
+  transform: scale(1.2);
+  filter: url(#glow);
+}
+
+.network-edge {
+  transition: all 0.3s ease;
+}
+
+.tributary-label {
+  pointer-events: none;
+  user-select: none;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.network-legend {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-sm);
+  font-family: var(--font-ui);
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.legend-color.land { background: #CD853F; }
+.legend-color.water { background: #4A90A4; }
+.legend-color.biota { background: #6B8E23; }
+.legend-color.atmosphere { background: #87CEEB; }
+.legend-color.humans { background: #BC8F8F; }
+
+.error-message {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .network-svg {
+    min-height: 400px;
+  }
+
+  .tributary-label {
+    font-size: 14px;
+  }
+}
+</style>

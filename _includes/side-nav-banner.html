@@ -598,6 +598,211 @@
         if (navContainer) {
             navContainer.classList.remove('loading');
         }
+
+        // Load connections data after navigation is rendered
+        loadConnectionsData();
+    }
+
+    // Load and render connection paths between sections
+    // Connections show how sections link across different tributaries
+    function loadConnectionsData() {
+        const CONNECTIONS_KEY = 'sediment_connections_data';
+        const CONNECTIONS_TIMESTAMP_KEY = 'sediment_connections_timestamp';
+
+        // Check cache first
+        const cachedConnections = sessionStorage.getItem(CONNECTIONS_KEY);
+        const cachedTimestamp = sessionStorage.getItem(CONNECTIONS_TIMESTAMP_KEY);
+
+        if (cachedConnections && cachedTimestamp) {
+            const age = Date.now() - parseInt(cachedTimestamp);
+            if (age < CACHE_DURATION) {
+                try {
+                    const data = JSON.parse(cachedConnections);
+                    renderConnections(data);
+                    return;
+                } catch (e) {
+                    console.warn('Failed to parse cached connections data:', e);
+                }
+            }
+        }
+
+        // Fetch from server
+        fetch('{{ "/assets/data/connections.json" | relative_url }}')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load connections data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                sessionStorage.setItem(CONNECTIONS_KEY, JSON.stringify(data));
+                sessionStorage.setItem(CONNECTIONS_TIMESTAMP_KEY, Date.now().toString());
+                renderConnections(data);
+            })
+            .catch(error => {
+                console.warn('Connections data not available:', error);
+                // Not critical - nav works without connections visualization
+            });
+    }
+
+    // Render connection paths between river segments
+    // Creates SVG paths showing how sections link across tributaries
+    function renderConnections(data) {
+        if (!data || !data.connections) return;
+
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash.replace('#', '');
+
+        // Determine current tributary and section
+        let currentTrib = null;
+        let currentSection = null;
+
+        document.querySelectorAll('.river-column').forEach(col => {
+            if (currentPath.includes('/tributaries/' + col.dataset.tributary)) {
+                currentTrib = col.dataset.tributary;
+            }
+        });
+
+        if (currentTrib && currentHash) {
+            currentSection = currentHash;
+        }
+
+        // Create connections container if it doesn't exist
+        const visualNav = document.querySelector('.visual-nav-section');
+        if (!visualNav) return;
+
+        let connectionsContainer = visualNav.querySelector('.connections-container');
+        if (!connectionsContainer) {
+            connectionsContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            connectionsContainer.setAttribute('class', 'connections-container');
+            connectionsContainer.setAttribute('viewBox', '0 0 600 700');
+            connectionsContainer.style.position = 'absolute';
+            connectionsContainer.style.top = '0';
+            connectionsContainer.style.left = '0';
+            connectionsContainer.style.width = '100%';
+            connectionsContainer.style.height = '100%';
+            connectionsContainer.style.pointerEvents = 'none';
+            visualNav.querySelector('.rivers-container').appendChild(connectionsContainer);
+        }
+
+        // Clear existing connections
+        connectionsContainer.innerHTML = '';
+
+        // Create a group for all connection paths
+        const pathsGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        pathsGroup.setAttribute('class', 'connection-paths');
+        connectionsContainer.appendChild(pathsGroup);
+
+        // Filter connections: show only from current section if on a tributary page
+        let connectionsToShow = data.connections;
+        if (currentTrib && currentSection) {
+            connectionsToShow = data.connections.filter(conn =>
+                conn.source_trib === currentTrib && conn.source_section === currentSection
+            );
+        }
+
+        // Render each connection as a curved path
+        connectionsToShow.forEach(conn => {
+            const sourceSeg = findSegment(conn.source_trib, conn.source_section);
+            const targetSeg = findSegment(conn.target_trib, conn.target_section);
+
+            if (sourceSeg && targetSeg) {
+                const path = createConnectionPath(sourceSeg, targetSeg, conn);
+                if (path) {
+                    pathsGroup.appendChild(path);
+                }
+            }
+        });
+    }
+
+    // Find a segment element by tributary and section ID
+    function findSegment(tributarySlug, sectionId) {
+        if (!sectionId) return null;
+
+        const column = document.querySelector(`.river-column[data-tributary="${tributarySlug}"]`);
+        if (!column) return null;
+
+        return column.querySelector(`.river-segment[data-section="${sectionId}"]`);
+    }
+
+    // Create an SVG path between two segments
+    function createConnectionPath(sourceSegment, targetSegment, connection) {
+        const sourceRect = sourceSegment.querySelector('rect');
+        const targetRect = targetSegment.querySelector('rect');
+
+        if (!sourceRect || !targetRect) return null;
+
+        // Get positions of segments within their SVG containers
+        const sourceColumn = sourceSegment.closest('.river-column');
+        const targetColumn = targetSegment.closest('.river-column');
+
+        const sourceIndex = Array.from(document.querySelectorAll('.river-column')).indexOf(sourceColumn);
+        const targetIndex = Array.from(document.querySelectorAll('.river-column')).indexOf(targetColumn);
+
+        // Calculate positions (each column is ~120px wide in a 600px viewBox)
+        const columnWidth = 120;
+        const sourceX = (sourceIndex * columnWidth) + 60;  // Center of column
+        const targetX = (targetIndex * columnWidth) + 60;
+
+        const sourceY = parseFloat(sourceRect.getAttribute('y')) + parseFloat(sourceRect.getAttribute('height')) / 2;
+        const targetY = parseFloat(targetRect.getAttribute('y')) + parseFloat(targetRect.getAttribute('height')) / 2;
+
+        // Create curved path using cubic bezier
+        const controlPoint1X = sourceX + (targetX - sourceX) * 0.5;
+        const controlPoint1Y = sourceY;
+        const controlPoint2X = sourceX + (targetX - sourceX) * 0.5;
+        const controlPoint2Y = targetY;
+
+        const pathData = `M ${sourceX},${sourceY} C ${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetX},${targetY}`;
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', pathData);
+        path.setAttribute('class', 'connection-path');
+        path.setAttribute('data-source', `${connection.source_trib}/${connection.source_section}`);
+        path.setAttribute('data-target', `${connection.target_trib}/${connection.target_section}`);
+        path.setAttribute('stroke', 'rgba(205, 133, 63, 0.3)');
+        path.setAttribute('stroke-width', '2');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke-dasharray', '5,5');
+
+        return path;
+    }
+
+    // Highlight or unhighlight connection paths from a specific segment
+    function highlightConnections(tributarySlug, sectionId, highlight) {
+        const sourceKey = `${tributarySlug}/${sectionId}`;
+
+        document.querySelectorAll('.connection-path').forEach(path => {
+            const pathSource = path.getAttribute('data-source');
+
+            if (pathSource === sourceKey) {
+                if (highlight) {
+                    path.setAttribute('stroke', 'rgba(205, 133, 63, 0.9)');
+                    path.setAttribute('stroke-width', '3');
+                    path.classList.add('highlighted');
+
+                    // Also highlight the target segment
+                    const targetKey = path.getAttribute('data-target');
+                    const [targetTrib, targetSection] = targetKey.split('/');
+                    const targetSegment = findSegment(targetTrib, targetSection);
+                    if (targetSegment) {
+                        targetSegment.classList.add('connection-target');
+                    }
+                } else {
+                    path.setAttribute('stroke', 'rgba(205, 133, 63, 0.3)');
+                    path.setAttribute('stroke-width', '2');
+                    path.classList.remove('highlighted');
+
+                    // Remove highlight from target segment
+                    const targetKey = path.getAttribute('data-target');
+                    const [targetTrib, targetSection] = targetKey.split('/');
+                    const targetSegment = findSegment(targetTrib, targetSection);
+                    if (targetSegment) {
+                        targetSegment.classList.remove('connection-target');
+                    }
+                }
+            }
+        });
     }
 
     // Attach event listeners to dynamically generated segments
@@ -610,33 +815,38 @@
                 if (column.classList.contains('locked') || document.querySelector('.river-column.locked')) {
                     return;
                 }
-                
+
                 const segment = e.currentTarget;
                 const title = segment.dataset.title;
+                const sectionId = segment.dataset.section;
+                const tributarySlug = column.dataset.tributary;
                 const svg = segment.closest('svg');
-                
+
                 // Remove any existing label in this SVG
                 const existingLabel = svg.querySelector('.segment-label');
                 if (existingLabel) {
                     existingLabel.remove();
                 }
-                
+
                 // Create text element
                 const textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 textEl.classList.add('segment-label');
-                
+
                 // Get segment position - use first rect in group for positioning
                 const rect = segment.querySelector('rect');
                 const x = parseFloat(rect.getAttribute('x')) + parseFloat(rect.getAttribute('width')) / 2;
                 const y = parseFloat(rect.getAttribute('y')) + parseFloat(rect.getAttribute('height')) / 2;
-                
+
                 textEl.setAttribute('x', x);
                 textEl.setAttribute('y', y + 3);
                 textEl.setAttribute('text-anchor', 'middle');
                 textEl.setAttribute('dominant-baseline', 'middle');
                 textEl.textContent = title;
-                
+
                 svg.appendChild(textEl);
+
+                // Highlight connection paths from this segment
+                highlightConnections(tributarySlug, sectionId, true);
             });
             
             segment.addEventListener('mouseleave', function(e) {
@@ -645,13 +855,18 @@
                 if (column.classList.contains('locked')) {
                     return;
                 }
-                
+
                 const segment = e.currentTarget;
+                const sectionId = segment.dataset.section;
+                const tributarySlug = column.dataset.tributary;
                 const svg = segment.closest('svg');
                 const label = svg.querySelector('.segment-label');
                 if (label) {
                     label.remove();
                 }
+
+                // Unhighlight connection paths
+                highlightConnections(tributarySlug, sectionId, false);
             });
             
             segment.addEventListener('click', function(e) {
