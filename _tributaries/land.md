@@ -150,7 +150,7 @@ There is another problem in trying to understand the world without motion. When 
 
 There is a political edge as to whether we represent space as a fixed and layered plane or as a rhizome of criss-crossing trajectories. For Massey, "the notion of a section in which all elements exist in immediate relationship with one another is essentially a description of a closed system," which in turn "robs it of all political potential." [^15] Imagining space as fixed, in other words, shutters the possibility for new relationships to form, and therefore shutters the possibility for social arrangements to be reformulated into new political structures. 
 
-Stabilizing space not only forecloses certain futures, but also erases certain pasts. Massey argues that practices which lay out space on fixed surfaces, such as mapping, make relational trajectories invisible.” It is thus, she concludes, "that others are rendered static, without history," and space becomes a "blank page" to be explored. [^16] 
+Stabilizing space not only forecloses certain futures, but also erases certain pasts. Massey argues that practices which lay out space on fixed surfaces, such as mapping, "make relational trajectories invisible.” It is thus, she concludes, "that others are rendered static, without history," and space becomes a "blank page" to be explored. [^16] 
 
 {% include feature/image-gallery.html objectid="sediment29" caption=false%}
 
