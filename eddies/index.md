@@ -12,7 +12,7 @@ custom-foot: js/eddies-cyoa-js.html;js/spotlight-media-handler.html
 <div class="eddies-container">
   <!-- Initial intro screen -->
   <div id="eddies-intro" class="eddies-intro">
-    <p class="eddies-description"> <em> Eddies </em> pulls together fragments of stories from across each of <em> Sedimentation</em>'s tributaries and swirls them together, forming new narrative arrangements and connections. At the end of each section, you get to choose what come next: draw a random fragment, or follow established relations across the site. If you'd like to enter a new Eddy, click <em>Clear & Reset </em> on the bottom right of your screen. </p>
+    <p class="eddies-description"> <em> Eddies </em> pulls together fragments of stories from across each of <em> Sedimentation</em>'s tributaries and swirls them together, forming new narrative arrangements and connections. At the end of each section, you get to choose what come next: draw a random fragment, or follow established relations across the site. If you'd like to enter a new Eddy, click <em>Clear & Reset </em> on the bottom left of your screen. </p>
     <button id="begin-journey-btn" class="begin-journey-btn">
       <span class="btn-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
